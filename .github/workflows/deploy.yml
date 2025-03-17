@@ -1,0 +1,52 @@
+name: Deploy Vite App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Trigger deployment on pushes to the 'main' branch
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Inject environment variables
+        run: |
+          echo "VITE_BACKEND_URL=https://tmdb-acedhqe6c0atfrb6.japanwest-01.azurewebsites.net" >> .env.production
+          echo "VITE_CLIENT_ID=585374389420-p1e98040g0lsppltcsr2qms0kuct004c.apps.googleusercontent.com" >> .env.production
+          echo "VITE_REDIRECT_URI=https://advanced-web-project.github.io/tmdb-frontend/authenticate" >> .env.production
+          echo "VITE_AUTH_URI=https://accounts.google.com/o/oauth2/auth" >> .env.production
+          echo "VITE_AVATAR_CAST_URL=https://image.tmdb.org/t/p/w276_and_h350_face" >> .env.production
+          echo "VITE_AVATAR_REVIEWER=https://media.themoviedb.org/t/p/w90_and_h90_face" >> .env.production
+          echo "VITE_IMAGE_RECOMMENDATION=https://media.themoviedb.org/t/p/w500_and_h282_face" >> .env.production
+          echo "VITE_IMAGE_MOVIE_POSTER=https://media.themoviedb.org/t/p/w600_and_h900_bestv2" >> .env.production
+          echo "VITE_IMAGE_MOVIE_TRENDING_CARD=https://media.themoviedb.org/t/p/w440_and_h660_face/" >> .env.production
+          echo "VITE_TMDB_API_URL=https://api.themoviedb.org/3" >> .env.production
+          echo "VITE_ACCESS_TOKEN=${{ secrets.VITE_ACCESS_TOKEN }}" >> .env.production
+          echo "VITE_IMAGE_MOVIE_BACKDROP=https://media.themoviedb.org/t/p/w600_and_h600_bestv2" >> .env.production
+          echo "VITE_MOVIE_ACTOR=https://media.themoviedb.org/t/p/w300_and_h450_bestv2/" >> .env.production
+          echo "VITE_PROFILE_ACTOR=https://media.themoviedb.org/t/p/w600_and_h900_bestv2/" >> .env.production
+          echo "VITE_MOVIE_PREVIEW=https://media.themoviedb.org/t/p/w188_and_h282_bestv2" >> .env.production
+          echo "VITE_MOVIE_TRAILER=https://media.themoviedb.org/t/p/w710_and_h400_multi_faces/" >> .env.production
+
+      - name: Build the project
+        run: npm run build
+      - name: Create 404.html for SPA fallback
+        run: |
+          cp dist/index.html dist/404.html
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
