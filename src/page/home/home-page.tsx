@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Hero from '../../components/page/homepage/Hero';
 import Brands from '../../components/page/homepage/Brands';
 import Featured from '../../components/page/homepage/Featured';
-import { products } from '../../data/products';
+import { topProducts } from '../../data/products';
 import Contact from '../../components/page/homepage/Contact';
 import CommonProducts from '../../components/page/homepage/CommonProduct';
 
@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
         <Hero />
         <Brands />
         <Featured />
-        {products.map((category) => (
+        {topProducts.map((category) => (
           <CommonProducts key={category.title} title={category.title} data={category.data} />
         ))}
         <Contact />
