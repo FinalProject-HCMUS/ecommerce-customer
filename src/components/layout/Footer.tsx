@@ -1,4 +1,4 @@
-import { FiTwitter, FiInstagram, FiFacebook, FiGithub } from "react-icons/fi"
+import { FiTwitter, FiInstagram, FiFacebook, FiGithub } from 'react-icons/fi';
 
 const Footer = () => {
   return (
@@ -122,8 +122,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
-
+export default Footer;

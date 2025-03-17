@@ -1,4 +1,5 @@
-import { FiPhone, FiMail, FiMapPin } from "react-icons/fi"
+import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
+import { contactInfo } from '../../../data/contactInfo';
 
 const Contact = () => {
   return (
@@ -12,15 +13,15 @@ const Contact = () => {
             <div className="space-y-6">
               <div className="flex items-center">
                 <FiPhone className="w-6 h-6 mr-4 text-gray-600" />
-                <span>+1012 3456 789</span>
+                <span>{contactInfo.phone}</span>
               </div>
               <div className="flex items-center">
                 <FiMail className="w-6 h-6 mr-4 text-gray-600" />
-                <span>demo@gmail.com</span>
+                <span>{contactInfo.email}</span>
               </div>
               <div className="flex items-start">
                 <FiMapPin className="w-6 h-6 mr-4 text-gray-600 mt-1" />
-                <span>132 Dartmouth Street Boston, Massachusetts 02156 United States</span>
+                <span>{contactInfo.address}</span>
               </div>
             </div>
           </div>
@@ -78,7 +79,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
