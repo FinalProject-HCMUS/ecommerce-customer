@@ -1,73 +1,73 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import Breadcrumb from "../../components/page/searchpage/Breadcrumb"
-import Filters from "../../components/page/searchpage/Filters"
-import ProductGrid from "../../components/page/searchpage/ProductGrid"
-import SearchHeader from "../../components/page/searchpage/SearchHeader"
-import Pagination from "../../components/page/searchpage/Pagination"
-import type { Product } from "../../type/product"
-import { products } from "../../data/products"
+import { useState, useEffect } from 'react';
+import Breadcrumb from '../../components/shared/Breadcrumb';
+import Filters from '../../components/page/searchpage/Filters';
+import ProductGrid from '../../components/page/searchpage/ProductGrid';
+import SearchHeader from '../../components/page/searchpage/SearchHeader';
+import Pagination from '../../components/page/searchpage/Pagination';
+import type { Product } from '../../type/product';
+import { products } from '../../data/products';
 
 function App() {
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(products)
-  const [priceRange, setPriceRange] = useState<[number, number]>([50, 250])
-  const [selectedColors, setSelectedColors] = useState<string[]>([])
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([])
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const productsPerPage = 9
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
+  const [priceRange, setPriceRange] = useState<[number, number]>([50, 250]);
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 9;
 
   // Filter products based on selected filters
   useEffect(() => {
-    let result = [...products]
+    let result = [...products];
 
     // Filter by price
-    result = result.filter((product) => product.price >= priceRange[0] && product.price <= priceRange[1])
+    result = result.filter((product) => product.price >= priceRange[0] && product.price <= priceRange[1]);
 
     // Filter by color
     if (selectedColors.length > 0) {
-      result = result.filter((product) => selectedColors.includes(product.color))
+      result = result.filter((product) => selectedColors.includes(product.color));
     }
 
     // Filter by size
     if (selectedSizes.length > 0) {
-      result = result.filter((product) => product.sizes.some((size) => selectedSizes.includes(size)))
+      result = result.filter((product) => product.sizes.some((size) => selectedSizes.includes(size)));
     }
 
     // Filter by category
     if (selectedCategories.length > 0) {
-      result = result.filter((product) => selectedCategories.includes(product.category))
+      result = result.filter((product) => selectedCategories.includes(product.category));
     }
 
-    setFilteredProducts(result)
-    setCurrentPage(1) // Reset to first page when filters change
-  }, [priceRange, selectedColors, selectedSizes, selectedCategories, products])
+    setFilteredProducts(result);
+    setCurrentPage(1); // Reset to first page when filters change
+  }, [priceRange, selectedColors, selectedSizes, selectedCategories, products]);
 
   // Get current products for pagination
-  const indexOfLastProduct = currentPage * productsPerPage
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber)
+    setCurrentPage(pageNumber);
     // Scroll to top when changing page
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const applyFilters = () => {
     // This function would typically fetch data from an API with the filters
     // For this demo, we're just using the existing filters that are already applied
-    console.log("Filters applied")
-  }
+    console.log('Filters applied');
+  };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 font-sans">
+    <div className="max-w-7xl mt-20 px-4 sm:px-6 font-sans">
       <Breadcrumb
         items={[
-          { label: "Home", path: "/" },
-          { label: "Products", path: "/products" },
+          { label: 'Home', path: '/' },
+          { label: 'Products', path: '/products' },
         ]}
       />
       <SearchHeader
@@ -94,8 +94,7 @@ function App() {
 
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
     </div>
-  )
+  );
 }
 
-export default App
-
+export default App;

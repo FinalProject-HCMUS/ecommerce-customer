@@ -1,15 +1,15 @@
-import { motion } from "framer-motion"
-import { ChevronDown } from "react-feather"
+import { motion } from 'framer-motion';
+import { ChevronDown } from 'react-feather';
 
 interface SearchHeaderProps {
-  totalProducts: number
-  currentPage: number
-  productsPerPage: number
+  totalProducts: number;
+  currentPage: number;
+  productsPerPage: number;
 }
 
 const SearchHeader = ({ totalProducts, currentPage, productsPerPage }: SearchHeaderProps) => {
-  const startProduct = (currentPage - 1) * productsPerPage + 1
-  const endProduct = Math.min(currentPage * productsPerPage, totalProducts)
+  const startProduct = (currentPage - 1) * productsPerPage + 1;
+  const endProduct = Math.min(currentPage * productsPerPage, totalProducts);
 
   return (
     <motion.div
@@ -31,8 +31,7 @@ const SearchHeader = ({ totalProducts, currentPage, productsPerPage }: SearchHea
         </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default SearchHeader
-
+export default SearchHeader;

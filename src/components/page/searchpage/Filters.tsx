@@ -1,21 +1,19 @@
-"use client"
-
-import type React from "react"
-
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown, ChevronUp } from "react-feather"
+import type React from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, ChevronUp } from 'react-feather';
+import { categories, colors, sizes } from '../../../data/filter';
 
 interface FiltersProps {
-  priceRange: [number, number]
-  setPriceRange: (range: [number, number]) => void
-  selectedColors: string[]
-  setSelectedColors: (colors: string[]) => void
-  selectedSizes: string[]
-  setSelectedSizes: (sizes: string[]) => void
-  selectedCategories: string[]
-  setSelectedCategories: (categories: string[]) => void
-  applyFilters: () => void
+  priceRange: [number, number];
+  setPriceRange: (range: [number, number]) => void;
+  selectedColors: string[];
+  setSelectedColors: (colors: string[]) => void;
+  selectedSizes: string[];
+  setSelectedSizes: (sizes: string[]) => void;
+  selectedCategories: string[];
+  setSelectedCategories: (categories: string[]) => void;
+  applyFilters: () => void;
 }
 
 const Filters = ({
@@ -32,75 +30,43 @@ const Filters = ({
     price: true,
     colors: true,
     size: true,
-  })
+  });
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections({
       ...expandedSections,
       [section]: !expandedSections[section],
-    })
-  }
+    });
+  };
 
   const handleColorSelect = (color: string) => {
     if (selectedColors.includes(color)) {
-      setSelectedColors(selectedColors.filter((c) => c !== color))
+      setSelectedColors(selectedColors.filter((c) => c !== color));
     } else {
-      setSelectedColors([...selectedColors, color])
+      setSelectedColors([...selectedColors, color]);
     }
-  }
+  };
 
   const handleSizeSelect = (size: string) => {
     if (selectedSizes.includes(size)) {
-      setSelectedSizes(selectedSizes.filter((s) => s !== size))
+      setSelectedSizes(selectedSizes.filter((s) => s !== size));
     } else {
-      setSelectedSizes([...selectedSizes, size])
+      setSelectedSizes([...selectedSizes, size]);
     }
-  }
+  };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number.parseInt(e.target.value)
-    if (e.target.name === "min") {
-      setPriceRange([value, priceRange[1]])
+    const value = Number.parseInt(e.target.value);
+    if (e.target.name === 'min') {
+      setPriceRange([value, priceRange[1]]);
     } else {
-      setPriceRange([priceRange[0], value])
+      setPriceRange([priceRange[0], value]);
     }
-  }
-
-  const categories = [
-    { id: "tshirts", label: "T-shirts" },
-    { id: "shorts", label: "Shorts" },
-    { id: "shirts", label: "Shirts" },
-    { id: "hoodies", label: "Hoodies" },
-    { id: "jeans", label: "Jeans" },
-  ]
-
-  const colors = [
-    { id: "green", color: "#4CAF50" },
-    { id: "red", color: "#F44336" },
-    { id: "yellow", color: "#FFEB3B" },
-    { id: "orange", color: "#FF9800" },
-    { id: "blue", color: "#2196F3" },
-    { id: "purple", color: "#9C27B0" },
-    { id: "pink", color: "#E91E63" },
-    { id: "white", color: "#FFFFFF", border: true },
-    { id: "black", color: "#000000" },
-  ]
-
-  const sizes = [
-    { id: "xxs", label: "XX-Small" },
-    { id: "xs", label: "X-Small" },
-    { id: "small", label: "Small" },
-    { id: "medium", label: "Medium" },
-    { id: "large", label: "Large" },
-    { id: "xl", label: "X-Large" },
-    { id: "xxl", label: "XX-Large" },
-    { id: "3xl", label: "3X-Large" },
-    { id: "4xl", label: "4X-Large" },
-  ]
+  };
 
   return (
     <motion.div
-      className="w-full md:w-56 border border-gray-200 rounded-md p-4 flex-shrink-0"
+      className="w-full md:w-56 border border-gray-200 rounded-[12px] p-4 flex-shrink-0"
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4 }}
@@ -118,7 +84,7 @@ const Filters = ({
       <div className="mb-6">
         <div
           className="flex justify-between items-center cursor-pointer py-1"
-          onClick={() => toggleSection("categories")}
+          onClick={() => toggleSection('categories')}
         >
           <h3 className="text-base font-medium m-0">Categories</h3>
           {expandedSections.categories ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -129,7 +95,7 @@ const Filters = ({
             <motion.div
               className="overflow-hidden"
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
+              animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
@@ -148,7 +114,7 @@ const Filters = ({
 
       {/* Price Range */}
       <div className="mb-6">
-        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection("price")}>
+        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('price')}>
           <h3 className="text-base font-medium m-0">Price</h3>
           {expandedSections.price ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
@@ -158,7 +124,7 @@ const Filters = ({
             <motion.div
               className="overflow-hidden"
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
+              animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
@@ -195,7 +161,7 @@ const Filters = ({
 
       {/* Colors */}
       <div className="mb-6">
-        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection("colors")}>
+        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('colors')}>
           <h3 className="text-base font-medium m-0">Colors</h3>
           {expandedSections.colors ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
@@ -205,7 +171,7 @@ const Filters = ({
             <motion.div
               className="overflow-hidden"
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
+              animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
@@ -213,7 +179,7 @@ const Filters = ({
                 {colors.map((color) => (
                   <motion.div
                     key={color.id}
-                    className={`w-6 h-6 rounded-full cursor-pointer ${color.border ? "border border-gray-300" : ""} ${selectedColors.includes(color.id) ? "ring-2 ring-black ring-offset-1" : ""}`}
+                    className={`w-6 h-6 rounded-full cursor-pointer ${color.border ? 'border border-gray-300' : ''} ${selectedColors.includes(color.id) ? 'ring-2 ring-black ring-offset-1' : ''}`}
                     style={{ backgroundColor: color.color }}
                     onClick={() => handleColorSelect(color.id)}
                     whileHover={{ scale: 1.1 }}
@@ -228,7 +194,7 @@ const Filters = ({
 
       {/* Size */}
       <div className="mb-6">
-        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection("size")}>
+        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('size')}>
           <h3 className="text-base font-medium m-0">Size</h3>
           {expandedSections.size ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
@@ -238,7 +204,7 @@ const Filters = ({
             <motion.div
               className="overflow-hidden"
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
+              animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
@@ -247,7 +213,7 @@ const Filters = ({
                   {sizes.slice(0, 4).map((size) => (
                     <motion.div
                       key={size.id}
-                      className={`px-2.5 py-1.5 text-xs border rounded-md cursor-pointer ${selectedSizes.includes(size.id) ? "bg-black text-white border-black" : "border-gray-300 hover:bg-gray-100"}`}
+                      className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
                       onClick={() => handleSizeSelect(size.id)}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -259,7 +225,7 @@ const Filters = ({
                   {sizes.slice(4, 7).map((size) => (
                     <motion.div
                       key={size.id}
-                      className={`px-2.5 py-1.5 text-xs border rounded-md cursor-pointer ${selectedSizes.includes(size.id) ? "bg-black text-white border-black" : "border-gray-300 hover:bg-gray-100"}`}
+                      className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
                       onClick={() => handleSizeSelect(size.id)}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -271,7 +237,7 @@ const Filters = ({
                   {sizes.slice(7).map((size) => (
                     <motion.div
                       key={size.id}
-                      className={`px-2.5 py-1.5 text-xs border rounded-md cursor-pointer ${selectedSizes.includes(size.id) ? "bg-black text-white border-black" : "border-gray-300 hover:bg-gray-100"}`}
+                      className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
                       onClick={() => handleSizeSelect(size.id)}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -286,15 +252,14 @@ const Filters = ({
       </div>
 
       <motion.button
-        className="w-full py-2.5 bg-white border border-black rounded-md font-medium cursor-pointer transition-colors hover:bg-black hover:text-white mt-4"
+        className="w-full py-2.5 bg-white border border-black rounded-full font-medium cursor-pointer transition-colors hover:bg-black hover:text-white mt-4"
         onClick={applyFilters}
         whileTap={{ scale: 0.98 }}
       >
         Apply Filter
       </motion.button>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Filters
-
+export default Filters;

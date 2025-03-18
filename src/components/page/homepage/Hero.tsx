@@ -1,5 +1,5 @@
 import { heroData } from '../../../data/hero';
-import imageIcon from '../../../assets/image_template.png'
+import imageIcon from '../../../assets/image_template.png';
 
 const Hero = () => {
   return (

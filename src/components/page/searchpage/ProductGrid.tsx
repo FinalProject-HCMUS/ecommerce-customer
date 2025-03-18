@@ -1,9 +1,10 @@
-import { motion } from "framer-motion"
-import { Star } from "react-feather"
-import type { Product } from "../../../type/product"
+import { motion } from 'framer-motion';
+import { Star } from 'react-feather';
+import type { Product } from '../../../type/product';
+import imageClothes from '../../../assets/shirt.png';
 
 interface ProductGridProps {
-  products: Product[]
+  products: Product[];
 }
 
 const ProductGrid = ({ products }: ProductGridProps) => {
@@ -15,16 +16,16 @@ const ProductGrid = ({ products }: ProductGridProps) => {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  }
+  };
 
   return (
     <motion.div
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 flex-grow"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 flex-grow"
       variants={container}
       initial="hidden"
       animate="show"
@@ -32,13 +33,13 @@ const ProductGrid = ({ products }: ProductGridProps) => {
       {products.map((product) => (
         <motion.div
           key={product.id}
-          className="bg-white rounded-md overflow-hidden cursor-pointer transition-transform hover:shadow-md"
+          className="bg-white rounded-[12px] shadow-lg overflow-hidden cursor-pointer transition-transform hover:shadow-md"
           variants={item}
           whileHover={{ y: -5, transition: { duration: 0.2 } }}
         >
           <div className="aspect-square overflow-hidden">
             <img
-              src={product.image || "/placeholder.svg"}
+              src={product.image || imageClothes}
               alt={product.name}
               className="w-full h-full object-cover transition-transform hover:scale-105"
             />
@@ -50,8 +51,8 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                 <Star
                   key={i}
                   size={14}
-                  fill={i < product.rating ? "#FFD700" : "none"}
-                  stroke={i < product.rating ? "#FFD700" : "#ccc"}
+                  fill={i < product.rating ? '#FFD700' : 'none'}
+                  stroke={i < product.rating ? '#FFD700' : '#ccc'}
                   className="mr-0.5"
                 />
               ))}
@@ -72,8 +73,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
         </motion.div>
       ))}
     </motion.div>
-  )
-}
+  );
+};
 
-export default ProductGrid
-
+export default ProductGrid;
