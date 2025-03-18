@@ -1,11 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Hero from '../../components/page/homepage/Hero';
-import Brands from '../../components/page/homepage/Brands';
-import Featured from '../../components/page/homepage/Featured';
+import Hero from '../../components/page/home/Hero';
+import Brands from '../../components/page/home/Brands';
+import Featured from '../../components/page/home/Featured';
 import { topProducts } from '../../data/products';
-import Contact from '../../components/page/homepage/Contact';
-import CommonProducts from '../../components/page/homepage/CommonProduct';
+import Contact from '../../components/page/home/Contact';
+import CommonProducts from '../../components/page/home/CommonProduct';
 
 const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(true);

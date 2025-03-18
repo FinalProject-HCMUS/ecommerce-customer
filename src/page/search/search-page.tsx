@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
-import Filters from '../../components/page/searchpage/Filters';
-import ProductGrid from '../../components/page/searchpage/ProductGrid';
-import SearchHeader from '../../components/page/searchpage/SearchHeader';
-import Pagination from '../../components/page/searchpage/Pagination';
+import Filters from '../../components/page/search/Filters';
+import ProductGrid from '../../components/page/search/ProductGrid';
+import SearchHeader from '../../components/page/search/SearchHeader';
+import Pagination from '../../components/page/search/Pagination';
 import type { Product } from '../../type/product';
 import { products } from '../../data/products';
 
