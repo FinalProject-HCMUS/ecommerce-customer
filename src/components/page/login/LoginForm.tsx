@@ -9,6 +9,7 @@ import SocialLoginButton from "./SocialLoginButton"
 import Divider from "./Divider"
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebook } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 const LoginForm = () => {
   const [email, setEmail] = useState("")
@@ -54,9 +55,9 @@ const LoginForm = () => {
 
       <div className="mt-4 text-center text-sm text-gray-500">
         Don't Have An Account?
-        <a href="#" className="ml-1 font-medium text-blue-600 hover:text-blue-500">
+        <Link to="/register" className="ml-1 font-medium text-blue-600 hover:text-blue-500">
           Sign Up
-        </a>
+        </Link>
       </div>
 
       <Divider text="Or" />

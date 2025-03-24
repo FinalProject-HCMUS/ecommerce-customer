@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,12 +25,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="#" className="text-2xl font-bold">
+            <Link to="/" className="text-2xl font-bold">
               SHOP.CO
-            </a>
+            </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
-              <a href="#" className="nav-link font-medium">
+              <a href="/chat" className="nav-link font-medium">
                 Chat
               </a>
               <a href="#" className="nav-link font-medium">
@@ -51,9 +52,11 @@ const Navbar = () => {
               <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
 
+            <Link to="/cart">
             <button className="p-2 hover:text-gray-600 transition-colors">
               <FiShoppingCart size={20} />
             </button>
+            </Link>
 
             <button className="p-2 hover:text-gray-600 transition-colors">
               <FiUser size={20} />

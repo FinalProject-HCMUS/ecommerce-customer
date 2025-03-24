@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const OrderSummary = ({ data }) => {
   const { subtotal, discountAmount, deliveryFee, total } = data
@@ -30,10 +31,10 @@ const OrderSummary = ({ data }) => {
           </div>
         </div>
 
-        <button className="w-full bg-black text-white py-4 px-6 rounded-full mt-6 flex items-center justify-center">
+        <Link to="/checkout" className="w-full bg-black text-white py-4 px-6 rounded-full mt-6 flex items-center justify-center">
           <span>Go to Checkout</span>
           <ArrowRight className="ml-2" size={18} />
-        </button>
+        </Link>
       </div>
     </div>
   )

@@ -52,7 +52,7 @@ function App() {
   }
 
   return (
-    <div className="max-w-7xl mt-10 mx-8 mx-auto px-4 py-8">
+    <div className="max-w-7xl mt-20 mx-8 mx-auto px-4 py-4">
       <Breadcrumb
         items={[
           { label: 'Home', path: '/' },

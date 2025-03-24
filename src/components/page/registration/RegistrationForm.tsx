@@ -1,6 +1,7 @@
 import FormInput from "./FormInput"
 import PasswordInput from "./PasswordInput"
 import Button from "./Button"
+import { Link } from "react-router-dom"
 
 const RegistrationForm = () => {
   return (
@@ -24,9 +25,9 @@ const RegistrationForm = () => {
 
         <p className="mt-6 text-center">
           Already Have An Account?{" "}
-          <a href="#" className="text-blue-600 hover:underline">
+          <Link to="/login" className="text-blue-600 hover:underline">
             Log In
-          </a>
+          </Link>
         </p>
       </div>
     </div>

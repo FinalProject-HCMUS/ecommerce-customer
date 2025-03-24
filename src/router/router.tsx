@@ -6,6 +6,8 @@ import { DetailProduct } from '../page/detail-product';
 import { LoginPage } from '../page/login';
 import { RegistrationPage } from '../page/registration';
 import { CartPage } from '../page/cart';
+import { CheckoutPage } from '../page/checkout';
+import { Chat } from '../page/chat';
 
 // Define the router with typed routes
 const router = createBrowserRouter(
@@ -17,6 +19,8 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />
       <Route path="/cart" element={<CartPage/>} />
+      <Route path="/checkout" element={<CheckoutPage/>} />
+      <Route path="/chat" element={<Chat/>} />
     </Route>,
   ),
 );
