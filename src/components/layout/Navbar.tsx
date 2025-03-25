@@ -1,8 +1,7 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { navbarLinks, navbarSearchPlaceholder, shopName} from '../../data/navbar';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,19 +25,15 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold">
-              SHOP.CO
+              {shopName}
             </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
-              <Link to="/chat" className="nav-link font-medium">
-                Chat
-              </Link>
-              <Link to="/policy" className="nav-link font-medium">
-                Policy
-              </Link>
-              <Link to="/blog" className="nav-link font-medium">
-                Blog
-              </Link>
+              {navbarLinks.map((link) => (
+                <Link key={link.path} to={link.path} className="nav-link font-medium">
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
 
@@ -46,7 +41,7 @@ const Navbar = () => {
             <div className="relative hidden md:block">
               <input
                 type="text"
-                placeholder="Search for products..."
+                placeholder={navbarSearchPlaceholder}
                 className="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none"
               />
               <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -82,15 +77,12 @@ const Navbar = () => {
               <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
             <nav className="flex flex-col space-y-4">
-              <a href="#" className="font-medium">
-                Chat
-              </a>
-              <a href="#" className="font-medium">
-                Policy
-              </a>
-              <a href="#" className="font-medium">
-                Blog
-              </a>
+
+              {navbarLinks.map((link) => (
+                <Link key={link.path} to={link.path} className="font-medium">
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
         )}

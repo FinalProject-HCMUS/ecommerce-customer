@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import type React from "react"
-import { motion } from "framer-motion"
-import type { BlogPostProps } from "../../../type/blog"
-import { Calendar } from "lucide-react"
-import { Link } from "react-router-dom"
-import { formatDate } from "../../../utils/formatDate"
+import type React from 'react';
+import { motion } from 'framer-motion';
+import type { BlogPostProps } from '../../../type/blog';
+import { Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { formatDate } from '../../../utils/formatDate';
 
 const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
   return (
@@ -22,7 +22,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
         {post.image ? (
           <div className="w-full h-full overflow-hidden">
             <img
-              src={post.image || "/placeholder.svg"}
+              src={post.image || '/placeholder.svg'}
               alt={post.title}
               className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
             />
@@ -55,8 +55,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
         </div>
       </div>
     </motion.article>
-  )
-}
+  );
+};
 
-export default BlogPost
-
+export default BlogPost;

@@ -25,5 +25,5 @@ export const message: Message[] = [
     text: '',
     sender: 'user',
     timestamp: '',
-  }
+  },
 ];

@@ -9,8 +9,7 @@ import { CartPage } from '../page/cart';
 import { CheckoutPage } from '../page/checkout';
 import { Chat } from '../page/chat';
 import { Policy } from '../page/policy';
-import { BlogPage, DetailBlogPage} from '../page/blog';
-
+import { BlogPage, DetailBlogPage } from '../page/blog';
 
 // Define the router with typed routes
 const router = createBrowserRouter(

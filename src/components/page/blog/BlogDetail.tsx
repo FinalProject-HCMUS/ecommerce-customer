@@ -1,20 +1,20 @@
-"use client"
+'use client';
 
-import type React from "react"
-import { useEffect } from "react"
-import { motion } from "framer-motion"
-import type { BlogDetailProps } from "../../../type/blog"
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
-import { Link, useNavigate } from "react-router-dom"
-import { formatDate } from "../../../utils/formatDate"
+import type React from 'react';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import type { BlogDetailProps } from '../../../type/blog';
+import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { formatDate } from '../../../utils/formatDate';
 
 const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Scroll to top when component mounts
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -24,15 +24,20 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
 
   return (
-    <motion.div className="max-w-7xl mx-auto mt-10 mx-8 px-4 py-8" initial="hidden" animate="visible" variants={containerVariants}>
+    <motion.div
+      className="max-w-7xl mx-auto mt-10 mx-8 px-4 py-8"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <motion.button
         className="flex items-center text-gray-600 hover:text-gray-900 mb-8 transition-colors"
         onClick={() => navigate(-1)}
@@ -66,7 +71,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
         variants={itemVariants}
       >
         <img
-          src={post.image || "/placeholder.svg?height=500&width=1000"}
+          src={post.image || '/placeholder.svg?height=500&width=1000'}
           alt={post.title}
           className="w-full h-full object-cover"
         />
@@ -74,7 +79,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
 
       <div className="flex flex-col md:flex-row gap-8">
         <motion.div className="md:w-2/3" variants={itemVariants}>
-          <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content || "" }} />
+          <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content || '' }} />
 
           <div className="mt-8 flex flex-wrap gap-2">
             {post.tags?.map((tag) => (
@@ -95,7 +100,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
               <h3 className="text-lg font-semibold mb-4">About the Author</h3>
               <div className="flex items-center mb-4">
                 <img
-                  src={post.author.avatar || "/placeholder.svg"}
+                  src={post.author.avatar || '/placeholder.svg'}
                   alt={post.author.name}
                   className="w-12 h-12 rounded-full mr-4"
                 />
@@ -114,7 +119,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
                     <div className="flex items-start">
                       <div className="w-16 h-16 rounded overflow-hidden flex-shrink-0 mr-3">
                         <img
-                          src={relatedPost.image || "/placeholder.svg"}
+                          src={relatedPost.image || '/placeholder.svg'}
                           alt={relatedPost.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         />
@@ -134,8 +139,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
         </motion.div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default BlogDetail
-
+export default BlogDetail;
