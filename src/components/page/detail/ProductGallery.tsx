@@ -1,9 +1,9 @@
-import type React from "react"
-import { useState } from "react"
-import imageClothes from '../../../assets/shirt.png'
+import type React from 'react';
+import { useState } from 'react';
+import imageClothes from '../../../assets/shirt.png';
 
 const ProductGallery: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<number>(0)
+  const [selectedImage, setSelectedImage] = useState<number>(0);
   return (
     <div className="flex flex-col md:flex-row gap-4">
       {/* Thumbnails */}
@@ -12,15 +12,11 @@ const ProductGallery: React.FC = () => {
           <div
             key={idx}
             className={`border rounded-[12px] p-1 cursor-pointer transition-all duration-300 hover:shadow-md ${
-              selectedImage === idx ? "border-black" : "border-gray-200"
+              selectedImage === idx ? 'border-black' : 'border-gray-200'
             }`}
             onClick={() => setSelectedImage(idx)}
           >
-            <img
-              src={imageClothes}
-              alt={`T-shirt thumbnail ${idx + 1}`}
-              className="w-16 h-16 object-cover"
-            />
+            <img src={imageClothes} alt={`T-shirt thumbnail ${idx + 1}`} className="w-16 h-16 object-cover" />
           </div>
         ))}
       </div>
@@ -34,8 +30,7 @@ const ProductGallery: React.FC = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductGallery
-
+export default ProductGallery;

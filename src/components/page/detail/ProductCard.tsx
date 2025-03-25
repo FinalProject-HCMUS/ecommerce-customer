@@ -1,15 +1,15 @@
-import type React from "react"
-import StarRating from "./StarRating"
-import PriceDisplay from "./PriceDisplay"
-import shirtImage from '../../../assets/shirt.png'
+import type React from 'react';
+import StarRating from './StarRating';
+import PriceDisplay from './PriceDisplay';
+import shirtImage from '../../../assets/shirt.png';
 
 interface ProductCardProps {
-  name: string
-  image: string
-  rating: number
-  currentPrice: number
-  originalPrice?: number
-  discountPercentage?: number
+  name: string;
+  image: string;
+  rating: number;
+  currentPrice: number;
+  originalPrice?: number;
+  discountPercentage?: number;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -40,8 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         size="sm"
       />
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
-
+export default ProductCard;

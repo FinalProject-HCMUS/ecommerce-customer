@@ -1,10 +1,10 @@
-import type React from "react"
-import MessageBubble from "./MessageBubble"
-import type { Message } from "../../../type/message"
+import type React from 'react';
+import MessageBubble from './MessageBubble';
+import type { Message } from '../../../type/message';
 
 interface ChatContainerProps {
-  messages: Message[]
-  messagesEndRef: React.RefObject<HTMLDivElement>
+  messages: Message[];
+  messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 
 const ChatContainer: React.FC<ChatContainerProps> = ({ messages, messagesEndRef }) => {
@@ -17,8 +17,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ messages, messagesEndRef 
         <div ref={messagesEndRef} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChatContainer
-
+export default ChatContainer;

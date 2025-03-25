@@ -1,6 +1,6 @@
-import type React from "react"
+import type React from 'react';
 interface DividerProps {
-  text: string
+  text: string;
 }
 
 const Divider: React.FC<DividerProps> = ({ text }) => {
@@ -13,8 +13,7 @@ const Divider: React.FC<DividerProps> = ({ text }) => {
         <span className="bg-white px-4 text-gray-500">{text}</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Divider
-
+export default Divider;

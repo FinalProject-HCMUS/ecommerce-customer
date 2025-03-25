@@ -1,17 +1,17 @@
-"use client"
+'use client';
 
-import type React from "react"
-import { useState } from "react"
-import { Eye, EyeOff } from "lucide-react"
+import type React from 'react';
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 
 interface PasswordInputProps {
-  id: string
-  label: string
-  placeholder?: string
+  id: string;
+  label: string;
+  placeholder?: string;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, placeholder }) => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="space-y-2">
@@ -20,7 +20,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, placeholder })
       </label>
       <div className="relative">
         <input
-          type={showPassword ? "text" : "password"}
+          type={showPassword ? 'text' : 'password'}
           id={id}
           placeholder={placeholder}
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -34,8 +34,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, placeholder })
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PasswordInput
-
+export default PasswordInput;

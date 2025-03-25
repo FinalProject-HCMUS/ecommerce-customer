@@ -5,10 +5,11 @@ import { useEffect, useState } from "react"
 import BlogList from "../../components/page/blog/BlogList"
 import Breadcrumb from "../../components/shared/Breadcrumb"
 import Pagination from "../../components/page/search/Pagination"
+
 import { blogPosts } from "../../data/blog"
 import type { BlogPost } from "../../type/blog"
 
-const App: React.FC = () => {
+const BlogListPage: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [currentPage, setCurrentPage] = useState<number>(1)
@@ -37,8 +38,8 @@ const App: React.FC = () => {
   const currentPosts: BlogPost[] = posts.slice(indexOfFirstPost, indexOfLastPost)
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <Breadcrumb
+    <div className="max-w-7xl mx-auto mt-10 mx-8 px-4 py-8">
+       <Breadcrumb
         items={[
           { label: 'Home', path: '/' },
           { label: 'Blog', path: '/blog' },
@@ -60,5 +61,5 @@ const App: React.FC = () => {
   )
 }
 
-export default App
+export default BlogListPage
 

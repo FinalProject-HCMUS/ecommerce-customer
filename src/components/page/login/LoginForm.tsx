@@ -1,24 +1,24 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState } from "react"
-import InputField from "./InputField"
-import PasswordInput from "./PasswordInput"
-import SocialLoginButton from "./SocialLoginButton"
-import Divider from "./Divider"
-import { FcGoogle } from "react-icons/fc"
-import { FaFacebook } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { useState } from 'react';
+import InputField from './InputField';
+import PasswordInput from './PasswordInput';
+import SocialLoginButton from './SocialLoginButton';
+import Divider from './Divider';
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Login attempt with:", { email, password })
-  }
+    e.preventDefault();
+    console.log('Login attempt with:', { email, password });
+  };
 
   return (
     <>
@@ -66,17 +66,16 @@ const LoginForm = () => {
         <SocialLoginButton
           icon={<FcGoogle className="mr-2 h-5 w-5" />}
           text="Google"
-          onClick={() => console.log("Google login")}
+          onClick={() => console.log('Google login')}
         />
         <SocialLoginButton
           icon={<FaFacebook className="mr-2 h-5 w-5 text-blue-600" />}
           text="Facebook"
-          onClick={() => console.log("Facebook login")}
+          onClick={() => console.log('Facebook login')}
         />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default LoginForm
-
+export default LoginForm;

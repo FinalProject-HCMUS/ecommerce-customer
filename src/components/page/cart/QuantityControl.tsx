@@ -1,4 +1,7 @@
-const QuantityControl = ({ quantity, onDecrease, onIncrease }) => {
+import type React from 'react';
+import type { QuantityControlProps } from '../../../type/cart';
+
+const QuantityControl: React.FC<QuantityControlProps> = ({ quantity, onDecrease, onIncrease }) => {
   return (
     <div className="flex items-center border border-gray-300 rounded-full">
       <button
@@ -15,8 +18,7 @@ const QuantityControl = ({ quantity, onDecrease, onIncrease }) => {
         +
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default QuantityControl
-
+export default QuantityControl;

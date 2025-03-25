@@ -1,5 +1,5 @@
-import ShopInfo from "../../components/page/registration/ShopInfo"
-import RegistrationForm from "../../components/page/registration/RegistrationForm"
+import ShopInfo from '../../components/page/registration/ShopInfo';
+import RegistrationForm from '../../components/page/registration/RegistrationForm';
 
 function App() {
   return (
@@ -9,8 +9,7 @@ function App() {
       {/* Right side - Registration form */}
       <RegistrationForm />
     </div>
-  )
+  );
 }
 
-export default App
-
+export default App;

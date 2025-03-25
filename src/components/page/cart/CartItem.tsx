@@ -1,15 +1,15 @@
+import type React from 'react';
+import { Trash2 } from 'lucide-react';
+import QuantityControl from './QuantityControl';
+import type { CartItemProps } from '../../../type/cart';
 
-import { Trash2 } from "lucide-react"
-import QuantityControl from "./QuantityControl"
-import shirtImage from '../../../assets/shirt.png'
-
-const CartItem = ({ item, updateQuantity, removeItem }) => {
+const CartItem: React.FC<CartItemProps> = ({ item, updateQuantity, removeItem }) => {
   return (
     <div className="bg-white rounded-[12px] p-6 border border-gray-200">
       <div className="flex items-center">
         <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
           <img
-            src={item.image || shirtImage}
+            src={item.image || '/placeholder.svg'}
             alt={item.name}
             className="h-full w-full object-cover object-center"
           />
@@ -38,8 +38,7 @@ const CartItem = ({ item, updateQuantity, removeItem }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartItem
-
+export default CartItem;

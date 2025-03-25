@@ -1,19 +1,19 @@
-import type React from "react"
-import { useState } from "react"
+import type React from 'react';
+import { useState } from 'react';
 
 const VirtualTryOn: React.FC = () => {
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null)
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = () => {
-        setUploadedImage(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+        setUploadedImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   return (
     <div className="mt-16 mb-8">
@@ -28,7 +28,7 @@ const VirtualTryOn: React.FC = () => {
         </div>
         <div className="bg-gray-100 rounded-md aspect-[3/4] flex items-center justify-center">
           {uploadedImage ? (
-            <img src={uploadedImage || "/placeholder.svg"} alt="Uploaded" className="max-h-full object-contain" />
+            <img src={uploadedImage || '/placeholder.svg'} alt="Uploaded" className="max-h-full object-contain" />
           ) : (
             <div className="text-gray-400">Result</div>
           )}
@@ -43,8 +43,7 @@ const VirtualTryOn: React.FC = () => {
         </label>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default VirtualTryOn
-
+export default VirtualTryOn;

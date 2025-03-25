@@ -1,21 +1,21 @@
-import type React from "react"
-import { useState } from "react"
-import { Send } from "lucide-react"
+import type React from 'react';
+import { useState } from 'react';
+import { Send } from 'lucide-react';
 
 interface MessageInputProps {
-  onSendMessage: (text: string) => void
+  onSendMessage: (text: string) => void;
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
-  const [inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (inputValue.trim()) {
-      onSendMessage(inputValue)
-      setInputValue("")
+      onSendMessage(inputValue);
+      setInputValue('');
     }
-  }
+  };
 
   return (
     <div className="bg-white border-t p-4">
@@ -41,8 +41,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MessageInput
-
+export default MessageInput;

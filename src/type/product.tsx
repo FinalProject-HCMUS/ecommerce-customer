@@ -11,5 +11,3 @@ export interface Product {
   sizes: string[];
   reviews: number;
 }
-
-

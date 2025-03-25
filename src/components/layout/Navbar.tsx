@@ -53,9 +53,9 @@ const Navbar = () => {
             </div>
 
             <Link to="/cart">
-            <button className="p-2 hover:text-gray-600 transition-colors">
-              <FiShoppingCart size={20} />
-            </button>
+              <button className="p-2 hover:text-gray-600 transition-colors">
+                <FiShoppingCart size={20} />
+              </button>
             </Link>
 
             <button className="p-2 hover:text-gray-600 transition-colors">

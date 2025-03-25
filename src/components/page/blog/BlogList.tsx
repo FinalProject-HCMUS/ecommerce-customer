@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
-import type React from "react"
-import BlogPost from "./BlogPost"
-import { motion, AnimatePresence } from "framer-motion"
-import type { BlogListProps } from "../../../type/blog"
+import type React from 'react';
+import BlogPost from './BlogPost';
+import { motion, AnimatePresence } from 'framer-motion';
+import type { BlogListProps } from '../../../type/blog';
 
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   return (
@@ -14,8 +14,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
         ))}
       </AnimatePresence>
     </motion.div>
-  )
-}
+  );
+};
 
-export default BlogList
-
+export default BlogList;

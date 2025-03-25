@@ -1,56 +1,66 @@
-import { useState } from "react"
-import Breadcrumb from "../../components/shared/Breadcrumb"
-import CartItem from '../../components/page/cart/CartItem'
-import OrderSummary from "../../components/page/cart/OrderSummary"
+import { useState } from 'react';
+import Breadcrumb from '../../components/shared/Breadcrumb';
+import CartItem from '../../components/page/cart/CartItem';
+import OrderSummary from '../../components/page/cart/OrderSummary';
+import type { CartItemType, OrderSummaryData } from '../../type/cart';
 
 function App() {
-  const [cartItems, setCartItems] = useState([
+  const [cartItems, setCartItems] = useState<CartItemType[]>([
     {
       id: 1,
-      name: "Gradient Graphic T-shirt",
+      name: 'Gradient Graphic T-shirt',
       price: 145,
-      size: "Large",
-      color: "White",
+      size: 'Large',
+      color: 'White',
       quantity: 1,
-      image: "",
+      image: '/placeholder.svg?height=80&width=80',
     },
     {
       id: 2,
-      name: "Checkered Shirt",
+      name: 'Checkered Shirt',
       price: 180,
-      size: "Medium",
-      color: "Red",
+      size: 'Medium',
+      color: 'Red',
       quantity: 1,
-      image: "",
+      image: '/placeholder.svg?height=80&width=80',
     },
-  ])
+    {
+      id: 3,
+      name: 'Skinny Fit Jeans',
+      price: 240,
+      size: 'Large',
+      color: 'Blue',
+      quantity: 1,
+      image: '/placeholder.svg?height=80&width=80',
+    },
+  ]);
 
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return
-    setCartItems(cartItems.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item)))
-  }
+  const updateQuantity = (id: number, newQuantity: number): void => {
+    if (newQuantity < 1) return;
+    setCartItems(cartItems.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item)));
+  };
 
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id))
-  }
+  const removeItem = (id: number): void => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
 
   // Calculate order summary
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const discountRate = 0.2 // 20%
-  const discountAmount = subtotal * discountRate
-  const deliveryFee = 15
-  const total = subtotal - discountAmount + deliveryFee
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const discountRate = 0.2; // 20%
+  const discountAmount = subtotal * discountRate;
+  const deliveryFee = 15;
+  const total = subtotal - discountAmount + deliveryFee;
 
-  const orderSummaryData = {
+  const orderSummaryData: OrderSummaryData = {
     subtotal,
     discountRate,
     discountAmount,
     deliveryFee,
     total,
-  }
+  };
 
   return (
-    <div className="max-w-7xl mt-20 mx-8 mx-auto px-4 py-4">
+    <div className="max-w-7xl mx-auto mt-10 mx-8 px-4 py-8">
       <Breadcrumb
         items={[
           { label: 'Home', path: '/' },
@@ -75,8 +85,7 @@ function App() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
-
+export default App;

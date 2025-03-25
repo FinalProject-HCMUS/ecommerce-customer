@@ -1,11 +1,11 @@
-import type React from "react"
-import { motion } from "framer-motion"
-import PolicySection from "./PolicySection"
-import type { PolicySectionType } from "../../../type/policy"
+import type React from 'react';
+import { motion } from 'framer-motion';
+import PolicySection from './PolicySection';
+import type { PolicySectionType } from '../../../type/policy';
 
 interface PolicyContentProps {
-  title: string
-  sections: PolicySectionType[]
+  title: string;
+  sections: PolicySectionType[];
 }
 
 const PolicyContent: React.FC<PolicyContentProps> = ({ title, sections }) => {
@@ -24,8 +24,7 @@ const PolicyContent: React.FC<PolicyContentProps> = ({ title, sections }) => {
         ))}
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default PolicyContent
-
+export default PolicyContent;

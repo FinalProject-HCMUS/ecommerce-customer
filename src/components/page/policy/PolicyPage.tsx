@@ -1,7 +1,7 @@
-import type React from "react"
-import Breadcrumb from "../../shared/Breadcrumb"
-import PolicyContent from "./PolicyContent"
-import { policyContent } from "../../../data/policy"
+import type React from 'react';
+import Breadcrumb from '../../shared/Breadcrumb';
+import PolicyContent from './PolicyContent';
+import { policyContent } from '../../../data/policy';
 
 const PolicyPage: React.FC = () => {
   return (
@@ -19,8 +19,7 @@ const PolicyPage: React.FC = () => {
         <PolicyContent title="Content about policy" sections={policyContent} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PolicyPage
-
+export default PolicyPage;

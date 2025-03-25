@@ -1,10 +1,10 @@
-import type React from "react"
-import { Minus, Plus } from "lucide-react"
+import type React from 'react';
+import { Minus, Plus } from 'lucide-react';
 
 interface QuantitySelectorProps {
-  quantity: number
-  onIncrease: () => void
-  onDecrease: () => void
+  quantity: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
 }
 
 const QuantitySelector: React.FC<QuantitySelectorProps> = ({ quantity, onIncrease, onDecrease }) => {
@@ -26,8 +26,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({ quantity, onIncreas
         <Plus className="w-4 h-4" />
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default QuantitySelector
-
+export default QuantitySelector;

@@ -1,12 +1,12 @@
-import type React from "react"
-import ProductCard from "./ProductCard"
+import type React from 'react';
+import ProductCard from './ProductCard';
 
 const RelatedProducts: React.FC = () => {
   const products = [
     {
       id: 1,
-      name: "Polo with Contrast Trims",
-      image: "",
+      name: 'Polo with Contrast Trims',
+      image: '',
       rating: 4.0,
       currentPrice: 212,
       originalPrice: 242,
@@ -14,28 +14,28 @@ const RelatedProducts: React.FC = () => {
     },
     {
       id: 2,
-      name: "Gradient Graphic T-shirt",
-      image: "",
+      name: 'Gradient Graphic T-shirt',
+      image: '',
       rating: 3.5,
       currentPrice: 145,
     },
     {
       id: 3,
-      name: "Polo with Tipping Details",
-      image: "",
+      name: 'Polo with Tipping Details',
+      image: '',
       rating: 4.5,
       currentPrice: 180,
     },
     {
       id: 4,
-      name: "Black Striped T-shirt",
-      image: "",
+      name: 'Black Striped T-shirt',
+      image: '',
       rating: 5.0,
       currentPrice: 120,
       originalPrice: 150,
       discountPercentage: 20,
     },
-  ]
+  ];
 
   return (
     <div className="mt-16 mb-8">
@@ -54,8 +54,7 @@ const RelatedProducts: React.FC = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RelatedProducts
-
+export default RelatedProducts;

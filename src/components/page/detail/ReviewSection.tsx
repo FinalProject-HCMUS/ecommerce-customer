@@ -1,6 +1,6 @@
-import type React from "react"
-import { ChevronDown } from "lucide-react"
-import ReviewCard from "./ReviewCard"
+import type React from 'react';
+import { ChevronDown } from 'lucide-react';
+import ReviewCard from './ReviewCard';
 
 const ReviewSection: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const ReviewSection: React.FC = () => {
         author="Samantha D."
         isVerified={true}
         rating={4.5}
-        content="&quot;I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.&quot;"
+        content='"I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It&apos;s become my favorite go-to shirt."'
         date="August 14, 2023"
       />
 
@@ -32,8 +32,7 @@ const ReviewSection: React.FC = () => {
         Load More Reviews
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default ReviewSection
-
+export default ReviewSection;

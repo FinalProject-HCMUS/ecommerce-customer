@@ -1,11 +1,12 @@
-import { ArrowRight } from "lucide-react"
-import { Link } from "react-router-dom"
+import type React from 'react';
+import { ArrowRight } from 'lucide-react';
+import type { OrderSummaryProps } from '../../../type/cart';
 
-const OrderSummary = ({ data }) => {
-  const { subtotal, discountAmount, deliveryFee, total } = data
+const OrderSummary: React.FC<OrderSummaryProps> = ({ data }) => {
+  const { subtotal, discountAmount, deliveryFee, total } = data;
 
   return (
-    <div className="bg-white rounded-lg p-6 border border-gray-200">
+    <div className="bg-white rounded-[12px] p-6 border border-gray-200">
       <h2 className="text-xl font-bold mb-6">Order Summary</h2>
 
       <div className="space-y-4">
@@ -31,14 +32,13 @@ const OrderSummary = ({ data }) => {
           </div>
         </div>
 
-        <Link to="/checkout" className="w-full bg-black text-white py-4 px-6 rounded-full mt-6 flex items-center justify-center">
+        <button className="w-full bg-black text-white py-4 px-6 rounded-full mt-6 flex items-center justify-center">
           <span>Go to Checkout</span>
           <ArrowRight className="ml-2" size={18} />
-        </Link>
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderSummary
-
+export default OrderSummary;

@@ -1,7 +1,7 @@
-import FormInput from "./FormInput"
-import PasswordInput from "./PasswordInput"
-import Button from "./Button"
-import { Link } from "react-router-dom"
+import FormInput from './FormInput';
+import PasswordInput from './PasswordInput';
+import Button from './Button';
+import { Link } from 'react-router-dom';
 
 const RegistrationForm = () => {
   return (
@@ -24,15 +24,14 @@ const RegistrationForm = () => {
         </form>
 
         <p className="mt-6 text-center">
-          Already Have An Account?{" "}
+          Already Have An Account?{' '}
           <Link to="/login" className="text-blue-600 hover:underline">
             Log In
           </Link>
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegistrationForm
-
+export default RegistrationForm;

@@ -1,22 +1,22 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { useState } from "react"
-import { FiEye, FiEyeOff } from "react-icons/fi"
+import { useState } from 'react';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  id: string
-  label: string
-  forgotPasswordLink?: string
+  id: string;
+  label: string;
+  forgotPasswordLink?: string;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, forgotPasswordLink, className = "", ...props }) => {
-  const [showPassword, setShowPassword] = useState(false)
+const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, forgotPasswordLink, className = '', ...props }) => {
+  const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="mb-6">
@@ -32,7 +32,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, forgotPassword
       </div>
       <div className="relative">
         <input
-          type={showPassword ? "text" : "password"}
+          type={showPassword ? 'text' : 'password'}
           id={id}
           className={`w-full rounded-[10px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none ${className}`}
           {...props}
@@ -46,8 +46,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, forgotPassword
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PasswordInput
-
+export default PasswordInput;

@@ -1,43 +1,42 @@
-import type React from "react"
-import { ProductItem } from "./ProductItem"
-
+import type React from 'react';
+import { ProductItem } from './ProductItem';
 
 export const OrderSummary: React.FC = () => {
   const products = [
     {
       id: 1,
-      name: "Checkered Shirt",
-      size: "Medium",
-      color: "Red",
+      name: 'Checkered Shirt',
+      size: 'Medium',
+      color: 'Red',
       price: 180,
       quantity: 1,
-      image: "",
+      image: '',
     },
     {
       id: 2,
-      name: "Checkered Shirt",
-      size: "Medium",
-      color: "Red",
+      name: 'Checkered Shirt',
+      size: 'Medium',
+      color: 'Red',
       price: 180,
       quantity: 1,
-      image: "",
+      image: '',
     },
     {
       id: 3,
-      name: "Checkered Shirt",
-      size: "Medium",
-      color: "Red",
+      name: 'Checkered Shirt',
+      size: 'Medium',
+      color: 'Red',
       price: 180,
       quantity: 1,
-      image: "",
+      image: '',
     },
-  ]
+  ];
 
-  const subtotal = products.reduce((sum, product) => sum + product.price * product.quantity, 0)
-  const discountRate = 0.2 // 20%
-  const discountAmount = Math.round(subtotal * discountRate)
-  const deliveryFee = 15
-  const total = subtotal - discountAmount + deliveryFee
+  const subtotal = products.reduce((sum, product) => sum + product.price * product.quantity, 0);
+  const discountRate = 0.2; // 20%
+  const discountAmount = Math.round(subtotal * discountRate);
+  const deliveryFee = 15;
+  const total = subtotal - discountAmount + deliveryFee;
 
   return (
     <div>
@@ -80,6 +79,5 @@ export const OrderSummary: React.FC = () => {
         </button>
       </div>
     </div>
-  )
-}
-
+  );
+};

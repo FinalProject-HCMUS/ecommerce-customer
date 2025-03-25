@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 interface BreadcrumbItem {
   label: string;
@@ -19,9 +20,9 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
     >
       {items.map((item, index) => (
         <span key={item.path}>
-          <a href={item.path} className="hover:underline">
+          <Link to={item.path} className="hover:underline">
             {item.label}
-          </a>
+          </Link>
           {index < items.length - 1 && <span className="mx-1.5"> &gt; </span>}
         </span>
       ))}
