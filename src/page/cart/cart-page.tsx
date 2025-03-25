@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import Breadcrumb from "../../components/shared/Breadcrumb"
 import CartItem from '../../components/page/cart/CartItem'

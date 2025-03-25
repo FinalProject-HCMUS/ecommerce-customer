@@ -30,15 +30,15 @@ const Navbar = () => {
             </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
-              <a href="/chat" className="nav-link font-medium">
+              <Link to="/chat" className="nav-link font-medium">
                 Chat
-              </a>
-              <a href="#" className="nav-link font-medium">
+              </Link>
+              <Link to="/policy" className="nav-link font-medium">
                 Policy
-              </a>
-              <a href="#" className="nav-link font-medium">
+              </Link>
+              <Link to="/blog" className="nav-link font-medium">
                 Blog
-              </a>
+              </Link>
             </nav>
           </div>
 
