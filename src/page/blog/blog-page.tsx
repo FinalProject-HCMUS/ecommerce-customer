@@ -1,10 +1,8 @@
-'use client';
-
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import BlogList from '../../components/page/blog/BlogList';
 import Breadcrumb from '../../components/shared/Breadcrumb';
-import Pagination from '../../components/page/search/Pagination';
+import Pagination from '../../components/shared/Pagination';
 
 import { blogPosts } from '../../data/blog';
 import type { BlogPost } from '../../type/blog';

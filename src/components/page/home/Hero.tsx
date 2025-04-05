@@ -1,5 +1,4 @@
 import { heroData } from '../../../data/hero';
-import imageIcon from '../../../assets/image_template.png';
 
 const Hero = () => {
   return (
@@ -24,7 +23,7 @@ const Hero = () => {
           </div>
 
           <div className="relative animate-fade-in">
-            <img src={heroData.image || imageIcon} alt="Fashion models" className="w-full h-auto rounded-lg" />
+            <img src={heroData.image} alt="Fashion models" className="w-full h-auto rounded-lg" />
           </div>
         </div>
       </div>

@@ -72,14 +72,11 @@ function App() {
       <h1 className="text-3xl font-bold mb-8">Your cart</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Cart Items - Takes up 2/3 of the space on large screens */}
         <div className="lg:col-span-2 space-y-4">
           {cartItems.map((item) => (
             <CartItem key={item.id} item={item} updateQuantity={updateQuantity} removeItem={removeItem} />
           ))}
         </div>
-
-        {/* Order Summary - Takes up 1/3 of the space on large screens */}
         <div className="lg:col-span-1">
           <OrderSummary data={orderSummaryData} />
         </div>

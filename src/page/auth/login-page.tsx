@@ -1,6 +1,6 @@
-import LoginForm from '../../components/page/login/LoginForm';
+import LoginForm from '../../components/page/auth/login/LoginForm';
 
-function App() {
+function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-white p-4">
       <div className="w-full max-w-md">
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;

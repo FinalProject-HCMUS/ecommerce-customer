@@ -13,7 +13,6 @@ interface FiltersProps {
   setSelectedSizes: (sizes: string[]) => void;
   selectedCategories: string[];
   setSelectedCategories: (categories: string[]) => void;
-  applyFilters: () => void;
 }
 
 const Filters = ({
@@ -23,7 +22,6 @@ const Filters = ({
   setSelectedColors,
   selectedSizes,
   setSelectedSizes,
-  applyFilters,
 }: FiltersProps) => {
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
@@ -250,14 +248,6 @@ const Filters = ({
           )}
         </AnimatePresence>
       </div>
-
-      <motion.button
-        className="w-full py-2.5 bg-white border border-black rounded-full font-medium cursor-pointer transition-colors hover:bg-black hover:text-white mt-4"
-        onClick={applyFilters}
-        whileTap={{ scale: 0.98 }}
-      >
-        Apply Filter
-      </motion.button>
     </motion.div>
   );
 };

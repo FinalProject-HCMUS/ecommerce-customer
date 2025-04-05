@@ -1,4 +1,4 @@
-import type React from 'react';
+import React from 'react';
 import { Trash2 } from 'lucide-react';
 import QuantityControl from './QuantityControl';
 import type { CartItemProps } from '../../../type/cart';

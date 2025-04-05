@@ -1,18 +1,18 @@
 import { Star, ShoppingCart } from 'lucide-react';
-import shirtImage from '../../../assets/shirt.png';
 interface ProductCardProps {
   title: string;
   price: number;
   rating: number;
   reviews: number;
   showPrice?: boolean;
+  image?: string;
 }
 
-const ProductCard = ({ title, price, rating }: ProductCardProps) => {
+const ProductCard = ({ title, price, rating, image }: ProductCardProps) => {
   return (
     <div className="max-w-sm mx-auto bg-gray-100 rounded-[20px] shadow-lg overflow-hidden ">
       <div className="relative">
-        <img src={shirtImage} alt="Black t-shirt with tape details" className="w-full h-auto" />
+        <img src={image} alt="Black t-shirt with tape details" className="w-full h-auto" />
         <div className="absolute bottom-0 left-0 right-0 bg-gray-500/50 backdrop-blur-sm p-2 flex justify-between items-center">
           <span className="text-xl font-medium text-white">${price}</span>
           <button className="p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors">

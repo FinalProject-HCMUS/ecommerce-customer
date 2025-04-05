@@ -5,11 +5,9 @@ interface BreadcrumbItem {
   label: string;
   path: string;
 }
-
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
 }
-
 const Breadcrumb = ({ items }: BreadcrumbProps) => {
   return (
     <motion.nav

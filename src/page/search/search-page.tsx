@@ -1,11 +1,9 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import Filters from '../../components/page/search/Filters';
 import ProductGrid from '../../components/page/search/ProductGrid';
 import SearchHeader from '../../components/page/search/SearchHeader';
-import Pagination from '../../components/page/search/Pagination';
+import Pagination from '../../components/shared/Pagination';
 import type { Product } from '../../type/product';
 import { products } from '../../data/products';
 
@@ -16,9 +14,8 @@ function App() {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 9;
+  const productsPerPage = 10;
 
-  // Filter products based on selected filters
   useEffect(() => {
     let result = [...products];
 
@@ -48,18 +45,12 @@ function App() {
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage); // Keep this declaration
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     // Scroll to top when changing page
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const applyFilters = () => {
-    // This function would typically fetch data from an API with the filters
-    // For this demo, we're just using the existing filters that are already applied
-    console.log('Filters applied');
   };
 
   return (
@@ -86,7 +77,6 @@ function App() {
           setSelectedSizes={setSelectedSizes}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
-          applyFilters={applyFilters}
         />
 
         <ProductGrid products={currentProducts} />

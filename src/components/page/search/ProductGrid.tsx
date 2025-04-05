@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Star } from 'react-feather';
 import type { Product } from '../../../type/product';
-import imageClothes from '../../../assets/shirt.png';
 
 interface ProductGridProps {
   products: Product[];
@@ -39,7 +38,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
         >
           <div className="aspect-square overflow-hidden">
             <img
-              src={product.image || imageClothes}
+              src={product.image}
               alt={product.name}
               className="w-full h-full object-cover transition-transform hover:scale-105"
             />

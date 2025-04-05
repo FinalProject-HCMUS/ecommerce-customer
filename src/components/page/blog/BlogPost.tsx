@@ -1,5 +1,3 @@
-'use client';
-
 import type React from 'react';
 import { motion } from 'framer-motion';
 import type { BlogPostProps } from '../../../type/blog';
@@ -10,7 +8,7 @@ import { formatDate } from '../../../utils/formatDate';
 const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
   return (
     <motion.article
-      className="flex flex-col sm:flex-row bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+      className="flex flex-col sm:flex-row bg-gray-100 rounded-[12px] overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}

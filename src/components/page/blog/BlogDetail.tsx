@@ -1,5 +1,3 @@
-'use client';
-
 import type React from 'react';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -33,7 +31,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post, relatedPosts }) => {
 
   return (
     <motion.div
-      className="max-w-7xl mx-auto mt-10 mx-8 px-4 py-8"
+      className="max-w-7xl mt-10 mx-10 px-4 py-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

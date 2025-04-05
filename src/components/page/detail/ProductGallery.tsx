@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useState } from 'react';
-import imageClothes from '../../../assets/shirt.png';
+
+const imageUrl = 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png';
 
 const ProductGallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number>(0);
@@ -16,7 +17,7 @@ const ProductGallery: React.FC = () => {
             }`}
             onClick={() => setSelectedImage(idx)}
           >
-            <img src={imageClothes} alt={`T-shirt thumbnail ${idx + 1}`} className="w-16 h-16 object-cover" />
+            <img src={imageUrl} alt={`T-shirt thumbnail ${idx + 1}`} className="w-16 h-16 object-cover" />
           </div>
         ))}
       </div>
@@ -24,7 +25,7 @@ const ProductGallery: React.FC = () => {
       {/* Main Image */}
       <div className="bg-gray-100 rounded-[12px] p-4 flex items-center justify-center order-1 md:order-2 flex-1">
         <img
-          src={imageClothes}
+          src={imageUrl}
           alt="One Life Graphic T-shirt"
           className="max-h-[400px] object-contain transition-opacity duration-300"
         />

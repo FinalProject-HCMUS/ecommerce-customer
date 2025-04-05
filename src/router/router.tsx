@@ -3,8 +3,8 @@ import { HomePage } from '../page/home';
 import { SearchPage } from '../page/search';
 import MainLayout from '../layout/main-layout';
 import { DetailProduct } from '../page/detail-product';
-import { LoginPage } from '../page/login';
-import { RegistrationPage } from '../page/registration';
+import { LoginPage } from '../page/auth';
+import { Registration} from '../page/auth';
 import { CartPage } from '../page/cart';
 import { CheckoutPage } from '../page/checkout';
 import { Chat } from '../page/chat';
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route path="/search" element={<SearchPage />} />
       <Route path="/product/:id" element={<DetailProduct />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegistrationPage />} />
+      <Route path="/register" element={<Registration />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/chat" element={<Chat />} />

@@ -1,7 +1,6 @@
 import type React from 'react';
 import StarRating from './StarRating';
 import PriceDisplay from './PriceDisplay';
-import shirtImage from '../../../assets/shirt.png';
 
 interface ProductCardProps {
   name: string;
@@ -24,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className="group">
       <div className="bg-gray-100 rounded-md aspect-square mb-3 overflow-hidden">
         <img
-          src={image || shirtImage}
+          src={image}
           alt={name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
