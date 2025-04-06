@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useState } from 'react';
-import StarRating from './StarRating';
+import StarRating from '../../shared/RatingStars';
 import PriceDisplay from './PriceDisplay';
 import ColorSelector from './ColorSelector';
 import SizeSelector from './SizeSelector';
@@ -34,7 +34,6 @@ const ProductInfo: React.FC = () => {
       {/* Ratings */}
       <div className="flex items-center mb-4">
         <StarRating rating={4.5} />
-        <span className="ml-2 text-sm text-gray-600">4.5/5</span>
       </div>
 
       {/* Price */}

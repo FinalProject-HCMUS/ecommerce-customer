@@ -1,5 +1,5 @@
 import type React from 'react';
-import StarRating from './StarRating';
+import StarRating from '../../shared/RatingStars';
 import PriceDisplay from './PriceDisplay';
 
 interface ProductCardProps {
@@ -30,7 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </div>
       <h3 className="font-medium mb-1">{name}</h3>
       <div className="mb-1">
-        <StarRating rating={rating} showScore={true} size="sm" />
+        <StarRating rating={rating}/>
       </div>
       <PriceDisplay
         currentPrice={currentPrice}

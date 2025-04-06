@@ -1,6 +1,6 @@
 import type React from 'react';
 import { MoreHorizontal } from 'lucide-react';
-import StarRating from './StarRating';
+import StarRating from '../../shared/RatingStars';
 
 interface ReviewCardProps {
   author: string;
@@ -16,7 +16,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ author, isVerified = false, rat
       <div className="flex justify-between items-start mb-2">
         <div>
           <div className="mb-2">
-            <StarRating rating={rating} size="md" />
+            <StarRating rating={rating} />
           </div>
           <div className="flex items-center">
             <span className="font-medium mr-2">{author}</span>

@@ -267,7 +267,7 @@ export const products: Product[] = [
     name: 'T-shirt',
     category: 'Clothing',
     color: 'Red',
-    image: '',
+    image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
   {
@@ -279,7 +279,7 @@ export const products: Product[] = [
     name: 'T-shirt',
     category: 'Clothing',
     color: 'Red',
-    image: '',
+    image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
   {
@@ -291,7 +291,7 @@ export const products: Product[] = [
     name: 'T-shirt',
     category: 'Clothing',
     color: 'Red',
-    image: '',
+    image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
   {
@@ -303,7 +303,7 @@ export const products: Product[] = [
     name: 'T-shirt',
     category: 'Clothing',
     color: 'Red',
-    image: '',
+    image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
   {
@@ -315,7 +315,7 @@ export const products: Product[] = [
     name: 'T-shirt',
     category: 'Clothing',
     color: 'Red',
-    image: '',
+    image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
   {
@@ -327,7 +327,7 @@ export const products: Product[] = [
     name: 'T-shirt',
     category: 'Clothing',
     color: 'Red',
-    image: '',
+    image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
 ];
