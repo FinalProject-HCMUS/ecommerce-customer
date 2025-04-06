@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProductCard from '../../shared/product-card/ProductCard';
-import { Product } from '../../../type/product';
+import { Product } from '../../../interfaces/product';
 
 interface CommonProductsProps {
   title: string;

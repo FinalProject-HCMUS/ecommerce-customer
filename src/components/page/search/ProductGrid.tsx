@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import type { Product } from '../../../type/product';
+import type { Product } from '../../../interfaces/product';
 import ProductCard from '../../shared/product-card/ProductCard';
 
 interface ProductGridProps {

@@ -1,4 +1,4 @@
-import { shopInfo } from "../../../../data/shopInfo";
+import { shopInfo } from '../../../../data/shopInfo';
 
 const ShopInfo = () => {
   return (

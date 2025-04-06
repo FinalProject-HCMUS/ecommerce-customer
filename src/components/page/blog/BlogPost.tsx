@@ -1,6 +1,6 @@
 import type React from 'react';
 import { motion } from 'framer-motion';
-import type { BlogPostProps } from '../../../type/blog';
+import type { BlogPostProps } from '../../../interfaces/blog';
 import { Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../../utils/formatDate';

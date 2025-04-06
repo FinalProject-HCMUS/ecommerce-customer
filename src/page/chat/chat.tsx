@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import ChatContainer from '../../components/page/chat/ChatContainer';
 import MessageInput from '../../components/page/chat/MessageInput';
-import { Message } from '../../type/message';
+import { Message } from '../../interfaces/message';
 import { message } from '../../data/message';
 
 const App: React.FC = () => {

@@ -10,6 +10,9 @@ import { CheckoutPage } from '../page/checkout';
 import { Chat } from '../page/chat';
 import { Policy } from '../page/policy';
 import { BlogPage, DetailBlogPage } from '../page/blog';
+import Page403 from '../page/error/Page403';
+import Page404 from '../page/error/Page404';
+import Page500 from '../page/error/Page500';
 
 // Define the router with typed routes
 const router = createBrowserRouter(
@@ -26,6 +29,10 @@ const router = createBrowserRouter(
       <Route path="/policy" element={<Policy />} />
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/:id" element={<DetailBlogPage />} />
+      <Route path="/403" element={<Page403 />} />
+      <Route path="/500" element={<Page500 />} />
+      {/* Catch-all route for 404 errors */}
+      <Route path="*" element={<Page404 />} />
     </Route>,
   ),
 );

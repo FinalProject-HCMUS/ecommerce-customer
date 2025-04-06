@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import type { BlogDetailProps } from '../../../type/blog';
+import type { BlogDetailProps } from '../../../interfaces/blog';
 import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDate } from '../../../utils/formatDate';

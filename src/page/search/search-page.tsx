@@ -4,7 +4,7 @@ import Filters from '../../components/page/search/Filters';
 import ProductGrid from '../../components/page/search/ProductGrid';
 import SearchHeader from '../../components/page/search/SearchHeader';
 import Pagination from '../../components/shared/Pagination';
-import type { Product } from '../../type/product';
+import type { Product } from '../../interfaces/product';
 import { products } from '../../data/products';
 
 function App() {

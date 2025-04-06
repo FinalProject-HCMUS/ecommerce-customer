@@ -1,8 +1,11 @@
 import React from 'react';
 import type { ButtonHTMLAttributes } from 'react';
 import { cn } from '../../lib/utils'; // Import the `cn` utility function
+import { Link } from 'react-router-dom';
+import { HomeOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Button, ButtonProps } from 'antd';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface BtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode; // Button content
   className?: string; // Additional custom classes
   onClick?: () => void; // Callback function for button click
@@ -11,7 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean; // Loading state
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const GeneralButton: React.FC<BtnProps> = ({
   children,
   className,
   onClick,
@@ -43,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
         variantClasses[variant],
         sizeClasses[size],
         { 'opacity-50 cursor-not-allowed': disabled || isLoading },
-        className // Allow custom classes to be passed
+        className, // Allow custom classes to be passed
       )}
     >
       {isLoading ? (
@@ -54,14 +57,7 @@ const Button: React.FC<ButtonProps> = ({
             fill="none"
             viewBox="0 0 24 24"
           >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            ></circle>
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
             <path
               className="opacity-75"
               fill="currentColor"
@@ -76,4 +72,20 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+
+
+
+export const BackToHomeButton: React.FC<ButtonProps> = props => (
+  <Link to="/">
+    <Button type="primary" icon={<HomeOutlined />} {...props}>
+      Back to Home
+    </Button>
+  </Link>
+);
+
+export const LogoutButton: React.FC<ButtonProps> = props => (
+  <Button icon={<LogoutOutlined />}  {...props}>
+    Logout
+  </Button>
+);
+

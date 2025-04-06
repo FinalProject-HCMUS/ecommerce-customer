@@ -1,4 +1,4 @@
-import { Message } from '../type/message';
+import { Message } from '../interfaces/message';
 
 export const message: Message[] = [
   {

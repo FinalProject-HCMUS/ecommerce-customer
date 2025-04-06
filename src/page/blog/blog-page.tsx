@@ -5,7 +5,7 @@ import Breadcrumb from '../../components/shared/Breadcrumb';
 import Pagination from '../../components/shared/Pagination';
 
 import { blogPosts } from '../../data/blog';
-import type { BlogPost } from '../../type/blog';
+import type { BlogPost } from '../../interfaces/blog';
 
 const BlogListPage: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);

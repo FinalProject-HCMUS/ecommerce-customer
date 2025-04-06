@@ -1,6 +1,6 @@
 import type React from 'react';
 import MessageBubble from './MessageBubble';
-import type { Message } from '../../../type/message';
+import type { Message } from '../../../interfaces/message';
 
 interface ChatContainerProps {
   messages: Message[];

@@ -1,4 +1,4 @@
-import { Product } from '../type/product';
+import { Product } from '../interfaces/product';
 interface ProductCategory {
   title: string;
   data: Product[];

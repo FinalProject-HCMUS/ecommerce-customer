@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import CartItem from '../../components/page/cart/CartItem';
 import OrderSummary from '../../components/page/cart/OrderSummary';
-import type { CartItemType, OrderSummaryData } from '../../type/cart';
+import type { CartItemType, OrderSummaryData } from '../../interfaces/cart';
 
 function App() {
   const [cartItems, setCartItems] = useState<CartItemType[]>([

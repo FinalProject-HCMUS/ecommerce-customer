@@ -1,7 +1,7 @@
 import type React from 'react';
 import { motion } from 'framer-motion';
 import PolicySection from './PolicySection';
-import type { PolicySectionType } from '../../../type/policy';
+import type { PolicySectionType } from '../../../interfaces/policy';
 
 interface PolicyContentProps {
   title: string;

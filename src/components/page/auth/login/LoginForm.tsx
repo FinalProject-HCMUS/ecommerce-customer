@@ -3,7 +3,7 @@ import InputField from '../../../shared/form/InputField';
 import PasswordInput from '../../../shared/form/PasswordInput';
 import SocialLoginButton from './SocialLoginButton';
 import Divider from '../../../shared/Divider';
-import Button from '../../../shared/Button'; // Import the reusable Button component
+import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -49,7 +49,7 @@ const LoginForm = () => {
           required
         />
 
-        <Button
+        <GeneralButton
           type="submit"
           variant="primary"
           size="md"
@@ -57,7 +57,7 @@ const LoginForm = () => {
           className="w-full rounded-[10px]"
         >
           Login now
-        </Button>
+        </GeneralButton>
       </form>
 
       <div className="mt-4 text-center text-sm text-gray-500">

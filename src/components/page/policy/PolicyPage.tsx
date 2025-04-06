@@ -13,7 +13,7 @@ const PolicyPage: React.FC = () => {
           { label: 'Policy', path: '/policy' },
         ]}
       />
-      
+
       {/* Main content */}
       <div className="container mx-auto px-4 pb-12">
         <PolicyContent title="Content about policy" sections={policyContent} />

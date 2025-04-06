@@ -1,7 +1,7 @@
 import type React from 'react';
 import BlogPost from './BlogPost';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { BlogListProps } from '../../../type/blog';
+import type { BlogListProps } from '../../../interfaces/blog';
 
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   return (

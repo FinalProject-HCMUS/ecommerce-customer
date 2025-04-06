@@ -1,6 +1,6 @@
 import type React from 'react';
 import TypingIndicator from './TypingIndicator';
-import type { Message } from '../../../type/message';
+import type { Message } from '../../../interfaces/message';
 
 interface MessageBubbleProps {
   message: Message;
