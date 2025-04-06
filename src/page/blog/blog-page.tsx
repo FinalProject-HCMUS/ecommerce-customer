@@ -43,6 +43,7 @@ const BlogListPage: React.FC = () => {
           { label: 'Blog', path: '/blog' },
         ]}
       />
+
       <main className="mt-4">
         {isLoading ? (
           <div className="flex justify-center items-center h-64">

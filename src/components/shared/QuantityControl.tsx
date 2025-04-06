@@ -1,9 +1,9 @@
-import { Plus, Minus } from "lucide-react"
+import { Plus, Minus } from 'lucide-react';
 
 interface QuantityControlProps {
-  quantity: number
-  onIncrement: () => void
-  onDecrement: () => void
+  quantity: number;
+  onIncrement: () => void;
+  onDecrement: () => void;
 }
 
 export default function QuantityControl({ quantity, onIncrement, onDecrement }: QuantityControlProps) {
@@ -25,6 +25,5 @@ export default function QuantityControl({ quantity, onIncrement, onDecrement }: 
         <Plus className="w-4 h-4 text-gray-600" />
       </button>
     </div>
-  )
+  );
 }
-

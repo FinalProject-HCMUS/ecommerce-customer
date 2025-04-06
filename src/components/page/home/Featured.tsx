@@ -1,5 +1,5 @@
 import { features } from '../../../data/features';
-const urlImage = "https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842003/image_template_c5g0cv.png";
+const urlImage = 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842003/image_template_c5g0cv.png';
 const Featured = () => {
   return (
     <section className="py-16 bg-white px-8">

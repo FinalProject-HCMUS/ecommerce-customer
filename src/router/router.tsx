@@ -4,7 +4,7 @@ import { SearchPage } from '../page/search';
 import MainLayout from '../layout/main-layout';
 import { DetailProduct } from '../page/detail-product';
 import { LoginPage } from '../page/auth';
-import { Registration} from '../page/auth';
+import { Registration } from '../page/auth';
 import { CartPage } from '../page/cart';
 import { CheckoutPage } from '../page/checkout';
 import { Chat } from '../page/chat';

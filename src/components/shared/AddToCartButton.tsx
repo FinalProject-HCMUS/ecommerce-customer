@@ -1,8 +1,8 @@
-import { ShoppingCart } from "lucide-react"
+import { ShoppingCart } from 'lucide-react';
 
 interface AddToCartButtonProps {
-  isAdding: boolean
-  onClick: () => void
+  isAdding: boolean;
+  onClick: () => void;
 }
 
 export default function AddToCartButton({ isAdding, onClick }: AddToCartButtonProps) {
@@ -11,7 +11,7 @@ export default function AddToCartButton({ isAdding, onClick }: AddToCartButtonPr
       onClick={onClick}
       disabled={isAdding}
       className={`w-full py-3 px-4 rounded-[12px] font-medium text-white transition-all duration-300 flex items-center justify-center
-        ${isAdding ? "bg-green-500" : "bg-gray-800 hover:bg-gray-700"}`}
+        ${isAdding ? 'bg-green-500' : 'bg-gray-800 hover:bg-gray-700'}`}
     >
       {isAdding ? (
         <span className="flex items-center">
@@ -31,6 +31,5 @@ export default function AddToCartButton({ isAdding, onClick }: AddToCartButtonPr
         </span>
       )}
     </button>
-  )
+  );
 }
-

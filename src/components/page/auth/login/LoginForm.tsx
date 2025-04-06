@@ -1,12 +1,9 @@
-'use client';
-
-import type React from 'react';
-
-import { useState } from 'react';
-import InputField from './InputField';
-import PasswordInput from './PasswordInput';
+import React, { useState } from 'react';
+import InputField from '../../../shared/form/InputField';
+import PasswordInput from '../../../shared/form/PasswordInput';
 import SocialLoginButton from './SocialLoginButton';
-import Divider from './Divider';
+import Divider from '../../../shared/Divider';
+import Button from '../../../shared/Button'; // Import the reusable Button component
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -14,10 +11,17 @@ import { Link } from 'react-router-dom';
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // State for loading
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading state
     console.log('Login attempt with:', { email, password });
+
+    // Simulate an API call
+    setTimeout(() => {
+      setIsLoading(false); // Reset loading state
+    }, 2000);
   };
 
   return (
@@ -45,12 +49,15 @@ const LoginForm = () => {
           required
         />
 
-        <button
+        <Button
           type="submit"
-          className="w-full rounded-[10px] bg-black py-2.5 text-center text-sm font-medium text-white hover:bg-gray-800 focus:outline-none"
+          variant="primary"
+          size="md"
+          isLoading={isLoading} // Show loading spinner when submitting
+          className="w-full rounded-[10px]"
         >
           Login now
-        </button>
+        </Button>
       </form>
 
       <div className="mt-4 text-center text-sm text-gray-500">
@@ -60,7 +67,7 @@ const LoginForm = () => {
         </Link>
       </div>
 
-      <Divider text="Or" />
+      <Divider text="Or" className="my-6" />
 
       <div className="mt-6 grid grid-cols-2 gap-3">
         <SocialLoginButton

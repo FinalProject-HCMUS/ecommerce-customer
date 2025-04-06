@@ -39,7 +39,7 @@ function App() {
 
     setFilteredProducts(result);
     setCurrentPage(1); // Reset to first page when filters change
-  }, [priceRange, selectedColors, selectedSizes, selectedCategories, products]);
+  }, [priceRange, selectedColors, selectedSizes, selectedCategories]);
 
   // Get current products for pagination
   const indexOfLastProduct = currentPage * productsPerPage;
