@@ -7,6 +7,7 @@ const FLAG_KEYS = {
   TRACK_ORDER: 'track_order',
   CHECKOUT: 'checkout',
   RATING: 'rating',
+  POLICY : 'policy',
   BLOG: 'blog',
   NATURAL_QUERY: 'natural_query',
 };

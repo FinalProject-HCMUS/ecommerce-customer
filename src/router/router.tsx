@@ -1,5 +1,7 @@
 import { IRoute } from '../interfaces/common';
 import { lazy } from 'react';
+import { withAssignedVersions } from '../hocs/withAssignedVersion';
+import FLAG_KEYS from '../constants/flagsup';
 
 const HomePage = lazy(() => import('../page/home/home-page'));
 const SearchPage = lazy(() => import('../page/search/search-page'));
@@ -32,19 +34,13 @@ const routes: IRoute[] = [
     exact: true,
     path: '/login',
     name: 'Login',
-    component: LoginPage,
+    component: withAssignedVersions(LoginPage, FLAG_KEYS.LOGIN),
   },
   {
     exact: true,
     path: '/register',
     name: 'Register',
-    component: RegistrationPage,
-  },
-  {
-    exact: true,
-    path: '/product/:id',
-    name: 'Detail Product',
-    component: DetailProduct,
+    component: withAssignedVersions(RegistrationPage, FLAG_KEYS.REGISTRATION),
   },
   {
     exact: true,
@@ -56,37 +52,37 @@ const routes: IRoute[] = [
     exact: true,
     path: '/cart',
     name: 'Cart Page',
-    component: CartPage,
+    component: withAssignedVersions(CartPage, FLAG_KEYS.CART),
   },
   {
     exact: true,
     path: '/checkout',
     name: 'Checkout Page',
-    component: CheckoutPage,
+    component: withAssignedVersions(CheckoutPage, FLAG_KEYS.CHECKOUT),
   },
   {
     exact: true,
     path: '/chat',
-    name: 'Chat Page',
-    component: Chat,
+    name: 'Chat Pages',
+    component: withAssignedVersions(Chat, FLAG_KEYS.CHAT),
   },
   {
     exact: true,
     path: '/policy',
     name: 'Policy Page',
-    component: Policy,
+    component: withAssignedVersions(Policy, FLAG_KEYS.POLICY),
   },
   {
     exact: true,
     path: '/blog',
     name: 'Blog Page',
-    component: BlogPage,
+    component: withAssignedVersions(BlogPage, FLAG_KEYS.BLOG),
   },
   {
     exact: true,
     path: '/blog/:id',
     name: 'Detail Blog Page',
-    component: DetailBlogPage,
+    component: withAssignedVersions(DetailBlogPage, FLAG_KEYS.BLOG),
   },
   {
     exact: true,

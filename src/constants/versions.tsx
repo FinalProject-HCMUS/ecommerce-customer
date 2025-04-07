@@ -12,6 +12,7 @@ const VERSIONS = [
       FLAG_KEYS.REGISTRATION,
       FLAG_KEYS.CART,
       FLAG_KEYS.TRACK_ORDER,
+      FLAG_KEYS.POLICY,
       FLAG_KEYS.CHECKOUT,
     ],
   },
@@ -26,13 +27,14 @@ const VERSIONS = [
       FLAG_KEYS.CHECKOUT,
       FLAG_KEYS.RATING,
       FLAG_KEYS.CHAT,
+      FLAG_KEYS.POLICY,
       FLAG_KEYS.BLOG,
       FLAG_KEYS.NATURAL_QUERY,
     ],
   },
 ];
 
-const CURRENT_VERSION = 'version_2'
+const CURRENT_VERSION = 'version_3'
 
 export default {
   VERSIONS,
