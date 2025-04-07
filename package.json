@@ -16,6 +16,7 @@
     "precommit": "npm run lint && npm run prettier"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@headlessui/react": "^2.2.0",
@@ -43,6 +44,7 @@
     "react-day-picker": "^9.4.4",
     "react-dom": "^18.3.1",
     "react-feather": "^2.0.10",
+    "react-hook-form": "^7.55.0",
     "react-icons": "^5.5.0",
     "react-range": "^1.10.0",
     "react-redux": "^9.2.0",

@@ -86,18 +86,6 @@ const routes: IRoute[] = [
   },
   {
     exact: true,
-    path: '/blog/:id',
-    name: 'Detail Blog Page',
-    component: DetailBlogPage,
-  },
-  {
-    exact: true,
-    path: '/blog/:id',
-    name: 'Detail Blog Page',
-    component: DetailBlogPage,
-  },
-  {
-    exact: true,
     path: '/403',
     name: 'Page 403',
     component: Page403,

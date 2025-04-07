@@ -6,15 +6,12 @@ import VirtualTryOn from '../../components/page/detail/VirtualTryOn';
 import ProductDescription from '../../components/page/detail/ProductDescription';
 import ReviewSection from '../../components/page/detail/ReviewSection';
 import RelatedProducts from '../../components/page/detail/RelatedProducts';
-import versions from '../../constants/versions';
 import KEY_FLAG from '../../constants/flagsup';
+import useFlagFeature from '../../hooks/useFlagFeature';
 
 const App: React.FC = () => {
-
-  const { VERSIONS, CURRENT_VERSION } = versions;
-  const currentVersion = VERSIONS.find((version) => version.name === CURRENT_VERSION);
-  const isVirtualTryOnEnable = currentVersion?.keys.includes(KEY_FLAG.VIRTUAL_TRY_ON);
-  const isRatingEnable = currentVersion?.keys.includes(KEY_FLAG.RATING);
+  const isVirtualTryOnEnable = useFlagFeature(KEY_FLAG.VIRTUAL_TRY_ON);
+  const isRatingEnable = useFlagFeature(KEY_FLAG.RATING);
 
   return (
     <div className="max-w-7xl mt-10 px-4 py-8 font-sans">

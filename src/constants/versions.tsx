@@ -34,8 +34,9 @@ const VERSIONS = [
   },
 ];
 
-const CURRENT_VERSION = 'version_3'
+const CURRENT_VERSION = 'version_3';
 
 export default {
   VERSIONS,
-  CURRENT_VERSION, }
+  CURRENT_VERSION,
+};

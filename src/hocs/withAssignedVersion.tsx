@@ -2,10 +2,7 @@ import React from 'react';
 import versions from '../constants/versions'; // Import versions
 import Page404 from '../page/error/Page404';
 
-export const withAssignedVersions = <P extends object>(
-  Component: React.FC<P>,
-  KeyFlag: string
-): React.FC<P> => {
+export const withAssignedVersions = <P extends object>(Component: React.FC<P>, KeyFlag: string): React.FC<P> => {
   return (props: P) => {
     const { VERSIONS, CURRENT_VERSION } = versions;
 
@@ -17,9 +14,7 @@ export const withAssignedVersions = <P extends object>(
 
     if (!isKeyFlagAllowed) {
       // Render a 404-like page if the KeyFlag is not allowed
-      return (
-        <Page404/>
-      );
+      return <Page404 />;
     }
     // Render the wrapped component if the KeyFlag is allowed
     return <Component {...props} />;

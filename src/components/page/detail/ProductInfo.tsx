@@ -5,11 +5,15 @@ import PriceDisplay from './PriceDisplay';
 import ColorSelector from './ColorSelector';
 import SizeSelector from './SizeSelector';
 import QuantitySelector from './QuantitySelector';
+import FLAG_KEYS from '../../../constants/flagsup';
+import useFlagFeature from '../../../hooks/useFlagFeature';
 
 const ProductInfo: React.FC = () => {
-  const [selectedColor, setSelectedColor] = useState<string>('brown');
-  const [selectedSize, setSelectedSize] = useState<string>('Large');
+  const [selectedColor, setSelectedColor] = useState<string>('');
+  const [selectedSize, setSelectedSize] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
+
+  const isCartEnable = useFlagFeature(FLAG_KEYS.CART);
 
   const colors = [
     { id: 'brown', bg: 'bg-[#5D4B35]' },
@@ -48,22 +52,24 @@ const ProductInfo: React.FC = () => {
       </p>
 
       {/* Color Selection */}
-      <ColorSelector colors={colors} selectedColor={selectedColor} onChange={setSelectedColor} />
+      {isCartEnable && <ColorSelector colors={colors} selectedColor={selectedColor} onChange={setSelectedColor} />}
 
       {/* Size Selection */}
-      <SizeSelector sizes={sizes} selectedSize={selectedSize} onChange={setSelectedSize} />
+      {isCartEnable && <SizeSelector sizes={sizes} selectedSize={selectedSize} onChange={setSelectedSize} />}
 
       {/* Quantity and Add to Cart */}
-      <div className="flex items-center gap-4">
-        <QuantitySelector
-          quantity={quantity}
-          onIncrease={() => handleQuantityChange('increase')}
-          onDecrease={() => handleQuantityChange('decrease')}
-        />
-        <button className="flex-1 bg-black text-white py-3 px-6 rounded-[10px] hover:bg-gray-800 transition-colors duration-200">
-          Add to Cart
-        </button>
-      </div>
+      {isCartEnable && (
+        <div className="flex items-center gap-4">
+          <QuantitySelector
+            quantity={quantity}
+            onIncrease={() => handleQuantityChange('increase')}
+            onDecrease={() => handleQuantityChange('decrease')}
+          />
+          <button className="flex-1 bg-black text-white py-3 px-6 rounded-[10px] hover:bg-gray-800 transition-colors duration-200">
+            Add to Cart
+          </button>
+        </div>
+      )}
     </div>
   );
 };
