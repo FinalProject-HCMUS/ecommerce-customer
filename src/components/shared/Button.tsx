@@ -72,10 +72,7 @@ export const GeneralButton: React.FC<BtnProps> = ({
   );
 };
 
-
-
-
-export const BackToHomeButton: React.FC<ButtonProps> = props => (
+export const BackToHomeButton: React.FC<ButtonProps> = (props) => (
   <Link to="/">
     <Button type="primary" icon={<HomeOutlined />} {...props}>
       Back to Home
@@ -83,9 +80,8 @@ export const BackToHomeButton: React.FC<ButtonProps> = props => (
   </Link>
 );
 
-export const LogoutButton: React.FC<ButtonProps> = props => (
-  <Button icon={<LogoutOutlined />}  {...props}>
+export const LogoutButton: React.FC<ButtonProps> = (props) => (
+  <Button icon={<LogoutOutlined />} {...props}>
     Logout
   </Button>
 );
-

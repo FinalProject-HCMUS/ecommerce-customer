@@ -2,7 +2,7 @@ import React, { useReducer, useState } from 'react';
 import { Link } from 'react-router-dom';
 import InputField from '../../../shared/form/InputField';
 import PasswordInput from '../../../shared/form/PasswordInput';
-import {GeneralButton} from '../../../shared/Button'; // Import the reusable Button component
+import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
 
 interface FormState {
   fullname: string;
