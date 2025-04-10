@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { navbarSearchPlaceholder, shopName, getFilteredNavbarLinks } from '../../data/navbar';
+import { navbarSearchPlaceholder, shopName } from '../../data/navbar';
+import { navbarLinks } from '../../data/navbar';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const filteredLinks = getFilteredNavbarLinks();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +30,7 @@ const Navbar = () => {
             </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
-              {filteredLinks.map((link) => (
+              {navbarLinks.map((link) => (
                 <Link key={link.path} to={link.path} className="nav-link font-medium">
                   {link.label}
                 </Link>
@@ -78,7 +78,7 @@ const Navbar = () => {
               <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
             <nav className="flex flex-col space-y-4">
-              {filteredLinks.map((link) => (
+              {navbarLinks.map((link) => (
                 <Link key={link.path} to={link.path} className="font-medium">
                   {link.label}
                 </Link>

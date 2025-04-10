@@ -40,7 +40,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             name="name"
             value={formData.name}
             onChange={onInputChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
@@ -55,7 +55,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             name="phone"
             value={formData.phone}
             onChange={onInputChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
@@ -70,7 +70,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             name="address"
             value={formData.address}
             onChange={onInputChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>

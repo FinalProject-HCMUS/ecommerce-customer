@@ -34,7 +34,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen mt-20 mx-8 bg-white">
+    <div className="min-h-screen mt-10 mx-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <Breadcrumb
@@ -43,8 +43,6 @@ function App() {
             { label: 'Checkout', path: '/checkout' },
           ]}
         />
-
-        <h1 className="text-3xl font-bold mb-8">Check out</h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left Column - Form */}
@@ -59,7 +57,7 @@ function App() {
 
           {/* Right Column - Order Summary */}
           <div className="w-full lg:w-1/2">
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-gray-100 rounded-[12px] p-6">
               <OrderSummary />
             </div>
           </div>

@@ -1,5 +1,7 @@
 import type React from 'react';
 import { ProductItem } from './ProductItem';
+import Divider from '../../shared/Divider';
+import { GeneralButton } from '../../shared/Button';
 
 export const OrderSummary: React.FC = () => {
   const products = [
@@ -10,7 +12,7 @@ export const OrderSummary: React.FC = () => {
       color: 'Red',
       price: 180,
       quantity: 1,
-      image: '',
+      image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     },
     {
       id: 2,
@@ -19,7 +21,7 @@ export const OrderSummary: React.FC = () => {
       color: 'Red',
       price: 180,
       quantity: 1,
-      image: '',
+      image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     },
     {
       id: 3,
@@ -28,7 +30,7 @@ export const OrderSummary: React.FC = () => {
       color: 'Red',
       price: 180,
       quantity: 1,
-      image: '',
+      image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     },
   ];
 
@@ -46,7 +48,9 @@ export const OrderSummary: React.FC = () => {
         ))}
       </div>
 
-      <div className="border-t border-gray-200 pt-6">
+      <Divider />
+
+      <div className="pt-6">
         <h2 className="text-xl font-bold mb-4">Order Summary</h2>
 
         <div className="space-y-3">
@@ -65,18 +69,20 @@ export const OrderSummary: React.FC = () => {
             <span className="font-medium">${deliveryFee}</span>
           </div>
 
-          <div className="flex justify-between pt-3 border-t border-gray-200">
+          <Divider />
+
+          <div className="flex justify-between pt-3">
             <span className="font-bold">Total</span>
             <span className="font-bold text-xl">${total}</span>
           </div>
         </div>
 
-        <button
+        <GeneralButton
           type="submit"
           className="w-full mt-6 bg-black text-white py-4 px-6 rounded-full font-medium hover:bg-gray-800 transition-colors"
         >
           MAKE PAYMENT
-        </button>
+        </GeneralButton>
       </div>
     </div>
   );

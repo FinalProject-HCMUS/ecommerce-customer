@@ -4,8 +4,6 @@ import RatingStars from '../RatingStars';
 import QuantityControl from '../QuantityControl';
 import AddToCartButton from '../AddToCartButton';
 import { Product } from '../../../interfaces/product';
-import useFlagFeature from '../../../hooks/useFlagFeature';
-import FLAG_KEYS from '../../../constants/flagsup';
 interface ProductCardProps {
   product: Product;
 }
@@ -13,7 +11,6 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
-  const isCartEnable = useFlagFeature(FLAG_KEYS.CART);
 
   const incrementQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -40,12 +37,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <div className="flex items-center justify-between mb-5 gap-2 mt-2">
           <span className="text font-bold text-gray-800">${product.price}</span>
-          {isCartEnable && (
             <QuantityControl quantity={quantity} onIncrement={incrementQuantity} onDecrement={decrementQuantity} />
-          )}
         </div>
 
-        {isCartEnable && <AddToCartButton isAdding={isAdding} onClick={handleAddToCart} />}
+        <AddToCartButton isAdding={isAdding} onClick={handleAddToCart} />
       </div>
     </div>
   );
