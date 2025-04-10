@@ -15,6 +15,10 @@ export const navbarLinks = [
     label: 'Blog',
     path: '/blog',
   },
+  {
+    label: 'Orders',
+    path: '/orders',
+  },
 ];
 
 export const shopName = 'ShopName';

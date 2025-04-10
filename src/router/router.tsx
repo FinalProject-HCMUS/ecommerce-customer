@@ -14,6 +14,7 @@ const BlogPage = lazy(() => import('../page/blog/blog-page'));
 const DetailBlogPage = lazy(() => import('../page/blog/detail-blog-page'));
 const Page403 = lazy(() => import('../page/error/Page403'));
 const Page500 = lazy(() => import('../page/error/Page500'));
+const OrdersPage = lazy(() => import('../page/order/order-page'));
 
 const routes: IRoute[] = [
   {
@@ -93,6 +94,12 @@ const routes: IRoute[] = [
     path: '/500',
     name: 'Page 500',
     component: Page500,
+  },
+  {
+    exact: true,
+    path: '/orders',
+    name: 'Orders Page',
+    component: OrdersPage,
   },
 ];
 
