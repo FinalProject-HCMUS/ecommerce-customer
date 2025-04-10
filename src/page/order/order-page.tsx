@@ -8,6 +8,7 @@ import LoadingSkeleton from "../../components/page/order/LoadingSkeleton"
 import { statusConfig } from "../../data/statusConfig"
 import StatusBadge from "../../components/page/order/StatusBadge"
 import OrderCard from "../../components/page/order/OrderCard"
+import Pagination from "../../components/shared/Pagination"
 
 // Status Timeline Modal
 const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void }> = ({ order, onClose }) => {
@@ -214,6 +215,8 @@ const OrdersPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [filterStatus, setFilterStatus] = useState<string>("all")
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   // Simulate loading data
   useEffect(() => {
@@ -311,6 +314,13 @@ const OrdersPage: React.FC = () => {
           <EmptyState searchTerm={searchTerm} onClearSearch={clearSearch} />
         )}
       </div>
+
+       {/* Pagination */}
+       <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(filteredOrders.length / itemsPerPage)}
+        onPageChange={(page) => setCurrentPage(page)}
+      />     
 
       {/* Status Modal */}
       <StatusModalComponent order={selectedOrder} onClose={closeModal} />
