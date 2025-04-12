@@ -24,4 +24,3 @@ export const navbarLinks = [
 export const shopName = 'ShopName';
 
 export const navbarSearchPlaceholder = 'Search for products...';
-

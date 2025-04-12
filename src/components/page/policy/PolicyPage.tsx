@@ -8,13 +8,13 @@ const PolicyPage: React.FC = () => {
     <div className="min-h-screen bg-white text-gray-800">
       {/* Main content */}
       <div className="container mx-auto px-4 pb-12">
-         {/* Breadcrumb navigation */}
-      <Breadcrumb
-        items={[
-          { label: 'Home', path: '/' },
-          { label: 'Policy', path: '/policy' },
-        ]}
-      />
+        {/* Breadcrumb navigation */}
+        <Breadcrumb
+          items={[
+            { label: 'Home', path: '/' },
+            { label: 'Policy', path: '/policy' },
+          ]}
+        />
         <PolicyContent title="Content about policy" sections={policyContent} />
       </div>
     </div>

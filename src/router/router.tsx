@@ -33,13 +33,13 @@ const routes: IRoute[] = [
     exact: true,
     path: '/login',
     name: 'Login',
-    component: LoginPage
+    component: LoginPage,
   },
   {
     exact: true,
     path: '/register',
     name: 'Register',
-    component: RegistrationPage
+    component: RegistrationPage,
   },
   {
     exact: true,
@@ -51,37 +51,37 @@ const routes: IRoute[] = [
     exact: true,
     path: '/cart',
     name: 'Cart Page',
-    component: CartPage
+    component: CartPage,
   },
   {
     exact: true,
     path: '/checkout',
     name: 'Checkout Page',
-    component: CheckoutPage
+    component: CheckoutPage,
   },
   {
     exact: true,
     path: '/chat',
     name: 'Chat Pages',
-    component: Chat
+    component: Chat,
   },
   {
     exact: true,
     path: '/policy',
     name: 'Policy Page',
-    component: Policy
+    component: Policy,
   },
   {
     exact: true,
     path: '/blog',
     name: 'Blog Page',
-    component: BlogPage
+    component: BlogPage,
   },
   {
     exact: true,
     path: '/blog/:id',
     name: 'Detail Blog Page',
-    component: DetailBlogPage
+    component: DetailBlogPage,
   },
   {
     exact: true,

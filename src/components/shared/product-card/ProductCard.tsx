@@ -37,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <div className="flex items-center justify-between mb-5 gap-2 mt-2">
           <span className="text font-bold text-gray-800">${product.price}</span>
-            <QuantityControl quantity={quantity} onIncrement={incrementQuantity} onDecrement={decrementQuantity} />
+          <QuantityControl quantity={quantity} onIncrement={incrementQuantity} onDecrement={decrementQuantity} />
         </div>
 
         <AddToCartButton isAdding={isAdding} onClick={handleAddToCart} />

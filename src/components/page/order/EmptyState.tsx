@@ -1,9 +1,9 @@
-import React from "react"
-import { Package } from 'lucide-react'
+import React from 'react';
+import { Package } from 'lucide-react';
 
 interface EmptyStateProps {
-  searchTerm: string
-  onClearSearch?: () => void
+  searchTerm: string;
+  onClearSearch?: () => void;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({ searchTerm, onClearSearch }) => {
@@ -25,7 +25,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ searchTerm, onClearSearch }) =>
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default EmptyState
+export default EmptyState;
