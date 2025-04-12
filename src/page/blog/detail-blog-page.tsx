@@ -2,7 +2,7 @@ import BlogDetail from '../../components/page/blog/BlogDetail';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { findPostById, getRelatedPosts } from '../../data/blog';
-import { BlogPost } from '../../interfaces/blog';
+import { BlogPost } from '../../interfaces/temp/blog';
 
 const BlogDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

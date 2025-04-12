@@ -6,16 +6,15 @@ import { policyContent } from '../../../data/policy';
 const PolicyPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-gray-800">
-      {/* Breadcrumb navigation */}
+      {/* Main content */}
+      <div className="container mx-auto px-4 pb-12">
+         {/* Breadcrumb navigation */}
       <Breadcrumb
         items={[
           { label: 'Home', path: '/' },
           { label: 'Policy', path: '/policy' },
         ]}
       />
-
-      {/* Main content */}
-      <div className="container mx-auto px-4 pb-12">
         <PolicyContent title="Content about policy" sections={policyContent} />
       </div>
     </div>

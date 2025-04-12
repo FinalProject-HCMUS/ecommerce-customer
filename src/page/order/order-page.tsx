@@ -2,13 +2,14 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Search, Filter, ChevronDown, X } from "lucide-react"
 import { mockOrders } from "../../data/order"
-import type { Order, OrderStatus } from "../../interfaces/order"
+import type { Order, OrderStatus } from "../../interfaces/temp/order"
 import EmptyState from "../../components/page/order/EmptyState"
 import LoadingSkeleton from "../../components/page/order/LoadingSkeleton"
 import { statusConfig } from "../../data/statusConfig"
 import StatusBadge from "../../components/page/order/StatusBadge"
 import OrderCard from "../../components/page/order/OrderCard"
 import Pagination from "../../components/shared/Pagination"
+import Breadcrumb from "../../components/shared/Breadcrumb"
 
 // Status Timeline Modal
 const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void }> = ({ order, onClose }) => {
@@ -256,7 +257,13 @@ const OrdersPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-10">
+          <Breadcrumb
+                items={[
+                  { label: 'Home', path: '/' },
+                  { label: 'Orders', path: '/orders' },
+                ]}
+              />
       {/* Page header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Your Orders</h1>

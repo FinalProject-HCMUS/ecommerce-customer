@@ -1,5 +1,5 @@
 import type React from "react"
-import type { OrderStatus } from "../../../interfaces/order"
+import type { OrderStatus } from "../../../interfaces/temp/order"
 import { statusConfig } from "../../../data/statusConfig"
 
 interface StatusBadgeProps {

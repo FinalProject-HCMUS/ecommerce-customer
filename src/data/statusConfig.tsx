@@ -1,5 +1,5 @@
 import { Clock, CheckCircle, XCircle, Truck, Package } from "lucide-react"
-import type { StatusConfigRecord } from "../interfaces/order"
+import type { StatusConfigRecord } from "../interfaces/temp/order"
 
 // Status configuration
 export const statusConfig: StatusConfigRecord = {

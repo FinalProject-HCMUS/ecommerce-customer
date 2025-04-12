@@ -1,7 +1,7 @@
 import type React from "react"
 import { useState } from "react"
 import { Package, ChevronDown, ChevronRight } from "lucide-react"
-import type { Order } from "../../../interfaces/order"
+import type { Order } from "../../../interfaces/temp/order"
 import StatusBadge from "./StatusBadge"
 import OrderItem from "./OrderItem"
 

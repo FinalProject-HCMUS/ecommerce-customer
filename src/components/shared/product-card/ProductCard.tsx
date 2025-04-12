@@ -3,7 +3,7 @@ import ProductImage from './ProductImage';
 import RatingStars from '../RatingStars';
 import QuantityControl from '../QuantityControl';
 import AddToCartButton from '../AddToCartButton';
-import { Product } from '../../../interfaces/product';
+import { Product } from '../../../interfaces/temp/product';
 interface ProductCardProps {
   product: Product;
 }

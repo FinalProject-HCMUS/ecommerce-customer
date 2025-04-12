@@ -1,4 +1,4 @@
-import type { Order } from "../interfaces/order"
+import type { Order } from "../interfaces/temp/order"
 
 // Mock data for demonstration
 export const mockOrders: Order[] = [

@@ -1,6 +1,6 @@
 import type React from 'react';
 import { ArrowRight } from 'lucide-react';
-import type { OrderSummaryProps } from '../../../interfaces/cart';
+import type { OrderSummaryProps } from '../../../interfaces/temp/cart';
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ data }) => {
   const { subtotal, discountAmount, deliveryFee, total } = data;

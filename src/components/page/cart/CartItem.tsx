@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trash2 } from 'lucide-react';
 import QuantityControl from './QuantityControl';
-import type { CartItemProps } from '../../../interfaces/cart';
+import type { CartItemProps } from '../../../interfaces/temp/cart';
 
 const CartItem: React.FC<CartItemProps> = ({ item, updateQuantity, removeItem }) => {
   return (

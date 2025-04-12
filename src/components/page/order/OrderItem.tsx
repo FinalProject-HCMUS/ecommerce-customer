@@ -1,5 +1,5 @@
 import type React from "react"
-import type { OrderItem as OrderItemType } from "../../../interfaces/order"
+import type { OrderItem as OrderItemType } from "../../../interfaces/temp/order"
 
 interface OrderItemProps {
   item: OrderItemType

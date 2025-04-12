@@ -1,4 +1,4 @@
-import { IRoute } from '../interfaces/common';
+import { IRoute } from '../interfaces/temp/common';
 import { lazy } from 'react';
 
 const HomePage = lazy(() => import('../page/home/home-page'));

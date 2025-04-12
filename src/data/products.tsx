@@ -1,4 +1,4 @@
-import { Product } from '../interfaces/product';
+import { Product } from '../interfaces/temp/product';
 interface ProductCategory {
   title: string;
   data: Product[];

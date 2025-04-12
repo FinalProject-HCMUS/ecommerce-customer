@@ -5,7 +5,7 @@ import Breadcrumb from '../../components/shared/Breadcrumb';
 import Pagination from '../../components/shared/Pagination';
 
 import { blogPosts } from '../../data/blog';
-import type { BlogPost } from '../../interfaces/blog';
+import type { BlogPost } from '../../interfaces/temp/blog';
 
 const BlogListPage: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -36,7 +36,7 @@ const BlogListPage: React.FC = () => {
   const currentPosts: BlogPost[] = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div className="max-w-7xl mx-auto mt-10 mx-8 px-4 py-8">
+    <div className="max-w-7xl mx-auto mt-10 mx-10 px-4 py-8">
       <Breadcrumb
         items={[
           { label: 'Home', path: '/' },
