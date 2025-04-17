@@ -24,15 +24,6 @@ export interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export interface BlogListProps {
-  posts: BlogPost[];
-}
-
-export interface BlogPostProps {
-  post: BlogPost;
-  index: number;
-}
-
 export interface BreadcrumbProps {
   items?: {
     label: string;

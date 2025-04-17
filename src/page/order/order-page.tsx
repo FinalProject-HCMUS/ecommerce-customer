@@ -10,6 +10,7 @@ import StatusBadge from '../../components/page/order/StatusBadge';
 import OrderCard from '../../components/page/order/OrderCard';
 import Pagination from '../../components/shared/Pagination';
 import Breadcrumb from '../../components/shared/Breadcrumb';
+import { orderStatus } from '../../constants/order';
 
 // Status Timeline Modal
 const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void }> = ({ order, onClose }) => {
@@ -200,9 +201,6 @@ const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void 
           >
             Close
           </button>
-          <button className="px-4 py-2 bg-gray-900 border border-transparent rounded-[12px] text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-            Contact Support
-          </button>
         </div>
       </div>
     </div>
@@ -292,15 +290,11 @@ const OrdersPage: React.FC = () => {
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
           >
-            <option value="all">All Orders</option>
-            <option value="NEW">New</option>
-            <option value="PROCESSING">Processing</option>
-            <option value="PACKAGED">Packaged</option>
-            <option value="PICKED">Picked</option>
-            <option value="SHIPPING">Shipping</option>
-            <option value="DELIVERED">Delivered</option>
-            <option value="CANCELLED">Cancelled</option>
-            <option value="REFUNDED">Refunded</option>
+            {orderStatus.map((status) => (
+              <option key={status.value} value={status.value}>
+                {status.label}
+              </option>
+            ))}
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <ChevronDown className="h-5 w-5 text-gray-400" />

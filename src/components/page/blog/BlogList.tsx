@@ -1,8 +1,10 @@
 import type React from 'react';
 import BlogPost from './BlogPost';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { BlogListProps } from '../../../interfaces/temp/blog';
-
+import { BlogResponse } from '../../../interfaces';
+interface BlogListProps {
+  posts: BlogResponse[];
+}
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   return (
     <motion.div className="space-y-4 mx-5" layout>

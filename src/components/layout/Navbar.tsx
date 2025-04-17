@@ -3,10 +3,14 @@ import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { navbarSearchPlaceholder, shopName } from '../../data/navbar';
 import { navbarLinks } from '../../data/navbar';
-
+import { RootState } from '../../context/store';
+import { useSelector } from 'react-redux';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Get authentication state from Redux
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,11 +34,17 @@ const Navbar = () => {
             </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
-              {navbarLinks.map((link) => (
-                <Link key={link.path} to={link.path} className="nav-link font-medium">
-                  {link.label}
-                </Link>
-              ))}
+            {navbarLinks.map((link) => {
+                // Conditionally render links based on authentication
+                if (link.authenticate && !isAuthenticated) {
+                  return null; // Hide "Orders" link if not authenticated
+                }
+                return (
+                  <Link key={link.path} to={link.path} className="nav-link font-medium">
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 

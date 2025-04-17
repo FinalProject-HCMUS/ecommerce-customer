@@ -29,7 +29,7 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
-    console.error('API Error:', error.response?.data || error.message);
+    console.error('API Error:', error);
     return Promise.reject(error);
   },
 );

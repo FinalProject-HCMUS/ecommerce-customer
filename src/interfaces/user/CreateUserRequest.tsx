@@ -26,28 +26,10 @@ export interface CreateUserRequest {
   lastName: string;
 
   /**
-   * Address of the user
-   * @example "123 Main St, City, Country"
-   */
-  address?: string;
-
-  /**
    * Password of the user
    * @example "password123"
    */
   password: string;
-
-  /**
-   * Whether the user account is enabled
-   * @example true
-   */
-  enabled: boolean;
-
-  /**
-   * Photo URL of the user
-   * @example "https://example.com/photo.jpg"
-   */
-  photo?: string;
 
   /**
    * Role of the user

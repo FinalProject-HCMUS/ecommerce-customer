@@ -1,5 +1,6 @@
 import { IRoute } from '../interfaces/temp/common';
 import { lazy } from 'react';
+import { withAuthenticatedUser } from '../hocs/withAuthenticatedUser';
 
 const HomePage = lazy(() => import('../page/home/home-page'));
 const SearchPage = lazy(() => import('../page/search/search-page'));
@@ -51,19 +52,19 @@ const routes: IRoute[] = [
     exact: true,
     path: '/cart',
     name: 'Cart Page',
-    component: CartPage,
+    component: withAuthenticatedUser(CartPage),
   },
   {
     exact: true,
     path: '/checkout',
     name: 'Checkout Page',
-    component: CheckoutPage,
+    component: withAuthenticatedUser(CheckoutPage),
   },
   {
     exact: true,
     path: '/chat',
     name: 'Chat Pages',
-    component: Chat,
+    component: withAuthenticatedUser(Chat),
   },
   {
     exact: true,
@@ -99,7 +100,7 @@ const routes: IRoute[] = [
     exact: true,
     path: '/orders',
     name: 'Orders Page',
-    component: OrdersPage,
+    component: withAuthenticatedUser(OrdersPage),
   },
 ];
 

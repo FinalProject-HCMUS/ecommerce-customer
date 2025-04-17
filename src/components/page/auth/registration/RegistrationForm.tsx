@@ -5,7 +5,8 @@ import PasswordInput from '../../../shared/form/PasswordInput';
 import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
 
 interface FormState {
-  fullname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   password: string;
@@ -15,7 +16,8 @@ interface FormState {
 type Action = { type: 'SET_FIELD'; field: keyof FormState; value: string } | { type: 'RESET_FORM' };
 
 const initialState: FormState = {
-  fullname: '',
+  firstName: '',
+  lastName: '',
   email: '',
   phone: '',
   password: '',
@@ -61,12 +63,21 @@ const RegistrationForm = () => {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <InputField
-            id="fullname"
-            label="Fullname"
+            id="firstName"
+            label="First name"
             type="text"
-            value={formState.fullname}
-            onChange={handleInputChange('fullname')}
-            placeholder="le minh hoang"
+            value={formState.firstName}
+            onChange={handleInputChange('firstName')}
+            placeholder="le"
+            required
+          />
+            <InputField
+            id="lastName"
+            label="Last name"
+            type="text"
+            value={formState.lastName}
+            onChange={handleInputChange('lastName')}
+            placeholder="hoang"
             required
           />
           <InputField

@@ -40,7 +40,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, forgotPassword
           onClick={togglePasswordVisibility}
           className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
         >
-          {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+          {showPassword ?  <FiEye size={18} /> : <FiEyeOff size={18} />}
         </button>
       </div>
     </div>

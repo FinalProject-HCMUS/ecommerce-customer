@@ -1,27 +1,16 @@
-import type React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import BlogList from '../../components/page/blog/BlogList';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import Pagination from '../../components/shared/Pagination';
-
-import { blogPosts } from '../../data/blog';
-import type { BlogPost } from '../../interfaces/temp/blog';
+import { useBlogs } from '../../hooks/blogs';
 
 const BlogListPage: React.FC = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const { blogs, loading, fetchBlogs } = useBlogs();
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
   const postsPerPage: number = 4;
-  const totalPages: number = Math.ceil(blogPosts.length / postsPerPage);
 
   useEffect(() => {
-    // Simulate data loading
-    const timer = setTimeout(() => {
-      setPosts(blogPosts);
-      setIsLoading(false);
-    }, 800);
-
-    return () => clearTimeout(timer);
+    fetchBlogs(); // Fetch blogs when the component mounts
   }, []);
 
   const handlePageChange = (pageNumber: number): void => {
@@ -30,10 +19,10 @@ const BlogListPage: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  // Get current posts
+  // Get current posts for pagination
   const indexOfLastPost: number = currentPage * postsPerPage;
   const indexOfFirstPost: number = indexOfLastPost - postsPerPage;
-  const currentPosts: BlogPost[] = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div className="max-w-7xl mx-auto mt-10 mx-10 px-4 py-8">
@@ -45,14 +34,18 @@ const BlogListPage: React.FC = () => {
       />
 
       <main className="mt-4">
-        {isLoading ? (
+        {loading ? (
           <div className="flex justify-center items-center h-64">
             <div className="animate-pulse text-gray-400">Loading posts...</div>
           </div>
         ) : (
           <>
             <BlogList posts={currentPosts} />
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={Math.ceil(blogs.length / postsPerPage)}
+              onPageChange={handlePageChange}
+            />
           </>
         )}
       </main>
