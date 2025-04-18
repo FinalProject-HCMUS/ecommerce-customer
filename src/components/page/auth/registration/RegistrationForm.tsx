@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import InputField from '../../../shared/form/InputField';
 import PasswordInput from '../../../shared/form/PasswordInput';
 import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
-
+import { useUser } from '../../../../hooks/user';
+import { Role } from '../../../../interfaces';
+import { showSuccess } from '../../../../utils/SuccessToastifyRender';
+import { useNavigate } from 'react-router-dom';
 interface FormState {
   firstName: string;
   lastName: string;
@@ -38,22 +41,48 @@ const formReducer = (state: FormState, action: Action): FormState => {
 const RegistrationForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
   const [isLoading, setIsLoading] = useState(false); // State for loading
+  const { createUser } = useUser();
+  const navigate = useNavigate();
 
   const handleInputChange =
     (field: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       dispatch({ type: 'SET_FIELD', field, value: e.target.value });
     };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Set loading state
     console.log('Form Submitted:', formState);
 
-    // Simulate an API call
-    setTimeout(() => {
+    // Validate password and confirm password
+    if (formState.password !== formState.confirmPassword) {
+      alert('Passwords do not match!');
+      setIsLoading(false);
+      return;
+    }
+    
+        // Prepare the data for the API call
+    const userData = {
+      firstName: formState.firstName,
+      lastName: formState.lastName,
+      email: formState.email,
+      phoneNum: formState.phone,
+      password: formState.password,
+      role: 'USER' as Role, // Default role
+    };
+
+    try {
+      const response = await createUser(userData);
+      if (response) {
+        showSuccess('Account created successfully! Please log in.');
+        dispatch({ type: 'RESET_FORM' }); // Reset the form after successful submission
+        navigate("/login") // Redirect to login page
+      }
+    } catch (error) {
+      console.error('Error creating account:', error);
+    } finally {
       setIsLoading(false); // Reset loading state
-      dispatch({ type: 'RESET_FORM' }); // Reset the form after submission
-    }, 2000);
+    }
   };
 
   return (

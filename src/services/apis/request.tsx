@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
+import { showError } from '../../utils/ErrorToastifyRender';
 
 // Base URL for the eCommerce API
 const ECOMMERCE_API_BASE_URL = import.meta.env.VITE_BACKEND_URL; // Replace with your actual API base URL
@@ -29,7 +30,8 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
-    console.error('API Error:', error);
+    const errorMessage = (error?.response?.data as { message?: string })?.message || 'An error occurred';
+    showError(errorMessage);
     return Promise.reject(error);
   },
 );
