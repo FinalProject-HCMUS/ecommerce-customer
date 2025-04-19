@@ -60,8 +60,8 @@ const RegistrationForm = () => {
       setIsLoading(false);
       return;
     }
-    
-        // Prepare the data for the API call
+
+    // Prepare the data for the API call
     const userData = {
       firstName: formState.firstName,
       lastName: formState.lastName,
@@ -76,7 +76,7 @@ const RegistrationForm = () => {
       if (response) {
         showSuccess('Account created successfully! Please log in.');
         dispatch({ type: 'RESET_FORM' }); // Reset the form after successful submission
-        navigate("/login") // Redirect to login page
+        navigate('/login'); // Redirect to login page
       }
     } catch (error) {
       console.error('Error creating account:', error);
@@ -100,7 +100,7 @@ const RegistrationForm = () => {
             placeholder="le"
             required
           />
-            <InputField
+          <InputField
             id="lastName"
             label="Last name"
             type="text"

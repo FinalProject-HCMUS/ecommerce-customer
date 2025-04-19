@@ -23,6 +23,20 @@ export const useUser = () => {
     }
   };
 
+  // Fetch a single user by token
+  const fetchUserByToken = async (): Promise<UserResponse | null> => {
+    setLoading(true);
+    try {
+      const response = await userApi.getUserByToken();
+      setUser(response.data || null);
+      return response.data || null;
+    } catch {
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Create a new user
   const createUser = async (data: CreateUserRequest): Promise<UserResponse | null> => {
     setLoading(true);
@@ -69,5 +83,6 @@ export const useUser = () => {
     createUser,
     updateUser,
     changePassword,
+    fetchUserByToken,
   };
 };

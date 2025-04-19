@@ -14,6 +14,11 @@ export const userApi = {
     return response.data;
   },
 
+  getUserByToken: async (): Promise<CustomResponse<UserResponse>> => {
+    const response = await client.get<CustomResponse<UserResponse>>(`${BASE_URL}/me`);
+    return response.data;
+  },
+
   // Create a new user
   createUser: async (data: CreateUserRequest): Promise<CustomResponse<UserResponse>> => {
     const response = await client.post<CustomResponse<UserResponse>>(BASE_URL, data);

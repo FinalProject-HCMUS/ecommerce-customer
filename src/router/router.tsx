@@ -1,6 +1,7 @@
 import { IRoute } from '../interfaces/temp/common';
 import { lazy } from 'react';
 import { withAuthenticatedUser } from '../hocs/withAuthenticatedUser';
+import { withUnAuthenticatedUser } from '../hocs/withUnAuthenticatedUser';
 
 const HomePage = lazy(() => import('../page/home/home-page'));
 const SearchPage = lazy(() => import('../page/search/search-page'));
@@ -34,7 +35,7 @@ const routes: IRoute[] = [
     exact: true,
     path: '/login',
     name: 'Login',
-    component: LoginPage,
+    component: withUnAuthenticatedUser(LoginPage),
   },
   {
     exact: true,

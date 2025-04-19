@@ -9,17 +9,22 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isAuthenticated: false,
-  accessToken: null,
-  refreshAccessToken: null,
-  userInfo: null,
+  isAuthenticated: !!localStorage.getItem('token'), // Check if token exists in localStorage
+  accessToken: localStorage.getItem('token'),
+  refreshAccessToken: localStorage.getItem('refreshToken'),
+  userInfo: localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo') as string)
+    : null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<{ userInfo: UserResponse; accessToken: string; refreshAccessToken: string }>) => {
+    login: (
+      state,
+      action: PayloadAction<{ userInfo: UserResponse ; accessToken: string; refreshAccessToken: string }>,
+    ) => {
       state.isAuthenticated = true;
       state.userInfo = action.payload.userInfo;
       state.accessToken = action.payload.accessToken;
@@ -29,6 +34,7 @@ const authSlice = createSlice({
       localStorage.setItem('token', action.payload.accessToken);
       localStorage.setItem('refreshToken', action.payload.refreshAccessToken);
       localStorage.setItem('email', action.payload.userInfo.email);
+      localStorage.setItem('userInfo', JSON.stringify(action.payload.userInfo));
     },
     updateTokens: (state, action: PayloadAction<{ accessToken: string; refreshAccessToken: string }>) => {
       state.accessToken = action.payload.accessToken;

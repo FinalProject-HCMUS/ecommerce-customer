@@ -7,9 +7,15 @@ import { topProducts } from '../../data/products';
 import Contact from '../../components/page/home/Contact';
 import CommonProducts from '../../components/page/home/CommonProduct';
 import { shopName } from '../../data/navbar';
+import { RootState } from '../../context/store';
+import { useSelector } from 'react-redux';
 
 const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(true);
+
+  // Get authentication state from Redux
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  console.log('isAuthenticated:', isAuthenticated);
 
   useEffect(() => {
     // Shorter loading time for testing

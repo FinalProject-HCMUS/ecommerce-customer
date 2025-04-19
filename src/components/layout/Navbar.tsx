@@ -5,6 +5,7 @@ import { navbarSearchPlaceholder, shopName } from '../../data/navbar';
 import { navbarLinks } from '../../data/navbar';
 import { RootState } from '../../context/store';
 import { useSelector } from 'react-redux';
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,10 +35,10 @@ const Navbar = () => {
             </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
-            {navbarLinks.map((link) => {
+              {navbarLinks.map((link) => {
                 // Conditionally render links based on authentication
                 if (link.authenticate && !isAuthenticated) {
-                  return null; // Hide "Orders" link if not authenticated
+                  return null; // Hide links that require authentication if not authenticated
                 }
                 return (
                   <Link key={link.path} to={link.path} className="nav-link font-medium">
@@ -58,15 +59,27 @@ const Navbar = () => {
               <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
 
-            <Link to="/cart">
-              <button className="p-2 hover:text-gray-600 transition-colors">
-                <FiShoppingCart size={20} />
-              </button>
-            </Link>
+            {/* Conditionally show cart and user icons if authenticated */}
+            {isAuthenticated ? (
+              <>
+                <Link to="/cart">
+                  <button className="p-2 hover:text-gray-600 transition-colors">
+                    <FiShoppingCart size={20} />
+                  </button>
+                </Link>
 
-            <button className="p-2 hover:text-gray-600 transition-colors">
-              <FiUser size={20} />
-            </button>
+                <Link to="/profile">
+                  <button className="p-2 hover:text-gray-600 transition-colors">
+                    <FiUser size={20} />
+                  </button>
+                </Link>
+              </>
+            ) : (
+              // Show Login button if not authenticated
+              <Link to="/login">
+                <button className="p-2 hover:text-gray-600 transition-colors">Login</button>
+              </Link>
+            )}
 
             <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <div className="w-6 h-0.5 bg-black mb-1.5"></div>
@@ -79,21 +92,39 @@ const Navbar = () => {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
-            <div className="relative mb-4">
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="w-full pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none"
-              />
-              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            </div>
             <nav className="flex flex-col space-y-4">
-              {navbarLinks.map((link) => (
-                <Link key={link.path} to={link.path} className="font-medium">
-                  {link.label}
-                </Link>
-              ))}
+              {navbarLinks.map((link) => {
+                // Conditionally render links based on authentication
+                if (link.authenticate && !isAuthenticated) {
+                  return null; // Hide links that require authentication if not authenticated
+                }
+                return (
+                  <Link key={link.path} to={link.path} className="font-medium">
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
+
+            {/* Conditionally show cart and user icons or login button */}
+            <div className="mt-4 flex flex-col space-y-4">
+              {isAuthenticated ? (
+                <>
+                  <Link to="/cart" className="flex items-center space-x-2">
+                    <FiShoppingCart size={20} />
+                    <span>Cart</span>
+                  </Link>
+                  <Link to="/profile" className="flex items-center space-x-2">
+                    <FiUser size={20} />
+                    <span>Profile</span>
+                  </Link>
+                </>
+              ) : (
+                <Link to="/login" className="flex items-center space-x-2">
+                  <button className="p-2 hover:text-gray-600 transition-colors">Login</button>
+                </Link>
+              )}
+            </div>
           </div>
         )}
       </div>
