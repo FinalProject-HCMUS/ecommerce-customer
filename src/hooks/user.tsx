@@ -23,12 +23,11 @@ export const useUser = () => {
     }
   };
 
-  // Fetch a single user by token
-  const fetchUserByToken = async (): Promise<UserResponse | null> => {
+   // Fetch a single user by token
+   const fetchUserByToken = async (): Promise<UserResponse | null> => {
     setLoading(true);
     try {
       const response = await userApi.getUserByToken();
-      setUser(response.data || null);
       return response.data || null;
     } catch {
       return null;

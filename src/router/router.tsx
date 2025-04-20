@@ -17,6 +17,7 @@ const DetailBlogPage = lazy(() => import('../page/blog/detail-blog-page'));
 const Page403 = lazy(() => import('../page/error/Page403'));
 const Page500 = lazy(() => import('../page/error/Page500'));
 const OrdersPage = lazy(() => import('../page/order/order-page'));
+const ProfilePage = lazy(() => import('../page/profile/profile-page'));
 
 const routes: IRoute[] = [
   {
@@ -48,6 +49,12 @@ const routes: IRoute[] = [
     path: '/product/:id',
     name: 'Detail Product',
     component: DetailProduct,
+  },
+  {
+    exact: true,
+    path: '/profile',
+    name: 'Profile Page',
+    component: withAuthenticatedUser(ProfilePage),
   },
   {
     exact: true,

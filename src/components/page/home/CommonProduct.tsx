@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import ProductCard from '../../shared/product-card/ProductCard';
-import { Product } from '../../../interfaces/temp/product';
+import { ProductResponse } from '../../../interfaces';
 
 interface CommonProductsProps {
   title: string;
-  data: Product[];
+  data: ProductResponse[];
 }
 
 const CommonProducts: React.FC<CommonProductsProps> = ({ title, data }) => {
   const [visibleCount, setVisibleCount] = useState(5); // Number of products to show initially
+  const initialVisibleCount = 5; // Define the initial number of visible products
 
   const handleSeeMore = () => {
-    setVisibleCount((prevCount) => prevCount + 5); // Load 10 more products
+    setVisibleCount((prevCount) => prevCount + 5); // Load 5 more products
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(initialVisibleCount); // Reset to the initial number of visible products
   };
 
   return (
@@ -24,16 +29,25 @@ const CommonProducts: React.FC<CommonProductsProps> = ({ title, data }) => {
           ))}
         </div>
 
-        {visibleCount < data.length && ( // Show "See more" only if there are more products to load
-          <div className="text-center mt-12">
+        <div className="text-center mt-12">
+          {visibleCount < data.length && ( // Show "See More" button if there are more products to load
             <button
-              className="btn-primary border-2 border-gray-300 px-8 py-2 rounded-full hover:bg-gray-100 transition-colors"
+              className="btn-primary border-2 border-gray-300 px-8 py-2 rounded-full hover:bg-gray-100 transition-colors mr-4"
               onClick={handleSeeMore}
             >
-              See more
+              See More
             </button>
-          </div>
-        )}
+          )}
+
+          {visibleCount > initialVisibleCount && ( // Show "Show Less" button if more than the initial products are visible
+            <button
+              className="btn-secondary border-2 border-gray-300 px-8 py-2 rounded-full hover:bg-gray-100 transition-colors"
+              onClick={handleShowLess}
+            >
+              Show Less
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );

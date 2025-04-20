@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { FiSearch, FiShoppingCart, FiUser } from 'react-icons/fi';
+import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { navbarSearchPlaceholder, shopName } from '../../data/navbar';
 import { navbarLinks } from '../../data/navbar';
 import { RootState } from '../../context/store';
 import { useSelector } from 'react-redux';
+import UserDropdown from './UserDropdown';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,11 +69,7 @@ const Navbar = () => {
                   </button>
                 </Link>
 
-                <Link to="/profile">
-                  <button className="p-2 hover:text-gray-600 transition-colors">
-                    <FiUser size={20} />
-                  </button>
-                </Link>
+                <UserDropdown />
               </>
             ) : (
               // Show Login button if not authenticated
@@ -114,10 +111,7 @@ const Navbar = () => {
                     <FiShoppingCart size={20} />
                     <span>Cart</span>
                   </Link>
-                  <Link to="/profile" className="flex items-center space-x-2">
-                    <FiUser size={20} />
-                    <span>Profile</span>
-                  </Link>
+                  <UserDropdown />
                 </>
               ) : (
                 <Link to="/login" className="flex items-center space-x-2">
