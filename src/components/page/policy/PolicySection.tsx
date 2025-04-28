@@ -1,6 +1,6 @@
 import type React from 'react';
 import { motion } from 'framer-motion';
-import type { PolicySectionType } from '../../../interfaces/policy';
+import type { PolicySectionType } from '../../../interfaces/temp/policy';
 
 interface PolicySectionProps {
   section: PolicySectionType;

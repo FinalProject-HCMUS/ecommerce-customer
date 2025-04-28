@@ -1,25 +1,25 @@
-import type React from "react"
-import { useState } from "react"
-import { Package, ChevronDown, ChevronRight } from "lucide-react"
-import type { Order } from "../../../interfaces/order"
-import StatusBadge from "./StatusBadge"
-import OrderItem from "./OrderItem"
+import type React from 'react';
+import { useState } from 'react';
+import { Package, ChevronDown, ChevronRight } from 'lucide-react';
+import type { Order } from '../../../interfaces/temp/order';
+import StatusBadge from './StatusBadge';
+import OrderItem from './OrderItem';
 
 interface OrderCardProps {
-  order: Order
-  onViewStatus: (order: Order) => void
+  order: Order;
+  onViewStatus: (order: Order) => void;
 }
 
 const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <div
       className="bg-white rounded-[15px] shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 ease-in-out hover:shadow-md"
       style={{
-        transform: "translateY(0)",
+        transform: 'translateY(0)',
         opacity: 1,
-        animation: "fadeIn 0.5s ease-out",
+        animation: 'fadeIn 0.5s ease-out',
       }}
     >
       <div className="p-4 flex items-center justify-between">
@@ -51,7 +51,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
 
       <div
         className={`border-t border-gray-200 overflow-hidden transition-all duration-300 ease-in-out ${
-          expanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          expanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="p-4 bg-gray-50">
@@ -69,7 +69,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderCard
+export default OrderCard;

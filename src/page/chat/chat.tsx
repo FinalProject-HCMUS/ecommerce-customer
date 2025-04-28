@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import ChatContainer from '../../components/page/chat/ChatContainer';
 import MessageInput from '../../components/page/chat/MessageInput';
-import { Message } from '../../interfaces/message';
+import { Message } from '../../interfaces/temp/message';
 import { message } from '../../data/message';
 
 const App: React.FC = () => {
@@ -32,7 +32,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex mt-10 px-4 py-8 flex-col h-screen bg-gray-50">
+    <div className="flex mt-10 px-8 py-8 flex-col h-screen bg-gray-50 bg-white text-gray-800">
       <Breadcrumb
         items={[
           { label: 'Home', path: '/' },

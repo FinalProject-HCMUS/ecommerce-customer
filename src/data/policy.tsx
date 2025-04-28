@@ -1,4 +1,4 @@
-import type { PolicySectionType } from '../interfaces/policy';
+import type { PolicySectionType } from '../interfaces/temp/policy';
 
 export const policyContent: PolicySectionType[] = [
   {

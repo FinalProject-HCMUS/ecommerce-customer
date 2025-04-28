@@ -1,34 +1,26 @@
 import BlogDetail from '../../components/page/blog/BlogDetail';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { findPostById, getRelatedPosts } from '../../data/blog';
-import { BlogPost } from '../../interfaces/blog';
+import { useBlogs } from '../../hooks/blogs';
+import { BlogResponse } from '../../interfaces';
 
 const BlogDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { fetchBlogById, loading } = useBlogs();
+  const [post, setPost] = useState<BlogResponse | null>(null);
 
   useEffect(() => {
-    // Simulate data loading
-    const timer = setTimeout(() => {
+    const loadPost = async () => {
       if (id) {
-        const postId = Number.parseInt(id, 10);
-        const foundPost = findPostById(postId);
-
-        if (foundPost) {
-          setPost(foundPost);
-          setRelatedPosts(getRelatedPosts(postId));
-        }
+        const fetchedPost = await fetchBlogById(id);
+        setPost(fetchedPost);
       }
-      setIsLoading(false);
-    }, 500);
+    };
 
-    return () => clearTimeout(timer);
+    loadPost();
   }, [id]);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="flex justify-center items-center h-64">
@@ -55,7 +47,7 @@ const BlogDetailPage: React.FC = () => {
     );
   }
 
-  return <BlogDetail post={post} relatedPosts={relatedPosts} />;
+  return <BlogDetail post={post} />;
 };
 
 export default BlogDetailPage;

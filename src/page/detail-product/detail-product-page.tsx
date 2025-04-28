@@ -8,7 +8,6 @@ import ReviewSection from '../../components/page/detail/ReviewSection';
 import RelatedProducts from '../../components/page/detail/RelatedProducts';
 
 const App: React.FC = () => {
-
   return (
     <div className="max-w-7xl mt-10 px-4 py-8 font-sans">
       <Breadcrumb

@@ -1,5 +1,5 @@
 import type React from 'react';
-import type { QuantityControlProps } from '../../../interfaces/cart';
+import type { QuantityControlProps } from '../../../interfaces/temp/cart';
 
 const QuantityControl: React.FC<QuantityControlProps> = ({ quantity, onDecrease, onIncrease }) => {
   return (

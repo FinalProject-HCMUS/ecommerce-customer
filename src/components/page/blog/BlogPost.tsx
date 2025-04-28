@@ -1,9 +1,14 @@
 import type React from 'react';
 import { motion } from 'framer-motion';
-import type { BlogPostProps } from '../../../interfaces/blog';
 import { Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../../utils/formatDate';
+import { BlogResponse } from '../../../interfaces';
+
+export interface BlogPostProps {
+  post: BlogResponse;
+  index: number;
+}
 
 const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
   return (
@@ -41,15 +46,13 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
         )}
       </Link>
       <div className="p-4 flex flex-col flex-grow">
-        {post.category && <span className="text-xs font-medium text-gray-600 mb-1">{post.category}</span>}
         <Link to={`/blog/${post.id}`} className="group">
           <h2 className="text-xl font-medium mb-1 group-hover:text-primary transition-colors">{post.title}</h2>
         </Link>
-        <p className="text-gray-700 mb-2">{post.description}</p>
+        <p className="text-gray-700 mb-2">{post.content}</p>
         <div className="mt-auto flex items-center text-sm text-gray-500">
           <Calendar className="w-3 h-3 mr-1" />
-          <span>{formatDate(post.date)}</span>
-          {post.readingTime && <span className="ml-3">{post.readingTime}</span>}
+          <span>{formatDate(post.createdAt)}</span>
         </div>
       </div>
     </motion.article>

@@ -1,4 +1,4 @@
-import type { Author, BlogPost } from '../interfaces/blog';
+import type { Author, BlogPost } from '../interfaces/temp/blog';
 
 const authors: Author[] = [
   {

@@ -3,9 +3,9 @@ import ProductImage from './ProductImage';
 import RatingStars from '../RatingStars';
 import QuantityControl from '../QuantityControl';
 import AddToCartButton from '../AddToCartButton';
-import { Product } from '../../../interfaces/product';
+import { ProductResponse } from '../../../interfaces/product/ProductResponse';
 interface ProductCardProps {
-  product: Product;
+  product: ProductResponse;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -29,15 +29,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow mb-2 duration-300">
-      <ProductImage imageUrl={product.image} />
+      <ProductImage imageUrl={product.mainImageUrl} />
 
       <div className="p-5">
         <h3 className="text-md font-semibold text-gray-800 mb-2">{product.name}</h3>
-        <RatingStars rating={product.rating} />
+        <RatingStars rating={product.averageRating} />
 
         <div className="flex items-center justify-between mb-5 gap-2 mt-2">
           <span className="text font-bold text-gray-800">${product.price}</span>
-            <QuantityControl quantity={quantity} onIncrement={incrementQuantity} onDecrement={decrementQuantity} />
+          <QuantityControl quantity={quantity} onIncrement={incrementQuantity} onDecrement={decrementQuantity} />
         </div>
 
         <AddToCartButton isAdding={isAdding} onClick={handleAddToCart} />

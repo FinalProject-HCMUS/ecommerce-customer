@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react';
 
 interface LoadingSkeletonProps {
-  count?: number
+  count?: number;
 }
 
 const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ count = 3 }) => {
@@ -27,7 +27,7 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ count = 3 }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default LoadingSkeleton
+export default LoadingSkeleton;

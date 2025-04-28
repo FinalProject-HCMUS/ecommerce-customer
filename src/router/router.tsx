@@ -1,5 +1,7 @@
-import { IRoute } from '../interfaces/common';
+import { IRoute } from '../interfaces/temp/common';
 import { lazy } from 'react';
+import { withAuthenticatedUser } from '../hocs/withAuthenticatedUser';
+import { withUnAuthenticatedUser } from '../hocs/withUnAuthenticatedUser';
 
 const HomePage = lazy(() => import('../page/home/home-page'));
 const SearchPage = lazy(() => import('../page/search/search-page'));
@@ -15,6 +17,7 @@ const DetailBlogPage = lazy(() => import('../page/blog/detail-blog-page'));
 const Page403 = lazy(() => import('../page/error/Page403'));
 const Page500 = lazy(() => import('../page/error/Page500'));
 const OrdersPage = lazy(() => import('../page/order/order-page'));
+const ProfilePage = lazy(() => import('../page/profile/profile-page'));
 
 const routes: IRoute[] = [
   {
@@ -33,13 +36,13 @@ const routes: IRoute[] = [
     exact: true,
     path: '/login',
     name: 'Login',
-    component: LoginPage
+    component: withUnAuthenticatedUser(LoginPage),
   },
   {
     exact: true,
     path: '/register',
     name: 'Register',
-    component: RegistrationPage
+    component: RegistrationPage,
   },
   {
     exact: true,
@@ -49,39 +52,45 @@ const routes: IRoute[] = [
   },
   {
     exact: true,
+    path: '/profile',
+    name: 'Profile Page',
+    component: withAuthenticatedUser(ProfilePage),
+  },
+  {
+    exact: true,
     path: '/cart',
     name: 'Cart Page',
-    component: CartPage
+    component: withAuthenticatedUser(CartPage),
   },
   {
     exact: true,
     path: '/checkout',
     name: 'Checkout Page',
-    component: CheckoutPage
+    component: withAuthenticatedUser(CheckoutPage),
   },
   {
     exact: true,
     path: '/chat',
     name: 'Chat Pages',
-    component: Chat
+    component: withAuthenticatedUser(Chat),
   },
   {
     exact: true,
     path: '/policy',
     name: 'Policy Page',
-    component: Policy
+    component: Policy,
   },
   {
     exact: true,
     path: '/blog',
     name: 'Blog Page',
-    component: BlogPage
+    component: BlogPage,
   },
   {
     exact: true,
     path: '/blog/:id',
     name: 'Detail Blog Page',
-    component: DetailBlogPage
+    component: DetailBlogPage,
   },
   {
     exact: true,
@@ -99,7 +108,7 @@ const routes: IRoute[] = [
     exact: true,
     path: '/orders',
     name: 'Orders Page',
-    component: OrdersPage,
+    component: withAuthenticatedUser(OrdersPage),
   },
 ];
 

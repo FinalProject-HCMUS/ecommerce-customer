@@ -7,27 +7,48 @@ import { GeneralButton } from '../../../shared/Button'; // Import the reusable B
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../../../hooks/auth';
+import { showSuccess } from '../../../../utils/SuccessToastifyRender';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../../context/authSlice';
+import { useUser } from '../../../../hooks/user';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // State for loading
+  const { loginUser, loading } = useAuth(); // Use the loginUser function and loading state
+  const { fetchUserByToken } = useUser();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true); // Set loading state
-    console.log('Login attempt with:', { email, password });
 
-    // Simulate an API call
-    setTimeout(() => {
-      setIsLoading(false); // Reset loading state
-    }, 2000);
+    // Call the loginUser function
+    const tokenResponse = await loginUser({ email, password });
+
+    if (tokenResponse) {
+      localStorage.setItem('accessToken', tokenResponse.accessToken);
+      const user = await fetchUserByToken();
+      console.log('User:', user);
+      if (user) {
+        dispatch(
+          login({
+            userInfo: user,
+            accessToken: tokenResponse.accessToken,
+            refreshAccessToken: tokenResponse.refreshToken,
+          }),
+        );
+        showSuccess('Login successful!'); // Show success message
+        navigate('/'); // Redirect to home page after successful login
+      }
+    }
   };
 
   return (
     <>
       <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">Login to your account</h1>
-
       <form onSubmit={handleSubmit}>
         <InputField
           id="email"
@@ -53,7 +74,7 @@ const LoginForm = () => {
           type="submit"
           variant="primary"
           size="md"
-          isLoading={isLoading} // Show loading spinner when submitting
+          isLoading={loading} // Show loading spinner when submitting
           className="w-full rounded-[10px]"
         >
           Login now
