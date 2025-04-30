@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import ProductCard from '../../shared/product-card/ProductCard';
-import { relatedProducts } from '../../../data/products';
+import React, { useState } from 'react'
+import ProductCard from '../../shared/product-card/ProductCard'
+import { relatedProducts } from '../../../data/products'
 
 const RelatedProducts: React.FC = () => {
-  const [visibleCount, setVisibleCount] = useState(5); // Number of products to show initially
+  const [visibleCount, setVisibleCount] = useState(5) // Number of products to show initially
 
   const handleSeeMore = () => {
-    setVisibleCount((prevCount) => prevCount + 5); // Load 5 more products
-  };
+    setVisibleCount((prevCount) => prevCount + 5) // Load 5 more products
+  }
 
   return (
     <div className="mt-16 mb-8">
@@ -29,7 +29,7 @@ const RelatedProducts: React.FC = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default RelatedProducts;
+export default RelatedProducts

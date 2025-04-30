@@ -1,7 +1,7 @@
-import React from 'react';
-import { Result } from 'antd';
+import React from 'react'
+import { Result } from 'antd'
 
-import { BackToHomeButton, LogoutButton } from '../../../components/shared/Button';
+import { BackToHomeButton, LogoutButton } from '../../../components/shared/Button'
 
 const Page403: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Page403: React.FC = () => {
         </>
       }
     />
-  );
-};
+  )
+}
 
-export default Page403;
+export default Page403

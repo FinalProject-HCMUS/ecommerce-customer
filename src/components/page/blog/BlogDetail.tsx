@@ -1,21 +1,21 @@
-import type React from 'react';
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { formatDate } from '../../../utils/formatDate';
-import { BlogResponse } from '../../../interfaces';
+import type React from 'react'
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { ArrowLeft, Calendar, Clock } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { formatDate } from '../../../utils/formatDate'
+import { BlogResponse } from '../../../interfaces'
 export interface BlogDetailProps {
-  post: BlogResponse;
+  post: BlogResponse
 }
 
 const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Scroll to top when component mounts
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -25,12 +25,12 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
         staggerChildren: 0.1,
       },
     },
-  };
+  }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
+  }
 
   return (
     <motion.div
@@ -81,7 +81,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
         </motion.div>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default BlogDetail;
+export default BlogDetail

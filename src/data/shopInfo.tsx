@@ -8,4 +8,4 @@ export const shopInfo = {
     'Exclusive member discounts',
     'Hassle-free returns',
   ],
-};
+}

@@ -8,4 +8,4 @@ export const orderStatus = [
   { value: 'DELIVERED', label: 'Delivered' },
   { value: 'CANCELLED', label: 'Cancelled' },
   { value: 'REFUNDED', label: 'Refunded' },
-];
+]

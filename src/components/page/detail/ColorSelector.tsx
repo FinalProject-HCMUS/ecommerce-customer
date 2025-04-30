@@ -1,14 +1,14 @@
-import type React from 'react';
+import type React from 'react'
 
 interface Color {
-  id: string;
-  bg: string;
+  id: string
+  bg: string
 }
 
 interface ColorSelectorProps {
-  colors: Color[];
-  selectedColor: string;
-  onChange: (colorId: string) => void;
+  colors: Color[]
+  selectedColor: string
+  onChange: (colorId: string) => void
 }
 
 const ColorSelector: React.FC<ColorSelectorProps> = ({ colors, selectedColor, onChange }) => {
@@ -28,7 +28,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({ colors, selectedColor, on
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ColorSelector;
+export default ColorSelector

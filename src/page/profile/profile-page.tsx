@@ -1,55 +1,55 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import ProfileHeader from "../../components/page/profile/ProfileHeader";
-import ProfileImage from "../../components/page/profile/ProfileImage";
-import ProfileForm from "../../components/page/profile/ProfileForm";
-import { UserResponse } from "../../interfaces";
-import { useUser } from "../../hooks/user";
+import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import ProfileHeader from '../../components/page/profile/ProfileHeader'
+import ProfileImage from '../../components/page/profile/ProfileImage'
+import ProfileForm from '../../components/page/profile/ProfileForm'
+import { UserResponse } from '../../interfaces'
+import { useUser } from '../../hooks/user'
 
 const ProfilePage: React.FC = () => {
-  const { fetchUserByToken, user, updateUser, loading } = useUser(); // Use fetchUserByToken and user from the hook
-  const [formData, setFormData] = useState<UserResponse | null>(null);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState<boolean>(false);
-  const [showSavedMessage, setShowSavedMessage] = useState<boolean>(false);
+  const { fetchUserByToken, user, updateUser, loading } = useUser() // Use fetchUserByToken and user from the hook
+  const [formData, setFormData] = useState<UserResponse | null>(null)
+  const [isEditing, setIsEditing] = useState<boolean>(false)
+  const [previewImage, setPreviewImage] = useState<string | null>(null)
+  const [isSaving, setIsSaving] = useState<boolean>(false)
+  const [showSavedMessage, setShowSavedMessage] = useState<boolean>(false)
 
   // Fetch user data on component mount
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedUser = await fetchUserByToken();
+      const fetchedUser = await fetchUserByToken()
       if (fetchedUser) {
-        setFormData(fetchedUser);
-        setPreviewImage(fetchedUser.photo || null);
+        setFormData(fetchedUser)
+        setPreviewImage(fetchedUser.photo || null)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    const { name, value } = e.target;
-    setFormData((prev) => (prev ? { ...prev, [name]: value } : null));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => (prev ? { ...prev, [name]: value } : null))
+  }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onloadend = () => {
-        const result = reader.result as string;
-        setPreviewImage(result);
-        setFormData((prev) => (prev ? { ...prev, image: result } : null));
-      };
-      reader.readAsDataURL(file);
+        const result = reader.result as string
+        setPreviewImage(result)
+        setFormData((prev) => (prev ? { ...prev, image: result } : null))
+      }
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
-    e.preventDefault();
-    if (!formData) return;
+    e.preventDefault()
+    if (!formData) return
 
-    setIsSaving(true);
+    setIsSaving(true)
 
     // Simulate API call
     // const updatedUser = await updateUser(formData.id, formData);
@@ -64,23 +64,23 @@ const ProfilePage: React.FC = () => {
     //   }, 3000);
     // }
 
-    setIsSaving(false);
-  };
+    setIsSaving(false)
+  }
 
   const cancelEdit = (): void => {
-    setIsEditing(false);
+    setIsEditing(false)
     if (user) {
-      setFormData(user);
-      setPreviewImage(user.photo || null);
+      setFormData(user)
+      setPreviewImage(user.photo || null)
     }
-  };
+  }
 
   if (loading || !formData) {
     return (
       <div className="h-screen w-full flex items-center justify-center bg-white">
         <div className="animate-pulse text-3xl font-bold">Loading...</div>
       </div>
-    );
+    )
   }
 
   return (
@@ -122,7 +122,7 @@ const ProfilePage: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfilePage;
+export default ProfilePage

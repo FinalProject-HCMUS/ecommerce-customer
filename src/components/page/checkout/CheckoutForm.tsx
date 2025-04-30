@@ -1,15 +1,15 @@
-import type React from 'react';
+import type React from 'react'
 
 interface CheckoutFormProps {
   formData: {
-    name: string;
-    phone: string;
-    address: string;
-    paymentMethod: string;
-  };
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onPaymentMethodChange: (method: string) => void;
-  onSubmit: (e: React.FormEvent) => void;
+    name: string
+    phone: string
+    address: string
+    paymentMethod: string
+  }
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onPaymentMethodChange: (method: string) => void
+  onSubmit: (e: React.FormEvent) => void
 }
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({
@@ -23,7 +23,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
     { id: 'momo', label: 'Momo' },
     { id: 'vnpay', label: 'VNpay' },
     { id: 'credit', label: 'Credit card' },
-  ];
+  ]
 
   return (
     <form onSubmit={onSubmit}>
@@ -99,5 +99,5 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
         </div>
       </div>
     </form>
-  );
-};
+  )
+}

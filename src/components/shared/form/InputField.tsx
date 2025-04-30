@@ -1,9 +1,9 @@
-import type React from 'react';
+import type React from 'react'
 
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  id: string;
-  label: string;
-  type?: string;
+  id: string
+  label: string
+  type?: string
 }
 
 const InputField: React.FC<InputFieldProps> = ({ id, label, type = 'text', className = '', ...props }) => {
@@ -19,7 +19,7 @@ const InputField: React.FC<InputFieldProps> = ({ id, label, type = 'text', class
         {...props}
       />
     </div>
-  );
-};
+  )
+}
 
-export default InputField;
+export default InputField

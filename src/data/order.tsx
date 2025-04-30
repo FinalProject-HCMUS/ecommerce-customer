@@ -1,4 +1,4 @@
-import type { Order } from '../interfaces/temp/order';
+import type { Order } from '../interfaces/temp/order'
 
 // Mock data for demonstration
 export const mockOrders: Order[] = [
@@ -129,4 +129,4 @@ export const mockOrders: Order[] = [
       { status: 'REFUNDED', date: '2023-08-20T11:25:00Z', note: 'Product returned and refunded' },
     ],
   },
-];
+]

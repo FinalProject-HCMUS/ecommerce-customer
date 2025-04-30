@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Breadcrumb from '../../components/shared/Breadcrumb';
-import CartItem from '../../components/page/cart/CartItem';
-import OrderSummary from '../../components/page/cart/OrderSummary';
-import type { CartItemType, OrderSummaryData } from '../../interfaces/temp/cart';
+import { useState } from 'react'
+import Breadcrumb from '../../components/shared/Breadcrumb'
+import CartItem from '../../components/page/cart/CartItem'
+import OrderSummary from '../../components/page/cart/OrderSummary'
+import type { CartItemType, OrderSummaryData } from '../../interfaces/temp/cart'
 
 function App() {
   const [cartItems, setCartItems] = useState<CartItemType[]>([
@@ -33,23 +33,23 @@ function App() {
       quantity: 1,
       image: '/placeholder.svg?height=80&width=80',
     },
-  ]);
+  ])
 
   const updateQuantity = (id: number, newQuantity: number): void => {
-    if (newQuantity < 1) return;
-    setCartItems(cartItems.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item)));
-  };
+    if (newQuantity < 1) return
+    setCartItems(cartItems.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item)))
+  }
 
   const removeItem = (id: number): void => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
+    setCartItems(cartItems.filter((item) => item.id !== id))
+  }
 
   // Calculate order summary
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const discountRate = 0.2; // 20%
-  const discountAmount = subtotal * discountRate;
-  const deliveryFee = 15;
-  const total = subtotal - discountAmount + deliveryFee;
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const discountRate = 0.2 // 20%
+  const discountAmount = subtotal * discountRate
+  const deliveryFee = 15
+  const total = subtotal - discountAmount + deliveryFee
 
   const orderSummaryData: OrderSummaryData = {
     subtotal,
@@ -57,7 +57,7 @@ function App() {
     discountAmount,
     deliveryFee,
     total,
-  };
+  }
 
   return (
     <div className="max-w-7xl mx-auto mt-10 mx-8 px-4 py-8">
@@ -82,7 +82,7 @@ function App() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

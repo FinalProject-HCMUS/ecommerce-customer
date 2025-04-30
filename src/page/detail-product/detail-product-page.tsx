@@ -1,11 +1,11 @@
-import type React from 'react';
-import Breadcrumb from '../../components/shared/Breadcrumb';
-import ProductGallery from '../../components/page/detail/ProductGallery';
-import ProductInfo from '../../components/page/detail/ProductInfo';
-import VirtualTryOn from '../../components/page/detail/VirtualTryOn';
-import ProductDescription from '../../components/page/detail/ProductDescription';
-import ReviewSection from '../../components/page/detail/ReviewSection';
-import RelatedProducts from '../../components/page/detail/RelatedProducts';
+import type React from 'react'
+import Breadcrumb from '../../components/shared/Breadcrumb'
+import ProductGallery from '../../components/page/detail/ProductGallery'
+import ProductInfo from '../../components/page/detail/ProductInfo'
+import VirtualTryOn from '../../components/page/detail/VirtualTryOn'
+import ProductDescription from '../../components/page/detail/ProductDescription'
+import ReviewSection from '../../components/page/detail/ReviewSection'
+import RelatedProducts from '../../components/page/detail/RelatedProducts'
 
 const App: React.FC = () => {
   return (
@@ -27,7 +27,7 @@ const App: React.FC = () => {
       <ReviewSection />
       <RelatedProducts />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

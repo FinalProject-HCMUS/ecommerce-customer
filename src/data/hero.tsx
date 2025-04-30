@@ -9,4 +9,4 @@ export const heroData = {
     { title: 'Happy Customers', description: 'Some characteristics about shop' },
   ],
   image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842003/image_template_c5g0cv.png',
-};
+}

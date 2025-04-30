@@ -1,18 +1,18 @@
-import type React from 'react';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'react-feather';
-import { categories, colors, sizes } from '../../../data/filter';
+import type React from 'react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown, ChevronUp } from 'react-feather'
+import { categories, colors, sizes } from '../../../data/filter'
 
 interface FiltersProps {
-  priceRange: [number, number];
-  setPriceRange: (range: [number, number]) => void;
-  selectedColors: string[];
-  setSelectedColors: (colors: string[]) => void;
-  selectedSizes: string[];
-  setSelectedSizes: (sizes: string[]) => void;
-  selectedCategories: string[];
-  setSelectedCategories: (categories: string[]) => void;
+  priceRange: [number, number]
+  setPriceRange: (range: [number, number]) => void
+  selectedColors: string[]
+  setSelectedColors: (colors: string[]) => void
+  selectedSizes: string[]
+  setSelectedSizes: (sizes: string[]) => void
+  selectedCategories: string[]
+  setSelectedCategories: (categories: string[]) => void
 }
 
 const Filters = ({
@@ -28,39 +28,39 @@ const Filters = ({
     price: true,
     colors: true,
     size: true,
-  });
+  })
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections({
       ...expandedSections,
       [section]: !expandedSections[section],
-    });
-  };
+    })
+  }
 
   const handleColorSelect = (color: string) => {
     if (selectedColors.includes(color)) {
-      setSelectedColors(selectedColors.filter((c) => c !== color));
+      setSelectedColors(selectedColors.filter((c) => c !== color))
     } else {
-      setSelectedColors([...selectedColors, color]);
+      setSelectedColors([...selectedColors, color])
     }
-  };
+  }
 
   const handleSizeSelect = (size: string) => {
     if (selectedSizes.includes(size)) {
-      setSelectedSizes(selectedSizes.filter((s) => s !== size));
+      setSelectedSizes(selectedSizes.filter((s) => s !== size))
     } else {
-      setSelectedSizes([...selectedSizes, size]);
+      setSelectedSizes([...selectedSizes, size])
     }
-  };
+  }
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number.parseInt(e.target.value);
+    const value = Number.parseInt(e.target.value)
     if (e.target.name === 'min') {
-      setPriceRange([value, priceRange[1]]);
+      setPriceRange([value, priceRange[1]])
     } else {
-      setPriceRange([priceRange[0], value]);
+      setPriceRange([priceRange[0], value])
     }
-  };
+  }
 
   return (
     <motion.div
@@ -249,7 +249,7 @@ const Filters = ({
         </AnimatePresence>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default Filters;
+export default Filters

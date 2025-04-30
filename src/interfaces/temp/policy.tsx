@@ -1,4 +1,4 @@
 export interface PolicySectionType {
-  title: string;
-  content: string;
+  title: string
+  content: string
 }

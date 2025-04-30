@@ -1,16 +1,16 @@
-import { ProductResponse } from './ProductResponse';
+import { ProductResponse } from './ProductResponse'
 
 export interface TopProduct {
   /**
    * Title of the top product category
    * @example "TOP SELLING"
    */
-  title: string;
+  title: string
 
   /**
    * List of products in this category
    */
-  data: ProductResponse[];
+  data: ProductResponse[]
 }
 
 export interface Pagination {
@@ -18,29 +18,29 @@ export interface Pagination {
    * Total number of pages
    * @example 1
    */
-  totalPages: number;
+  totalPages: number
 
   /**
    * Total number of items
    * @example 5
    */
-  totalItems: number;
+  totalItems: number
 
   /**
    * Current page number
    * @example 1
    */
-  currentPage: number;
+  currentPage: number
 }
 
 export interface TopProductResponse {
   /**
    * Pagination details
    */
-  pagination: Pagination;
+  pagination: Pagination
 
   /**
    * List of top product categories
    */
-  topProducts: TopProduct[];
+  topProducts: TopProduct[]
 }

@@ -1,10 +1,10 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import { lazy } from 'react';
-import routes from './router';
-import MainLayout from '../layout/main-layout';
+import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import { lazy } from 'react'
+import routes from './router'
+import MainLayout from '../layout/main-layout'
 
-const Page404 = lazy(() => import('../page/error/Page404'));
-const HomePage = lazy(() => import('../page/home/home-page'));
+const Page404 = lazy(() => import('../page/error/Page404'))
+const HomePage = lazy(() => import('../page/home/home-page'))
 
 // Define the router with typed routes
 const router = createBrowserRouter(
@@ -18,6 +18,6 @@ const router = createBrowserRouter(
       <Route path="*" element={<Page404 />} />
     </Route>,
   ),
-);
+)
 
-export default router;
+export default router

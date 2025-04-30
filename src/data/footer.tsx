@@ -31,4 +31,4 @@ export const footerData = {
   copyright: 'Shop.co © 2000-2023, All Rights Reserved',
   shopName: 'Shop.co',
   introductoryText: `Shop.co is a platform that allows you to create your own online store without writing a single line of code. We provide you with all the tools you need to start selling online.`,
-};
+}

@@ -1,9 +1,9 @@
-import type React from 'react';
+import type React from 'react'
 
 interface SizeSelectorProps {
-  sizes: string[];
-  selectedSize: string;
-  onChange: (size: string) => void;
+  sizes: string[]
+  selectedSize: string
+  onChange: (size: string) => void
 }
 
 const SizeSelector: React.FC<SizeSelectorProps> = ({ sizes, selectedSize, onChange }) => {
@@ -24,7 +24,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({ sizes, selectedSize, onChan
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SizeSelector;
+export default SizeSelector

@@ -1,41 +1,41 @@
-import { useState } from 'react';
-import { BlogResponse } from '../interfaces/blog/BlogResponse';
-import { getAllBlogs, getBlogById } from '../services/apis/blogApis';
+import { useState } from 'react'
+import { BlogResponse } from '../interfaces/blog/BlogResponse'
+import { getAllBlogs, getBlogById } from '../services/apis/blogApis'
 
 export const useBlogs = () => {
-  const [blogs, setBlogs] = useState<BlogResponse[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [blogs, setBlogs] = useState<BlogResponse[]>([])
+  const [loading, setLoading] = useState(false)
 
   // Fetch all blogs
   const fetchBlogs = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await getAllBlogs();
-      setBlogs(response.data || []);
+      const response = await getAllBlogs()
+      setBlogs(response.data || [])
     } catch {
-      setBlogs([]);
+      setBlogs([])
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   // Fetch a single blog by ID
   const fetchBlogById = async (id: string): Promise<BlogResponse | null> => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await getBlogById(id);
-      return response.data || null;
+      const response = await getBlogById(id)
+      return response.data || null
     } catch {
-      return null;
+      return null
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return {
     blogs,
     loading,
     fetchBlogs,
     fetchBlogById,
-  };
-};
+  }
+}

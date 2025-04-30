@@ -1,24 +1,24 @@
-import BlogDetail from '../../components/page/blog/BlogDetail';
-import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useBlogs } from '../../hooks/blogs';
-import { BlogResponse } from '../../interfaces';
+import BlogDetail from '../../components/page/blog/BlogDetail'
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useBlogs } from '../../hooks/blogs'
+import { BlogResponse } from '../../interfaces'
 
 const BlogDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const { fetchBlogById, loading } = useBlogs();
-  const [post, setPost] = useState<BlogResponse | null>(null);
+  const { id } = useParams<{ id: string }>()
+  const { fetchBlogById, loading } = useBlogs()
+  const [post, setPost] = useState<BlogResponse | null>(null)
 
   useEffect(() => {
     const loadPost = async () => {
       if (id) {
-        const fetchedPost = await fetchBlogById(id);
-        setPost(fetchedPost);
+        const fetchedPost = await fetchBlogById(id)
+        setPost(fetchedPost)
       }
-    };
+    }
 
-    loadPost();
-  }, [id]);
+    loadPost()
+  }, [id])
 
   if (loading) {
     return (
@@ -27,7 +27,7 @@ const BlogDetailPage: React.FC = () => {
           <div className="animate-pulse text-gray-400">Loading post...</div>
         </div>
       </div>
-    );
+    )
   }
 
   if (!post) {
@@ -44,10 +44,10 @@ const BlogDetailPage: React.FC = () => {
           </Link>
         </div>
       </div>
-    );
+    )
   }
 
-  return <BlogDetail post={post} />;
-};
+  return <BlogDetail post={post} />
+}
 
-export default BlogDetailPage;
+export default BlogDetailPage

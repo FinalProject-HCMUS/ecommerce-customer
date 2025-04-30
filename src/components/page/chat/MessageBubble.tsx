@@ -1,9 +1,9 @@
-import type React from 'react';
-import TypingIndicator from './TypingIndicator';
-import type { Message } from '../../../interfaces/temp/message';
+import type React from 'react'
+import TypingIndicator from './TypingIndicator'
+import type { Message } from '../../../interfaces/temp/message'
 
 interface MessageBubbleProps {
-  message: Message;
+  message: Message
 }
 
 const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
@@ -43,7 +43,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MessageBubble;
+export default MessageBubble

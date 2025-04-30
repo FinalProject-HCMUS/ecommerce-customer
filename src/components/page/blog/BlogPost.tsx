@@ -1,13 +1,13 @@
-import type React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { formatDate } from '../../../utils/formatDate';
-import { BlogResponse } from '../../../interfaces';
+import type React from 'react'
+import { motion } from 'framer-motion'
+import { Calendar } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { formatDate } from '../../../utils/formatDate'
+import { BlogResponse } from '../../../interfaces'
 
 export interface BlogPostProps {
-  post: BlogResponse;
-  index: number;
+  post: BlogResponse
+  index: number
 }
 
 const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
@@ -56,7 +56,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
         </div>
       </div>
     </motion.article>
-  );
-};
+  )
+}
 
-export default BlogPost;
+export default BlogPost

@@ -1,16 +1,16 @@
-import { motion } from 'framer-motion';
-import { Save } from 'lucide-react';
-import React from 'react';
-import InputField from '../../shared/form/InputField';
-import type { UserResponse } from '../../../interfaces/user/UserResponse';
+import { motion } from 'framer-motion'
+import { Save } from 'lucide-react'
+import React from 'react'
+import InputField from '../../shared/form/InputField'
+import type { UserResponse } from '../../../interfaces/user/UserResponse'
 
 interface ProfileFormProps {
-  formData: UserResponse;
-  isEditing: boolean;
-  isSaving: boolean;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
-  cancelEdit: () => void;
+  formData: UserResponse
+  isEditing: boolean
+  isSaving: boolean
+  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  handleSubmit: (e: React.FormEvent) => void
+  cancelEdit: () => void
 }
 
 const ProfileForm: React.FC<ProfileFormProps> = ({
@@ -61,7 +61,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             label="Phone Number"
             type="tel"
             name="phoneNum"
-            value={formData.phoneNum}
+            value={formData.phoneNumber}
             onChange={handleChange}
             disabled={!isEditing}
             className={isEditing ? '' : 'bg-gray-50 border-transparent'}
@@ -150,7 +150,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         </motion.div>
       )}
     </form>
-  );
-};
+  )
+}
 
-export default ProfileForm;
+export default ProfileForm

@@ -1,13 +1,13 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
-import { showError } from '../../utils/ErrorToastifyRender';
+import axios, { AxiosResponse, AxiosError } from 'axios'
+import { showError } from '../../utils/ErrorToastifyRender'
 
 // Base URL for the eCommerce API
-const ECOMMERCE_API_BASE_URL = import.meta.env.VITE_BACKEND_URL; // Replace with your actual API base URL
+const ECOMMERCE_API_BASE_URL = import.meta.env.VITE_BACKEND_URL // Replace with your actual API base URL
 
 // Function to get the token (replace with your actual token retrieval logic)
 const getToken = () => {
-  return localStorage.getItem('accessToken') || '';
-};
+  return localStorage.getItem('accessToken') || ''
+}
 
 // Create an Axios client for eCommerce
 const client = axios.create({
@@ -15,25 +15,25 @@ const client = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-});
+})
 
 // Request interceptor to add the Authorization header
 client.interceptors.request.use((config) => {
-  const token = getToken();
+  const token = getToken()
   if (token && config.headers) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`
   }
-  return config;
-});
+  return config
+})
 
 // Response interceptor to handle success and errors
 client.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
-    const errorMessage = (error?.response?.data as { message?: string })?.message || 'An error occurred';
-    showError(errorMessage);
-    return Promise.reject(error);
+    const errorMessage = (error?.response?.data as { message?: string })?.message || 'An error occurred'
+    showError(errorMessage)
+    return Promise.reject(error)
   },
-);
+)
 
-export default client;
+export default client

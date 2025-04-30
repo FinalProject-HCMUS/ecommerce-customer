@@ -1,8 +1,8 @@
-import type React from 'react';
-import type { OrderItem as OrderItemType } from '../../../interfaces/temp/order';
+import type React from 'react'
+import type { OrderItem as OrderItemType } from '../../../interfaces/temp/order'
 
 interface OrderItemProps {
-  item: OrderItemType;
+  item: OrderItemType
 }
 
 const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
@@ -21,7 +21,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
       </div>
       <div className="font-medium text-gray-900">${(item.quantity * item.price).toFixed(2)}</div>
     </div>
-  );
-};
+  )
+}
 
-export default OrderItem;
+export default OrderItem

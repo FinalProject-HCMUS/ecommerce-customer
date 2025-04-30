@@ -1,7 +1,7 @@
-import type React from 'react';
-import { ProductItem } from './ProductItem';
-import Divider from '../../shared/Divider';
-import { GeneralButton } from '../../shared/Button';
+import type React from 'react'
+import { ProductItem } from './ProductItem'
+import Divider from '../../shared/Divider'
+import { GeneralButton } from '../../shared/Button'
 
 export const OrderSummary: React.FC = () => {
   const products = [
@@ -32,13 +32,13 @@ export const OrderSummary: React.FC = () => {
       quantity: 1,
       image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     },
-  ];
+  ]
 
-  const subtotal = products.reduce((sum, product) => sum + product.price * product.quantity, 0);
-  const discountRate = 0.2; // 20%
-  const discountAmount = Math.round(subtotal * discountRate);
-  const deliveryFee = 15;
-  const total = subtotal - discountAmount + deliveryFee;
+  const subtotal = products.reduce((sum, product) => sum + product.price * product.quantity, 0)
+  const discountRate = 0.2 // 20%
+  const discountAmount = Math.round(subtotal * discountRate)
+  const deliveryFee = 15
+  const total = subtotal - discountAmount + deliveryFee
 
   return (
     <div>
@@ -85,5 +85,5 @@ export const OrderSummary: React.FC = () => {
         </GeneralButton>
       </div>
     </div>
-  );
-};
+  )
+}

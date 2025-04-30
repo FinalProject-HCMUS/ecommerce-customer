@@ -4,4 +4,4 @@ export const brands = [
   { name: 'Gucci', logo: 'GUCCI' },
   { name: 'Prada', logo: 'PRADA' },
   { name: 'Calvin Klein', logo: 'Calvin Klein' },
-];
+]

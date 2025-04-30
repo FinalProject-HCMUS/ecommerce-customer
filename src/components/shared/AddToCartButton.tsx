@@ -1,8 +1,8 @@
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react'
 
 interface AddToCartButtonProps {
-  isAdding: boolean;
-  onClick: () => void;
+  isAdding: boolean
+  onClick: () => void
 }
 
 export default function AddToCartButton({ isAdding, onClick }: AddToCartButtonProps) {
@@ -31,5 +31,5 @@ export default function AddToCartButton({ isAdding, onClick }: AddToCartButtonPr
         </span>
       )}
     </button>
-  );
+  )
 }

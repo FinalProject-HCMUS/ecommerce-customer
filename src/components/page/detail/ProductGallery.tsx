@@ -1,10 +1,10 @@
-import type React from 'react';
-import { useState } from 'react';
+import type React from 'react'
+import { useState } from 'react'
 
-const imageUrl = 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png';
+const imageUrl = 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png'
 
 const ProductGallery: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<number>(0);
+  const [selectedImage, setSelectedImage] = useState<number>(0)
   return (
     <div className="flex flex-col md:flex-row gap-4">
       {/* Thumbnails */}
@@ -31,7 +31,7 @@ const ProductGallery: React.FC = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductGallery;
+export default ProductGallery

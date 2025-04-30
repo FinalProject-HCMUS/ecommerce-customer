@@ -1,5 +1,5 @@
-import { Clock, CheckCircle, XCircle, Truck, Package } from 'lucide-react';
-import type { StatusConfigRecord } from '../interfaces/temp/order';
+import { Clock, CheckCircle, XCircle, Truck, Package } from 'lucide-react'
+import type { StatusConfigRecord } from '../interfaces/temp/order'
 
 // Status configuration
 export const statusConfig: StatusConfigRecord = {
@@ -59,4 +59,4 @@ export const statusConfig: StatusConfigRecord = {
     borderColor: 'border-rose-200',
     text: 'Refunded',
   },
-};
+}

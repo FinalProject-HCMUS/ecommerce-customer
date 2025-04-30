@@ -1,48 +1,48 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import ReviewCard from './ReviewCard';
-import { reviews as initialReviews } from '../../../data/reviews'; // Adjust the import path as necessary
+import React, { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+import ReviewCard from './ReviewCard'
+import { reviews as initialReviews } from '../../../data/reviews' // Adjust the import path as necessary
 
 const ReviewSection: React.FC = () => {
-  const [reviews, setReviews] = useState(initialReviews); // State for reviews
-  const [visibleCount, setVisibleCount] = useState(2); // Number of reviews to show initially
-  const [isWritingReview, setIsWritingReview] = useState(false); // Toggle review form visibility
+  const [reviews, setReviews] = useState(initialReviews) // State for reviews
+  const [visibleCount, setVisibleCount] = useState(2) // Number of reviews to show initially
+  const [isWritingReview, setIsWritingReview] = useState(false) // Toggle review form visibility
   const [newReview, setNewReview] = useState({
     author: '',
     rating: 0,
     content: '',
     date: new Date().toLocaleDateString(),
     isVerified: true,
-  });
+  })
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 2); // Load 2 more reviews
-  };
+    setVisibleCount((prevCount) => prevCount + 2) // Load 2 more reviews
+  }
 
   const handleWriteReviewToggle = () => {
-    setIsWritingReview((prev) => !prev); // Toggle the review form
-  };
+    setIsWritingReview((prev) => !prev) // Toggle the review form
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setNewReview((prev) => ({
       ...prev,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   const handleSubmitReview = (e: React.FormEvent) => {
-    e.preventDefault();
-    setReviews((prev) => [{ ...newReview, id: Date.now() }, ...prev]); // Add the new review with a unique id to the top of the list
+    e.preventDefault()
+    setReviews((prev) => [{ ...newReview, id: Date.now() }, ...prev]) // Add the new review with a unique id to the top of the list
     setNewReview({
       author: '',
       rating: 0,
       content: '',
       date: new Date().toLocaleDateString(),
       isVerified: true,
-    }); // Reset the form
-    setIsWritingReview(false); // Hide the form
-  };
+    }) // Reset the form
+    setIsWritingReview(false) // Hide the form
+  }
 
   return (
     <div className="mt-16 mb-8">
@@ -139,7 +139,7 @@ const ReviewSection: React.FC = () => {
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReviewSection;
+export default ReviewSection

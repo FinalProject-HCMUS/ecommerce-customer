@@ -1,4 +1,4 @@
-import LoginForm from '../../components/page/auth/login/LoginForm';
+import LoginForm from '../../components/page/auth/login/LoginForm'
 
 function LoginPage() {
   return (
@@ -7,7 +7,7 @@ function LoginPage() {
         <LoginForm />
       </div>
     </div>
-  );
+  )
 }
 
-export default LoginPage;
+export default LoginPage

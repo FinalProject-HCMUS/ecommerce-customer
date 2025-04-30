@@ -1,17 +1,17 @@
-import type React from 'react';
-import { useState } from 'react';
-import { Package, ChevronDown, ChevronRight } from 'lucide-react';
-import type { Order } from '../../../interfaces/temp/order';
-import StatusBadge from './StatusBadge';
-import OrderItem from './OrderItem';
+import type React from 'react'
+import { useState } from 'react'
+import { Package, ChevronDown, ChevronRight } from 'lucide-react'
+import type { Order } from '../../../interfaces/temp/order'
+import StatusBadge from './StatusBadge'
+import OrderItem from './OrderItem'
 
 interface OrderCardProps {
-  order: Order;
-  onViewStatus: (order: Order) => void;
+  order: Order
+  onViewStatus: (order: Order) => void
 }
 
 const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <div
@@ -69,7 +69,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default OrderCard;
+export default OrderCard

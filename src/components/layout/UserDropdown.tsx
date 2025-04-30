@@ -1,46 +1,46 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { UserCircle, LogOut, User } from 'lucide-react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../context/store';
-import { logout } from '../../context/authSlice';
+import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { UserCircle, LogOut, User } from 'lucide-react'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../context/store'
+import { logout } from '../../context/authSlice'
 
 interface UserDropdownProps {
-  onClose?: () => void;
+  onClose?: () => void
 }
 
 const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   // Access userInfo and dispatch from Redux
-  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
-  const dispatch = useDispatch();
+  const userInfo = useSelector((state: RootState) => state.auth.userInfo)
+  const dispatch = useDispatch()
 
   const toggleDropdown = (): void => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+    setIsDropdownOpen(!isDropdownOpen)
+  }
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
-        if (onClose) onClose();
+        setIsDropdownOpen(false)
+        if (onClose) onClose()
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [onClose]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [onClose])
 
   const handleLogout = () => {
-    dispatch(logout());
-    setIsDropdownOpen(false);
-  };
+    dispatch(logout())
+    setIsDropdownOpen(false)
+  }
 
   return (
     <div className="ml-3 relative" ref={dropdownRef}>
@@ -99,7 +99,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
         )}
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-export default UserDropdown;
+export default UserDropdown

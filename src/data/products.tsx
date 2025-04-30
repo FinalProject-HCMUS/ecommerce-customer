@@ -1,7 +1,7 @@
-import { Product } from '../interfaces/temp/product';
+import { Product } from '../interfaces/temp/product'
 interface ProductCategory {
-  title: string;
-  data: Product[];
+  title: string
+  data: Product[]
 }
 
 export const topProducts: ProductCategory[] = [
@@ -255,7 +255,7 @@ export const topProducts: ProductCategory[] = [
       },
     ],
   },
-];
+]
 
 export const products: Product[] = [
   {
@@ -330,7 +330,7 @@ export const products: Product[] = [
     image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
-];
+]
 
 export const relatedProducts: Product[] = [
   {
@@ -405,4 +405,4 @@ export const relatedProducts: Product[] = [
     image: 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
     sizes: ['S', 'M', 'L'],
   },
-];
+]

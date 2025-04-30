@@ -1,35 +1,35 @@
-import type React from 'react';
-import { useState } from 'react';
-import StarRating from '../../shared/RatingStars';
-import PriceDisplay from './PriceDisplay';
-import ColorSelector from './ColorSelector';
-import SizeSelector from './SizeSelector';
-import QuantitySelector from './QuantitySelector';
-import FLAG_KEYS from '../../../constants/flagsup';
-import useFlagFeature from '../../../hooks/useFlagFeature';
+import type React from 'react'
+import { useState } from 'react'
+import StarRating from '../../shared/RatingStars'
+import PriceDisplay from './PriceDisplay'
+import ColorSelector from './ColorSelector'
+import SizeSelector from './SizeSelector'
+import QuantitySelector from './QuantitySelector'
+import FLAG_KEYS from '../../../constants/flagsup'
+import useFlagFeature from '../../../hooks/useFlagFeature'
 
 const ProductInfo: React.FC = () => {
-  const [selectedColor, setSelectedColor] = useState<string>('');
-  const [selectedSize, setSelectedSize] = useState<string>('');
-  const [quantity, setQuantity] = useState<number>(1);
+  const [selectedColor, setSelectedColor] = useState<string>('')
+  const [selectedSize, setSelectedSize] = useState<string>('')
+  const [quantity, setQuantity] = useState<number>(1)
 
-  const isCartEnable = useFlagFeature(FLAG_KEYS.CART);
+  const isCartEnable = useFlagFeature(FLAG_KEYS.CART)
 
   const colors = [
     { id: 'brown', bg: 'bg-[#5D4B35]' },
     { id: 'green', bg: 'bg-[#2D4F44]' },
     { id: 'navy', bg: 'bg-[#1A2B4D]' },
-  ];
+  ]
 
-  const sizes = ['Small', 'Medium', 'Large', 'X-Large'];
+  const sizes = ['Small', 'Medium', 'Large', 'X-Large']
 
   const handleQuantityChange = (type: 'increase' | 'decrease') => {
     if (type === 'increase') {
-      setQuantity((prev) => prev + 1);
+      setQuantity((prev) => prev + 1)
     } else {
-      setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+      setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
     }
-  };
+  }
 
   return (
     <div className="flex flex-col">
@@ -71,7 +71,7 @@ const ProductInfo: React.FC = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ProductInfo;
+export default ProductInfo

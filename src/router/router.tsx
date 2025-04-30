@@ -1,23 +1,23 @@
-import { IRoute } from '../interfaces/temp/common';
-import { lazy } from 'react';
-import { withAuthenticatedUser } from '../hocs/withAuthenticatedUser';
-import { withUnAuthenticatedUser } from '../hocs/withUnAuthenticatedUser';
+import { IRoute } from '../interfaces/temp/common'
+import { lazy } from 'react'
+import { withAuthenticatedUser } from '../hocs/withAuthenticatedUser'
+import { withUnAuthenticatedUser } from '../hocs/withUnAuthenticatedUser'
 
-const HomePage = lazy(() => import('../page/home/home-page'));
-const SearchPage = lazy(() => import('../page/search/search-page'));
-const LoginPage = lazy(() => import('../page/auth/login-page'));
-const RegistrationPage = lazy(() => import('../page/auth/registration-page'));
-const DetailProduct = lazy(() => import('../page/detail-product/detail-product-page'));
-const CartPage = lazy(() => import('../page/cart/cart-page'));
-const CheckoutPage = lazy(() => import('../page/checkout/checkout-page'));
-const Chat = lazy(() => import('../page/chat/chat'));
-const Policy = lazy(() => import('../page/policy/policy'));
-const BlogPage = lazy(() => import('../page/blog/blog-page'));
-const DetailBlogPage = lazy(() => import('../page/blog/detail-blog-page'));
-const Page403 = lazy(() => import('../page/error/Page403'));
-const Page500 = lazy(() => import('../page/error/Page500'));
-const OrdersPage = lazy(() => import('../page/order/order-page'));
-const ProfilePage = lazy(() => import('../page/profile/profile-page'));
+const HomePage = lazy(() => import('../page/home/home-page'))
+const SearchPage = lazy(() => import('../page/search/search-page'))
+const LoginPage = lazy(() => import('../page/auth/login-page'))
+const RegistrationPage = lazy(() => import('../page/auth/registration-page'))
+const DetailProduct = lazy(() => import('../page/detail-product/detail-product-page'))
+const CartPage = lazy(() => import('../page/cart/cart-page'))
+const CheckoutPage = lazy(() => import('../page/checkout/checkout-page'))
+const Chat = lazy(() => import('../page/chat/chat'))
+const Policy = lazy(() => import('../page/policy/policy'))
+const BlogPage = lazy(() => import('../page/blog/blog-page'))
+const DetailBlogPage = lazy(() => import('../page/blog/detail-blog-page'))
+const Page403 = lazy(() => import('../page/error/Page403'))
+const Page500 = lazy(() => import('../page/error/Page500'))
+const OrdersPage = lazy(() => import('../page/order/order-page'))
+const ProfilePage = lazy(() => import('../page/profile/profile-page'))
 
 const routes: IRoute[] = [
   {
@@ -110,6 +110,6 @@ const routes: IRoute[] = [
     name: 'Orders Page',
     component: withAuthenticatedUser(OrdersPage),
   },
-];
+]
 
-export default routes;
+export default routes

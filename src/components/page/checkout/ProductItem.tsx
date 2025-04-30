@@ -1,17 +1,17 @@
-import type React from 'react';
+import type React from 'react'
 
 interface Product {
-  id: number;
-  name: string;
-  size: string;
-  color: string;
-  price: number;
-  quantity: number;
-  image: string;
+  id: number
+  name: string
+  size: string
+  color: string
+  price: number
+  quantity: number
+  image: string
 }
 
 interface ProductItemProps {
-  product: Product;
+  product: Product
 }
 
 export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
@@ -32,5 +32,5 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         <span className="text-gray-700">x{product.quantity}</span>
       </div>
     </div>
-  );
-};
+  )
+}

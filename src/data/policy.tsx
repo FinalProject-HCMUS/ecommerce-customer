@@ -1,4 +1,4 @@
-import type { PolicySectionType } from '../interfaces/temp/policy';
+import type { PolicySectionType } from '../interfaces/temp/policy'
 
 export const policyContent: PolicySectionType[] = [
   {
@@ -26,4 +26,4 @@ export const policyContent: PolicySectionType[] = [
     content:
       'We reserve the right to remove content that violates these policies and to take appropriate action against users who violate them, including temporary or permanent suspension of access to our platform.',
   },
-];
+]

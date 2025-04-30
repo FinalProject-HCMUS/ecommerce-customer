@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import type { Product } from '../../../interfaces/temp/product';
-import ProductCard from '../../shared/product-card/ProductCard';
+import { motion } from 'framer-motion'
+import type { Product } from '../../../interfaces/temp/product'
+import ProductCard from '../../shared/product-card/ProductCard'
 
 interface ProductGridProps {
-  products: Product[];
+  products: Product[]
 }
 
 const ProductGrid = ({ products }: ProductGridProps) => {
@@ -15,12 +15,12 @@ const ProductGrid = ({ products }: ProductGridProps) => {
         staggerChildren: 0.1,
       },
     },
-  };
+  }
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
+  }
 
   return (
     <motion.div
@@ -35,7 +35,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
         </motion.div>
       ))}
     </motion.div>
-  );
-};
+  )
+}
 
-export default ProductGrid;
+export default ProductGrid

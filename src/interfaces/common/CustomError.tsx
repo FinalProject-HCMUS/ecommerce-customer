@@ -3,53 +3,53 @@ export interface CustomError {
    * Timestamp of the error
    * @default new Date().toISOString()
    */
-  timestamp: string;
+  timestamp: string
 
   /**
    * HTTP status of the error
    */
-  httpStatus: string;
+  httpStatus: string
 
   /**
    * Header of the error
    */
-  header: string;
+  header: string
 
   /**
    * Message describing the error
    */
-  message?: string;
+  message?: string
 
   /**
    * Indicates whether the operation was successful
    * @default false
    */
-  isSuccess: boolean;
+  isSuccess: boolean
 
   /**
    * List of sub-errors providing additional details
    */
-  subErrors?: CustomSubError[];
+  subErrors?: CustomSubError[]
 }
 
 export interface CustomSubError {
   /**
    * Message describing the sub-error
    */
-  message: string;
+  message: string
 
   /**
    * Field associated with the sub-error
    */
-  field: string;
+  field: string
 
   /**
    * Value associated with the sub-error
    */
-  value?: object;
+  value?: object
 
   /**
    * Type of the sub-error
    */
-  type?: string;
+  type?: string
 }

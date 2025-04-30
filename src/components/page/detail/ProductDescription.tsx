@@ -1,4 +1,4 @@
-import type React from 'react';
+import type React from 'react'
 
 const ProductDescription: React.FC = () => {
   return (
@@ -6,7 +6,7 @@ const ProductDescription: React.FC = () => {
       <h2 className="text-xl font-bold mb-4">Description</h2>
       <div className="border border-gray-200 rounded-[12px] p-4">Description about product goes here.</div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDescription;
+export default ProductDescription

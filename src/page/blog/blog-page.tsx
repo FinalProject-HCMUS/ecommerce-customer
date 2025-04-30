@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react';
-import BlogList from '../../components/page/blog/BlogList';
-import Breadcrumb from '../../components/shared/Breadcrumb';
-import Pagination from '../../components/shared/Pagination';
-import { useBlogs } from '../../hooks/blogs';
+import React, { useEffect } from 'react'
+import BlogList from '../../components/page/blog/BlogList'
+import Breadcrumb from '../../components/shared/Breadcrumb'
+import Pagination from '../../components/shared/Pagination'
+import { useBlogs } from '../../hooks/blogs'
 
 const BlogListPage: React.FC = () => {
-  const { blogs, loading, fetchBlogs } = useBlogs();
-  const [currentPage, setCurrentPage] = React.useState<number>(1);
-  const postsPerPage: number = 4;
+  const { blogs, loading, fetchBlogs } = useBlogs()
+  const [currentPage, setCurrentPage] = React.useState<number>(1)
+  const postsPerPage: number = 4
 
   useEffect(() => {
-    fetchBlogs(); // Fetch blogs when the component mounts
-  }, []);
+    fetchBlogs() // Fetch blogs when the component mounts
+  }, [])
 
   const handlePageChange = (pageNumber: number): void => {
     // Scroll to top when changing pages
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setCurrentPage(pageNumber);
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setCurrentPage(pageNumber)
+  }
 
   // Get current posts for pagination
-  const indexOfLastPost: number = currentPage * postsPerPage;
-  const indexOfFirstPost: number = indexOfLastPost - postsPerPage;
-  const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost);
+  const indexOfLastPost: number = currentPage * postsPerPage
+  const indexOfFirstPost: number = indexOfLastPost - postsPerPage
+  const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost)
 
   return (
     <div className="max-w-7xl mx-auto mt-10 mx-10 px-4 py-8">
@@ -50,7 +50,7 @@ const BlogListPage: React.FC = () => {
         )}
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default BlogListPage;
+export default BlogListPage

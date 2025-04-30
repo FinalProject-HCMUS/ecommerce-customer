@@ -1,4 +1,4 @@
-import { shopInfo } from '../../../../data/shopInfo';
+import { shopInfo } from '../../../../data/shopInfo'
 
 const ShopInfo = () => {
   return (
@@ -13,7 +13,7 @@ const ShopInfo = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default ShopInfo;
+export default ShopInfo

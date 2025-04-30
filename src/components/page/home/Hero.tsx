@@ -1,4 +1,4 @@
-import { heroData } from '../../../data/hero';
+import { heroData } from '../../../data/hero'
 
 const Hero = () => {
   return (
@@ -28,7 +28,7 @@ const Hero = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

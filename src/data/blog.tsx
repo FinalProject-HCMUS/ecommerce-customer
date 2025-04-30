@@ -1,4 +1,4 @@
-import type { Author, BlogPost } from '../interfaces/temp/blog';
+import type { Author, BlogPost } from '../interfaces/temp/blog'
 
 const authors: Author[] = [
   {
@@ -16,7 +16,7 @@ const authors: Author[] = [
     avatar: '/placeholder.svg?height=100&width=100',
     bio: 'Software engineer and blogger who loves sharing insights about modern web technologies.',
   },
-];
+]
 
 const loremIpsum = `
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -38,10 +38,10 @@ const loremIpsum = `
 </blockquote>
 
 <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-`;
+`
 
-const categories = ['Technology', 'Design', 'Development', 'Business'];
-const tags = ['React', 'JavaScript', 'TypeScript', 'CSS', 'UI/UX', 'Web Development', 'Frontend', 'Design Patterns'];
+const categories = ['Technology', 'Design', 'Development', 'Business']
+const tags = ['React', 'JavaScript', 'TypeScript', 'CSS', 'UI/UX', 'Web Development', 'Frontend', 'Design Patterns']
 
 export const blogPosts: BlogPost[] = [
   {
@@ -200,15 +200,15 @@ export const blogPosts: BlogPost[] = [
     tags: [tags[5], tags[7]],
     relatedPosts: [6, 10, 11],
   },
-];
+]
 
 export const findPostById = (id: number): BlogPost | undefined => {
-  return blogPosts.find((post) => post.id === id);
-};
+  return blogPosts.find((post) => post.id === id)
+}
 
 export const getRelatedPosts = (postId: number): BlogPost[] => {
-  const post = findPostById(postId);
-  if (!post || !post.relatedPosts) return [];
+  const post = findPostById(postId)
+  if (!post || !post.relatedPosts) return []
 
-  return post.relatedPosts.map((id) => findPostById(id)).filter((post): post is BlogPost => post !== undefined);
-};
+  return post.relatedPosts.map((id) => findPostById(id)).filter((post): post is BlogPost => post !== undefined)
+}

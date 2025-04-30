@@ -1,4 +1,4 @@
-import { Review } from '../interfaces/temp/review';
+import { Review } from '../interfaces/temp/review'
 
 export const reviews: Review[] = [
   {
@@ -29,4 +29,4 @@ export const reviews: Review[] = [
     date: 'August 5, 2023',
   },
   // Add more reviews as needed
-];
+]

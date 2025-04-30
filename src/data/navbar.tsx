@@ -24,8 +24,8 @@ export const navbarLinks = [
     path: '/orders',
     authenticate: true, // Requires authentication
   },
-];
+]
 
-export const shopName = 'ShopName';
+export const shopName = 'ShopName'
 
-export const navbarSearchPlaceholder = 'Search for products...';
+export const navbarSearchPlaceholder = 'Search for products...'

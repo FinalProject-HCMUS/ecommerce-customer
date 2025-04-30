@@ -1,4 +1,4 @@
-import { brands } from '../../../data/brands';
+import { brands } from '../../../data/brands'
 const Brands = () => {
   return (
     <div className="bg-black py-8">
@@ -12,7 +12,7 @@ const Brands = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Brands;
+export default Brands

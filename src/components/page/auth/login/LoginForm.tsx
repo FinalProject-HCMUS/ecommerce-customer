@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
-import InputField from '../../../shared/form/InputField';
-import PasswordInput from '../../../shared/form/PasswordInput';
-import SocialLoginButton from './SocialLoginButton';
-import Divider from '../../../shared/Divider';
-import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
-import { FcGoogle } from 'react-icons/fc';
-import { FaFacebook } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../../../hooks/auth';
-import { showSuccess } from '../../../../utils/SuccessToastifyRender';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../../../../context/authSlice';
-import { useUser } from '../../../../hooks/user';
+import React, { useState } from 'react'
+import InputField from '../../../shared/form/InputField'
+import PasswordInput from '../../../shared/form/PasswordInput'
+import SocialLoginButton from './SocialLoginButton'
+import Divider from '../../../shared/Divider'
+import { GeneralButton } from '../../../shared/Button' // Import the reusable Button component
+import { FcGoogle } from 'react-icons/fc'
+import { FaFacebook } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../../../../hooks/auth'
+import { showSuccess } from '../../../../utils/SuccessToastifyRender'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../../../../context/authSlice'
+import { useUser } from '../../../../hooks/user'
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { loginUser, loading } = useAuth(); // Use the loginUser function and loading state
-  const { fetchUserByToken } = useUser();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { loginUser, loading } = useAuth() // Use the loginUser function and loading state
+  const { fetchUserByToken } = useUser()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // Call the loginUser function
-    const tokenResponse = await loginUser({ email, password });
+    const tokenResponse = await loginUser({ email, password })
 
     if (tokenResponse) {
-      localStorage.setItem('accessToken', tokenResponse.accessToken);
-      const user = await fetchUserByToken();
-      console.log('User:', user);
+      localStorage.setItem('accessToken', tokenResponse.accessToken)
+      const user = await fetchUserByToken()
+      console.log('User:', user)
       if (user) {
         dispatch(
           login({
@@ -39,12 +39,12 @@ const LoginForm = () => {
             accessToken: tokenResponse.accessToken,
             refreshAccessToken: tokenResponse.refreshToken,
           }),
-        );
-        showSuccess('Login successful!'); // Show success message
-        navigate('/'); // Redirect to home page after successful login
+        )
+        showSuccess('Login successful!') // Show success message
+        navigate('/') // Redirect to home page after successful login
       }
     }
-  };
+  }
 
   return (
     <>
@@ -103,7 +103,7 @@ const LoginForm = () => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

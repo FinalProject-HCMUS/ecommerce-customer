@@ -1,26 +1,28 @@
-import { useState, useEffect } from 'react';
-import { FiSearch, FiShoppingCart } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import { navbarSearchPlaceholder, shopName } from '../../data/navbar';
-import { navbarLinks } from '../../data/navbar';
-import { RootState } from '../../context/store';
-import { useSelector } from 'react-redux';
-import UserDropdown from './UserDropdown';
+import { useState, useEffect } from 'react'
+import { FiSearch, FiShoppingCart } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
+import { navbarSearchPlaceholder, shopName } from '../../data/navbar'
+import { navbarLinks } from '../../data/navbar'
+import { RootState } from '../../context/store'
+import { useSelector } from 'react-redux'
+import UserDropdown from './UserDropdown'
+import LanguageSwitcher from './LanguageSwitcher'
+import { t} from '../../helpers/i18n'
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Get authentication state from Redux
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <header
@@ -39,18 +41,19 @@ const Navbar = () => {
               {navbarLinks.map((link) => {
                 // Conditionally render links based on authentication
                 if (link.authenticate && !isAuthenticated) {
-                  return null; // Hide links that require authentication if not authenticated
+                  return null // Hide links that require authentication if not authenticated
                 }
                 return (
                   <Link key={link.path} to={link.path} className="nav-link font-medium">
                     {link.label}
                   </Link>
-                );
+                )
               })}
             </nav>
           </div>
 
           <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
             <div className="relative hidden md:block">
               <input
                 type="text"
@@ -74,7 +77,7 @@ const Navbar = () => {
             ) : (
               // Show Login button if not authenticated
               <Link to="/login">
-                <button className="p-2 hover:text-gray-600 transition-colors">Login</button>
+                <button className="p-2 hover:text-gray-600 transition-colors">{t('login')}</button>
               </Link>
             )}
 
@@ -93,13 +96,13 @@ const Navbar = () => {
               {navbarLinks.map((link) => {
                 // Conditionally render links based on authentication
                 if (link.authenticate && !isAuthenticated) {
-                  return null; // Hide links that require authentication if not authenticated
+                  return null // Hide links that require authentication if not authenticated
                 }
                 return (
                   <Link key={link.path} to={link.path} className="font-medium">
                     {link.label}
                   </Link>
-                );
+                )
               })}
             </nav>
 
@@ -109,13 +112,13 @@ const Navbar = () => {
                 <>
                   <Link to="/cart" className="flex items-center space-x-2">
                     <FiShoppingCart size={20} />
-                    <span>Cart</span>
+                    <span>{t('cart')}</span>
                   </Link>
                   <UserDropdown />
                 </>
               ) : (
                 <Link to="/login" className="flex items-center space-x-2">
-                  <button className="p-2 hover:text-gray-600 transition-colors">Login</button>
+                  <button className="p-2 hover:text-gray-600 transition-colors">{t('login')}</button>
                 </Link>
               )}
             </div>
@@ -123,7 +126,7 @@ const Navbar = () => {
         )}
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

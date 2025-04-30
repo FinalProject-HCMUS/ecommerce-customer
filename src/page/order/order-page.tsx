@@ -1,77 +1,77 @@
-import type React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import { Search, Filter, ChevronDown, X } from 'lucide-react';
-import { mockOrders } from '../../data/order';
-import type { Order, OrderStatus } from '../../interfaces/temp/order';
-import EmptyState from '../../components/page/order/EmptyState';
-import LoadingSkeleton from '../../components/page/order/LoadingSkeleton';
-import { statusConfig } from '../../data/statusConfig';
-import StatusBadge from '../../components/page/order/StatusBadge';
-import OrderCard from '../../components/page/order/OrderCard';
-import Pagination from '../../components/shared/Pagination';
-import Breadcrumb from '../../components/shared/Breadcrumb';
-import { orderStatus } from '../../constants/order';
+import type React from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { Search, Filter, ChevronDown, X } from 'lucide-react'
+import { mockOrders } from '../../data/order'
+import type { Order, OrderStatus } from '../../interfaces/temp/order'
+import EmptyState from '../../components/page/order/EmptyState'
+import LoadingSkeleton from '../../components/page/order/LoadingSkeleton'
+import { statusConfig } from '../../data/statusConfig'
+import StatusBadge from '../../components/page/order/StatusBadge'
+import OrderCard from '../../components/page/order/OrderCard'
+import Pagination from '../../components/shared/Pagination'
+import Breadcrumb from '../../components/shared/Breadcrumb'
+import { orderStatus } from '../../constants/order'
 
 // Status Timeline Modal
 const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void }> = ({ order, onClose }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null)
 
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClose();
+        onClose()
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [onClose]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [onClose])
 
   // Close modal on escape key
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onClose();
+        onClose()
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleEscKey);
+    document.addEventListener('keydown', handleEscKey)
     return () => {
-      document.removeEventListener('keydown', handleEscKey);
-    };
-  }, [onClose]);
+      document.removeEventListener('keydown', handleEscKey)
+    }
+  }, [onClose])
 
-  if (!order) return null;
+  if (!order) return null
 
   // All possible statuses in order
-  const allStatuses: OrderStatus[] = ['NEW', 'PROCESSING', 'PACKAGED', 'PICKED', 'SHIPPING', 'DELIVERED'];
+  const allStatuses: OrderStatus[] = ['NEW', 'PROCESSING', 'PACKAGED', 'PICKED', 'SHIPPING', 'DELIVERED']
 
   // Special statuses that can happen at any point
-  const specialStatuses: OrderStatus[] = ['CANCELLED', 'REFUNDED'];
+  const specialStatuses: OrderStatus[] = ['CANCELLED', 'REFUNDED']
 
   // Check if a status is completed
   const isCompleted = (status: OrderStatus) => {
-    return order.statusHistory.some((history) => history.status === status);
-  };
+    return order.statusHistory.some((history) => history.status === status)
+  }
 
   // Check if status is the current one
   const isCurrent = (status: OrderStatus) => {
-    return order.status === status;
-  };
+    return order.status === status
+  }
 
   // Format date
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleString();
-  };
+    const date = new Date(dateString)
+    return date.toLocaleString()
+  }
 
   // Find status history entry
   const getStatusHistory = (status: OrderStatus) => {
-    return order.statusHistory.find((history) => history.status === status);
-  };
+    return order.statusHistory.find((history) => history.status === status)
+  }
 
   return (
     <div className="fixed inset-0 rounded-[12px] bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 animate-fade-in">
@@ -100,9 +100,9 @@ const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void 
               {/* Status steps */}
               <div className="space-y-8">
                 {allStatuses.map((status, index) => {
-                  const statusHistory = getStatusHistory(status);
-                  const completed = isCompleted(status);
-                  const current = isCurrent(status);
+                  const statusHistory = getStatusHistory(status)
+                  const completed = isCompleted(status)
+                  const current = isCurrent(status)
 
                   return (
                     <div key={status} className="relative flex items-start">
@@ -132,7 +132,7 @@ const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void 
                         )}
                       </div>
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -144,8 +144,8 @@ const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void 
               <h3 className="text-lg font-medium text-gray-900 mb-4">Special Status Updates</h3>
               <div className="space-y-4">
                 {specialStatuses.map((status) => {
-                  const statusHistory = getStatusHistory(status);
-                  if (!statusHistory) return null;
+                  const statusHistory = getStatusHistory(status)
+                  if (!statusHistory) return null
 
                   return (
                     <div key={status} className="flex items-start p-3 rounded-[12px] bg-gray-50">
@@ -160,7 +160,7 @@ const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void 
                         {statusHistory.note && <div className="mt-1 text-sm text-gray-600">{statusHistory.note}</div>}
                       </div>
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -204,54 +204,54 @@ const StatusModalComponent: React.FC<{ order: Order | null; onClose: () => void 
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const OrdersPage: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [loading, setLoading] = useState(true)
+  const [orders, setOrders] = useState<Order[]>([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterStatus, setFilterStatus] = useState<string>('all')
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 5
 
   // Simulate loading data
   useEffect(() => {
     const timer = setTimeout(() => {
-      setOrders(mockOrders);
-      setLoading(false);
-    }, 1000);
+      setOrders(mockOrders)
+      setLoading(false)
+    }, 1000)
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => clearTimeout(timer)
+  }, [])
 
   // Filter orders based on search term and status
   const filteredOrders = orders.filter((order) => {
     const matchesSearch =
       order.orderNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.items.some((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+      order.items.some((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
-    const matchesStatus = filterStatus === 'all' || order.status === filterStatus;
+    const matchesStatus = filterStatus === 'all' || order.status === filterStatus
 
-    return matchesSearch && matchesStatus;
-  });
+    return matchesSearch && matchesStatus
+  })
 
   // Handle view status
   const handleViewStatus = (order: Order) => {
-    setSelectedOrder(order);
-  };
+    setSelectedOrder(order)
+  }
 
   // Close modal
   const closeModal = () => {
-    setSelectedOrder(null);
-  };
+    setSelectedOrder(null)
+  }
 
   // Clear search
   const clearSearch = () => {
-    setSearchTerm('');
-    setFilterStatus('all');
-  };
+    setSearchTerm('')
+    setFilterStatus('all')
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-10">
@@ -323,7 +323,7 @@ const OrdersPage: React.FC = () => {
       {/* Status Modal */}
       <StatusModalComponent order={selectedOrder} onClose={closeModal} />
     </div>
-  );
-};
+  )
+}
 
-export default OrdersPage;
+export default OrdersPage

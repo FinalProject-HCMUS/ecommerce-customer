@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 interface BreadcrumbItem {
-  label: string;
-  path: string;
+  label: string
+  path: string
 }
 interface BreadcrumbProps {
-  items: BreadcrumbItem[];
+  items: BreadcrumbItem[]
 }
 const Breadcrumb = ({ items }: BreadcrumbProps) => {
   return (
@@ -25,7 +25,7 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
         </span>
       ))}
     </motion.nav>
-  );
-};
+  )
+}
 
-export default Breadcrumb;
+export default Breadcrumb

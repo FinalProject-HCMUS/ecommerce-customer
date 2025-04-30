@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import ProductCard from '../../shared/product-card/ProductCard';
-import { ProductResponse } from '../../../interfaces';
+import React, { useState } from 'react'
+import ProductCard from '../../shared/product-card/ProductCard'
+import { ProductResponse } from '../../../interfaces'
 
 interface CommonProductsProps {
-  title: string;
-  data: ProductResponse[];
+  title: string
+  data: ProductResponse[]
 }
 
 const CommonProducts: React.FC<CommonProductsProps> = ({ title, data }) => {
-  const [visibleCount, setVisibleCount] = useState(5); // Number of products to show initially
-  const initialVisibleCount = 5; // Define the initial number of visible products
+  const [visibleCount, setVisibleCount] = useState(5) // Number of products to show initially
+  const initialVisibleCount = 5 // Define the initial number of visible products
 
   const handleSeeMore = () => {
-    setVisibleCount((prevCount) => prevCount + 5); // Load 5 more products
-  };
+    setVisibleCount((prevCount) => prevCount + 5) // Load 5 more products
+  }
 
   const handleShowLess = () => {
-    setVisibleCount(initialVisibleCount); // Reset to the initial number of visible products
-  };
+    setVisibleCount(initialVisibleCount) // Reset to the initial number of visible products
+  }
 
   return (
     <section className="py-16 bg-gray-100">
@@ -50,7 +50,7 @@ const CommonProducts: React.FC<CommonProductsProps> = ({ title, data }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default CommonProducts;
+export default CommonProducts

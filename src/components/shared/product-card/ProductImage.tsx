@@ -1,5 +1,5 @@
 interface ProductImageProps {
-  imageUrl?: string;
+  imageUrl?: string
 }
 export default function ProductImage({ imageUrl }: ProductImageProps) {
   return (
@@ -11,5 +11,5 @@ export default function ProductImage({ imageUrl }: ProductImageProps) {
       />
       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
     </div>
-  );
+  )
 }
