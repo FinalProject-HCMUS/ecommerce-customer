@@ -3,12 +3,14 @@ import viFlag from '../assets/images/flags/vi.svg'
 // Translation files
 import enTrans from '../locales/en/translation.json'
 import viTrans from '../locales/vn/translation.json'
+import enShopData from '../locales/en/shopData.json'
+import viShopData from '../locales/vn/shopData.json'
 
 import { IRegion } from '../interfaces'
 
 const RESOURCES = {
-  vi: { translation: viTrans },
-  en: { translation: enTrans },
+  vi: { translation: { ...viTrans, ...viShopData } },
+  en: { translation: { ...enTrans, ...enShopData } },
 }
 
 const REGIONS: IRegion = {

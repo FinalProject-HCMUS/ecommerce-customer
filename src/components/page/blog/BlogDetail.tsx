@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, Clock } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { formatDate } from '../../../utils/formatDate'
 import { BlogResponse } from '../../../interfaces'
+import { t } from '../../../helpers/i18n'
 export interface BlogDetailProps {
   post: BlogResponse
 }
@@ -46,7 +47,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
         whileHover={{ x: -5 }}
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to blog
+        {t('btn.backToBlog')}
       </motion.button>
 
       <motion.div variants={itemVariants} className="mb-8">

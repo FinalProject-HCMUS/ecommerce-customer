@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
-import { FiSearch, FiShoppingCart } from 'react-icons/fi'
+import { FiShoppingCart } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { navbarSearchPlaceholder, shopName } from '../../data/navbar'
 import { navbarLinks } from '../../data/navbar'
 import { RootState } from '../../context/store'
 import { useSelector } from 'react-redux'
 import UserDropdown from './UserDropdown'
 import LanguageSwitcher from './LanguageSwitcher'
-import { t} from '../../helpers/i18n'
+import { t } from '../../helpers/i18n'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -34,7 +33,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold">
-              {shopName}
+              {t('shopName')}
             </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
@@ -45,7 +44,7 @@ const Navbar = () => {
                 }
                 return (
                   <Link key={link.path} to={link.path} className="nav-link font-medium">
-                    {link.label}
+                    {t('navbar.' + link.label)}
                   </Link>
                 )
               })}
@@ -54,14 +53,6 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4">
             <LanguageSwitcher />
-            <div className="relative hidden md:block">
-              <input
-                type="text"
-                placeholder={navbarSearchPlaceholder}
-                className="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none"
-              />
-              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            </div>
 
             {/* Conditionally show cart and user icons if authenticated */}
             {isAuthenticated ? (
@@ -100,7 +91,7 @@ const Navbar = () => {
                 }
                 return (
                   <Link key={link.path} to={link.path} className="font-medium">
-                    {link.label}
+                    {t(link.label)}
                   </Link>
                 )
               })}

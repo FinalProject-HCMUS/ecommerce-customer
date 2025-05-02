@@ -4,6 +4,7 @@ import { cn } from '../../lib/utils' // Import the `cn` utility function
 import { Link } from 'react-router-dom'
 import { HomeOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Button, ButtonProps } from 'antd'
+import { t } from '../../helpers/i18n'
 
 interface BtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode // Button content
@@ -75,13 +76,13 @@ export const GeneralButton: React.FC<BtnProps> = ({
 export const BackToHomeButton: React.FC<ButtonProps> = (props) => (
   <Link to="/">
     <Button type="primary" icon={<HomeOutlined />} {...props}>
-      Back to Home
+      {t('btn.backToHome')}
     </Button>
   </Link>
 )
 
 export const LogoutButton: React.FC<ButtonProps> = (props) => (
   <Button icon={<LogoutOutlined />} {...props}>
-    Logout
+    {t('btn.logOut')}
   </Button>
 )

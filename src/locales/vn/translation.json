@@ -1,8 +1,130 @@
 {
-  "welcome": "Chào mừng đến với cửa hàng của chúng tôi",
-  "language": "Ngôn ngữ",
   "login": "Đăng nhập",
   "register": "Đăng ký",
   "search": "Tìm kiếm",
-  "cart": "Giỏ hàng"
+  "cart": "Giỏ hàng",
+  "navbar": {
+    "products": "Sản phẩm",
+    "policy": "Chính sách",
+    "blog": "Blog",
+    "chat": "Trò chuyện",
+    "orders": "Đơn hàng"
+  },
+  "footer": {
+    "about": "Về chúng tôi",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản dịch vụ",
+    "contact": "Liên hệ",
+    "followUs": "Theo dõi chúng tôi"
+  },
+  "btn": {
+    "shopNow": "Mua ngay",
+    "seeCollection": "Xem bộ sưu tập",
+    "createAccount": "Tạo tài khoản",
+    "login": "Đăng nhập ngay",
+    "backToHome": "Quay lại trang chủ",
+    "addToCart": "Thêm vào giỏ hàng",
+    "addedToCart": "Đã thêm vào giỏ hàng",
+    "logOut": "Đăng xuất",
+    "sendMessage": "Gửi",
+    "backToBlog": "Quay lại blog",
+    "seeMore": "Xem thêm",
+    "seeLess": "Xem ít hơn"
+  },
+  "lbl": {
+    "topSelling": "Sản phẩm bán chạy nhất",
+    "topTrending": "Sản phẩm thịnh hành nhất",
+    "contact": "Thông tin liên hệ",
+    "contactText": "Hãy đặt câu hỏi nếu bạn cần thêm thông tin",
+    "or": "hoặc",
+    "login": "Đăng nhập vào tài khoản của bạn",
+    "register": "Tạo tài khoản mới",
+    "loading": "Đang tải...",
+    "notRegistered": "Chưa có tài khoản?",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "message": "Nội dung",
+    "resultSearch": "Kết quả tìm kiếm với từ khóa: ",
+    "keyword": "Từ khóa",
+    "Showing": "Hiển thị",
+    "of": "của",
+    "items": "mặt hàng",
+    "sortBy": "Sắp xếp theo: ",
+    "sortByOptions": {
+      "ascending": "Tăng dần",
+      "descending": "Giảm dần"
+    },
+    "filter": "Lọc",
+    "category": "Loại sản phẩm",
+    "price": "Giá",
+    "color": "Màu sắc",
+    "size": "Kích thước"
+  },
+  "placeholder": {
+    "firstName": "Nhập tên của bạn",
+    "lastName": "Nhập họ của bạn",
+    "email": "Nhập email của bạn",
+    "password": "Nhập mật khẩu của bạn",
+    "confirmPassword": "Xác nhận mật khẩu của bạn",
+    "phone": "Nhập số điện thoại của bạn",
+    "search": "Tìm kiếm sản phẩm",
+    "message": "Nhập nội dung của bạn"
+  },
+  "hyperlink": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "forgotPassword": "Quên mật khẩu?",
+    "profile": "Hồ sơ"
+  },
+  "breadcrumb": {
+    "home": "Trang chủ",
+    "products": "Sản phẩm",
+    "detailProduct": "Chi tiết sản phẩm",
+    "cart": "Giỏ hàng",
+    "checkout": "Thanh toán",
+    "blog": "Blog",
+    "policy": "Chính sách",
+    "orders": "Đơn hàng",
+    "chat": "Trò chuyện",
+    "profile": "Hồ sơ"
+  },
+  "pagination": {
+    "previous": "Trước",
+    "next": "Tiếp theo"
+  },
+  "error": {
+    "blogNotFound": "Blog không tìm thấy",
+    "blogNotFoundText": "Xin lỗi, chúng tôi không thể tìm thấy blog mà bạn đang tìm kiếm. Vui lòng kiểm tra lại liên kết hoặc quay lại trang chủ.",
+    "productNotFound": "Sản phẩm không tìm thấy",
+    "productNotFoundText": "Xin lỗi, chúng tôi không thể tìm thấy sản phẩm mà bạn đang tìm kiếm. Vui lòng kiểm tra lại liên kết hoặc quay lại trang chủ."
+  },
+  "success": {
+    "registerSuccess": "Đăng ký thành công!",
+    "registerSuccessText": "Cảm ơn bạn đã đăng ký tài khoản. Vui lòng kiểm tra email để xác nhận tài khoản của bạn.",
+    "loginSuccess": "Đăng nhập thành công!",
+    "loginSuccessText": "Chào mừng trở lại! Bạn đã đăng nhập thành công.",
+    "logoutSuccess": "Đăng xuất thành công!",
+    "logoutSuccessText": "Bạn đã đăng xuất thành công. Hẹn gặp lại lần sau.",
+    "addToCartSuccess": "Thêm vào giỏ hàng thành công!",
+    "addToCartSuccessText": "Sản phẩm đã được thêm vào giỏ hàng của bạn.",
+    "removeFromCartSuccess": "Xóa khỏi giỏ hàng thành công!",
+    "removeFromCartSuccessText": "Sản phẩm đã được xóa khỏi giỏ hàng của bạn.",
+    "updateProfileSuccess": "Cập nhật hồ sơ thành công!",
+    "updateProfileSuccessText": "Hồ sơ của bạn đã được cập nhật thành công.",
+    "sendMessageSuccess": "Gửi tin nhắn thành công!",
+    "sendMessageSuccessText": "Tin nhắn của bạn đã được gửi thành công. Chúng tôi sẽ phản hồi sớm nhất có thể.",
+    "resetPasswordSuccess": "Liên kết đặt lại mật khẩu đã được gửi đến email của bạn. Vui lòng kiểm tra hộp thư.",
+    "updatePasswordSuccess": "Cập nhật mật khẩu thành công! Vui lòng đăng nhập bằng mật khẩu mới của bạn.",
+    "updateEmailSuccess": "Cập nhật email thành công! Vui lòng xác nhận địa chỉ email mới của bạn.",
+    "updatePhoneSuccess": "Cập nhật số điện thoại thành công! Vui lòng xác nhận số điện thoại mới của bạn.",
+    "updateAddressSuccess": "Cập nhật địa chỉ thành công!",
+    "updatePaymentSuccess": "Cập nhật phương thức thanh toán thành công!",
+    "updateShippingSuccess": "Cập nhật phương thức vận chuyển thành công!",
+    "updateOrderSuccess": "Cập nhật đơn hàng thành công!",
+    "updateCartSuccess": "Cập nhật giỏ hàng thành công!"
+  }
 }

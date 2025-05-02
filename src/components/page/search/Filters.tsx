@@ -3,25 +3,26 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp } from 'react-feather'
 import { categories, colors, sizes } from '../../../data/filter'
+import { t } from '../../../helpers/i18n'
 
 interface FiltersProps {
   priceRange: [number, number]
   setPriceRange: (range: [number, number]) => void
-  selectedColors: string[]
-  setSelectedColors: (colors: string[]) => void
-  selectedSizes: string[]
-  setSelectedSizes: (sizes: string[]) => void
-  selectedCategories: string[]
-  setSelectedCategories: (categories: string[]) => void
+  selectedColor: string | undefined
+  setSelectedColor: (color: string) => void
+  selectedSize: string | undefined
+  setSelectedSize: (sizes: string) => void
+  selectedCategorie: string | undefined
+  setSelectedCategories: (categories: string) => void
 }
 
 const Filters = ({
   priceRange,
   setPriceRange,
-  selectedColors,
-  setSelectedColors,
-  selectedSizes,
-  setSelectedSizes,
+  selectedColor,
+  setSelectedColor,
+  selectedSize,
+  setSelectedSize,
 }: FiltersProps) => {
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
@@ -38,18 +39,18 @@ const Filters = ({
   }
 
   const handleColorSelect = (color: string) => {
-    if (selectedColors.includes(color)) {
-      setSelectedColors(selectedColors.filter((c) => c !== color))
+    if (selectedColor === color) {
+      setSelectedColor('')
     } else {
-      setSelectedColors([...selectedColors, color])
+      setSelectedColor(color)
     }
   }
 
   const handleSizeSelect = (size: string) => {
-    if (selectedSizes.includes(size)) {
-      setSelectedSizes(selectedSizes.filter((s) => s !== size))
+    if (selectedSize === size) {
+      setSelectedSize('')
     } else {
-      setSelectedSizes([...selectedSizes, size])
+      setSelectedSize(size)
     }
   }
 
@@ -70,7 +71,7 @@ const Filters = ({
       transition={{ duration: 0.4 }}
     >
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold m-0">Filters</h2>
+        <h2 className="text-lg font-semibold m-0">{t('lbl.filter')}</h2>
         <button className="md:hidden relative w-5 h-4">
           <span className="block w-full h-0.5 bg-gray-800 mb-1"></span>
           <span className="block w-full h-0.5 bg-gray-800 mb-1"></span>
@@ -78,13 +79,12 @@ const Filters = ({
         </button>
       </div>
 
-      {/* Categories */}
       <div className="mb-6">
         <div
           className="flex justify-between items-center cursor-pointer py-1"
           onClick={() => toggleSection('categories')}
         >
-          <h3 className="text-base font-medium m-0">Categories</h3>
+          <h3 className="text-base font-medium m-0">{t('lbl.category')}</h3>
           {expandedSections.categories ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
 
@@ -113,7 +113,7 @@ const Filters = ({
       {/* Price Range */}
       <div className="mb-6">
         <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('price')}>
-          <h3 className="text-base font-medium m-0">Price</h3>
+          <h3 className="text-base font-medium m-0">{t('lbl.price')}</h3>
           {expandedSections.price ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
 
@@ -160,7 +160,7 @@ const Filters = ({
       {/* Colors */}
       <div className="mb-6">
         <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('colors')}>
-          <h3 className="text-base font-medium m-0">Colors</h3>
+          <h3 className="text-base font-medium m-0">{t('lbl.color')}</h3>
           {expandedSections.colors ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
 
@@ -173,7 +173,7 @@ const Filters = ({
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex flex-wrap gap-2 py-3">
+              {/* <div className="flex flex-wrap gap-2 py-3">
                 {colors.map((color) => (
                   <motion.div
                     key={color.id}
@@ -184,7 +184,7 @@ const Filters = ({
                     whileTap={{ scale: 0.95 }}
                   />
                 ))}
-              </div>
+              </div> */}
             </motion.div>
           )}
         </AnimatePresence>
@@ -193,7 +193,7 @@ const Filters = ({
       {/* Size */}
       <div className="mb-6">
         <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('size')}>
-          <h3 className="text-base font-medium m-0">Size</h3>
+          <h3 className="text-base font-medium m-0">{t('lbl.size')}</h3>
           {expandedSections.size ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
 
@@ -208,7 +208,7 @@ const Filters = ({
             >
               <div className="py-3">
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {sizes.slice(0, 4).map((size) => (
+                  {/* {sizes.slice(0, 4).map((size) => (
                     <motion.div
                       key={size.id}
                       className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
@@ -217,10 +217,10 @@ const Filters = ({
                     >
                       {size.label}
                     </motion.div>
-                  ))}
+                  ))} */}
                 </div>
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {sizes.slice(4, 7).map((size) => (
+                  {/* {sizes.slice(4, 7).map((size) => (
                     <motion.div
                       key={size.id}
                       className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
@@ -229,9 +229,9 @@ const Filters = ({
                     >
                       {size.label}
                     </motion.div>
-                  ))}
+                  ))} */}
                 </div>
-                <div className="flex flex-wrap gap-2">
+                {/* <div className="flex flex-wrap gap-2">
                   {sizes.slice(7).map((size) => (
                     <motion.div
                       key={size.id}
@@ -242,7 +242,7 @@ const Filters = ({
                       {size.label}
                     </motion.div>
                   ))}
-                </div>
+                </div> */}
               </div>
             </motion.div>
           )}

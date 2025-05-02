@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
-import type { Product } from '../../../interfaces/temp/product'
+import type { ProductResponse } from '../../../interfaces/product/ProductResponse'
 import ProductCard from '../../shared/product-card/ProductCard'
 
 interface ProductGridProps {
-  products: Product[]
+  products: ProductResponse[]
 }
 
 const ProductGrid = ({ products }: ProductGridProps) => {

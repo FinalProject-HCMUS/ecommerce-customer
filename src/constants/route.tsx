@@ -1,6 +1,6 @@
 const ROUTE = {
   HOME: '/',
-  SEARCH: '/search',
+  SEARCH: '/products',
   PRODUCT: {
     DETAIL: '/product/:id',
   },

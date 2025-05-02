@@ -1,0 +1,69 @@
+{
+  "shopName": "Shop Name",
+  "hero": {
+    "title": "a sentence to welcome customer",
+    "description": "Some sentences to introduce about shop. Example: Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.",
+    "characteristics": [
+      {
+        "title": "High-Quality Products",
+        "description": "Some characteristics about shop"
+      },
+      {
+        "title": "Sustainable Materials",
+        "description": "Some characteristics about shop"
+      },
+      {
+        "title": "Happy Customers",
+        "description": "Some characteristics about shop"
+      }
+    ]
+  },
+  "about": {
+    "title": "Title about",
+    "description": "Some sentences to introduce about shop. Example: At our shop, we believe in the power of fashion to express individuality and enhance confidence. Our mission is to provide you with high-quality garments that not only look good but also feel good to wear. We are committed to sustainability, using eco-friendly materials and ethical production practices to create a positive impact on the environment."
+  },
+  "footer": {
+    "title": "Title footer",
+    "description": "Some sentences to introduce about shop. Example: We are dedicated to providing you with the best shopping experience possible. If you have any questions or need assistance, please don't hesitate to reach out to us. Our customer service team is here to help you with any inquiries or concerns.",
+    "copyright": "Copyright © 2023 Shop Name. All rights reserved.",
+    "hyperlink": [
+      {
+        "title": "COMPANY",
+        "links": [
+          { "label": "About", "path": "/about" },
+          { "label": "Features", "path": "/features" },
+          { "label": "Works", "path": "/works" },
+          { "label": "Career", "path": "/career" }
+        ]
+      },
+      {
+        "title": "HELP",
+        "links": [
+          { "label": "Customer Support", "path": "/support" },
+          { "label": "Delivery Details", "path": "/delivery" },
+          { "label": "Terms & Conditions", "path": "/terms" },
+          { "label": "Privacy Policy", "path": "/privacy" }
+        ]
+      },
+      {
+        "title": "RESOURCES",
+        "links": [
+          { "label": "Free eBooks", "path": "/ebooks" },
+          { "label": "Development Tutorial", "path": "/tutorials" },
+          { "label": "How to - Blog", "path": "/blog" },
+          { "label": "YouTube Playlist", "path": "/youtube" }
+        ]
+      }
+    ]
+  },
+  "register": {
+    "shopName": "Shop Name",
+    "description": "Some sentences to introduce about shop. Example: Join our community of fashion enthusiasts and be the first to know about our latest collections, exclusive offers, and special events. Sign up for our newsletter and stay connected with us on social media.",
+    "benefit": [
+      { "value": "Exclusive discounts and offers" },
+      { "value": "Early access to new collections" },
+      { "value": "Personalized shopping experience" },
+      { "value": "Updates on fashion trends and tips" }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { I18nextProvider } from 'react-i18next';
-import i18n from './i18n.ts';
+import { I18nextProvider } from 'react-i18next'
+import i18n from './i18n.ts'
 import './index.css'
 import { store } from './context/store'
 import './i18n.ts'
@@ -14,5 +14,5 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <App />
     </Provider>
-  </I18nextProvider>
+  </I18nextProvider>,
 )

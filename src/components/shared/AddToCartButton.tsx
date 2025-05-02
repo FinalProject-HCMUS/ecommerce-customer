@@ -1,4 +1,5 @@
 import { ShoppingCart } from 'lucide-react'
+import { t } from '../../helpers/i18n'
 
 interface AddToCartButtonProps {
   isAdding: boolean
@@ -15,7 +16,7 @@ export default function AddToCartButton({ isAdding, onClick }: AddToCartButtonPr
     >
       {isAdding ? (
         <span className="flex items-center">
-          Added to Cart
+          {t('btn.addedToCart')}
           <svg className="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
             <path
               fillRule="evenodd"
@@ -26,7 +27,7 @@ export default function AddToCartButton({ isAdding, onClick }: AddToCartButtonPr
         </span>
       ) : (
         <span className="flex items-center">
-          Add to Cart
+          {t('btn.addToCart')}
           <ShoppingCart className="w-5 h-5 ml-2" />
         </span>
       )}

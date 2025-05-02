@@ -1,11 +1,30 @@
 import client from './request'
-import { CustomResponse } from '../../interfaces/common/CustomResponse'
-import { ProductResponse } from '../../interfaces/product/ProductResponse'
-import { TopProductResponse } from '../../interfaces/product/TopProduct'
+import { CustomResponse, ProductResponse, TopProductResponse, Pageable } from '../../interfaces'
 
-// Fetch all products
-export const getAllProducts = async (): Promise<CustomResponse<ProductResponse[]>> => {
-  const response = await client.get<CustomResponse<ProductResponse[]>>('/products')
+export const getAllProducts = async (
+  page: number = 0,
+  perpage: number = 10,
+  sort?: string[],
+  keysearch?: string,
+  category?: string,
+  fromprice?: number,
+  toprice?: number,
+  color?: string,
+  size?: string,
+): Promise<CustomResponse<Pageable<ProductResponse[]>>> => {
+  const response = await client.get<CustomResponse<Pageable<ProductResponse[]>>>('/products', {
+    params: {
+      page,
+      perpage,
+      sort: sort?.join(','),
+      keysearch,
+      category,
+      fromprice,
+      toprice,
+      color,
+      size,
+    },
+  })
   return response.data
 }
 

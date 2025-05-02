@@ -2,7 +2,7 @@ import { initReactI18next } from 'react-i18next'
 import i18n from 'i18next'
 
 import localizationConstants from './constants/localization'
-import {getCurrentLanguage} from './helpers/localization'
+import { getCurrentLanguage } from './helpers/localization'
 
 const { RESOURCES, REGIONS } = localizationConstants
 

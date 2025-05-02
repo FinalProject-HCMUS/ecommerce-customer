@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'react-feather'
+import { t } from '../../helpers/i18n'
 
 interface PaginationProps {
   currentPage: number
@@ -72,7 +73,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         disabled={currentPage === 1}
       >
         <ChevronLeft size={16} className="mr-1" />
-        <span>Previous</span>
+        <span>{t('pagination.previous')}</span>
       </button>
 
       <div className="flex items-center">
@@ -100,7 +101,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         onClick={() => currentPage < totalPages && onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        <span>Next</span>
+        <span>{t('pagination.next')}</span>
         <ChevronRight size={16} className="ml-1" />
       </button>
     </motion.div>

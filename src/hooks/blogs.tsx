@@ -1,19 +1,17 @@
 import { useState } from 'react'
 import { BlogResponse } from '../interfaces/blog/BlogResponse'
 import { getAllBlogs, getBlogById } from '../services/apis/blogApis'
+import { Pageable } from '../interfaces/common/Pageable'
 
 export const useBlogs = () => {
-  const [blogs, setBlogs] = useState<BlogResponse[]>([])
   const [loading, setLoading] = useState(false)
 
   // Fetch all blogs
-  const fetchBlogs = async () => {
+  const fetchBlogs = async (page: number, pagesize: number): Promise<Pageable<BlogResponse[]> | undefined> => {
     setLoading(true)
     try {
-      const response = await getAllBlogs()
-      setBlogs(response.data || [])
-    } catch {
-      setBlogs([])
+      const response = await getAllBlogs(page, pagesize)
+      return response.data
     } finally {
       setLoading(false)
     }
@@ -33,7 +31,6 @@ export const useBlogs = () => {
   }
 
   return {
-    blogs,
     loading,
     fetchBlogs,
     fetchBlogById,

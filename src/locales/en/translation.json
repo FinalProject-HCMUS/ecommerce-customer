@@ -1,8 +1,123 @@
 {
-  "welcome": "Welcome to our ecommerce store",
-  "language": "Language",
   "login": "Login",
   "register": "Register",
   "search": "Search",
-  "cart": "Cart"
+  "cart": "Cart",
+  "navbar": {
+    "products": "Products",
+    "policy": "Policy",
+    "blog": "Blog",
+    "chat": "Chat",
+    "orders": "Orders"
+  },
+  "footer": {
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact Us",
+    "followUs": "Follow Us"
+  },
+  "btn": {
+    "shopNow": "Shop Now",
+    "seeCollection": "See Collection",
+    "createAccount": "Create Account",
+    "login": "Login now",
+    "backToHome": "Back to Home",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to Cart",
+    "logOut": "Log Out",
+    "sendMessage": "Send Message",
+    "backToBlog": "Back to Blog",
+    "seeMore": "See More",
+    "seeLess": "See Less"
+  },
+  "lbl": {
+    "topSelling": "Top Selling Products",
+    "topTrending": "Top Trending Products",
+    "contact": "Contact Information",
+    "contactText": "Ask any questions if you need further information",
+    "or": "or",
+    "login": "Login to your account",
+    "register": "Create an account",
+    "loading": "Loading...",
+    "notRegistered": "Don't Have An Account?",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "message": "Message",
+    "resultSearch": "Result for search with keyword: ",
+    "keyword": "Keyword",
+    "Showing": "Showing",
+    "of": "of",
+    "items": "items",
+    "sortBy": "Sort by: ",
+    "sortByOptions": {
+      "ascending": "Ascending",
+      "descending": "Descending"
+    },
+    "filter": "Filter",
+    "category": "Category",
+    "price": "Price",
+    "color": "Color",
+    "size": "Size"
+  },
+  "placeholder": {
+    "firstName": "Enter your first name",
+    "lastName": "Enter your last name",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "confirmPassword": "Confirm your password",
+    "phone": "Enter your phone number",
+    "search": "Search for products",
+    "message": "Enter your message"
+  },
+  "hyperlink": {
+    "login": "Log in",
+    "register": "Sign up",
+    "forgotPassword": "Forgot password?",
+    "profile": "Profile"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "products": "Products",
+    "detailProduct": "Product Details",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "blog": "Blog",
+    "policy": "Policy",
+    "orders": "Orders",
+    "chat": "Chat",
+    "profile": "Profile"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "error": {
+    "blogNotFound": "Blog not found",
+    "blogNotFoundText": "The blog you are looking for does not exist or has been removed.",
+    "productNotFound": "Product not found",
+    "productNotFoundText": "The product you are looking for does not exist or has been removed."
+  },
+  "success": {
+    "registerSuccess": "Registration successful! Please check your email to verify your account.",
+    "loginSuccess": "Login successful! Welcome back.",
+    "logoutSuccess": "Logout successful! See you next time.",
+    "addToCartSuccess": "Product added to cart successfully!",
+    "removeFromCartSuccess": "Product removed from cart successfully!",
+    "updateProfileSuccess": "Profile updated successfully!",
+    "sendMessageSuccess": "Message sent successfully! We will get back to you soon.",
+    "resetPasswordSuccess": "Password reset link sent to your email. Please check your inbox.",
+    "updatePasswordSuccess": "Password updated successfully! Please log in with your new password.",
+    "updateEmailSuccess": "Email updated successfully! Please verify your new email address.",
+    "updatePhoneSuccess": "Phone number updated successfully! Please verify your new phone number.",
+    "updateAddressSuccess": "Address updated successfully!",
+    "updatePaymentSuccess": "Payment method updated successfully!",
+    "updateShippingSuccess": "Shipping method updated successfully!",
+    "updateOrderSuccess": "Order updated successfully!",
+    "updateCartSuccess": "Cart updated successfully!"
+  }
 }

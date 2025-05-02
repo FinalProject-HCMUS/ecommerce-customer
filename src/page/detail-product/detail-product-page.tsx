@@ -5,15 +5,15 @@ import ProductInfo from '../../components/page/detail/ProductInfo'
 import VirtualTryOn from '../../components/page/detail/VirtualTryOn'
 import ProductDescription from '../../components/page/detail/ProductDescription'
 import ReviewSection from '../../components/page/detail/ReviewSection'
-import RelatedProducts from '../../components/page/detail/RelatedProducts'
+import { t } from '../../helpers/i18n'
 
 const App: React.FC = () => {
   return (
     <div className="max-w-7xl mt-10 px-4 py-8 font-sans">
       <Breadcrumb
         items={[
-          { label: 'Home', path: '/' },
-          { label: 'Product', path: '/product' },
+          { label: t('breadcrumb.home'), path: '/' },
+          { label: t('breadcrumb.detailProduct'), path: '/product' },
         ]}
       />
 
@@ -25,7 +25,6 @@ const App: React.FC = () => {
       <VirtualTryOn />
       <ProductDescription />
       <ReviewSection />
-      <RelatedProducts />
     </div>
   )
 }

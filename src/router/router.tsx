@@ -28,8 +28,8 @@ const routes: IRoute[] = [
   },
   {
     exact: true,
-    path: '/search',
-    name: 'Search',
+    path: '/products',
+    name: 'Products',
     component: SearchPage,
   },
   {

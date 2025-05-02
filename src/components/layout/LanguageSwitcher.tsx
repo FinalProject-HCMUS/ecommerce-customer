@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { ChevronDown, Check } from 'lucide-react'
 import localization from '../../constants/localization'
-import {changeLanguage, getCurrentLanguage} from '../../helpers/localization'
+import { changeLanguage, getCurrentLanguage } from '../../helpers/localization'
 import { IRegionItem } from '../../interfaces'
 import localizationConstants from '../../constants/localization'
 import { Avatar } from 'antd'
 
-const { REGIONS } = localizationConstants;
+const { REGIONS } = localizationConstants
 
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false)
@@ -47,7 +47,7 @@ export default function LanguageSwitcher() {
         aria-haspopup="true"
       >
         <span className="flex items-center">
-          <Avatar src={selectedLanguage.flag} shape="square" className='mx-2' />
+          <Avatar src={selectedLanguage.flag} shape="square" className="mx-2" />
           <span className="hidden sm:inline">{selectedLanguage.name}</span>
         </span>
         <ChevronDown
@@ -76,7 +76,7 @@ export default function LanguageSwitcher() {
               }`}
               role="menuitem"
             >
-              <Avatar src={region.flag} shape="square" className='mx-2' />
+              <Avatar src={region.flag} shape="square" className="mx-2" />
               <span className="flex-grow text-left">{region.name}</span>
               {selectedLanguage.key === region.key && <Check className="h-4 w-4 text-emerald-500" />}
             </button>

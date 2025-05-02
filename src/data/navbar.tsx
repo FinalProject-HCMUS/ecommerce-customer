@@ -1,26 +1,26 @@
 export const navbarLinks = [
   {
-    label: 'Products',
+    label: 'products',
     path: '/search',
     authenticate: false, // No authentication required
   },
   {
-    label: 'Chat',
+    label: 'chat',
     path: '/chat',
     authenticate: true, // No authentication required
   },
   {
-    label: 'Policy',
+    label: 'policy',
     path: '/policy',
     authenticate: false, // No authentication required
   },
   {
-    label: 'Blog',
+    label: 'blog',
     path: '/blog',
     authenticate: false, // No authentication required
   },
   {
-    label: 'Orders',
+    label: 'orders',
     path: '/orders',
     authenticate: true, // Requires authentication
   },

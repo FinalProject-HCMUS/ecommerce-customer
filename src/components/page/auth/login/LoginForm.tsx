@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../../../../context/authSlice'
 import { useUser } from '../../../../hooks/user'
+import { t } from '../../../../helpers/i18n'
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -48,24 +49,24 @@ const LoginForm = () => {
 
   return (
     <>
-      <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">Login to your account</h1>
+      <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">{t('lbl.login')}</h1>
       <form onSubmit={handleSubmit}>
         <InputField
-          id="email"
+          id={t('lbl.email')}
           label="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="balamia@gmail.com"
+          placeholder={t('placeholder.email')}
           required
         />
 
         <PasswordInput
           id="password"
-          label="Password"
+          label={t('lbl.password')}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
+          placeholder={t('placeholder.password')}
           forgotPasswordLink="#"
           required
         />
@@ -77,18 +78,18 @@ const LoginForm = () => {
           isLoading={loading} // Show loading spinner when submitting
           className="w-full rounded-[10px]"
         >
-          Login now
+          {t('btn.login')}
         </GeneralButton>
       </form>
 
       <div className="mt-4 text-center text-sm text-gray-500">
-        Don't Have An Account?
+        {t('lbl.notRegistered')}
         <Link to="/register" className="ml-1 font-medium text-blue-600 hover:text-blue-500">
-          Sign Up
+          {t('hyperlink.register')}
         </Link>
       </div>
 
-      <Divider text="Or" className="my-6" />
+      <Divider text={t('lbl.or')} className="my-6" />
 
       <div className="mt-6 grid grid-cols-2 gap-3">
         <SocialLoginButton

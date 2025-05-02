@@ -6,7 +6,7 @@ import { GeneralButton } from '../../shared/Button'
 import emailjs from '@emailjs/browser'
 import { showError } from '../../../utils/ErrorToastifyRender'
 import { showSuccess } from '../../../utils/SuccessToastifyRender'
-
+import { t } from '../../../helpers/i18n'
 interface FormState {
   firstName: string
   lastName: string
@@ -74,8 +74,8 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="bg-white p-8 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
-            <p className="text-gray-600 mb-8">Ask any questions if you need further information</p>
+            <h2 className="text-2xl font-bold mb-4">{t('lbl.contact')}</h2>
+            <p className="text-gray-600 mb-8">{t('lbl.contactText')}</p>
 
             <div className="space-y-6">
               <div className="flex items-center">
@@ -97,20 +97,20 @@ const Contact = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <InputField
                 id="firstName"
-                label="First Name"
+                label={t('lbl.firstName')}
                 type="text"
                 value={formState.firstName}
                 onChange={handleInputChange('firstName')}
-                placeholder="Enter your first name"
+                placeholder={t('placeholder.firstName')}
                 required
               />
               <InputField
                 id="lastName"
-                label="Last Name"
+                label={t('lbl.lastName')}
                 type="text"
                 value={formState.lastName}
                 onChange={handleInputChange('lastName')}
-                placeholder="Enter your last name"
+                placeholder={t('placeholder.lastName')}
                 required
               />
             </div>
@@ -118,27 +118,27 @@ const Contact = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <InputField
                 id="email"
-                label="Email"
+                label={t('lbl.email')}
                 type="email"
                 value={formState.email}
                 onChange={handleInputChange('email')}
-                placeholder="Enter your email"
+                placeholder={t('placeholder.email')}
                 required
               />
               <InputField
                 id="phone"
-                label="Phone Number"
+                label={t('lbl.phone')}
                 type="tel"
                 value={formState.phone}
                 onChange={handleInputChange('phone')}
-                placeholder="Enter your phone number"
+                placeholder={t('placeholder.phone')}
                 required
               />
             </div>
 
             <div>
               <label htmlFor="message" className="block text-sm font-medium mb-2">
-                Message
+                {t('lbl.message')}
               </label>
               <textarea
                 id="message"
@@ -146,7 +146,7 @@ const Contact = () => {
                 value={formState.message}
                 onChange={handleInputChange('message')}
                 className="w-full px-4 py-2 border border-gray-300 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-gray-200"
-                placeholder="Write your message..."
+                placeholder={t('placeholder.message')}
               />
             </div>
 
@@ -155,7 +155,7 @@ const Contact = () => {
                 type="submit"
                 className="bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
               >
-                SEND MESSAGE
+                {t('btn.sendMessage')}
               </GeneralButton>
             </div>
           </form>

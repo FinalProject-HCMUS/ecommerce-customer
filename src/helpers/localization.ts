@@ -15,7 +15,4 @@ const changeLanguage = (language: string) => {
   window.location.reload()
 }
 
-export {
-  getCurrentLanguage,
-  changeLanguage,
-}
+export { getCurrentLanguage, changeLanguage }
