@@ -35,7 +35,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <ProductImage id={product.id} imageUrl={product.mainImageUrl} />
 
       <div className="p-4 sm:p-5">
-        <Link to={`/product/${product.id}`} className="text-md font-semibold text-gray-800 mb-2 truncate">{product.name}</Link>
+        <Link to={`/product/${product.id}`} className="text-md font-semibold text-gray-800 mb-2 truncate">
+          {product.name}
+        </Link>
         {/* <RatingStars rating={product.averageRating} /> */}
 
         <div className="flex items-center justify-between mb-4 gap-2 mt-2">

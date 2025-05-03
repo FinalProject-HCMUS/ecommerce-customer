@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 interface ProductImageProps {
-  id : string
+  id: string
   imageUrl?: string
 }
-export default function ProductImage({id, imageUrl }: ProductImageProps) {
+export default function ProductImage({ id, imageUrl }: ProductImageProps) {
   return (
     <Link to={`/product/${id}`} className="relative overflow-hidden group">
       <img

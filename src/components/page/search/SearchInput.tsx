@@ -4,11 +4,11 @@ import { FiSearch } from 'react-icons/fi'
 import { useState } from 'react'
 
 interface SearchInputProps {
-  keySearch: string | undefined,
+  keySearch: string | undefined
   setKeySearch: (keySearch: string) => void
 }
 
-const SearchInput : React.FC<SearchInputProps>= ({keySearch,setKeySearch}) => {
+const SearchInput: React.FC<SearchInputProps> = ({ keySearch, setKeySearch }) => {
   const [searchTemp, setSearchTemp] = useState<string>(keySearch || '')
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && searchTemp.trim() !== '') {

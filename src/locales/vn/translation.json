@@ -29,7 +29,10 @@
     "sendMessage": "Gửi",
     "backToBlog": "Quay lại blog",
     "seeMore": "Xem thêm",
-    "seeLess": "Xem ít hơn"
+    "seeLess": "Xem ít hơn",
+    "latest": "Mới nhất",
+    "writeReview": "Viết đánh giá",
+    "reviewAt": "Đăng vào"
   },
   "lbl": {
     "topSelling": "Sản phẩm bán chạy nhất",
@@ -62,7 +65,15 @@
     "category": "Loại sản phẩm",
     "price": "Giá",
     "color": "Màu sắc",
-    "size": "Kích thước"
+    "size": "Kích thước",
+    "description": "Mô tả",
+    "allReviews": "Tất cả đánh giá",
+    "lastest": "Mới nhất",
+    "selectColor": "Chọn màu sắc",
+    "chooseSize": "Chọn kích thước",
+    "inStock": "Còn hàng",
+    "quantity": "Số lượng",
+    "outOfStock": "Hết hàng"
   },
   "placeholder": {
     "firstName": "Nhập tên của bạn",

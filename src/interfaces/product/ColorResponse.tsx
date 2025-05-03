@@ -6,3 +6,9 @@ export interface ColorResponse {
   updatedAt: string
   updatedBy: string
 }
+
+export interface ColorProps {
+  id: string
+  name: string
+  colorCode: string
+}

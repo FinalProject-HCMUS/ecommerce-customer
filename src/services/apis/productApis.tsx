@@ -1,5 +1,12 @@
 import client from './request'
-import { CustomResponse, ProductResponse, TopProductResponse, Pageable } from '../../interfaces'
+import {
+  CustomResponse,
+  ProductResponse,
+  TopProductResponse,
+  Pageable,
+  ProductImageResponse,
+  ProductColorSizeResponse,
+} from '../../interfaces'
 
 export const getAllProducts = async (
   page: number = 0,
@@ -42,5 +49,21 @@ export const getTopProducts = async (
   const response = await client.get<CustomResponse<TopProductResponse>>('/products/top-products', {
     params: { page, size },
   })
+  return response.data
+}
+
+export const getProductImagesByProductId = async (
+  productId: string,
+): Promise<CustomResponse<ProductImageResponse[]>> => {
+  const response = await client.get<CustomResponse<ProductImageResponse[]>>(`/product-images/product/${productId}`)
+  return response.data
+}
+
+export const getProductColorSizesByProductId = async (
+  productId: string,
+): Promise<CustomResponse<ProductColorSizeResponse[]>> => {
+  const response = await client.get<CustomResponse<ProductColorSizeResponse[]>>(
+    `/product-color-sizes/product/${productId}`,
+  )
   return response.data
 }

@@ -1,34 +1,28 @@
-import type React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { ProductImageResponse } from '../../../interfaces'
 
-const imageUrl = 'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png'
-
-const ProductGallery: React.FC = () => {
+const ProductGallery: React.FC<{ images: ProductImageResponse[] }> = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState<number>(0)
+
   return (
     <div className="flex flex-col md:flex-row gap-4">
       {/* Thumbnails */}
-      <div className="flex md:flex-col gap-2 order-2 md:order-1">
-        {[0, 1, 2].map((idx) => (
-          <div
-            key={idx}
-            className={`border rounded-[12px] p-1 cursor-pointer transition-all duration-300 hover:shadow-md ${
-              selectedImage === idx ? 'border-black' : 'border-gray-200'
+      <div className="flex md:flex-col gap-2">
+        {images.map((image, index) => (
+          <img
+            key={image.id}
+            src={image.url}
+            className={`w-16 h-16 object-cover cursor-pointer rounded-[12px] ${
+              selectedImage === index ? 'border-2 border-blue-500' : ''
             }`}
-            onClick={() => setSelectedImage(idx)}
-          >
-            <img src={imageUrl} alt={`T-shirt thumbnail ${idx + 1}`} className="w-16 h-16 object-cover" />
-          </div>
+            onClick={() => setSelectedImage(index)}
+          />
         ))}
       </div>
 
       {/* Main Image */}
-      <div className="bg-gray-100 rounded-[12px] p-4 flex items-center justify-center order-1 md:order-2 flex-1">
-        <img
-          src={imageUrl}
-          alt="One Life Graphic T-shirt"
-          className="max-h-[400px] object-contain transition-opacity duration-300"
-        />
+      <div className="flex-1">
+        <img src={images[selectedImage]?.url} className="w-full h-auto rounded-[12px]" />
       </div>
     </div>
   )

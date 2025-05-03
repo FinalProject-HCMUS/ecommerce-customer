@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(keySearch)
       const res = await fetchAllProducts({
         page: currentPage,
         perPage: PRODUCT_PER_PAGE,
@@ -34,7 +33,7 @@ function App() {
         category: selectedCategories,
         color: selectedColors,
         size: selectedSizes,
-      });
+      })
       console.log('Product Response:', res)
       if (res) {
         setProductRes(res)
@@ -44,13 +43,13 @@ function App() {
   }, [priceRange, selectedColors, selectedSizes, selectedCategories, keySearch, currentPage, priceRange])
 
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber-1)
+    setCurrentPage(pageNumber - 1)
     // Scroll to top when changing page
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  if(loading) {
-    return (<Loading />)
+  if (loading) {
+    return <Loading />
   }
 
   return (
@@ -61,11 +60,9 @@ function App() {
           { label: t('breadcrumb.products'), path: '/products' },
         ]}
       />
-      
-      
-      <SearchInput keySearch={keySearch} setKeySearch={setKeySearch}/>
+
+      <SearchInput keySearch={keySearch} setKeySearch={setKeySearch} />
       <SearchHeader keySearch={keySearch || ''} />
-      
 
       <div className="flex flex-col md:flex-row gap-8 mt-6">
         <Filters
@@ -82,7 +79,11 @@ function App() {
         <ProductGrid products={productResponse?.content || []} />
       </div>
 
-      <Pagination currentPage={currentPage + 1} totalPages={productResponse?.totalPages || 0} onPageChange={handlePageChange} />
+      <Pagination
+        currentPage={currentPage + 1}
+        totalPages={productResponse?.totalPages || 0}
+        onPageChange={handlePageChange}
+      />
     </div>
   )
 }

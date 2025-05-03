@@ -5,8 +5,8 @@ interface SearchHeaderProps {
   keySearch: string
 }
 
-const SearchHeader : React.FC<SearchHeaderProps> = ({keySearch} ) => {
-  if(!keySearch || keySearch.length === 0) {
+const SearchHeader: React.FC<SearchHeaderProps> = ({ keySearch }) => {
+  if (!keySearch || keySearch.length === 0) {
     return null
   }
 

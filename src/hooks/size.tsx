@@ -1,10 +1,11 @@
 import { getAllSizes, getSizeById } from '../services/apis/sizeApis'
 import { useState } from 'react'
+import { SizeResponse, Pageable } from '../interfaces'
 
 export const useSizes = () => {
   const [loading, setLoading] = useState(false)
 
-  const fetchAllSizes = async () => {
+  const fetchAllSizes = async (): Promise<Pageable<SizeResponse[]> | undefined> => {
     setLoading(true)
     try {
       const response = await getAllSizes()
@@ -14,7 +15,7 @@ export const useSizes = () => {
     }
   }
 
-  const fetchSizeById = async (id: string) => {
+  const fetchSizeById = async (id: string): Promise<Pageable<SizeResponse> | undefined> => {
     setLoading(true)
     try {
       const response = await getSizeById(id)

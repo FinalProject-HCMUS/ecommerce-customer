@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import ReviewCard from './ReviewCard'
 import { reviews as initialReviews } from '../../../data/reviews' // Adjust the import path as necessary
+import { t } from '../../../helpers/i18n' // Adjust the import path as necessary
 
 const ReviewSection: React.FC = () => {
   const [reviews, setReviews] = useState(initialReviews) // State for reviews
@@ -48,11 +49,11 @@ const ReviewSection: React.FC = () => {
     <div className="mt-16 mb-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">
-          All Reviews <span className="text-gray-500 font-normal">({reviews.length})</span>
+          {t('lbl.allReviews')} <span className="text-gray-500 font-normal">({reviews.length})</span>
         </h2>
         <div className="flex items-center gap-4">
           <div className="flex items-center border border-gray-300 rounded-full px-3 py-1.5">
-            <span className="text-sm mr-2">Latest</span>
+            <span className="text-sm mr-2">{t('lbl.lastest')}</span>
             <ChevronDown className="h-4 w-4" />
           </div>
           <button

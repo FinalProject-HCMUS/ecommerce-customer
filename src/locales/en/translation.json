@@ -29,7 +29,12 @@
     "sendMessage": "Send Message",
     "backToBlog": "Back to Blog",
     "seeMore": "See More",
-    "seeLess": "See Less"
+    "seeLess": "See Less",
+    "latest": "Latest",
+    "writeReview": "Write a Review",
+    "reviewAt": "Reviewed at",
+    "selectColor": "Select Color",
+    "chooseSize": "Choose Size"
   },
   "lbl": {
     "topSelling": "Top Selling Products",
@@ -62,7 +67,13 @@
     "category": "Category",
     "price": "Price",
     "color": "Color",
-    "size": "Size"
+    "size": "Size",
+    "description": "Description",
+    "allReviews": "All Reviews",
+    "lastest": "Latest",
+    "inStock": "In Stock",
+    "quantity": "Quantity",
+    "outOfStock": "Out of Stock"
   },
   "placeholder": {
     "firstName": "Enter your first name",
