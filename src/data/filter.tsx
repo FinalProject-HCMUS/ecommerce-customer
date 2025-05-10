@@ -4,7 +4,7 @@ export const categories = [
   { id: 'shirts', label: 'Shirts' },
   { id: 'hoodies', label: 'Hoodies' },
   { id: 'jeans', label: 'Jeans' },
-]
+];
 
 export const colors = [
   { id: 'green', color: '#4CAF50' },
@@ -16,7 +16,7 @@ export const colors = [
   { id: 'pink', color: '#E91E63' },
   { id: 'white', color: '#FFFFFF', border: true },
   { id: 'black', color: '#000000' },
-]
+];
 
 export const sizes = [
   { id: 'xxs', label: 'XX-Small' },
@@ -28,4 +28,4 @@ export const sizes = [
   { id: 'xxl', label: 'XX-Large' },
   { id: '3xl', label: '3X-Large' },
   { id: '4xl', label: '4X-Large' },
-]
+];

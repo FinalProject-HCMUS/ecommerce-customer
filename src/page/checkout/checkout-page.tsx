@@ -1,8 +1,8 @@
-import type React from 'react'
-import { useState } from 'react'
-import { CheckoutForm } from '../../components/page/checkout/CheckoutForm'
-import { OrderSummary } from '../../components/page/checkout/OrderSummary'
-import Breadcrumb from '../../components/shared/Breadcrumb'
+import type React from 'react';
+import { useState } from 'react';
+import { CheckoutForm } from '../../components/page/checkout/CheckoutForm';
+import { OrderSummary } from '../../components/page/checkout/OrderSummary';
+import Breadcrumb from '../../components/shared/Breadcrumb';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -10,28 +10,28 @@ function App() {
     phone: '09876543223',
     address: '',
     paymentMethod: '',
-  })
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handlePaymentMethodChange = (method: string) => {
     setFormData({
       ...formData,
       paymentMethod: method,
-    })
-  }
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
+    e.preventDefault();
+    console.log('Form submitted:', formData);
     // Here you would typically send the data to your backend
-  }
+  };
 
   return (
     <div className="min-h-screen mt-10 mx-8 bg-white">
@@ -64,7 +64,7 @@ function App() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,22 +1,22 @@
-import type React from 'react'
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowLeft, Calendar, Clock } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
-import { formatDate } from '../../../utils/formatDate'
-import { BlogResponse } from '../../../interfaces'
-import { t } from '../../../helpers/i18n'
+import type React from 'react';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { formatDate } from '../../../utils/formatDate';
+import { BlogResponse } from '../../../interfaces';
+import { t } from '../../../helpers/i18n';
 export interface BlogDetailProps {
-  post: BlogResponse
+  post: BlogResponse;
 }
 
 const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Scroll to top when component mounts
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -26,12 +26,16 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  };
 
   return (
     <motion.div
@@ -51,7 +55,9 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
       </motion.button>
 
       <motion.div variants={itemVariants} className="mb-8">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{post.title}</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          {post.title}
+        </h1>
 
         <div className="flex flex-wrap items-center text-gray-600 text-sm mb-6 gap-4">
           <div className="flex items-center">
@@ -78,11 +84,14 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
 
       <div className="flex flex-col md:flex-row gap-8">
         <motion.div className="md:w-2/3" variants={itemVariants}>
-          <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content || '' }} />
+          <div
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: post.content || '' }}
+          />
         </motion.div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default BlogDetail
+export default BlogDetail;

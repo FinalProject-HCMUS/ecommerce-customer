@@ -1,31 +1,31 @@
 export const navbarLinks = [
   {
     label: 'products',
-    path: '/search',
-    authenticate: false, // No authentication required
+    path: '/products',
+    authenticate: false, 
   },
   {
     label: 'chat',
     path: '/chat',
-    authenticate: true, // No authentication required
+    authenticate: true, 
   },
   {
     label: 'policy',
     path: '/policy',
-    authenticate: false, // No authentication required
+    authenticate: false, 
   },
   {
     label: 'blog',
     path: '/blog',
-    authenticate: false, // No authentication required
+    authenticate: false, 
   },
   {
     label: 'orders',
     path: '/orders',
-    authenticate: true, // Requires authentication
+    authenticate: true, 
   },
-]
+];
 
-export const shopName = 'ShopName'
+export const shopName = 'ShopName';
 
-export const navbarSearchPlaceholder = 'Search for products...'
+export const navbarSearchPlaceholder = 'Search for products...';

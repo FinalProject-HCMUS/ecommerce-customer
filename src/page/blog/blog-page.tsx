@@ -1,36 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import BlogList from '../../components/page/blog/BlogList'
-import Breadcrumb from '../../components/shared/Breadcrumb'
-import Pagination from '../../components/shared/Pagination'
-import { useBlogs } from '../../hooks/blogs'
-import { t } from '../../helpers/i18n'
-import { BLOG_PER_PAGE } from '../../constants/common'
-import { BlogResponse } from '../../interfaces/blog/BlogResponse'
-import { Pageable } from '../../interfaces/common/Pageable'
+import React, { useEffect, useState } from 'react';
+import BlogList from '../../components/page/blog/BlogList';
+import Breadcrumb from '../../components/shared/Breadcrumb';
+import Pagination from '../../components/shared/Pagination';
+import { useBlogs } from '../../hooks/blogs';
+import { t } from '../../helpers/i18n';
+import { BLOG_PER_PAGE } from '../../constants/common';
+import { BlogResponse } from '../../interfaces/blog/BlogResponse';
+import { Pageable } from '../../interfaces/common/Pageable';
 
 const BlogListPage: React.FC = () => {
-  const { loading, fetchBlogs } = useBlogs()
-  const [blogsResponse, setBlogsResponse] = useState<Pageable<BlogResponse[]> | null>(null)
+  const { loading, fetchBlogs } = useBlogs();
+  const [blogsResponse, setBlogsResponse] = useState<Pageable<
+    BlogResponse[]
+  > | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetchBlogs(0, BLOG_PER_PAGE)
+      const res = await fetchBlogs(0, BLOG_PER_PAGE);
       if (res) {
-        setBlogsResponse(res)
+        setBlogsResponse(res);
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
   const handlePageChange = async (pageNumber: number): Promise<void> => {
     // Scroll to top when changing pages
-    const res = await fetchBlogs(pageNumber - 1, BLOG_PER_PAGE)
+    const res = await fetchBlogs(pageNumber - 1, BLOG_PER_PAGE);
     if (res) {
-      setBlogsResponse(res)
+      setBlogsResponse(res);
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="max-w-7xl mx-auto mt-10 mx-10 px-4 py-8">
@@ -44,7 +46,9 @@ const BlogListPage: React.FC = () => {
       <main className="mt-4">
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-pulse text-gray-400">{t('lbl.loading')}</div>
+            <div className="animate-pulse text-gray-400">
+              {t('lbl.loading')}
+            </div>
           </div>
         ) : (
           <>
@@ -58,7 +62,7 @@ const BlogListPage: React.FC = () => {
         )}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default BlogListPage
+export default BlogListPage;

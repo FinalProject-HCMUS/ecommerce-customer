@@ -1,19 +1,21 @@
-import { useState } from 'react'
-import { getProductImagesByProductId } from '../services/apis/productApis'
-import { ProductImageResponse } from '../interfaces'
+import { useState } from 'react';
+import { getProductImagesByProductId } from '../services/apis/productApis';
+import { ProductImageResponse } from '../interfaces';
 
 export const useProductImages = () => {
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchProductImages = async (id: string): Promise<ProductImageResponse[] | null> => {
-    setLoading(true)
+  const fetchProductImages = async (
+    id: string
+  ): Promise<ProductImageResponse[] | null> => {
+    setLoading(true);
     try {
-      const response = await getProductImagesByProductId(id)
-      return response.data || null
+      const response = await getProductImagesByProductId(id);
+      return response.data || null;
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  return { loading, fetchProductImages }
-}
+  return { loading, fetchProductImages };
+};

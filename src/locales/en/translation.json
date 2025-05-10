@@ -73,7 +73,9 @@
     "lastest": "Latest",
     "inStock": "In Stock",
     "quantity": "Quantity",
-    "outOfStock": "Out of Stock"
+    "outOfStock": "Out of Stock",
+    "yourCart": "Your Cart",
+    "policy": "Policy"
   },
   "placeholder": {
     "firstName": "Enter your first name",
@@ -106,29 +108,5 @@
   "pagination": {
     "previous": "Previous",
     "next": "Next"
-  },
-  "error": {
-    "blogNotFound": "Blog not found",
-    "blogNotFoundText": "The blog you are looking for does not exist or has been removed.",
-    "productNotFound": "Product not found",
-    "productNotFoundText": "The product you are looking for does not exist or has been removed."
-  },
-  "success": {
-    "registerSuccess": "Registration successful! Please check your email to verify your account.",
-    "loginSuccess": "Login successful! Welcome back.",
-    "logoutSuccess": "Logout successful! See you next time.",
-    "addToCartSuccess": "Product added to cart successfully!",
-    "removeFromCartSuccess": "Product removed from cart successfully!",
-    "updateProfileSuccess": "Profile updated successfully!",
-    "sendMessageSuccess": "Message sent successfully! We will get back to you soon.",
-    "resetPasswordSuccess": "Password reset link sent to your email. Please check your inbox.",
-    "updatePasswordSuccess": "Password updated successfully! Please log in with your new password.",
-    "updateEmailSuccess": "Email updated successfully! Please verify your new email address.",
-    "updatePhoneSuccess": "Phone number updated successfully! Please verify your new phone number.",
-    "updateAddressSuccess": "Address updated successfully!",
-    "updatePaymentSuccess": "Payment method updated successfully!",
-    "updateShippingSuccess": "Shipping method updated successfully!",
-    "updateOrderSuccess": "Order updated successfully!",
-    "updateCartSuccess": "Cart updated successfully!"
   }
 }

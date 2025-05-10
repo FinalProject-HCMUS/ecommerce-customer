@@ -8,17 +8,17 @@ const orderStatus = [
   { value: 'DELIVERED', label: 'Delivered' },
   { value: 'CANCELLED', label: 'Cancelled' },
   { value: 'REFUNDED', label: 'Refunded' },
-]
+];
 
-const TOP_PRODUCTS_PER_PAGE = 30
-const PRODUCT_PER_PAGE = 16
-const BLOG_PER_PAGE = 10
-const TOP_TRENDING = 'TOP TRENDING'
-const TOP_SELLING = 'TOP SELLING'
-const VISIBLE_PRODUCT = 4
+const TOP_PRODUCTS_PER_PAGE = 30;
+const PRODUCT_PER_PAGE = 16;
+const BLOG_PER_PAGE = 10;
+const TOP_TRENDING = 'TOP TRENDING';
+const TOP_SELLING = 'TOP SELLING';
+const VISIBLE_PRODUCT = 4;
 
-const COLOR_PER_PAGE = 30
-const SIZE_PER_PAGE = 10
+const COLOR_PER_PAGE = 30;
+const SIZE_PER_PAGE = 10;
 
 export {
   orderStatus,
@@ -30,4 +30,4 @@ export {
   VISIBLE_PRODUCT,
   COLOR_PER_PAGE,
   SIZE_PER_PAGE,
-}
+};

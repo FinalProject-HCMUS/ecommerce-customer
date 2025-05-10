@@ -1,10 +1,12 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ProfileHeaderProps {
-  showSavedMessage: boolean
+  showSavedMessage: boolean;
 }
 
-const ProfileHeader = ({ showSavedMessage }: ProfileHeaderProps): JSX.Element => {
+const ProfileHeader = ({
+  showSavedMessage,
+}: ProfileHeaderProps): JSX.Element => {
   return (
     <>
       {/* Saved message */}
@@ -21,7 +23,7 @@ const ProfileHeader = ({ showSavedMessage }: ProfileHeaderProps): JSX.Element =>
         )}
       </AnimatePresence>
     </>
-  )
-}
+  );
+};
 
-export default ProfileHeader
+export default ProfileHeader;

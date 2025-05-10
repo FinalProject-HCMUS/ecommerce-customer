@@ -1,55 +1,60 @@
-import React, { useState } from 'react'
-import InputField from '../../../shared/form/InputField'
-import PasswordInput from '../../../shared/form/PasswordInput'
-import SocialLoginButton from './SocialLoginButton'
-import Divider from '../../../shared/Divider'
-import { GeneralButton } from '../../../shared/Button' // Import the reusable Button component
-import { FcGoogle } from 'react-icons/fc'
-import { FaFacebook } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import { useAuth } from '../../../../hooks/auth'
-import { showSuccess } from '../../../../utils/SuccessToastifyRender'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { login } from '../../../../context/authSlice'
-import { useUser } from '../../../../hooks/user'
-import { t } from '../../../../helpers/i18n'
+import React, { useState } from 'react';
+import InputField from '../../../shared/form/InputField';
+import PasswordInput from '../../../shared/form/PasswordInput';
+import SocialLoginButton from './SocialLoginButton';
+import Divider from '../../../shared/Divider';
+import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../../../hooks/auth';
+import { messageRenderUtils } from '../../../../utils';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../../context/authSlice';
+import { useUser } from '../../../../hooks/user';
+import { t } from '../../../../helpers/i18n';
+import storageConstants from '../../../../constants/localStorage';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const { loginUser, loading } = useAuth() // Use the loginUser function and loading state
-  const { fetchUserByToken } = useUser()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { loginUser, loading } = useAuth(); // Use the loginUser function and loading state
+  const { fetchUserByToken } = useUser();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
+    const tokenResponse = await loginUser({ email, password });
 
-    // Call the loginUser function
-    const tokenResponse = await loginUser({ email, password })
+    if (!tokenResponse) return;
 
-    if (tokenResponse) {
-      localStorage.setItem('accessToken', tokenResponse.accessToken)
-      const user = await fetchUserByToken()
-      console.log('User:', user)
-      if (user) {
-        dispatch(
-          login({
-            userInfo: user,
-            accessToken: tokenResponse.accessToken,
-            refreshAccessToken: tokenResponse.refreshToken,
-          }),
-        )
-        showSuccess('Login successful!') // Show success message
-        navigate('/') // Redirect to home page after successful login
-      }
-    }
-  }
+    localStorage.setItem(
+      storageConstants.TOKEN,
+      tokenResponse.accessToken
+    );
+  
+    const user = await fetchUserByToken();
+
+    if (!user) return;
+
+    dispatch(
+      login({
+        userInfo: user,
+        accessToken: tokenResponse.accessToken,
+        refreshAccessToken: tokenResponse.refreshToken,
+      })
+    );
+    messageRenderUtils.showSuccess(t('success.loginSuccess'));
+    navigate('/');
+  };
 
   return (
     <>
-      <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">{t('lbl.login')}</h1>
+      <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">
+        {t('lbl.login')}
+      </h1>
       <form onSubmit={handleSubmit}>
         <InputField
           id={t('lbl.email')}
@@ -84,7 +89,10 @@ const LoginForm = () => {
 
       <div className="mt-4 text-center text-sm text-gray-500">
         {t('lbl.notRegistered')}
-        <Link to="/register" className="ml-1 font-medium text-blue-600 hover:text-blue-500">
+        <Link
+          to="/register"
+          className="ml-1 font-medium text-blue-600 hover:text-blue-500"
+        >
           {t('hyperlink.register')}
         </Link>
       </div>
@@ -104,7 +112,7 @@ const LoginForm = () => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

@@ -19,6 +19,6 @@ const colorData = {
   mint: '#98FF98',
   coral: '#FF7F50',
   taupe: '#483C32',
-}
+};
 
-export default colorData
+export default colorData;

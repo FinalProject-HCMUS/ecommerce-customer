@@ -1,9 +1,13 @@
-import { useState } from 'react'
-import { getAllProducts, getProductById, getTopProducts } from '../services/apis/productApis'
-import { ProductResponse, Pageable } from '../interfaces'
+import { useState } from 'react';
+import {
+  getAllProducts,
+  getProductById,
+  getTopProducts,
+} from '../services/apis/productApis';
+import { ProductResponse, Pageable } from '../interfaces';
 
 export const useProducts = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   // Fetch all products
   const fetchAllProducts = async ({
@@ -17,51 +21,61 @@ export const useProducts = () => {
     color,
     size,
   }: {
-    page?: number
-    perPage?: number
-    sort?: string[]
-    keySearch?: string
-    category?: string
-    fromPrice?: number
-    topPrice?: number
-    color?: string
-    size?: string
+    page?: number;
+    perPage?: number;
+    sort?: string[];
+    keySearch?: string;
+    category?: string;
+    fromPrice?: number;
+    topPrice?: number;
+    color?: string;
+    size?: string;
   }): Promise<Pageable<ProductResponse[]> | undefined> => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await getAllProducts(page, perPage, sort, keySearch, category, fromPrice, topPrice, color, size)
-      return response.data
+      const response = await getAllProducts(
+        page,
+        perPage,
+        sort,
+        keySearch,
+        category,
+        fromPrice,
+        topPrice,
+        color,
+        size
+      );
+      return response.data;
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   // Fetch a product by ID
   const fetchProductById = async (id: string) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await getProductById(id)
-      return response.data || null
+      const response = await getProductById(id);
+      return response.data || null;
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   // Fetch top products (top-selling and top-trending)
   const fetchTopProducts = async (page: number = 1, size: number = 30) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await getTopProducts(page, size)
-      return response.data || null
+      const response = await getTopProducts(page, size);
+      return response.data || null;
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return {
     loading,
     fetchAllProducts,
     fetchProductById,
     fetchTopProducts,
-  }
-}
+  };
+};

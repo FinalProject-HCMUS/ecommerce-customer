@@ -3,7 +3,7 @@ const formatCurrency = (value: number, currency: 'USD' | 'VND'): string => {
     style: 'currency',
     currency: currency,
     maximumFractionDigits: 0,
-  }).format(value)
-}
+  }).format(value);
+};
 
-export { formatCurrency }
+export { formatCurrency };

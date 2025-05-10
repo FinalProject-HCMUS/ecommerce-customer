@@ -1,16 +1,25 @@
-import React from 'react'
-import { Trash2 } from 'lucide-react'
-import QuantityControl from './QuantityControl'
-import type { CartItemProps } from '../../../interfaces/temp/cart'
+import React from 'react';
+import { Trash2 } from 'lucide-react';
+import QuantityControl from './QuantityControl';
+import { CartItemResponse } from '../../../interfaces';
+import { t } from '../../../helpers/i18n';
+export interface CartItemProps {
+  item: CartItemResponse;
+  updateQuantity: (id: string, quantity: number) => void;
+  removeItem: (id: string) => void;
+}
 
-const CartItem: React.FC<CartItemProps> = ({ item, updateQuantity, removeItem }) => {
+const CartItem: React.FC<CartItemProps> = ({
+  item,
+  updateQuantity,
+  removeItem,
+}) => {
   return (
     <div className="bg-white rounded-[12px] p-6 border border-gray-200">
       <div className="flex items-center">
         <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
           <img
-            src={item.image || '/placeholder.svg'}
-            alt={item.name}
+            src={'/placeholder.svg'}
             className="h-full w-full object-cover object-center"
           />
         </div>
@@ -18,17 +27,22 @@ const CartItem: React.FC<CartItemProps> = ({ item, updateQuantity, removeItem })
         <div className="ml-4 flex-1">
           <div className="flex justify-between">
             <div>
-              <h2 className="text-lg font-medium text-gray-900">{item.name}</h2>
-              <p className="mt-1 text-sm text-gray-500">Size: {item.size}</p>
-              <p className="mt-1 text-sm text-gray-500">Color: {item.color}</p>
+              <h2 className="text-lg font-medium text-gray-900">
+                Name Product
+              </h2>
+              <p className="mt-1 text-sm text-gray-500">{`${t('lbl.size')}: ${item}`}</p>
+              <p className="mt-1 text-sm text-gray-500">{`${t('lbl.color')}: ${item}`}</p>
             </div>
-            <button onClick={() => removeItem(item.id)} className="text-red-500 hover:text-red-700">
+            <button
+              onClick={() => removeItem(item.id)}
+              className="text-red-500 hover:text-red-700"
+            >
               <Trash2 size={18} />
             </button>
           </div>
 
           <div className="flex items-center justify-between mt-4">
-            <p className="text-lg font-medium">${item.price}</p>
+            <p className="text-lg font-medium">Price</p>
             <QuantityControl
               quantity={item.quantity}
               onDecrease={() => updateQuantity(item.id, item.quantity - 1)}
@@ -38,7 +52,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, updateQuantity, removeItem })
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartItem
+export default CartItem;

@@ -1,9 +1,9 @@
-import type React from 'react'
-import { ArrowRight } from 'lucide-react'
-import type { OrderSummaryProps } from '../../../interfaces/temp/cart'
+import type React from 'react';
+import { ArrowRight } from 'lucide-react';
+import type { OrderSummaryProps } from '../../../interfaces/temp/cart';
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ data }) => {
-  const { subtotal, discountAmount, deliveryFee, total } = data
+  const { subtotal, discountAmount, deliveryFee, total } = data;
 
   return (
     <div className="bg-white rounded-[12px] p-6 border border-gray-200">
@@ -38,7 +38,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ data }) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderSummary
+export default OrderSummary;

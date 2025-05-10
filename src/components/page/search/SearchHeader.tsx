@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion'
-import { t } from '../../../helpers/i18n'
-import React from 'react'
+import { motion } from 'framer-motion';
+import { t } from '../../../helpers/i18n';
+import React from 'react';
 interface SearchHeaderProps {
-  keySearch: string
+  keySearch: string;
 }
 
 const SearchHeader: React.FC<SearchHeaderProps> = ({ keySearch }) => {
   if (!keySearch || keySearch.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -19,7 +19,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ keySearch }) => {
     >
       <h1 className="text-md font-semibold mb-4">{`${t('lbl.resultSearch')} ${keySearch}`}</h1>
     </motion.div>
-  )
-}
+  );
+};
 
-export default SearchHeader
+export default SearchHeader;

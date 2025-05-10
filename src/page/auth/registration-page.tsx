@@ -1,5 +1,5 @@
-import ShopInfo from '../../components/page/auth/registration/ShopInfo'
-import RegistrationForm from '../../components/page/auth/registration/RegistrationForm'
+import ShopInfo from '../../components/page/auth/registration/ShopInfo';
+import RegistrationForm from '../../components/page/auth/registration/RegistrationForm';
 
 function Registration() {
   return (
@@ -9,7 +9,7 @@ function Registration() {
       {/* Right side - Registration form */}
       <RegistrationForm />
     </div>
-  )
+  );
 }
 
-export default Registration
+export default Registration;

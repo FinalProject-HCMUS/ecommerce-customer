@@ -1,4 +1,4 @@
-import client from './request'
+import client from './request';
 import {
   CustomResponse,
   ProductResponse,
@@ -6,7 +6,7 @@ import {
   Pageable,
   ProductImageResponse,
   ProductColorSizeResponse,
-} from '../../interfaces'
+} from '../../interfaces';
 
 export const getAllProducts = async (
   page: number = 0,
@@ -17,9 +17,11 @@ export const getAllProducts = async (
   fromprice?: number,
   toprice?: number,
   color?: string,
-  size?: string,
+  size?: string
 ): Promise<CustomResponse<Pageable<ProductResponse[]>>> => {
-  const response = await client.get<CustomResponse<Pageable<ProductResponse[]>>>('/products', {
+  const response = await client.get<
+    CustomResponse<Pageable<ProductResponse[]>>
+  >('/products', {
     params: {
       page,
       perpage,
@@ -31,39 +33,48 @@ export const getAllProducts = async (
       color,
       size,
     },
-  })
-  return response.data
-}
+  });
+  return response.data;
+};
 
 // Fetch a product by ID
-export const getProductById = async (id: string): Promise<CustomResponse<ProductResponse>> => {
-  const response = await client.get<CustomResponse<ProductResponse>>(`/products/${id}`)
-  return response.data
-}
+export const getProductById = async (
+  id: string
+): Promise<CustomResponse<ProductResponse>> => {
+  const response = await client.get<CustomResponse<ProductResponse>>(
+    `/products/${id}`
+  );
+  return response.data;
+};
 
 // Fetch top products (top-selling and top-trending) with pagination
 export const getTopProducts = async (
   page: number = 0,
-  size: number = 30,
+  size: number = 30
 ): Promise<CustomResponse<TopProductResponse>> => {
-  const response = await client.get<CustomResponse<TopProductResponse>>('/products/top-products', {
-    params: { page, size },
-  })
-  return response.data
-}
+  const response = await client.get<CustomResponse<TopProductResponse>>(
+    '/products/top-products',
+    {
+      params: { page, size },
+    }
+  );
+  return response.data;
+};
 
 export const getProductImagesByProductId = async (
-  productId: string,
+  productId: string
 ): Promise<CustomResponse<ProductImageResponse[]>> => {
-  const response = await client.get<CustomResponse<ProductImageResponse[]>>(`/product-images/product/${productId}`)
-  return response.data
-}
+  const response = await client.get<CustomResponse<ProductImageResponse[]>>(
+    `/product-images/product/${productId}`
+  );
+  return response.data;
+};
 
 export const getProductColorSizesByProductId = async (
-  productId: string,
+  productId: string
 ): Promise<CustomResponse<ProductColorSizeResponse[]>> => {
   const response = await client.get<CustomResponse<ProductColorSizeResponse[]>>(
-    `/product-color-sizes/product/${productId}`,
-  )
-  return response.data
-}
+    `/product-color-sizes/product/${productId}`
+  );
+  return response.data;
+};

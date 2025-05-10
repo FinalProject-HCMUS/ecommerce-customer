@@ -1,8 +1,8 @@
-import { Status } from './Status'
+import { Status } from './Status';
 
 export interface OrderTrackResponse {
-  id: string
-  notes: string
-  status: Status
-  updatedTime: string
+  id: string;
+  notes: string;
+  status: Status;
+  updatedTime: string;
 }

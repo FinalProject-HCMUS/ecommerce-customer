@@ -1,14 +1,13 @@
-import type React from 'react'
-import { motion } from 'framer-motion'
-import PolicySection from './PolicySection'
-import type { PolicySectionType } from '../../../interfaces/temp/policy'
+import type React from 'react';
+import { motion } from 'framer-motion';
+import PolicySection from './PolicySection';
+import { policy } from '../../../locales/en/shopData.json';
 
 interface PolicyContentProps {
-  title: string
-  sections: PolicySectionType[]
+  title: string;
 }
 
-const PolicyContent: React.FC<PolicyContentProps> = ({ title, sections }) => {
+const PolicyContent: React.FC<PolicyContentProps> = ({ title }) => {
   return (
     <motion.div
       className="bg-gray-200 rounded p-8 md:p-12"
@@ -19,12 +18,12 @@ const PolicyContent: React.FC<PolicyContentProps> = ({ title, sections }) => {
       <h1 className="text-2xl font-bold mb-8">{title}</h1>
 
       <div className="space-y-6">
-        {sections.map((section, index) => (
-          <PolicySection key={index} section={section} index={index} />
+        {policy.map((section, index) => (
+          <PolicySection key={index} index={index} />
         ))}
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default PolicyContent
+export default PolicyContent;

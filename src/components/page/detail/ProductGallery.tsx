@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import { ProductImageResponse } from '../../../interfaces'
+import React, { useState } from 'react';
+import { ProductImageResponse } from '../../../interfaces';
 
-const ProductGallery: React.FC<{ images: ProductImageResponse[] }> = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState<number>(0)
+const ProductGallery: React.FC<{ images: ProductImageResponse[] }> = ({
+  images,
+}) => {
+  const [selectedImage, setSelectedImage] = useState<number>(0);
 
   return (
     <div className="flex flex-col md:flex-row gap-4">
@@ -22,10 +24,13 @@ const ProductGallery: React.FC<{ images: ProductImageResponse[] }> = ({ images }
 
       {/* Main Image */}
       <div className="flex-1">
-        <img src={images[selectedImage]?.url} className="w-full h-auto rounded-[12px]" />
+        <img
+          src={images[selectedImage]?.url}
+          className="w-full h-auto rounded-[12px]"
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductGallery
+export default ProductGallery;

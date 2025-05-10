@@ -1,19 +1,19 @@
-import type React from 'react'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp } from 'react-feather'
-import { categories, colors, sizes } from '../../../data/filter'
-import { t } from '../../../helpers/i18n'
+import type React from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, ChevronUp } from 'react-feather';
+import { categories, colors, sizes } from '../../../data/filter';
+import { t } from '../../../helpers/i18n';
 
 interface FiltersProps {
-  priceRange: [number, number]
-  setPriceRange: (range: [number, number]) => void
-  selectedColor: string | undefined
-  setSelectedColor: (color: string) => void
-  selectedSize: string | undefined
-  setSelectedSize: (sizes: string) => void
-  selectedCategorie: string | undefined
-  setSelectedCategories: (categories: string) => void
+  priceRange: [number, number];
+  setPriceRange: (range: [number, number]) => void;
+  selectedColor: string | undefined;
+  setSelectedColor: (color: string) => void;
+  selectedSize: string | undefined;
+  setSelectedSize: (sizes: string) => void;
+  selectedCategorie: string | undefined;
+  setSelectedCategories: (categories: string) => void;
 }
 
 const Filters = ({
@@ -29,39 +29,39 @@ const Filters = ({
     price: true,
     colors: true,
     size: true,
-  })
+  });
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections({
       ...expandedSections,
       [section]: !expandedSections[section],
-    })
-  }
+    });
+  };
 
   const handleColorSelect = (color: string) => {
     if (selectedColor === color) {
-      setSelectedColor('')
+      setSelectedColor('');
     } else {
-      setSelectedColor(color)
+      setSelectedColor(color);
     }
-  }
+  };
 
   const handleSizeSelect = (size: string) => {
     if (selectedSize === size) {
-      setSelectedSize('')
+      setSelectedSize('');
     } else {
-      setSelectedSize(size)
+      setSelectedSize(size);
     }
-  }
+  };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number.parseInt(e.target.value)
+    const value = Number.parseInt(e.target.value);
     if (e.target.name === 'min') {
-      setPriceRange([value, priceRange[1]])
+      setPriceRange([value, priceRange[1]]);
     } else {
-      setPriceRange([priceRange[0], value])
+      setPriceRange([priceRange[0], value]);
     }
-  }
+  };
 
   return (
     <motion.div
@@ -85,7 +85,11 @@ const Filters = ({
           onClick={() => toggleSection('categories')}
         >
           <h3 className="text-base font-medium m-0">{t('lbl.category')}</h3>
-          {expandedSections.categories ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          {expandedSections.categories ? (
+            <ChevronUp size={16} />
+          ) : (
+            <ChevronDown size={16} />
+          )}
         </div>
 
         <AnimatePresence>
@@ -112,9 +116,16 @@ const Filters = ({
 
       {/* Price Range */}
       <div className="mb-6">
-        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('price')}>
+        <div
+          className="flex justify-between items-center cursor-pointer py-1"
+          onClick={() => toggleSection('price')}
+        >
           <h3 className="text-base font-medium m-0">{t('lbl.price')}</h3>
-          {expandedSections.price ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          {expandedSections.price ? (
+            <ChevronUp size={16} />
+          ) : (
+            <ChevronDown size={16} />
+          )}
         </div>
 
         <AnimatePresence>
@@ -159,9 +170,16 @@ const Filters = ({
 
       {/* Colors */}
       <div className="mb-6">
-        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('colors')}>
+        <div
+          className="flex justify-between items-center cursor-pointer py-1"
+          onClick={() => toggleSection('colors')}
+        >
           <h3 className="text-base font-medium m-0">{t('lbl.color')}</h3>
-          {expandedSections.colors ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          {expandedSections.colors ? (
+            <ChevronUp size={16} />
+          ) : (
+            <ChevronDown size={16} />
+          )}
         </div>
 
         <AnimatePresence>
@@ -192,9 +210,16 @@ const Filters = ({
 
       {/* Size */}
       <div className="mb-6">
-        <div className="flex justify-between items-center cursor-pointer py-1" onClick={() => toggleSection('size')}>
+        <div
+          className="flex justify-between items-center cursor-pointer py-1"
+          onClick={() => toggleSection('size')}
+        >
           <h3 className="text-base font-medium m-0">{t('lbl.size')}</h3>
-          {expandedSections.size ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          {expandedSections.size ? (
+            <ChevronUp size={16} />
+          ) : (
+            <ChevronDown size={16} />
+          )}
         </div>
 
         <AnimatePresence>
@@ -249,7 +274,7 @@ const Filters = ({
         </AnimatePresence>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Filters
+export default Filters;

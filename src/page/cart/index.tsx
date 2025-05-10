@@ -1,1 +1,1 @@
-export { default as CartPage } from './cart-page'
+export { default as CartPage } from './cart-page';

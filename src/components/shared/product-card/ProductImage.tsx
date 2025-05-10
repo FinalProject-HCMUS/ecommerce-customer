@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 interface ProductImageProps {
-  id: string
-  imageUrl?: string
+  id: string;
+  imageUrl?: string;
 }
 export default function ProductImage({ id, imageUrl }: ProductImageProps) {
   return (
@@ -14,5 +14,5 @@ export default function ProductImage({ id, imageUrl }: ProductImageProps) {
       />
       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
     </Link>
-  )
+  );
 }

@@ -1,41 +1,46 @@
-import { useState, useRef, useEffect } from 'react'
-import { ChevronDown, Check } from 'lucide-react'
-import localization from '../../constants/localization'
-import { changeLanguage, getCurrentLanguage } from '../../helpers/localization'
-import { IRegionItem } from '../../interfaces'
-import localizationConstants from '../../constants/localization'
-import { Avatar } from 'antd'
+import { useState, useRef, useEffect } from 'react';
+import { ChevronDown, Check } from 'lucide-react';
+import localization from '../../constants/localization';
+import { changeLanguage, getCurrentLanguage } from '../../helpers/localization';
+import { IRegionItem } from '../../interfaces';
+import localizationConstants from '../../constants/localization';
+import { Avatar } from 'antd';
 
-const { REGIONS } = localizationConstants
+const { REGIONS } = localizationConstants;
 
 export default function LanguageSwitcher() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedLanguage, setSelectedLanguage] = useState<IRegionItem>(localization.REGIONS[getCurrentLanguage()])
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<IRegionItem>(
+    localization.REGIONS[getCurrentLanguage()]
+  );
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const handleLanguageSelect = (regionItem: IRegionItem) => {
-    setSelectedLanguage(regionItem)
-    setIsOpen(false)
-    changeLanguage(regionItem.key)
-  }
+    setSelectedLanguage(regionItem);
+    setIsOpen(false);
+    changeLanguage(regionItem.key);
+  };
 
   return (
     <div ref={dropdownRef} className={`relative inline-block text-left`}>
@@ -59,7 +64,9 @@ export default function LanguageSwitcher() {
 
       <div
         className={`absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10 transition-all duration-200 ease-in-out ${
-          isOpen ? 'transform opacity-100 scale-100' : 'transform opacity-0 scale-95 pointer-events-none'
+          isOpen
+            ? 'transform opacity-100 scale-100'
+            : 'transform opacity-0 scale-95 pointer-events-none'
         }`}
         role="menu"
         aria-orientation="vertical"
@@ -78,11 +85,13 @@ export default function LanguageSwitcher() {
             >
               <Avatar src={region.flag} shape="square" className="mx-2" />
               <span className="flex-grow text-left">{region.name}</span>
-              {selectedLanguage.key === region.key && <Check className="h-4 w-4 text-emerald-500" />}
+              {selectedLanguage.key === region.key && (
+                <Check className="h-4 w-4 text-emerald-500" />
+              )}
             </button>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }

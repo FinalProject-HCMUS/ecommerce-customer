@@ -1,27 +1,29 @@
-import { useState, useEffect } from 'react'
-import { FiShoppingCart } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
-import { navbarLinks } from '../../data/navbar'
-import { RootState } from '../../context/store'
-import { useSelector } from 'react-redux'
-import UserDropdown from './UserDropdown'
-import LanguageSwitcher from './LanguageSwitcher'
-import { t } from '../../helpers/i18n'
+import { useState, useEffect } from 'react';
+import { FiShoppingCart } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { navbarLinks } from '../../data/navbar';
+import { RootState } from '../../context/store';
+import { useSelector } from 'react-redux';
+import UserDropdown from './UserDropdown';
+import LanguageSwitcher from './LanguageSwitcher';
+import { t } from '../../helpers/i18n';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Get authentication state from Redux
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header
@@ -40,13 +42,17 @@ const Navbar = () => {
               {navbarLinks.map((link) => {
                 // Conditionally render links based on authentication
                 if (link.authenticate && !isAuthenticated) {
-                  return null // Hide links that require authentication if not authenticated
+                  return null; // Hide links that require authentication if not authenticated
                 }
                 return (
-                  <Link key={link.path} to={link.path} className="nav-link font-medium">
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className="nav-link font-medium"
+                  >
                     {t('navbar.' + link.label)}
                   </Link>
-                )
+                );
               })}
             </nav>
           </div>
@@ -68,11 +74,16 @@ const Navbar = () => {
             ) : (
               // Show Login button if not authenticated
               <Link to="/login">
-                <button className="p-2 hover:text-gray-600 transition-colors">{t('login')}</button>
+                <button className="p-2 hover:text-gray-600 transition-colors">
+                  {t('login')}
+                </button>
               </Link>
             )}
 
-            <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <button
+              className="md:hidden p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
               <div className="w-6 h-0.5 bg-black mb-1.5"></div>
               <div className="w-6 h-0.5 bg-black mb-1.5"></div>
               <div className="w-6 h-0.5 bg-black"></div>
@@ -87,13 +98,13 @@ const Navbar = () => {
               {navbarLinks.map((link) => {
                 // Conditionally render links based on authentication
                 if (link.authenticate && !isAuthenticated) {
-                  return null // Hide links that require authentication if not authenticated
+                  return null; // Hide links that require authentication if not authenticated
                 }
                 return (
                   <Link key={link.path} to={link.path} className="font-medium">
                     {t(link.label)}
                   </Link>
-                )
+                );
               })}
             </nav>
 
@@ -109,7 +120,9 @@ const Navbar = () => {
                 </>
               ) : (
                 <Link to="/login" className="flex items-center space-x-2">
-                  <button className="p-2 hover:text-gray-600 transition-colors">{t('login')}</button>
+                  <button className="p-2 hover:text-gray-600 transition-colors">
+                    {t('login')}
+                  </button>
                 </Link>
               )}
             </div>
@@ -117,7 +130,7 @@ const Navbar = () => {
         )}
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

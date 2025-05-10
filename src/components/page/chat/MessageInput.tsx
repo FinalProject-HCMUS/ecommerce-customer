@@ -1,21 +1,21 @@
-import type React from 'react'
-import { useState } from 'react'
-import { Send } from 'lucide-react'
+import type React from 'react';
+import { useState } from 'react';
+import { Send } from 'lucide-react';
 
 interface MessageInputProps {
-  onSendMessage: (text: string) => void
+  onSendMessage: (text: string) => void;
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (inputValue.trim()) {
-      onSendMessage(inputValue)
-      setInputValue('')
+      onSendMessage(inputValue);
+      setInputValue('');
     }
-  }
+  };
 
   return (
     <div className="bg-white border-t p-4">
@@ -30,18 +30,26 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
               className="w-full py-3 px-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
             />
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
-              <button type="submit" className="p-2 rounded-full bg-gray-800 text-white" disabled={!inputValue.trim()}>
+              <button
+                type="submit"
+                className="p-2 rounded-full bg-gray-800 text-white"
+                disabled={!inputValue.trim()}
+              >
                 <Send className="h-5 w-5" />
               </button>
             </div>
           </div>
           <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-300">
-            <img src="/placeholder.svg?height=40&width=40" alt="Your avatar" className="w-full h-full object-cover" />
+            <img
+              src="/placeholder.svg?height=40&width=40"
+              alt="Your avatar"
+              className="w-full h-full object-cover"
+            />
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MessageInput
+export default MessageInput;

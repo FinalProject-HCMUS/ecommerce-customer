@@ -1,4 +1,4 @@
-import { Message } from '../interfaces/temp/message'
+import { Message } from '../interfaces/temp/message';
 
 export const message: Message[] = [
   {
@@ -26,4 +26,4 @@ export const message: Message[] = [
     sender: 'user',
     timestamp: '',
   },
-]
+];

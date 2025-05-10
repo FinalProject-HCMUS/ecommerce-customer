@@ -1,5 +1,5 @@
 export interface UpdateCartItemRequest {
-  quantity?: number 
-  itemId?: string 
-  userId?: string 
+  quantity?: number;
+  itemId?: string;
+  userId?: string;
 }

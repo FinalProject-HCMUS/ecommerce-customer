@@ -1,16 +1,22 @@
-import type React from 'react'
-import { MoreHorizontal } from 'lucide-react'
-import StarRating from '../../shared/RatingStars'
+import type React from 'react';
+import { MoreHorizontal } from 'lucide-react';
+import StarRating from '../../shared/RatingStars';
 
 interface ReviewCardProps {
-  author: string
-  isVerified?: boolean
-  rating: number
-  content: string
-  date: string
+  author: string;
+  isVerified?: boolean;
+  rating: number;
+  content: string;
+  date: string;
 }
 
-const ReviewCard: React.FC<ReviewCardProps> = ({ author, isVerified = false, rating, content, date }) => {
+const ReviewCard: React.FC<ReviewCardProps> = ({
+  author,
+  isVerified = false,
+  rating,
+  content,
+  date,
+}) => {
   return (
     <div className="border border-gray-200 rounded-[12px] p-6 mb-4">
       <div className="flex justify-between items-start mb-2">
@@ -34,7 +40,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ author, isVerified = false, rat
       <p className="text-gray-700 my-3">{content}</p>
       <p className="text-sm text-gray-500">Posted on {date}</p>
     </div>
-  )
-}
+  );
+};
 
-export default ReviewCard
+export default ReviewCard;

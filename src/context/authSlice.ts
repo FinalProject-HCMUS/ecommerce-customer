@@ -1,19 +1,22 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserResponse } from '../interfaces'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserResponse } from '../interfaces';
+import localStorageConstants from '../constants/localStorage';
 
 interface AuthState {
-  isAuthenticated: boolean
-  accessToken: string | null
-  refreshAccessToken: string | null
-  userInfo: UserResponse | null
+  isAuthenticated: boolean;
+  accessToken: string | null;
+  refreshAccessToken: string | null;
+  userInfo: UserResponse | null;
 }
 
 const initialState: AuthState = {
-  isAuthenticated: !!localStorage.getItem('token'), // Check if token exists in localStorage
-  accessToken: localStorage.getItem('token'),
-  refreshAccessToken: localStorage.getItem('refreshToken'),
-  userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo') as string) : null,
-}
+  isAuthenticated: !!localStorage.getItem(localStorageConstants.TOKEN), 
+  accessToken: localStorage.getItem(localStorageConstants.TOKEN),
+  refreshAccessToken: localStorage.getItem(localStorageConstants.REFRESH_TOKEN),
+  userInfo: localStorage.getItem(localStorageConstants.USER_INFO)
+    ? JSON.parse(localStorage.getItem(localStorageConstants.USER_INFO) as string)
+    : null,
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -21,40 +24,45 @@ const authSlice = createSlice({
   reducers: {
     login: (
       state,
-      action: PayloadAction<{ userInfo: UserResponse; accessToken: string; refreshAccessToken: string }>,
+      action: PayloadAction<{
+        userInfo: UserResponse;
+        accessToken: string;
+        refreshAccessToken: string;
+      }>
     ) => {
-      state.isAuthenticated = true
-      state.userInfo = action.payload.userInfo
-      state.accessToken = action.payload.accessToken
-      state.refreshAccessToken = action.payload.refreshAccessToken
+      state.isAuthenticated = true;
+      state.userInfo = action.payload.userInfo;
+      state.accessToken = action.payload.accessToken;
+      state.refreshAccessToken = action.payload.refreshAccessToken;
 
       // Persist tokens in localStorage
-      localStorage.setItem('token', action.payload.accessToken)
-      localStorage.setItem('refreshToken', action.payload.refreshAccessToken)
-      localStorage.setItem('email', action.payload.userInfo.email)
-      localStorage.setItem('userInfo', JSON.stringify(action.payload.userInfo))
+      localStorage.setItem(localStorageConstants.TOKEN, action.payload.accessToken);
+      localStorage.setItem(localStorageConstants.REFRESH_TOKEN, action.payload.refreshAccessToken);
+      localStorage.setItem(localStorageConstants.EMAIL, action.payload.userInfo.email);
+      localStorage.setItem(localStorageConstants.USER_INFO, JSON.stringify(action.payload.userInfo));
     },
-    updateTokens: (state, action: PayloadAction<{ accessToken: string; refreshAccessToken: string }>) => {
-      state.accessToken = action.payload.accessToken
-      state.refreshAccessToken = action.payload.refreshAccessToken
+    updateTokens: (
+      state,
+      action: PayloadAction<{ accessToken: string; refreshAccessToken: string }>
+    ) => {
+      state.accessToken = action.payload.accessToken;
+      state.refreshAccessToken = action.payload.refreshAccessToken;
 
-      // Persist updated tokens in localStorage
-      localStorage.setItem('token', action.payload.accessToken)
-      localStorage.setItem('refreshToken', action.payload.refreshAccessToken)
+      localStorage.setItem(localStorageConstants.TOKEN, action.payload.accessToken);
+      localStorage.setItem(localStorageConstants.REFRESH_TOKEN, action.payload.refreshAccessToken);
     },
     logout: (state) => {
-      state.isAuthenticated = false
-      state.userInfo = null
-      state.accessToken = null
-      state.refreshAccessToken = null
-
-      // Clear tokens from localStorage
-      localStorage.removeItem('token')
-      localStorage.removeItem('refreshToken')
-      localStorage.removeItem('email')
+      state.isAuthenticated = false;
+      state.userInfo = null;
+      state.accessToken = null;
+      state.refreshAccessToken = null;
+      
+      localStorage.removeItem(localStorageConstants.TOKEN);
+      localStorage.removeItem(localStorageConstants.REFRESH_TOKEN);
+      localStorage.removeItem(localStorageConstants.EMAIL);
     },
   },
-})
+});
 
-export const { login, updateTokens, logout } = authSlice.actions
-export default authSlice.reducer
+export const { login, updateTokens, logout } = authSlice.actions;
+export default authSlice.reducer;

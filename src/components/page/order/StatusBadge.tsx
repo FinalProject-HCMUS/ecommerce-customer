@@ -1,13 +1,13 @@
-import type React from 'react'
-import type { OrderStatus } from '../../../interfaces/temp/order'
-import { statusConfig } from '../../../data/statusConfig'
+import type React from 'react';
+import type { OrderStatus } from '../../../interfaces/temp/order';
+import { statusConfig } from '../../../data/statusConfig';
 
 interface StatusBadgeProps {
-  status: OrderStatus
+  status: OrderStatus;
 }
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
-  const config = statusConfig[status]
+  const config = statusConfig[status];
 
   return (
     <span
@@ -16,7 +16,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
       {config.icon}
       {config.text}
     </span>
-  )
-}
+  );
+};
 
-export default StatusBadge
+export default StatusBadge;

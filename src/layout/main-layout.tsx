@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom' // Importing the Outlet component from react-router-dom
-import { ToastContainer } from 'react-toastify' // Importing the ToastContainer component from react-toastify
-import 'react-toastify/dist/ReactToastify.css'
-import Footer from '../components/layout/Footer'
-import Navbar from '../components/layout/Navbar'
+import { Outlet } from 'react-router-dom'; // Importing the Outlet component from react-router-dom
+import { ToastContainer } from 'react-toastify'; // Importing the ToastContainer component from react-toastify
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../components/layout/Footer';
+import Navbar from '../components/layout/Navbar';
 
 /**
  * MainLayout component that serves as the main layout for the application.
@@ -16,7 +16,7 @@ const MainLayout: React.FC = () => {
       <ToastContainer /> {/* Render the ToastContainer for notifications */}
       <Footer /> {/* Render the Footer component */}
     </div>
-  )
-}
+  );
+};
 
-export default MainLayout // Export the MainLayout component as the default export.
+export default MainLayout; // Export the MainLayout component as the default export.

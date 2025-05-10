@@ -1,7 +1,7 @@
-import type React from 'react'
-import Breadcrumb from '../../shared/Breadcrumb'
-import PolicyContent from './PolicyContent'
-import { policyContent } from '../../../data/policy'
+import type React from 'react';
+import Breadcrumb from '../../shared/Breadcrumb';
+import PolicyContent from './PolicyContent';
+import {t} from '../../../helpers/i18n';
 
 const PolicyPage: React.FC = () => {
   return (
@@ -11,14 +11,14 @@ const PolicyPage: React.FC = () => {
         {/* Breadcrumb navigation */}
         <Breadcrumb
           items={[
-            { label: 'Home', path: '/' },
-            { label: 'Policy', path: '/policy' },
+            { label: t('breadcrumb.home'), path: '/' },
+            { label: t('breadcrumb.policy'), path: '/policy' },
           ]}
         />
-        <PolicyContent title="Content about policy" sections={policyContent} />
+        <PolicyContent title={t('lbl.policy')} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PolicyPage
+export default PolicyPage;

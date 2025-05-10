@@ -1,5 +1,5 @@
-import tailwindcssAnimate from 'tailwindcss-animate'
-import tailwindScrollbar from 'tailwind-scrollbar'
+import tailwindcssAnimate from 'tailwindcss-animate';
+import tailwindScrollbar from 'tailwind-scrollbar';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -79,4 +79,4 @@ export default {
     },
   },
   plugins: [tailwindcssAnimate, tailwindScrollbar],
-}
+};

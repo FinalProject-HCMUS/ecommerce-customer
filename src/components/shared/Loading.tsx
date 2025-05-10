@@ -1,5 +1,5 @@
-import React from 'react'
-import { t } from '../../helpers/i18n'
+import React from 'react';
+import { t } from '../../helpers/i18n';
 
 const Loading: React.FC = () => {
   return (
@@ -8,6 +8,6 @@ const Loading: React.FC = () => {
         <div className="animate-pulse text-gray-400">{t('lbl.loading')}</div>
       </div>
     </div>
-  )
-}
-export default Loading
+  );
+};
+export default Loading;

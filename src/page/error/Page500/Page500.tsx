@@ -1,7 +1,10 @@
-import React from 'react'
-import { Result } from 'antd'
+import React from 'react';
+import { Result } from 'antd';
 
-import { BackToHomeButton, LogoutButton } from '../../../components/shared/Button'
+import {
+  BackToHomeButton,
+  LogoutButton,
+} from '../../../components/shared/Button';
 
 const Page500: React.FC = () => {
   return (
@@ -16,7 +19,7 @@ const Page500: React.FC = () => {
         </>
       }
     />
-  )
-}
+  );
+};
 
-export default Page500
+export default Page500;

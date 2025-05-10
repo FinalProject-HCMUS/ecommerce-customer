@@ -1,5 +1,5 @@
 export interface TokenResponse {
-  accessToken: string
-  accessTokenExpiresAt: number
-  refreshToken: string
+  accessToken: string;
+  accessTokenExpiresAt: number;
+  refreshToken: string;
 }

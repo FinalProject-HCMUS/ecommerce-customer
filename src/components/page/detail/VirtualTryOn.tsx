@@ -1,27 +1,27 @@
-import type React from 'react'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import type React from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null)
-  const [result, setResult] = useState<string | null>(null)
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [result, setResult] = useState<string | null>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = (event: ProgressEvent<FileReader>) => {
-        const result = event.target?.result as string
-        setUploadedImage(result)
+        const result = event.target?.result as string;
+        setUploadedImage(result);
 
         // Simulate processing with a delay
         setTimeout(() => {
-          setResult(result) // In a real app, this would be the processed result
-        }, 1000)
-      }
-      reader.readAsDataURL(file)
+          setResult(result); // In a real app, this would be the processed result
+        }, 1000);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center px-4 py-8">
@@ -65,7 +65,11 @@ const App: React.FC = () => {
             <motion.div
               className="w-16 h-16 border-4 border-gray-300 border-t-gray-600 rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
+              transition={{
+                duration: 1,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: 'linear',
+              }}
             />
           ) : uploadedImage ? (
             <motion.img
@@ -121,11 +125,16 @@ const App: React.FC = () => {
       >
         <label className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 px-6 rounded-md cursor-pointer transition-colors duration-200">
           Upload your image
-          <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageUpload}
+          />
         </label>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

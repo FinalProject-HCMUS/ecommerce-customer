@@ -1,24 +1,25 @@
-import React, { useReducer, useState } from 'react'
-import { Link } from 'react-router-dom'
-import InputField from '../../../shared/form/InputField'
-import PasswordInput from '../../../shared/form/PasswordInput'
-import { GeneralButton } from '../../../shared/Button' // Import the reusable Button component
-import { useUser } from '../../../../hooks/user'
-import { Role } from '../../../../interfaces'
-import { showSuccess } from '../../../../utils/SuccessToastifyRender'
-import { useNavigate } from 'react-router-dom'
-import { t } from '../../../../helpers/i18n'
+import React, { useReducer, useState } from 'react';
+import { Link } from 'react-router-dom';
+import InputField from '../../../shared/form/InputField';
+import PasswordInput from '../../../shared/form/PasswordInput';
+import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
+import { useUser } from '../../../../hooks/user';
+import { Role } from '../../../../interfaces';
+import { messageRenderUtils } from '../../../../utils';
+import { t } from '../../../../helpers/i18n';
 
 interface FormState {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  password: string
-  confirmPassword: string
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
 }
 
-type Action = { type: 'SET_FIELD'; field: keyof FormState; value: string } | { type: 'RESET_FORM' }
+type Action =
+  | { type: 'SET_FIELD'; field: keyof FormState; value: string }
+  | { type: 'RESET_FORM' };
 
 const initialState: FormState = {
   firstName: '',
@@ -27,40 +28,40 @@ const initialState: FormState = {
   phone: '',
   password: '',
   confirmPassword: '',
-}
+};
 
 const formReducer = (state: FormState, action: Action): FormState => {
   switch (action.type) {
     case 'SET_FIELD':
-      return { ...state, [action.field]: action.value }
+      return { ...state, [action.field]: action.value };
     case 'RESET_FORM':
-      return initialState
+      return initialState;
     default:
-      return state
+      return state;
   }
-}
+};
 
 const RegistrationForm = () => {
-  const [formState, dispatch] = useReducer(formReducer, initialState)
-  const [isLoading, setIsLoading] = useState(false) // State for loading
-  const { createUser } = useUser()
-  const navigate = useNavigate()
+  const [formState, dispatch] = useReducer(formReducer, initialState);
+  const [isLoading, setIsLoading] = useState(false); // State for loading
+  const { createUser } = useUser();
 
   const handleInputChange =
-    (field: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      dispatch({ type: 'SET_FIELD', field, value: e.target.value })
-    }
+    (field: keyof FormState) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      dispatch({ type: 'SET_FIELD', field, value: e.target.value });
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true) // Set loading state
-    console.log('Form Submitted:', formState)
+    e.preventDefault();
+    setIsLoading(true); // Set loading state
+    console.log('Form Submitted:', formState);
 
     // Validate password and confirm password
     if (formState.password !== formState.confirmPassword) {
-      alert('Passwords do not match!')
-      setIsLoading(false)
-      return
+      alert('Passwords do not match!');
+      setIsLoading(false);
+      return;
     }
 
     // Prepare the data for the API call
@@ -70,22 +71,19 @@ const RegistrationForm = () => {
       email: formState.email,
       phoneNumber: formState.phone,
       password: formState.password,
-      role: 'USER' as Role, // Default role
-    }
+      role: 'USER' as Role,
+    };
 
     try {
-      const response = await createUser(userData)
+      const response = await createUser(userData);
       if (response) {
-        showSuccess('Account created successfully! Please log in.')
-        dispatch({ type: 'RESET_FORM' }) // Reset the form after successful submission
-        navigate('/login') // Redirect to login page
+        messageRenderUtils.showSuccess(t('success.registerSuccess'));
+        dispatch({ type: 'RESET_FORM' });
       }
-    } catch (error) {
-      console.error('Error creating account:', error)
     } finally {
-      setIsLoading(false) // Reset loading state
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
@@ -168,7 +166,7 @@ const RegistrationForm = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegistrationForm
+export default RegistrationForm;

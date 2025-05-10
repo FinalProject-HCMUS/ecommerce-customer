@@ -1,28 +1,28 @@
-import BlogDetail from '../../components/page/blog/BlogDetail'
-import { Link, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { useBlogs } from '../../hooks/blogs'
-import { BlogResponse } from '../../interfaces'
-import { t } from '../../helpers/i18n'
-import Loading from '../../components/shared/Loading'
+import BlogDetail from '../../components/page/blog/BlogDetail';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useBlogs } from '../../hooks/blogs';
+import { BlogResponse } from '../../interfaces';
+import { t } from '../../helpers/i18n';
+import Loading from '../../components/shared/Loading';
 
 const BlogDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const { fetchBlogById, loading } = useBlogs()
-  const [post, setPost] = useState<BlogResponse | null>(null)
+  const { id } = useParams<{ id: string }>();
+  const { fetchBlogById, loading } = useBlogs();
+  const [post, setPost] = useState<BlogResponse | null>(null);
 
   useEffect(() => {
     const loadPost = async () => {
       if (id) {
-        const fetchedPost = await fetchBlogById(id)
-        setPost(fetchedPost)
+        const fetchedPost = await fetchBlogById(id);
+        setPost(fetchedPost);
       }
-    }
-    loadPost()
-  }, [id])
+    };
+    loadPost();
+  }, [id]);
 
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (!post) {
@@ -39,10 +39,10 @@ const BlogDetailPage: React.FC = () => {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
-  return <BlogDetail post={post} />
-}
+  return <BlogDetail post={post} />;
+};
 
-export default BlogDetailPage
+export default BlogDetailPage;

@@ -1,12 +1,16 @@
-import type React from 'react'
+import type React from 'react';
 
 interface SocialLoginButtonProps {
-  icon: React.ReactNode
-  text: string
-  onClick: () => void
+  icon: React.ReactNode;
+  text: string;
+  onClick: () => void;
 }
 
-const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({ icon, text, onClick }) => {
+const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
+  icon,
+  text,
+  onClick,
+}) => {
   return (
     <button
       type="button"
@@ -16,7 +20,7 @@ const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({ icon, text, onCli
       {icon}
       {text}
     </button>
-  )
-}
+  );
+};
 
-export default SocialLoginButton
+export default SocialLoginButton;

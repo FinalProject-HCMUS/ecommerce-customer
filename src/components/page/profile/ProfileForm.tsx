@@ -1,16 +1,18 @@
-import { motion } from 'framer-motion'
-import { Save } from 'lucide-react'
-import React from 'react'
-import InputField from '../../shared/form/InputField'
-import type { UserResponse } from '../../../interfaces/user/UserResponse'
+import { motion } from 'framer-motion';
+import { Save } from 'lucide-react';
+import React from 'react';
+import InputField from '../../shared/form/InputField';
+import type { UserResponse } from '../../../interfaces/user/UserResponse';
 
 interface ProfileFormProps {
-  formData: UserResponse
-  isEditing: boolean
-  isSaving: boolean
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  handleSubmit: (e: React.FormEvent) => void
-  cancelEdit: () => void
+  formData: UserResponse;
+  isEditing: boolean;
+  isSaving: boolean;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  handleSubmit: (e: React.FormEvent) => void;
+  cancelEdit: () => void;
 }
 
 const ProfileForm: React.FC<ProfileFormProps> = ({
@@ -68,7 +70,9 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
           />
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Address
+            </label>
             <textarea
               name="address"
               value={formData.address}
@@ -76,7 +80,9 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
               disabled={!isEditing}
               rows={3}
               className={`w-full px-4 py-2 border rounded-[10px] ${
-                isEditing ? 'border-gray-300 bg-white' : 'border-transparent bg-gray-50'
+                isEditing
+                  ? 'border-gray-300 bg-white'
+                  : 'border-transparent bg-gray-50'
               } rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all duration-200`}
             />
           </div>
@@ -108,7 +114,11 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
       </div>
 
       {isEditing && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8 flex justify-end">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-8 flex justify-end"
+        >
           <button
             type="button"
             onClick={cancelEdit}
@@ -131,7 +141,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                   fill="none"
                   viewBox="0 0 24 24"
                 >
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
                   <path
                     className="opacity-75"
                     fill="currentColor"
@@ -150,7 +167,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         </motion.div>
       )}
     </form>
-  )
-}
+  );
+};
 
-export default ProfileForm
+export default ProfileForm;

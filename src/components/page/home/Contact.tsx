@@ -1,21 +1,23 @@
-import React, { useReducer } from 'react'
-import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi'
-import { contactInfo } from '../../../data/contactInfo'
-import InputField from '../../shared/form/InputField'
-import { GeneralButton } from '../../shared/Button'
-import emailjs from '@emailjs/browser'
-import { showError } from '../../../utils/ErrorToastifyRender'
-import { showSuccess } from '../../../utils/SuccessToastifyRender'
-import { t } from '../../../helpers/i18n'
+import React, { useReducer } from 'react';
+import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
+import { contactInfo } from '../../../data/contactInfo';
+import InputField from '../../shared/form/InputField';
+import { GeneralButton } from '../../shared/Button';
+import emailjs from '@emailjs/browser';
+import { messageRenderUtils} from '../../../utils';
+
+import { t } from '../../../helpers/i18n';
 interface FormState {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  message: string
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
 }
 
-type Action = { type: 'SET_FIELD'; field: keyof FormState; value: string } | { type: 'RESET_FORM' }
+type Action =
+  | { type: 'SET_FIELD'; field: keyof FormState; value: string }
+  | { type: 'RESET_FORM' };
 
 const initialState: FormState = {
   firstName: '',
@@ -23,33 +25,34 @@ const initialState: FormState = {
   email: '',
   phone: '',
   message: '',
-}
+};
 
 const formReducer = (state: FormState, action: Action): FormState => {
   switch (action.type) {
     case 'SET_FIELD':
-      return { ...state, [action.field]: action.value }
+      return { ...state, [action.field]: action.value };
     case 'RESET_FORM':
-      return initialState
+      return initialState;
     default:
-      return state
+      return state;
   }
-}
+};
 
-const SERVICE_ID = import.meta.env.VITE_SERVICE_ID
-const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID
-const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY
+const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 
 const Contact = () => {
-  const [formState, dispatch] = useReducer(formReducer, initialState)
+  const [formState, dispatch] = useReducer(formReducer, initialState);
 
   const handleInputChange =
-    (field: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      dispatch({ type: 'SET_FIELD', field, value: e.target.value })
-    }
+    (field: keyof FormState) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      dispatch({ type: 'SET_FIELD', field, value: e.target.value });
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       await emailjs.send(
         SERVICE_ID,
@@ -60,14 +63,14 @@ const Contact = () => {
           subject: 'Contact Form Submission',
           message: formState.message,
         },
-        PUBLIC_KEY,
-      )
-      dispatch({ type: 'RESET_FORM' }) // Reset the form after submission
-      showSuccess('Message sent successfully!')
+        PUBLIC_KEY
+      );
+      dispatch({ type: 'RESET_FORM' }); // Reset the form after submission
+      messageRenderUtils.showSuccess('Message sent successfully!');
     } catch {
-      showError('Failed to send message. Please try again later.')
+      messageRenderUtils.showError('Failed to send message. Please try again later.');
     }
-  }
+  };
 
   return (
     <section className="py-16 mx-8">
@@ -137,7 +140,10 @@ const Contact = () => {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium mb-2"
+              >
                 {t('lbl.message')}
               </label>
               <textarea
@@ -162,7 +168,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

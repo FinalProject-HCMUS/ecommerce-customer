@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { t } from '../../helpers/i18n'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { t } from '../../helpers/i18n';
 
 interface ErrorRenderProps {
-  title: string
-  text: string
+  title: string;
+  text: string;
 }
 
 const ErrorRender: React.FC<ErrorRenderProps> = (error) => {
@@ -21,7 +21,7 @@ const ErrorRender: React.FC<ErrorRenderProps> = (error) => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorRender
+export default ErrorRender;

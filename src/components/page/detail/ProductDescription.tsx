@@ -1,10 +1,12 @@
-import type React from 'react'
-import { t } from '../../../helpers/i18n'
+import type React from 'react';
+import { t } from '../../../helpers/i18n';
 interface ProductDescriptionProps {
-  description: string
+  description: string;
 }
 
-const ProductDescription: React.FC<ProductDescriptionProps> = ({ description }) => {
+const ProductDescription: React.FC<ProductDescriptionProps> = ({
+  description,
+}) => {
   return (
     <div className="mt-16 mb-8">
       <h2 className="text-xl font-bold mb-4">{t('lbl.description')}</h2>
@@ -13,7 +15,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({ description }) 
         dangerouslySetInnerHTML={{ __html: description }} // Render HTML content
       ></div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductDescription
+export default ProductDescription;

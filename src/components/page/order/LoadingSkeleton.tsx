@@ -1,14 +1,17 @@
-import React from 'react'
+import React from 'react';
 
 interface LoadingSkeletonProps {
-  count?: number
+  count?: number;
 }
 
 const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ count = 3 }) => {
   return (
     <div className="space-y-4">
       {Array.from({ length: count }).map((_, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-pulse">
+        <div
+          key={index}
+          className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-pulse"
+        >
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="w-5 h-5 bg-gray-300 rounded-full"></div>
@@ -27,7 +30,7 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ count = 3 }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default LoadingSkeleton
+export default LoadingSkeleton;

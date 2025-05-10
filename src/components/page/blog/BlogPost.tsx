@@ -1,13 +1,13 @@
-import type React from 'react'
-import { motion } from 'framer-motion'
-import { Calendar } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { formatDate } from '../../../utils/formatDate'
-import { BlogResponse } from '../../../interfaces'
+import type React from 'react';
+import { motion } from 'framer-motion';
+import { Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { formatDate } from '../../../utils/formatDate';
+import { BlogResponse } from '../../../interfaces';
 
 export interface BlogPostProps {
-  post: BlogResponse
-  index: number
+  post: BlogResponse;
+  index: number;
 }
 
 const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
@@ -21,7 +21,10 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
       whileHover={{ scale: 1.01 }}
       layout
     >
-      <Link to={`/blog/${post.id}`} className="w-full sm:w-36 h-36 flex-shrink-0 bg-gray-200 overflow-hidden">
+      <Link
+        to={`/blog/${post.id}`}
+        className="w-full sm:w-36 h-36 flex-shrink-0 bg-gray-200 overflow-hidden"
+      >
         {post.image ? (
           <div className="w-full h-full overflow-hidden">
             <img
@@ -47,7 +50,9 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
       </Link>
       <div className="p-4 flex flex-col flex-grow">
         <Link to={`/blog/${post.id}`} className="group">
-          <h2 className="text-xl font-medium mb-1 group-hover:text-primary transition-colors">{post.title}</h2>
+          <h2 className="text-xl font-medium mb-1 group-hover:text-primary transition-colors">
+            {post.title}
+          </h2>
         </Link>
         <p className="text-gray-700 mb-2">{post.content}</p>
         <div className="mt-auto flex items-center text-sm text-gray-500">
@@ -56,7 +61,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
         </div>
       </div>
     </motion.article>
-  )
-}
+  );
+};
 
-export default BlogPost
+export default BlogPost;

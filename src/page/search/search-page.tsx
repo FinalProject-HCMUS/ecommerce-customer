@@ -1,26 +1,27 @@
-import { useState, useEffect } from 'react'
-import Breadcrumb from '../../components/shared/Breadcrumb'
-import Filters from '../../components/page/search/Filters'
-import ProductGrid from '../../components/page/search/ProductGrid'
-import SearchHeader from '../../components/page/search/SearchHeader'
-import Pagination from '../../components/shared/Pagination'
-import { useProducts } from '../../hooks/products'
-import { ProductResponse, Pageable } from '../../interfaces'
-import { PRODUCT_PER_PAGE } from '../../constants/common'
-import Loading from '../../components/shared/Loading'
-import { t } from '../../helpers/i18n'
-import SearchInput from '../../components/page/search/SearchInput'
+import { useState, useEffect } from 'react';
+import Breadcrumb from '../../components/shared/Breadcrumb';
+import Filters from '../../components/page/search/Filters';
+import ProductGrid from '../../components/page/search/ProductGrid';
+import SearchHeader from '../../components/page/search/SearchHeader';
+import Pagination from '../../components/shared/Pagination';
+import { useProducts } from '../../hooks/products';
+import { ProductResponse, Pageable } from '../../interfaces';
+import { PRODUCT_PER_PAGE } from '../../constants/common';
+import Loading from '../../components/shared/Loading';
+import { t } from '../../helpers/i18n';
+import SearchInput from '../../components/page/search/SearchInput';
 
 function App() {
-  const { loading, fetchAllProducts } = useProducts()
+  const { loading, fetchAllProducts } = useProducts();
 
-  const [productResponse, setProductRes] = useState<Pageable<ProductResponse[]>>()
-  const [keySearch, setKeySearch] = useState<string>()
-  const [currentPage, setCurrentPage] = useState(0)
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000000])
-  const [selectedColors, setSelectedColors] = useState<string>()
-  const [selectedSizes, setSelectedSizes] = useState<string>()
-  const [selectedCategories, setSelectedCategories] = useState<string>()
+  const [productResponse, setProductRes] =
+    useState<Pageable<ProductResponse[]>>();
+  const [keySearch, setKeySearch] = useState<string>();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000000]);
+  const [selectedColors, setSelectedColors] = useState<string>();
+  const [selectedSizes, setSelectedSizes] = useState<string>();
+  const [selectedCategories, setSelectedCategories] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,23 +34,31 @@ function App() {
         category: selectedCategories,
         color: selectedColors,
         size: selectedSizes,
-      })
-      console.log('Product Response:', res)
+      });
+      console.log('Product Response:', res);
       if (res) {
-        setProductRes(res)
+        setProductRes(res);
       }
-    }
-    fetchData()
-  }, [priceRange, selectedColors, selectedSizes, selectedCategories, keySearch, currentPage, priceRange])
+    };
+    fetchData();
+  }, [
+    priceRange,
+    selectedColors,
+    selectedSizes,
+    selectedCategories,
+    keySearch,
+    currentPage,
+    priceRange,
+  ]);
 
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber - 1)
+    setCurrentPage(pageNumber - 1);
     // Scroll to top when changing page
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
@@ -85,7 +94,7 @@ function App() {
         onPageChange={handlePageChange}
       />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
