@@ -21,6 +21,8 @@ const COLOR_PER_PAGE = 100;
 const SIZE_PER_PAGE = 10;
 const CATEGORY_PER_PAGE = 10;
 
+const TIME_OUT_ADD_TO_CART = 2000;
+
 export {
   orderStatus,
   TOP_PRODUCTS_PER_PAGE,
@@ -32,4 +34,5 @@ export {
   COLOR_PER_PAGE,
   SIZE_PER_PAGE,
   CATEGORY_PER_PAGE,
+  TIME_OUT_ADD_TO_CART,
 };

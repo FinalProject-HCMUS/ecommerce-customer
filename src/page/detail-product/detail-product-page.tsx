@@ -10,8 +10,6 @@ import { useParams } from 'react-router-dom';
 import { useProducts } from '../../hooks/products';
 import { useProductImages } from '../../hooks/product-images';
 import { useProductColorSize } from '../../hooks/product-color-size';
-import { useColors } from '../../hooks/color';
-import { useSizes } from '../../hooks/size';
 import Loading from '../../components/shared/Loading';
 import { useEffect } from 'react';
 import {
@@ -21,6 +19,11 @@ import {
   ProductColorSizeResponse,
   SizeResponse,
 } from '../../interfaces';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../context/store';
+import { useCart } from '../../hooks/cart';
+import { TIME_OUT_ADD_TO_CART } from '../../constants/common';
+import { showError } from '../../utils/messageRender';
 
 const App: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get product ID from URL
@@ -28,64 +31,70 @@ const App: React.FC = () => {
   const { loading: imagesLoading, fetchProductImages } = useProductImages();
   const { loading: productColorSizeLoading, fetchProductColorSizes } =
     useProductColorSize();
-  const { loading: colorLoading, fetchAllColors } = useColors();
-  const { loading: sizeLoading, fetchAllSizes } = useSizes();
-
+  const [colors, setColors] = useState<ColorResponse[]>([]);
+  const [sizes, setSizes] = useState<SizeResponse[]>([]);
   const [product, setProduct] = useState<ProductResponse>();
   const [images, setImages] = useState<ProductImageResponse[]>([]);
   const [productColorSize, setProductColorSize] = useState<
     ProductColorSizeResponse[]
   >([]);
-  const [colors, setColors] = useState<ColorResponse[]>([]);
-  const [sizes, setSizes] = useState<SizeResponse[]>([]);
+  const [isAdding, setIsAdding] = useState<boolean>(false);
+
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+  const { addCartItem } = useCart();
 
   useEffect(() => {
     const fetchProductDetails = async () => {
-      if (id) {
-        const productData = await fetchProductById(id);
-        const imagesData = await fetchProductImages(id);
-        const colorRes = await fetchAllColors();
-        const productColorSizeData = await fetchProductColorSizes(id);
-        const sizeRes = await fetchAllSizes();
+      if (!id) return;
+      const productData = await fetchProductById(id);
+      const imagesData = await fetchProductImages(id);
+      const productColorSizeData = await fetchProductColorSizes(id);
 
-        if (sizeRes && productColorSizeData) {
-          const sizeIds = productColorSizeData.map((item) => item.sizeId);
-          const filteredSizes = sizeRes.content.filter((size) =>
-            sizeIds.includes(size.id)
-          );
-          setSizes(filteredSizes);
-        }
+      if (productColorSizeData) {
+        setProductColorSize(productColorSizeData);
+        const colorRes = productColorSizeData.map((item) => item.color);
+        const sizeRes = productColorSizeData.map((item) => item.size);
+        setColors(colorRes);
+        setSizes(sizeRes);
+      }
 
-        if (colorRes && productColorSizeData) {
-          const colorIds = productColorSizeData.map((item) => item.colorId);
-          const filteredColors = colorRes.content.filter((color) =>
-            colorIds.includes(color.id)
-          );
-          setColors(filteredColors);
-        }
-
-        if (productColorSizeData) {
-          setProductColorSize(productColorSizeData);
-        }
-
-        if (productData) {
-          setProduct(productData);
-        }
-        if (imagesData) {
-          setImages(imagesData);
-        }
+      if (productData) {
+        setProduct(productData);
+      }
+      if (imagesData) {
+        setImages(imagesData);
       }
     };
     fetchProductDetails();
   }, [id]);
 
-  if (
-    productLoading ||
-    imagesLoading ||
-    productColorSizeLoading ||
-    colorLoading ||
-    sizeLoading
-  ) {
+  const handleAddToCart = async (quantity: number, itemId: string) => {
+    if (!userInfo?.id) return;
+
+    if (!quantity) {
+      showError(t('error.quantityRequired'));
+      return;
+    }
+    if (itemId === '') {
+      showError(t('error.itemRequired'));
+      return;
+    }
+
+    const cartItem = {
+      userId: userInfo?.id,
+      itemId: itemId,
+      quantity: quantity,
+    };
+
+    const result = await addCartItem(cartItem);
+    if (!result) return;
+    setIsAdding(true);
+    setTimeout(() => {
+      setIsAdding(false);
+    }, TIME_OUT_ADD_TO_CART);
+  };
+
+  if (productLoading || imagesLoading || productColorSizeLoading) {
     return <Loading />;
   }
 
@@ -106,6 +115,8 @@ const App: React.FC = () => {
             colors={colors}
             productColorSize={productColorSize}
             sizes={sizes}
+            isAdding={isAdding}
+            handleAddToCart={handleAddToCart}
           />
         )}
       </div>

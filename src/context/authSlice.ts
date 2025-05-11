@@ -14,9 +14,7 @@ const initialState: AuthState = {
   accessToken: localStorage.getItem(localStorageConstants.TOKEN),
   refreshAccessToken: localStorage.getItem(localStorageConstants.REFRESH_TOKEN),
   userInfo: localStorage.getItem(localStorageConstants.USER_INFO)
-    ? JSON.parse(
-        localStorage.getItem(localStorageConstants.USER_INFO) as string
-      )
+    ? JSON.parse(localStorage.getItem(localStorageConstants.USER_INFO) || '')
     : null,
 };
 
@@ -80,6 +78,7 @@ const authSlice = createSlice({
       localStorage.removeItem(localStorageConstants.TOKEN);
       localStorage.removeItem(localStorageConstants.REFRESH_TOKEN);
       localStorage.removeItem(localStorageConstants.EMAIL);
+      localStorage.removeItem(localStorageConstants.USER_INFO);
     },
   },
 });

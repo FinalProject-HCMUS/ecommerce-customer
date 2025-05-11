@@ -1,8 +1,13 @@
+import { ProductResponse } from './ProductResponse';
+import { ColorResponse } from './ColorResponse';
+import { SizeResponse } from './SizeResponse';
+
 export interface ProductColorSizeResponse {
+  id: string;
   quantity: number;
-  productId: string;
-  colorId: string;
-  sizeId: string;
+  product: ProductResponse;
+  color: ColorResponse;
+  size: SizeResponse;
   createdAt: string;
   createdBy: string;
   updatedAt: string;

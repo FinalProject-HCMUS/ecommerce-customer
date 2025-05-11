@@ -21,6 +21,8 @@ interface ProductInfoProps {
   colors: ColorResponse[];
   productColorSize: ProductColorSizeResponse[];
   sizes: SizeResponse[];
+  isAdding: boolean;
+  handleAddToCart: (quantity: number, itemId: string) => void;
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({
@@ -28,29 +30,26 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   colors,
   productColorSize,
   sizes,
+  handleAddToCart,
+  isAdding,
 }) => {
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [selectedSize, setSelectedSize] = useState<string>('');
+  const [itemId, setItemId] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
-  const [isAdding, setIsAdding] = useState<boolean>(false);
+
   const [quantityAvailable, setQuantityAvailable] = useState<number>(
     product.total || 0
   );
-
-  const handleAddToCart = () => {
-    setIsAdding(true);
-    setTimeout(() => {
-      setIsAdding(false);
-    }, 1500);
-  };
 
   // Update quantityAvailable when selectedColor or selectedSize changes
   useEffect(() => {
     if (selectedColor && selectedSize) {
       const matchingProduct = productColorSize.find(
-        (pcs) => pcs.colorId === selectedColor && pcs.sizeId === selectedSize
+        (pcs) => pcs.color.id === selectedColor && pcs.size.id === selectedSize
       );
       if (matchingProduct) {
+        setItemId(matchingProduct.id);
         setQuantityAvailable(matchingProduct.quantity);
       } else {
         setQuantityAvailable(0);
@@ -62,7 +61,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 
   const handleQuantityChange = (type: 'increase' | 'decrease') => {
     if (type === 'increase') {
-      setQuantity((prev) => prev + 1);
+      setQuantity((prev) =>
+        prev < quantityAvailable ? prev + 1 : quantityAvailable
+      );
     } else {
       setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
     }
@@ -117,10 +118,13 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         <div className="flex items-center gap-4">
           <QuantityControl
             quantity={quantity}
-            onDecrement={() => handleQuantityChange('increase')}
-            onIncrement={() => handleQuantityChange('decrease')}
+            onDecrement={() => handleQuantityChange('decrease')}
+            onIncrement={() => handleQuantityChange('increase')}
           />
-          <AddToCartButton isAdding={isAdding} onClick={handleAddToCart} />
+          <AddToCartButton
+            isAdding={isAdding}
+            onClick={() => handleAddToCart(quantity, itemId)}
+          />
         </div>
       )}
     </div>

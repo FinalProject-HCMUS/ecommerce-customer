@@ -5,7 +5,11 @@
     "blogNotFoundText": "Xin lỗi, chúng tôi không thể tìm thấy blog mà bạn đang tìm kiếm. Vui lòng kiểm tra lại liên kết hoặc quay lại trang chủ.",
     "productNotFound": "Sản phẩm không tìm thấy",
     "productNotFoundText": "Xin lỗi, chúng tôi không thể tìm thấy sản phẩm mà bạn đang tìm kiếm. Vui lòng kiểm tra lại liên kết hoặc quay lại trang chủ.",
-    "passwordMismatch": "Mật khẩu không khớp"
+    "passwordMismatch": "Mật khẩu không khớp",
+    "quantityRequired": "Số lượng là bắt buộc",
+    "itemRequired": "Vui lòng chọn kích thước và màu sắc",
+    "failedToRemoveItem": "Không thể xóa mặt hàng khỏi giỏ hàng. Vui lòng thử lại sau.",
+    "cartUpdateFailed": "Cập nhật giỏ hàng không thành công. Vui lòng thử lại sau."
   },
   "success": {
     "registerSuccess": "Đăng ký thành công!",
@@ -30,6 +34,8 @@
     "updatePaymentSuccess": "Cập nhật phương thức thanh toán thành công!",
     "updateShippingSuccess": "Cập nhật phương thức vận chuyển thành công!",
     "updateOrderSuccess": "Cập nhật đơn hàng thành công!",
-    "updateCartSuccess": "Cập nhật giỏ hàng thành công!"
+    "updateCartSuccess": "Cập nhật giỏ hàng thành công!",
+    "itemRemoved": "Mặt hàng đã bị xóa khỏi giỏ hàng.",
+    "cartUpdated": "Giỏ hàng đã được cập nhật thành công!"
   }
 }

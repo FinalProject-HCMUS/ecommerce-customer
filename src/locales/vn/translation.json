@@ -76,7 +76,9 @@
     "outOfStock": "Hết hàng",
     "yourCart": "Giỏ hàng của bạn",
     "policy": "Chính sách",
-    "noProductFound": "Không tìm thấy sản phẩm nào"
+    "noProductFound": "Không tìm thấy sản phẩm nào",
+    "productName": "Tên sản phẩm",
+    "productPrice": "Giá sản phẩm"
   },
   "placeholder": {
     "firstName": "Nhập tên của bạn",

@@ -39,8 +39,6 @@ export const useCart = () => {
     try {
       const response = await getCartItemsByUserId(userId);
       return response.data || null;
-    } catch {
-      return null;
     } finally {
       setLoading(false);
     }
@@ -66,27 +64,21 @@ export const useCart = () => {
     id: string,
     request: UpdateCartItemRequest
   ): Promise<CartItemResponse | null> => {
-    setLoading(true);
     try {
       const response = await updateCartItem(id, request);
       return response.data || null;
     } catch {
       return null;
-    } finally {
-      setLoading(false);
     }
   };
 
   // Delete a cart item by ID
   const removeCartItem = async (id: string): Promise<boolean> => {
-    setLoading(true);
     try {
       await deleteCartItem(id);
       return true;
     } catch {
       return false;
-    } finally {
-      setLoading(false);
     }
   };
 

@@ -3,18 +3,23 @@ import Breadcrumb from '../../components/shared/Breadcrumb';
 import CartItem from '../../components/page/cart/CartItem';
 import OrderSummary from '../../components/page/cart/OrderSummary';
 import type { OrderSummaryData } from '../../interfaces/temp/cart';
-import { CartItemResponse } from '../../interfaces';
+import { CartItemResponse, UpdateCartItemRequest } from '../../interfaces';
 import { useCart } from '../../hooks/cart';
 import Loading from '../../components/shared/Loading';
 import { t } from '../../helpers/i18n';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../context/store';
+import { showError, showSuccess } from '../../utils/messageRender';
 
 function App() {
-  const { loading, fetchCartItemsByUserId } = useCart();
+  const { loading, fetchCartItemsByUserId, removeCartItem, modifyCartItem } =
+    useCart();
   const [cartItems, setCartItems] = useState<CartItemResponse[]>([]);
-
+  const { userInfo } = useSelector((state: RootState) => state.auth);
   useEffect(() => {
     const fetchCartItems = async () => {
-      const userId = 'user-id'; // Replace with actual user ID
+      const userId = userInfo?.id;
+      if (!userId) return;
       const items = await fetchCartItemsByUserId(userId);
       if (items) {
         setCartItems(items);
@@ -23,9 +28,43 @@ function App() {
     fetchCartItems();
   }, []);
 
-  const updateQuantity = (id: string, newQuantity: number): void => {};
+  const updateQuantity = async (
+    id: string,
+    newQuantity: number
+  ): Promise<void> => {
+    if (newQuantity < 1) {
+      showError(t('error.invalidQuantity'));
+      return;
+    }
+    const request: UpdateCartItemRequest = {
+      quantity: newQuantity,
+      userId: userInfo?.id,
+      itemId: id,
+    };
+    const updatedItem = await modifyCartItem(id, request);
 
-  const removeItem = (id: string): void => {};
+    if (updatedItem) {
+      // Update the item in the local state
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.id === id ? { ...item, quantity: newQuantity } : item
+        )
+      );
+      showSuccess(t('success.cartUpdated'));
+    } else {
+      showError(t('error.cartUpdateFailed'));
+    }
+  };
+
+  const removeItem = async (id: string): Promise<void> => {
+    const success = await removeCartItem(id);
+    if (success) {
+      setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+      showSuccess(t('success.itemRemoved'));
+    } else {
+      showError(t('error.failedToRemoveItem'));
+    }
+  };
 
   if (loading) {
     return <Loading />;
@@ -33,7 +72,11 @@ function App() {
 
   // Calculate order summary
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) =>
+      sum +
+      item?.product.price *
+        (100 - item?.product.discountPercent) *
+        item.quantity,
     0
   );
   const discountRate = 0.2; // 20%
@@ -66,6 +109,7 @@ function App() {
           {cartItems.map((item) => (
             <CartItem
               key={item.id}
+              item={item}
               updateQuantity={updateQuantity}
               removeItem={removeItem}
             />

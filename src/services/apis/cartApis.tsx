@@ -11,7 +11,7 @@ export const getCartItemById = async (
   id: string
 ): Promise<CustomResponse<CartItemResponse>> => {
   const response = await client.get<CustomResponse<CartItemResponse>>(
-    `/cart/${id}`
+    `/cart-items/${id}`
   );
   return response.data;
 };
@@ -21,7 +21,7 @@ export const getCartItemsByUserId = async (
   userId: string
 ): Promise<CustomResponse<CartItemResponse[]>> => {
   const response = await client.get<CustomResponse<CartItemResponse[]>>(
-    `/cart/user/${userId}`
+    `/cart-items/user/${userId}`
   );
   return response.data;
 };
@@ -31,7 +31,7 @@ export const createCartItem = async (
   request: CreateCartItemRequest
 ): Promise<CustomResponse<CartItemResponse>> => {
   const response = await client.post<CustomResponse<CartItemResponse>>(
-    '/cart',
+    '/cart-items',
     request
   );
   return response.data;
@@ -43,7 +43,7 @@ export const updateCartItem = async (
   request: UpdateCartItemRequest
 ): Promise<CustomResponse<CartItemResponse>> => {
   const response = await client.put<CustomResponse<CartItemResponse>>(
-    `/cart/${id}`,
+    `/cart-items/${id}`,
     request
   );
   return response.data;
@@ -53,7 +53,9 @@ export const updateCartItem = async (
 export const deleteCartItem = async (
   id: string
 ): Promise<CustomResponse<void>> => {
-  const response = await client.delete<CustomResponse<void>>(`/cart/${id}`);
+  const response = await client.delete<CustomResponse<void>>(
+    `/cart-items/${id}`
+  );
   return response.data;
 };
 
@@ -63,7 +65,7 @@ export const deleteCartItemByUserIdAndItemId = async (
   itemId: string
 ): Promise<CustomResponse<void>> => {
   const response = await client.delete<CustomResponse<void>>(
-    `/cart/user/${userId}/item/${itemId}`
+    `/cart-items/user/${userId}/item/${itemId}`
   );
   return response.data;
 };
