@@ -4,7 +4,7 @@ import { contactInfo } from '../../../data/contactInfo';
 import InputField from '../../shared/form/InputField';
 import { GeneralButton } from '../../shared/Button';
 import emailjs from '@emailjs/browser';
-import { messageRenderUtils} from '../../../utils';
+import { messageRenderUtils } from '../../../utils';
 
 import { t } from '../../../helpers/i18n';
 interface FormState {
@@ -68,7 +68,9 @@ const Contact = () => {
       dispatch({ type: 'RESET_FORM' }); // Reset the form after submission
       messageRenderUtils.showSuccess('Message sent successfully!');
     } catch {
-      messageRenderUtils.showError('Failed to send message. Please try again later.');
+      messageRenderUtils.showError(
+        'Failed to send message. Please try again later.'
+      );
     }
   };
 

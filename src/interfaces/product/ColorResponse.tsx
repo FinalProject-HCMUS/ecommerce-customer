@@ -1,6 +1,7 @@
 export interface ColorResponse {
   id: string;
   name: string;
+  code: string;
   createdAt: string;
   createdBy: string;
   updatedAt: string;

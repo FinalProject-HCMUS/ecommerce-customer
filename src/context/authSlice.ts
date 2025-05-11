@@ -10,11 +10,13 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isAuthenticated: !!localStorage.getItem(localStorageConstants.TOKEN), 
+  isAuthenticated: !!localStorage.getItem(localStorageConstants.TOKEN),
   accessToken: localStorage.getItem(localStorageConstants.TOKEN),
   refreshAccessToken: localStorage.getItem(localStorageConstants.REFRESH_TOKEN),
   userInfo: localStorage.getItem(localStorageConstants.USER_INFO)
-    ? JSON.parse(localStorage.getItem(localStorageConstants.USER_INFO) as string)
+    ? JSON.parse(
+        localStorage.getItem(localStorageConstants.USER_INFO) as string
+      )
     : null,
 };
 
@@ -36,10 +38,22 @@ const authSlice = createSlice({
       state.refreshAccessToken = action.payload.refreshAccessToken;
 
       // Persist tokens in localStorage
-      localStorage.setItem(localStorageConstants.TOKEN, action.payload.accessToken);
-      localStorage.setItem(localStorageConstants.REFRESH_TOKEN, action.payload.refreshAccessToken);
-      localStorage.setItem(localStorageConstants.EMAIL, action.payload.userInfo.email);
-      localStorage.setItem(localStorageConstants.USER_INFO, JSON.stringify(action.payload.userInfo));
+      localStorage.setItem(
+        localStorageConstants.TOKEN,
+        action.payload.accessToken
+      );
+      localStorage.setItem(
+        localStorageConstants.REFRESH_TOKEN,
+        action.payload.refreshAccessToken
+      );
+      localStorage.setItem(
+        localStorageConstants.EMAIL,
+        action.payload.userInfo.email
+      );
+      localStorage.setItem(
+        localStorageConstants.USER_INFO,
+        JSON.stringify(action.payload.userInfo)
+      );
     },
     updateTokens: (
       state,
@@ -48,15 +62,21 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.refreshAccessToken = action.payload.refreshAccessToken;
 
-      localStorage.setItem(localStorageConstants.TOKEN, action.payload.accessToken);
-      localStorage.setItem(localStorageConstants.REFRESH_TOKEN, action.payload.refreshAccessToken);
+      localStorage.setItem(
+        localStorageConstants.TOKEN,
+        action.payload.accessToken
+      );
+      localStorage.setItem(
+        localStorageConstants.REFRESH_TOKEN,
+        action.payload.refreshAccessToken
+      );
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.userInfo = null;
       state.accessToken = null;
       state.refreshAccessToken = null;
-      
+
       localStorage.removeItem(localStorageConstants.TOKEN);
       localStorage.removeItem(localStorageConstants.REFRESH_TOKEN);
       localStorage.removeItem(localStorageConstants.EMAIL);

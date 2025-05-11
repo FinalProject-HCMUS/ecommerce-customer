@@ -5,17 +5,33 @@ import ProductGrid from '../../components/page/search/ProductGrid';
 import SearchHeader from '../../components/page/search/SearchHeader';
 import Pagination from '../../components/shared/Pagination';
 import { useProducts } from '../../hooks/products';
-import { ProductResponse, Pageable } from '../../interfaces';
+import { useCategory } from '../../hooks/category';
+import {
+  ProductResponse,
+  Pageable,
+  CategoryResponse,
+  ColorResponse,
+  SizeResponse,
+} from '../../interfaces';
 import { PRODUCT_PER_PAGE } from '../../constants/common';
 import Loading from '../../components/shared/Loading';
 import { t } from '../../helpers/i18n';
 import SearchInput from '../../components/page/search/SearchInput';
+import { useColors } from '../../hooks/color';
+import { useSizes } from '../../hooks/size';
 
 function App() {
-  const { loading, fetchAllProducts } = useProducts();
+  const { loading: loadingProduct, fetchAllProducts } = useProducts();
+  const { loading: loadingCategory, fetchAllCategories } = useCategory();
+  const { loading: loadingColor, fetchAllColors } = useColors();
+  const { loading: loadingSize, fetchAllSizes } = useSizes();
 
   const [productResponse, setProductRes] =
     useState<Pageable<ProductResponse[]>>();
+  const [categories, setCategories] = useState<CategoryResponse[]>([]);
+  const [colors, setColors] = useState<ColorResponse[]>([]);
+  const [sizes, setSizes] = useState<SizeResponse[]>([]);
+
   const [keySearch, setKeySearch] = useState<string>();
   const [currentPage, setCurrentPage] = useState(0);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000000]);
@@ -35,7 +51,6 @@ function App() {
         color: selectedColors,
         size: selectedSizes,
       });
-      console.log('Product Response:', res);
       if (res) {
         setProductRes(res);
       }
@@ -51,13 +66,32 @@ function App() {
     priceRange,
   ]);
 
+  useEffect(() => {
+    const initData = async () => {
+      const cateRes = await fetchAllCategories();
+      const colorRes = await fetchAllColors();
+      const sizeRes = await fetchAllSizes();
+
+      if (cateRes) {
+        setCategories(cateRes);
+      }
+      if (colorRes) {
+        setColors(colorRes.content);
+      }
+      if (sizeRes) {
+        setSizes(sizeRes.content);
+      }
+    };
+    initData();
+  }, []);
+
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber - 1);
     // Scroll to top when changing page
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (loading) {
+  if (loadingCategory || loadingColor || loadingSize) {
     return <Loading />;
   }
 
@@ -78,21 +112,30 @@ function App() {
           priceRange={priceRange}
           setPriceRange={setPriceRange}
           selectedColor={selectedColors}
-          setSelectedColors={setSelectedColors}
-          selectedSizes={selectedSizes}
-          setSelectedSizes={setSelectedSizes}
-          selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories}
+          setSelectedColor={setSelectedColors}
+          selectedSize={selectedSizes}
+          setSelectedSize={setSelectedSizes}
+          selectedCategory={selectedCategories}
+          setSelectedCategory={setSelectedCategories}
+          categories={categories}
+          colors={colors}
+          sizes={sizes}
         />
 
-        <ProductGrid products={productResponse?.content || []} />
+        {!loadingProduct ? (
+          <ProductGrid products={productResponse?.content || []} />
+        ) : (
+          <Loading />
+        )}
       </div>
 
-      <Pagination
-        currentPage={currentPage + 1}
-        totalPages={productResponse?.totalPages || 0}
-        onPageChange={handlePageChange}
-      />
+      {!loadingProduct && (
+        <Pagination
+          currentPage={currentPage + 1}
+          totalPages={productResponse?.totalPages || 0}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 }

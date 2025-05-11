@@ -17,8 +17,9 @@ const TOP_TRENDING = 'TOP TRENDING';
 const TOP_SELLING = 'TOP SELLING';
 const VISIBLE_PRODUCT = 4;
 
-const COLOR_PER_PAGE = 30;
+const COLOR_PER_PAGE = 100;
 const SIZE_PER_PAGE = 10;
+const CATEGORY_PER_PAGE = 10;
 
 export {
   orderStatus,
@@ -30,4 +31,5 @@ export {
   VISIBLE_PRODUCT,
   COLOR_PER_PAGE,
   SIZE_PER_PAGE,
+  CATEGORY_PER_PAGE,
 };

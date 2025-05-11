@@ -67,25 +67,25 @@
     ]
   },
   "policy": [
-  {
-    "title": "1. Thu thập thông tin",
-    "content": "Chúng tôi chỉ thu thập những thông tin cần thiết để cung cấp dịch vụ, bao gồm thông tin cá nhân bạn cung cấp trong quá trình đăng ký và dữ liệu sử dụng để cải thiện trải nghiệm của bạn."
-  },
-  {
-    "title": "2. Bảo vệ dữ liệu",
-    "content": "Chúng tôi áp dụng các biện pháp bảo mật theo tiêu chuẩn ngành để bảo vệ dữ liệu của bạn khỏi việc truy cập hoặc tiết lộ trái phép."
-  },
-  {
-    "title": "3. Quyền của bạn",
-    "content": "Bạn có quyền truy cập, chỉnh sửa hoặc yêu cầu xóa dữ liệu cá nhân của mình bất cứ lúc nào."
-  },
-  {
-    "title": "4. Sử dụng dữ liệu",
-    "content": "Chúng tôi chỉ sử dụng thông tin của bạn để cung cấp và cải thiện dịch vụ. Chúng tôi không bán dữ liệu cá nhân của bạn cho bên thứ ba."
-  },
-  {
-    "title": "5. Cập nhật chính sách",
-    "content": "Chúng tôi có thể cập nhật chính sách này định kỳ. Chúng tôi sẽ thông báo cho người dùng về bất kỳ thay đổi đáng kể nào trong cách chúng tôi xử lý thông tin cá nhân."
-  }
-]
+    {
+      "title": "1. Thu thập thông tin",
+      "content": "Chúng tôi chỉ thu thập những thông tin cần thiết để cung cấp dịch vụ, bao gồm thông tin cá nhân bạn cung cấp trong quá trình đăng ký và dữ liệu sử dụng để cải thiện trải nghiệm của bạn."
+    },
+    {
+      "title": "2. Bảo vệ dữ liệu",
+      "content": "Chúng tôi áp dụng các biện pháp bảo mật theo tiêu chuẩn ngành để bảo vệ dữ liệu của bạn khỏi việc truy cập hoặc tiết lộ trái phép."
+    },
+    {
+      "title": "3. Quyền của bạn",
+      "content": "Bạn có quyền truy cập, chỉnh sửa hoặc yêu cầu xóa dữ liệu cá nhân của mình bất cứ lúc nào."
+    },
+    {
+      "title": "4. Sử dụng dữ liệu",
+      "content": "Chúng tôi chỉ sử dụng thông tin của bạn để cung cấp và cải thiện dịch vụ. Chúng tôi không bán dữ liệu cá nhân của bạn cho bên thứ ba."
+    },
+    {
+      "title": "5. Cập nhật chính sách",
+      "content": "Chúng tôi có thể cập nhật chính sách này định kỳ. Chúng tôi sẽ thông báo cho người dùng về bất kỳ thay đổi đáng kể nào trong cách chúng tôi xử lý thông tin cá nhân."
+    }
+  ]
 }

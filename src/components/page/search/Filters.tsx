@@ -1,9 +1,14 @@
-import type React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'react-feather';
-import { categories, colors, sizes } from '../../../data/filter';
+import { Slider } from 'antd';
 import { t } from '../../../helpers/i18n';
+import { formatCurrency } from '../../../helpers/string';
+import {
+  CategoryResponse,
+  ColorResponse,
+  SizeResponse,
+} from '../../../interfaces';
 
 interface FiltersProps {
   priceRange: [number, number];
@@ -12,8 +17,11 @@ interface FiltersProps {
   setSelectedColor: (color: string) => void;
   selectedSize: string | undefined;
   setSelectedSize: (sizes: string) => void;
-  selectedCategorie: string | undefined;
-  setSelectedCategories: (categories: string) => void;
+  selectedCategory: string | undefined;
+  setSelectedCategory: (categories: string) => void;
+  categories: CategoryResponse[] | undefined;
+  colors: ColorResponse[] | undefined;
+  sizes: SizeResponse[] | undefined;
 }
 
 const Filters = ({
@@ -23,6 +31,11 @@ const Filters = ({
   setSelectedColor,
   selectedSize,
   setSelectedSize,
+  selectedCategory,
+  setSelectedCategory,
+  categories,
+  colors,
+  sizes,
 }: FiltersProps) => {
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
@@ -51,15 +64,6 @@ const Filters = ({
       setSelectedSize('');
     } else {
       setSelectedSize(size);
-    }
-  };
-
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number.parseInt(e.target.value);
-    if (e.target.name === 'min') {
-      setPriceRange([value, priceRange[1]]);
-    } else {
-      setPriceRange([priceRange[0], value]);
     }
   };
 
@@ -101,14 +105,23 @@ const Filters = ({
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {categories.map((category) => (
-                <div key={category.id} className="py-2">
-                  <label className="flex justify-between items-center cursor-pointer text-sm text-gray-700">
-                    {category.label}
-                    <span className="text-gray-400">›</span>
-                  </label>
-                </div>
-              ))}
+              <div className="flex flex-wrap gap-2 py-3">
+                {categories &&
+                  categories.map((category) => (
+                    <motion.div
+                      key={category.id}
+                      className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${
+                        selectedCategory === category.id
+                          ? 'bg-black text-white border-black'
+                          : 'border-gray-300 hover:bg-gray-100'
+                      }`}
+                      onClick={() => setSelectedCategory(category.id)}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {category.name}
+                    </motion.div>
+                  ))}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -139,29 +152,20 @@ const Filters = ({
             >
               <div className="py-3">
                 <div className="flex justify-between text-sm text-gray-600 mb-3">
-                  <span>${priceRange[0]}</span>
-                  <span>${priceRange[1]}</span>
+                  <span>{formatCurrency(priceRange[0], 'USD')}</span>
+                  <span>{formatCurrency(priceRange[1], 'USD')}</span>
                 </div>
-                <div className="relative h-5">
-                  <input
-                    type="range"
-                    min="50"
-                    max="250"
-                    value={priceRange[0]}
-                    name="min"
-                    onChange={handlePriceChange}
-                    className="absolute top-0 w-full h-1 bg-transparent pointer-events-none appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-gray-300 [&::-webkit-slider-thumb]:cursor-pointer"
-                  />
-                  <input
-                    type="range"
-                    min="50"
-                    max="250"
-                    value={priceRange[1]}
-                    name="max"
-                    onChange={handlePriceChange}
-                    className="absolute top-0 w-full h-1 bg-transparent pointer-events-none appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-gray-300 [&::-webkit-slider-thumb]:cursor-pointer"
-                  />
-                </div>
+                <Slider
+                  range
+                  min={0}
+                  max={10000000}
+                  value={priceRange}
+                  onChange={(value) => setPriceRange(value as [number, number])}
+                  className="mt-6 mx-2"
+                  tooltip={{
+                    formatter: (value) => `$${value}`,
+                  }}
+                />
               </div>
             </motion.div>
           )}
@@ -191,18 +195,19 @@ const Filters = ({
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {/* <div className="flex flex-wrap gap-2 py-3">
-                {colors.map((color) => (
-                  <motion.div
-                    key={color.id}
-                    className={`w-6 h-6 rounded-full cursor-pointer ${color.border ? 'border border-gray-300' : ''} ${selectedColors.includes(color.id) ? 'ring-2 ring-black ring-offset-1' : ''}`}
-                    style={{ backgroundColor: color.color }}
-                    onClick={() => handleColorSelect(color.id)}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  />
-                ))}
-              </div> */}
+              <div className="flex flex-wrap gap-2 py-3">
+                {colors &&
+                  colors.map((color) => (
+                    <motion.div
+                      key={color.id}
+                      className={`w-6 h-6 rounded-full cursor-pointer ${selectedColor?.includes(color.name) ? 'ring-2 ring-black ring-offset-1' : ''}`}
+                      style={{ backgroundColor: color.code }}
+                      onClick={() => handleColorSelect(color.name)}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    />
+                  ))}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -233,41 +238,19 @@ const Filters = ({
             >
               <div className="py-3">
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {/* {sizes.slice(0, 4).map((size) => (
-                    <motion.div
-                      key={size.id}
-                      className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
-                      onClick={() => handleSizeSelect(size.id)}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {size.label}
-                    </motion.div>
-                  ))} */}
+                  {sizes &&
+                    sizes.slice(0, 4).map((size) => (
+                      <motion.div
+                        key={size.id}
+                        className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSize?.includes(size.name) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
+                        onClick={() => handleSizeSelect(size.name)}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {size.name}
+                      </motion.div>
+                    ))}
                 </div>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {/* {sizes.slice(4, 7).map((size) => (
-                    <motion.div
-                      key={size.id}
-                      className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
-                      onClick={() => handleSizeSelect(size.id)}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {size.label}
-                    </motion.div>
-                  ))} */}
-                </div>
-                {/* <div className="flex flex-wrap gap-2">
-                  {sizes.slice(7).map((size) => (
-                    <motion.div
-                      key={size.id}
-                      className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSizes.includes(size.id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
-                      onClick={() => handleSizeSelect(size.id)}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {size.label}
-                    </motion.div>
-                  ))}
-                </div> */}
+                <div className="flex flex-wrap gap-2 mb-2"></div>
               </div>
             </motion.div>
           )}

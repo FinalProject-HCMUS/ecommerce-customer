@@ -31,8 +31,7 @@ const HomePage: React.FC = () => {
         const topTrending = response.topProducts.find(
           (category) => category.title === TOP_TRENDING
         );
-        console.log('Top Selling:', topSelling);
-        console.log('Top Trending:', topTrending);
+
         if (topSelling) setTopSellingProducts(topSelling.data);
         if (topTrending) setTopTrendingProducts(topTrending.data);
       }

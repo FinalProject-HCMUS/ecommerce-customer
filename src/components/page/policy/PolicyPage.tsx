@@ -1,7 +1,7 @@
 import type React from 'react';
 import Breadcrumb from '../../shared/Breadcrumb';
 import PolicyContent from './PolicyContent';
-import {t} from '../../../helpers/i18n';
+import { t } from '../../../helpers/i18n';
 
 const PolicyPage: React.FC = () => {
   return (

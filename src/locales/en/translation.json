@@ -75,7 +75,8 @@
     "quantity": "Quantity",
     "outOfStock": "Out of Stock",
     "yourCart": "Your Cart",
-    "policy": "Policy"
+    "policy": "Policy",
+    "noProductFound": "No products found"
   },
   "placeholder": {
     "firstName": "Enter your first name",

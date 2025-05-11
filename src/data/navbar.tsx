@@ -2,27 +2,27 @@ export const navbarLinks = [
   {
     label: 'products',
     path: '/products',
-    authenticate: false, 
+    authenticate: false,
   },
   {
     label: 'chat',
     path: '/chat',
-    authenticate: true, 
+    authenticate: true,
   },
   {
     label: 'policy',
     path: '/policy',
-    authenticate: false, 
+    authenticate: false,
   },
   {
     label: 'blog',
     path: '/blog',
-    authenticate: false, 
+    authenticate: false,
   },
   {
     label: 'orders',
     path: '/orders',
-    authenticate: true, 
+    authenticate: true,
   },
 ];
 

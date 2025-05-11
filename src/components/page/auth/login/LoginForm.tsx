@@ -30,11 +30,8 @@ const LoginForm = () => {
 
     if (!tokenResponse) return;
 
-    localStorage.setItem(
-      storageConstants.TOKEN,
-      tokenResponse.accessToken
-    );
-  
+    localStorage.setItem(storageConstants.TOKEN, tokenResponse.accessToken);
+
     const user = await fetchUserByToken();
 
     if (!user) return;
