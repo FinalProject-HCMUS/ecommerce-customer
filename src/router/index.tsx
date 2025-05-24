@@ -25,7 +25,10 @@ const router = createBrowserRouter(
       {/* Catch-all route for 404 errors */}
       <Route path="*" element={<Page404 />} />
     </Route>
-  )
+  ),
+  {
+    basename: '/ecommerce-customer'
+  }
 );
 
 export default router;
