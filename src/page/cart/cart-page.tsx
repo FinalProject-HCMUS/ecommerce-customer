@@ -74,9 +74,10 @@ function App() {
   const subtotal = cartItems.reduce(
     (sum, item) =>
       sum +
-      item?.product.price *
+      (item?.product.price *
         (100 - item?.product.discountPercent) *
-        item.quantity,
+        item.quantity) /
+        100,
     0
   );
 

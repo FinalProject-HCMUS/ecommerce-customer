@@ -109,7 +109,8 @@
     "total": "Total",
     "gotoCheckout": "Go to Checkout",
     "addItemsToCart": "Add items to cart",
-    "emptyCart": "Your cart is empty"
+    "emptyCart": "Your cart is empty",
+    "authenticating": "Authenticating..."
   },
   "placeholder": {
     "firstName": "Enter your first name",

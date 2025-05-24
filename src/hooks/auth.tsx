@@ -4,6 +4,7 @@ import {
   refreshToken,
   logout,
   validateToken,
+  outboundAuthenticate,
 } from '../services/apis/authApis';
 import { LoginRequest } from '../interfaces/auth/LoginRequest';
 import { TokenResponse } from '../interfaces/auth/TokenResponse';
@@ -69,11 +70,26 @@ export const useAuth = () => {
     }
   };
 
+  const authenticateWithCode = async (
+    code: string
+  ): Promise<TokenResponse | null> => {
+    setLoading(true);
+    try {
+      const response = await outboundAuthenticate(code);
+      return response.data || null;
+    } catch {
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
     loginUser,
     refreshUserToken,
     logoutUser,
     validateUserToken,
+    authenticateWithCode,
   };
 };

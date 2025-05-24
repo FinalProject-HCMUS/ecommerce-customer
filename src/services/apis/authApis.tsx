@@ -73,3 +73,13 @@ export const resendConfirmationEmail = async (
   );
   return response.data;
 };
+
+export const outboundAuthenticate = async (
+  code: string
+): Promise<CustomResponse<TokenResponse>> => {
+  const response = await client.post<CustomResponse<TokenResponse>>(
+    `/auth/outbound/authentication?code=${code}`,
+    null
+  );
+  return response.data;
+};

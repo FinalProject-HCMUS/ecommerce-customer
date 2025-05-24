@@ -5,7 +5,6 @@ import SocialLoginButton from './SocialLoginButton';
 import Divider from '../../../shared/Divider';
 import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
 import { FcGoogle } from 'react-icons/fc';
-import { FaFacebook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../../hooks/auth';
 import { messageRenderUtils } from '../../../../utils';
@@ -45,6 +44,17 @@ const LoginForm = () => {
     );
     messageRenderUtils.showSuccess(t('success.loginSuccess'));
     navigate('/');
+  };
+
+  const handleLoginGoogle = (): void => {
+    const callbackUrl = import.meta.env.VITE_REDIRECT_URI;
+    const authUrl = import.meta.env.VITE_AUTH_URI;
+    const googleClientId = import.meta.env.VITE_CLIENT_ID;
+
+    const targetUrl = `${authUrl}?redirect_uri=${encodeURIComponent(
+      callbackUrl
+    )}&response_type=code&client_id=${googleClientId}&scope=openid%20email%20profile`;
+    window.location.href = targetUrl;
   };
 
   return (
@@ -106,16 +116,11 @@ const LoginForm = () => {
 
       <Divider text={t('lbl.or')} className="my-6" />
 
-      <div className="mt-6 grid grid-cols-2 gap-3">
+      <div className="mt-6 grid grid-cols-1 gap-3">
         <SocialLoginButton
           icon={<FcGoogle className="mr-2 h-5 w-5" />}
           text="Google"
-          onClick={() => console.log('Google login')}
-        />
-        <SocialLoginButton
-          icon={<FaFacebook className="mr-2 h-5 w-5 text-blue-600" />}
-          text="Facebook"
-          onClick={() => console.log('Facebook login')}
+          onClick={handleLoginGoogle}
         />
       </div>
     </>

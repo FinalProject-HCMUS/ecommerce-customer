@@ -109,7 +109,8 @@
     "newPassword": "Mật khẩu mới",
     "confirmNewPassword": "Xác nhận mật khẩu mới",
     "addItemsToCart": "Thêm sản phẩm vào giỏ hàng",
-    "emptyCart": "Giỏ hàng của bạn đang trống"
+    "emptyCart": "Giỏ hàng của bạn đang trống",
+    "authenticating": "Đang xác thực..."
   },
   "placeholder": {
     "firstName": "Nhập tên của bạn",

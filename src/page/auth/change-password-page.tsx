@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useUser } from '../../hooks/user';
 import { RootState } from '../../context/store';
 import { Lock } from 'lucide-react';
@@ -8,10 +8,12 @@ import { showError, showSuccess } from '../../utils/messageRender';
 import PasswordInput from '../../components/shared/form/PasswordInput';
 import { GeneralButton } from '../../components/shared/Button';
 import { ChangePasswordRequest } from '../../interfaces/user/ChangePasswordRequest';
+import { logout } from '../../context/authSlice';
 
 const ChangePasswordPage: React.FC = () => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const { changePassword, loading } = useUser();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState<ChangePasswordRequest>({
     currentPassword: '',
@@ -77,6 +79,7 @@ const ChangePasswordPage: React.FC = () => {
 
     if (result) {
       showSuccess(t('success.passwordChanged'));
+      dispatch(logout());
       // Reset form
       setFormData({
         currentPassword: '',
