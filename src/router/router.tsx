@@ -2,12 +2,19 @@ import { IRoute } from '../interfaces/temp/common';
 import { lazy } from 'react';
 import { withAuthenticatedUser } from '../hocs/withAuthenticatedUser';
 import { withUnAuthenticatedUser } from '../hocs/withUnAuthenticatedUser';
+import routeConstants from '../constants/route';
 
+const ActivateAccountPage = lazy(
+  () => import('../page/auth/activate-account-page')
+);
+const ConfirmEmailPage = lazy(() => import('../page/auth/confirm-email-page'));
 const HomePage = lazy(() => import('../page/home/home-page'));
 const SearchPage = lazy(() => import('../page/search/search-page'));
 const LoginPage = lazy(() => import('../page/auth/login-page'));
 const RegistrationPage = lazy(() => import('../page/auth/registration-page'));
-const DetailProduct = lazy(() => import('../page/detail-product/detail-product-page'));
+const DetailProduct = lazy(
+  () => import('../page/detail-product/detail-product-page')
+);
 const CartPage = lazy(() => import('../page/cart/cart-page'));
 const CheckoutPage = lazy(() => import('../page/checkout/checkout-page'));
 const Chat = lazy(() => import('../page/chat/chat'));
@@ -18,18 +25,21 @@ const Page403 = lazy(() => import('../page/error/Page403'));
 const Page500 = lazy(() => import('../page/error/Page500'));
 const OrdersPage = lazy(() => import('../page/order/order-page'));
 const ProfilePage = lazy(() => import('../page/profile/profile-page'));
+const ChangePasswordPage = lazy(
+  () => import('../page/auth/change-password-page')
+);
 
 const routes: IRoute[] = [
   {
     exact: true,
-    path: '/',
+    path: routeConstants.HOME,
     name: 'Home',
     component: HomePage,
   },
   {
     exact: true,
-    path: '/search',
-    name: 'Search',
+    path: '/products',
+    name: 'Products',
     component: SearchPage,
   },
   {
@@ -109,6 +119,24 @@ const routes: IRoute[] = [
     path: '/orders',
     name: 'Orders Page',
     component: withAuthenticatedUser(OrdersPage),
+  },
+  {
+    exact: true,
+    path: 'activate-account',
+    name: 'Activate Account',
+    component: ActivateAccountPage,
+  },
+  {
+    exact: true,
+    path: '/confirm-email',
+    name: 'Confirm Email',
+    component: ConfirmEmailPage,
+  },
+  {
+    exact: true,
+    path: '/change-password',
+    name: 'Change Password',
+    component: withAuthenticatedUser(ChangePasswordPage),
   },
 ];
 

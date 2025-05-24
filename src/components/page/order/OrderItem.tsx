@@ -19,7 +19,9 @@ const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
           Qty: {item.quantity} × ${item.price.toFixed(2)}
         </div>
       </div>
-      <div className="font-medium text-gray-900">${(item.quantity * item.price).toFixed(2)}</div>
+      <div className="font-medium text-gray-900">
+        ${(item.quantity * item.price).toFixed(2)}
+      </div>
     </div>
   );
 };

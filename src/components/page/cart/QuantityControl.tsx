@@ -1,7 +1,11 @@
 import type React from 'react';
 import type { QuantityControlProps } from '../../../interfaces/temp/cart';
 
-const QuantityControl: React.FC<QuantityControlProps> = ({ quantity, onDecrease, onIncrease }) => {
+const QuantityControl: React.FC<QuantityControlProps> = ({
+  quantity,
+  onDecrease,
+  onIncrease,
+}) => {
   return (
     <div className="flex items-center border border-gray-300 rounded-full">
       <button

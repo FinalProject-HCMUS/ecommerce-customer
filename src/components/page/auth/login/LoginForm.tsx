@@ -8,11 +8,13 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../../hooks/auth';
-import { showSuccess } from '../../../../utils/SuccessToastifyRender';
+import { messageRenderUtils } from '../../../../utils';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../../context/authSlice';
 import { useUser } from '../../../../hooks/user';
+import { t } from '../../../../helpers/i18n';
+import storageConstants from '../../../../constants/localStorage';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -24,48 +26,49 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Call the loginUser function
     const tokenResponse = await loginUser({ email, password });
 
-    if (tokenResponse) {
-      localStorage.setItem('accessToken', tokenResponse.accessToken);
-      const user = await fetchUserByToken();
-      console.log('User:', user);
-      if (user) {
-        dispatch(
-          login({
-            userInfo: user,
-            accessToken: tokenResponse.accessToken,
-            refreshAccessToken: tokenResponse.refreshToken,
-          }),
-        );
-        showSuccess('Login successful!'); // Show success message
-        navigate('/'); // Redirect to home page after successful login
-      }
-    }
+    if (!tokenResponse) return;
+
+    localStorage.setItem(storageConstants.TOKEN, tokenResponse.accessToken);
+
+    const user = await fetchUserByToken();
+
+    if (!user) return;
+
+    dispatch(
+      login({
+        userInfo: user,
+        accessToken: tokenResponse.accessToken,
+        refreshAccessToken: tokenResponse.refreshToken,
+      })
+    );
+    messageRenderUtils.showSuccess(t('success.loginSuccess'));
+    navigate('/');
   };
 
   return (
     <>
-      <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">Login to your account</h1>
+      <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">
+        {t('lbl.login')}
+      </h1>
       <form onSubmit={handleSubmit}>
         <InputField
-          id="email"
+          id={t('lbl.email')}
           label="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="balamia@gmail.com"
+          placeholder={t('placeholder.email')}
           required
         />
 
         <PasswordInput
           id="password"
-          label="Password"
+          label={t('lbl.password')}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
+          placeholder={t('placeholder.password')}
           forgotPasswordLink="#"
           required
         />
@@ -77,18 +80,31 @@ const LoginForm = () => {
           isLoading={loading} // Show loading spinner when submitting
           className="w-full rounded-[10px]"
         >
-          Login now
+          {t('btn.login')}
         </GeneralButton>
       </form>
 
-      <div className="mt-4 text-center text-sm text-gray-500">
-        Don't Have An Account?
-        <Link to="/register" className="ml-1 font-medium text-blue-600 hover:text-blue-500">
-          Sign Up
-        </Link>
+      <div className="mt-4 flex items-center justify-between">
+        <div className="mt-4 text-center">
+          <Link
+            to="/activate-account"
+            className="text-sm font-medium text-blue-600 hover:text-blue-500"
+          >
+            {t('hyperlink.activateAccount')}
+          </Link>
+        </div>
+        <div className="mt-4 text-center text-sm text-gray-500">
+          {t('lbl.notRegistered')}
+          <Link
+            to="/register"
+            className="ml-1 font-medium text-blue-600 hover:text-blue-500"
+          >
+            {t('hyperlink.register')}
+          </Link>
+        </div>
       </div>
 
-      <Divider text="Or" className="my-6" />
+      <Divider text={t('lbl.or')} className="my-6" />
 
       <div className="mt-6 grid grid-cols-2 gap-3">
         <SocialLoginButton

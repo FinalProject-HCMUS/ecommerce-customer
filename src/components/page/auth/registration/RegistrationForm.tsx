@@ -5,8 +5,9 @@ import PasswordInput from '../../../shared/form/PasswordInput';
 import { GeneralButton } from '../../../shared/Button'; // Import the reusable Button component
 import { useUser } from '../../../../hooks/user';
 import { Role } from '../../../../interfaces';
-import { showSuccess } from '../../../../utils/SuccessToastifyRender';
-import { useNavigate } from 'react-router-dom';
+import { messageRenderUtils } from '../../../../utils';
+import { t } from '../../../../helpers/i18n';
+
 interface FormState {
   firstName: string;
   lastName: string;
@@ -16,7 +17,9 @@ interface FormState {
   confirmPassword: string;
 }
 
-type Action = { type: 'SET_FIELD'; field: keyof FormState; value: string } | { type: 'RESET_FORM' };
+type Action =
+  | { type: 'SET_FIELD'; field: keyof FormState; value: string }
+  | { type: 'RESET_FORM' };
 
 const initialState: FormState = {
   firstName: '',
@@ -42,21 +45,20 @@ const RegistrationForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
   const [isLoading, setIsLoading] = useState(false); // State for loading
   const { createUser } = useUser();
-  const navigate = useNavigate();
 
   const handleInputChange =
-    (field: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (field: keyof FormState) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       dispatch({ type: 'SET_FIELD', field, value: e.target.value });
     };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Set loading state
-    console.log('Form Submitted:', formState);
 
     // Validate password and confirm password
     if (formState.password !== formState.confirmPassword) {
-      alert('Passwords do not match!');
+      messageRenderUtils.showError(t('error.passwordMismatch'));
       setIsLoading(false);
       return;
     }
@@ -66,84 +68,81 @@ const RegistrationForm = () => {
       firstName: formState.firstName,
       lastName: formState.lastName,
       email: formState.email,
-      phoneNum: formState.phone,
+      phoneNumber: formState.phone,
       password: formState.password,
-      role: 'USER' as Role, // Default role
+      role: 'USER' as Role,
     };
 
     try {
       const response = await createUser(userData);
       if (response) {
-        showSuccess('Account created successfully! Please log in.');
-        dispatch({ type: 'RESET_FORM' }); // Reset the form after successful submission
-        navigate('/login'); // Redirect to login page
+        messageRenderUtils.showSuccess(t('success.registerSuccess'));
+        dispatch({ type: 'RESET_FORM' });
       }
-    } catch (error) {
-      console.error('Error creating account:', error);
     } finally {
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
       <div className="max-w-md mx-auto w-full">
-        <h2 className="text-3xl font-bold mb-6">Create an account</h2>
+        <h2 className="text-3xl font-bold mb-6">{t('lbl.register')}</h2>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <InputField
             id="firstName"
-            label="First name"
+            label={t('lbl.firstName')}
             type="text"
             value={formState.firstName}
             onChange={handleInputChange('firstName')}
-            placeholder="le"
+            placeholder={t('placeholder.firstName')}
             required
           />
           <InputField
             id="lastName"
-            label="Last name"
+            label={t('lbl.lastName')}
             type="text"
             value={formState.lastName}
             onChange={handleInputChange('lastName')}
-            placeholder="hoang"
+            placeholder={t('placeholder.lastName')}
             required
           />
           <InputField
             id="email"
-            label="Email"
+            label={t('lbl.email')}
             type="email"
             value={formState.email}
             onChange={handleInputChange('email')}
-            placeholder="balamla@gmail.com"
+            placeholder={t('placeholder.email')}
             required
           />
 
           <InputField
             id="phone"
-            label="Phone"
+            label={t('lbl.phone')}
             type="tel"
             value={formState.phone}
             onChange={handleInputChange('phone')}
-            placeholder="09876543223"
+            placeholder={t('placeholder.phone')}
             required
           />
 
           <PasswordInput
             id="password"
-            label="Password"
+            label={t('lbl.password')}
             value={formState.password}
             onChange={handleInputChange('password')}
-            placeholder="Enter your password"
+            placeholder={t('placeholder.password')}
             required
           />
 
           <PasswordInput
             id="confirmPassword"
-            label="Confirm Password"
+            label={t('lbl.confirmPassword')}
             value={formState.confirmPassword}
             onChange={handleInputChange('confirmPassword')}
-            placeholder="Confirm your password"
+            placeholder={t('placeholder.confirmPassword')}
             required
           />
 
@@ -154,14 +153,14 @@ const RegistrationForm = () => {
             isLoading={isLoading} // Show loading spinner when submitting
             className="w-full rounded-[10px]"
           >
-            Create account
+            {t('btn.createAccount')}
           </GeneralButton>
         </form>
 
         <p className="mt-6 text-center">
-          Already Have An Account?{' '}
+          {t('lbl.notRegistered')}{' '}
           <Link to="/login" className="text-blue-600 hover:underline">
-            Log In
+            {t('hyperlink.login')}
           </Link>
         </p>
       </div>

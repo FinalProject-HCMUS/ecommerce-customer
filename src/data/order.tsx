@@ -26,11 +26,27 @@ export const mockOrders: Order[] = [
     total: 119.97,
     statusHistory: [
       { status: 'NEW', date: '2023-04-15T08:30:00Z', note: 'Order placed' },
-      { status: 'PROCESSING', date: '2023-04-15T09:15:00Z', note: 'Payment confirmed' },
-      { status: 'PACKAGED', date: '2023-04-16T10:20:00Z', note: 'Items packaged' },
-      { status: 'PICKED', date: '2023-04-16T14:45:00Z', note: 'Ready for shipping' },
+      {
+        status: 'PROCESSING',
+        date: '2023-04-15T09:15:00Z',
+        note: 'Payment confirmed',
+      },
+      {
+        status: 'PACKAGED',
+        date: '2023-04-16T10:20:00Z',
+        note: 'Items packaged',
+      },
+      {
+        status: 'PICKED',
+        date: '2023-04-16T14:45:00Z',
+        note: 'Ready for shipping',
+      },
       { status: 'SHIPPING', date: '2023-04-17T08:30:00Z', note: 'In transit' },
-      { status: 'DELIVERED', date: '2023-04-20T13:25:00Z', note: 'Package delivered' },
+      {
+        status: 'DELIVERED',
+        date: '2023-04-20T13:25:00Z',
+        note: 'Package delivered',
+      },
     ],
   },
   {
@@ -50,9 +66,21 @@ export const mockOrders: Order[] = [
     total: 49.99,
     statusHistory: [
       { status: 'NEW', date: '2023-05-20T10:15:00Z', note: 'Order placed' },
-      { status: 'PROCESSING', date: '2023-05-20T11:30:00Z', note: 'Payment confirmed' },
-      { status: 'PACKAGED', date: '2023-05-21T09:45:00Z', note: 'Items packaged' },
-      { status: 'PICKED', date: '2023-05-21T15:20:00Z', note: 'Ready for shipping' },
+      {
+        status: 'PROCESSING',
+        date: '2023-05-20T11:30:00Z',
+        note: 'Payment confirmed',
+      },
+      {
+        status: 'PACKAGED',
+        date: '2023-05-21T09:45:00Z',
+        note: 'Items packaged',
+      },
+      {
+        status: 'PICKED',
+        date: '2023-05-21T15:20:00Z',
+        note: 'Ready for shipping',
+      },
       { status: 'SHIPPING', date: '2023-05-22T08:10:00Z', note: 'In transit' },
     ],
   },
@@ -80,7 +108,11 @@ export const mockOrders: Order[] = [
     total: 229.98,
     statusHistory: [
       { status: 'NEW', date: '2023-06-10T14:25:00Z', note: 'Order placed' },
-      { status: 'PROCESSING', date: '2023-06-10T15:40:00Z', note: 'Payment confirmed' },
+      {
+        status: 'PROCESSING',
+        date: '2023-06-10T15:40:00Z',
+        note: 'Payment confirmed',
+      },
     ],
   },
   {
@@ -100,8 +132,16 @@ export const mockOrders: Order[] = [
     total: 79.99,
     statusHistory: [
       { status: 'NEW', date: '2023-07-05T09:10:00Z', note: 'Order placed' },
-      { status: 'PROCESSING', date: '2023-07-05T10:30:00Z', note: 'Payment confirmed' },
-      { status: 'CANCELLED', date: '2023-07-06T11:15:00Z', note: 'Cancelled by customer' },
+      {
+        status: 'PROCESSING',
+        date: '2023-07-05T10:30:00Z',
+        note: 'Payment confirmed',
+      },
+      {
+        status: 'CANCELLED',
+        date: '2023-07-06T11:15:00Z',
+        note: 'Cancelled by customer',
+      },
     ],
   },
   {
@@ -121,12 +161,32 @@ export const mockOrders: Order[] = [
     total: 129.99,
     statusHistory: [
       { status: 'NEW', date: '2023-08-12T13:20:00Z', note: 'Order placed' },
-      { status: 'PROCESSING', date: '2023-08-12T14:15:00Z', note: 'Payment confirmed' },
-      { status: 'PACKAGED', date: '2023-08-13T10:30:00Z', note: 'Items packaged' },
-      { status: 'PICKED', date: '2023-08-13T15:45:00Z', note: 'Ready for shipping' },
+      {
+        status: 'PROCESSING',
+        date: '2023-08-12T14:15:00Z',
+        note: 'Payment confirmed',
+      },
+      {
+        status: 'PACKAGED',
+        date: '2023-08-13T10:30:00Z',
+        note: 'Items packaged',
+      },
+      {
+        status: 'PICKED',
+        date: '2023-08-13T15:45:00Z',
+        note: 'Ready for shipping',
+      },
       { status: 'SHIPPING', date: '2023-08-14T09:20:00Z', note: 'In transit' },
-      { status: 'DELIVERED', date: '2023-08-17T14:10:00Z', note: 'Package delivered' },
-      { status: 'REFUNDED', date: '2023-08-20T11:25:00Z', note: 'Product returned and refunded' },
+      {
+        status: 'DELIVERED',
+        date: '2023-08-17T14:10:00Z',
+        note: 'Package delivered',
+      },
+      {
+        status: 'REFUNDED',
+        date: '2023-08-20T11:25:00Z',
+        note: 'Product returned and refunded',
+      },
     ],
   },
 ];

@@ -1,12 +1,13 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { showError } from '../../utils/ErrorToastifyRender';
+import { messageRenderUtils } from '../../utils';
+import { t } from '../../helpers/i18n';
+import localStorageConstants from '../../constants/localStorage';
 
 // Base URL for the eCommerce API
-const ECOMMERCE_API_BASE_URL = import.meta.env.VITE_BACKEND_URL; // Replace with your actual API base URL
+const ECOMMERCE_API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-// Function to get the token (replace with your actual token retrieval logic)
 const getToken = () => {
-  return localStorage.getItem('accessToken') || '';
+  return localStorage.getItem(localStorageConstants.TOKEN || '');
 };
 
 // Create an Axios client for eCommerce
@@ -30,10 +31,12 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
-    const errorMessage = (error?.response?.data as { message?: string })?.message || 'An error occurred';
-    showError(errorMessage);
+    const errorMessage =
+      (error?.response?.data as { message?: string })?.message ||
+      t('error.commonError');
+    messageRenderUtils.showError(errorMessage);
     return Promise.reject(error);
-  },
+  }
 );
 
 export default client;

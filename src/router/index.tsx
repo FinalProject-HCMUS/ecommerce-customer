@@ -1,4 +1,8 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 import { lazy } from 'react';
 import routes from './router';
 import MainLayout from '../layout/main-layout';
@@ -12,12 +16,16 @@ const router = createBrowserRouter(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<HomePage />} />
       {routes.map((route, index) => (
-        <Route key={index} path={route.path} element={route.component ? <route.component /> : null} />
+        <Route
+          key={index}
+          path={route.path}
+          element={route.component ? <route.component /> : null}
+        />
       ))}
       {/* Catch-all route for 404 errors */}
       <Route path="*" element={<Page404 />} />
-    </Route>,
-  ),
+    </Route>
+  )
 );
 
 export default router;

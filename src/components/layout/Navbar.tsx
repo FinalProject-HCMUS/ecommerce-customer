@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
-import { FiSearch, FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { navbarSearchPlaceholder, shopName } from '../../data/navbar';
 import { navbarLinks } from '../../data/navbar';
 import { RootState } from '../../context/store';
 import { useSelector } from 'react-redux';
 import UserDropdown from './UserDropdown';
+import LanguageSwitcher from './LanguageSwitcher';
+import { t } from '../../helpers/i18n';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Get authentication state from Redux
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +35,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold">
-              {shopName}
+              {t('shopName')}
             </Link>
 
             <nav className="hidden md:flex ml-10 space-x-8">
@@ -42,8 +45,12 @@ const Navbar = () => {
                   return null; // Hide links that require authentication if not authenticated
                 }
                 return (
-                  <Link key={link.path} to={link.path} className="nav-link font-medium">
-                    {link.label}
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className="nav-link font-medium"
+                  >
+                    {t('navbar.' + link.label)}
                   </Link>
                 );
               })}
@@ -51,14 +58,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <div className="relative hidden md:block">
-              <input
-                type="text"
-                placeholder={navbarSearchPlaceholder}
-                className="w-64 pl-10 pr-4 py-2 rounded-full bg-gray-100 focus:outline-none"
-              />
-              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            </div>
+            <LanguageSwitcher />
 
             {/* Conditionally show cart and user icons if authenticated */}
             {isAuthenticated ? (
@@ -74,11 +74,16 @@ const Navbar = () => {
             ) : (
               // Show Login button if not authenticated
               <Link to="/login">
-                <button className="p-2 hover:text-gray-600 transition-colors">Login</button>
+                <button className="p-2 hover:text-gray-600 transition-colors">
+                  {t('login')}
+                </button>
               </Link>
             )}
 
-            <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <button
+              className="md:hidden p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
               <div className="w-6 h-0.5 bg-black mb-1.5"></div>
               <div className="w-6 h-0.5 bg-black mb-1.5"></div>
               <div className="w-6 h-0.5 bg-black"></div>
@@ -97,7 +102,7 @@ const Navbar = () => {
                 }
                 return (
                   <Link key={link.path} to={link.path} className="font-medium">
-                    {link.label}
+                    {t(link.label)}
                   </Link>
                 );
               })}
@@ -109,13 +114,15 @@ const Navbar = () => {
                 <>
                   <Link to="/cart" className="flex items-center space-x-2">
                     <FiShoppingCart size={20} />
-                    <span>Cart</span>
+                    <span>{t('cart')}</span>
                   </Link>
                   <UserDropdown />
                 </>
               ) : (
                 <Link to="/login" className="flex items-center space-x-2">
-                  <button className="p-2 hover:text-gray-600 transition-colors">Login</button>
+                  <button className="p-2 hover:text-gray-600 transition-colors">
+                    {t('login')}
+                  </button>
                 </Link>
               )}
             </div>

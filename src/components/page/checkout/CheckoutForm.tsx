@@ -31,7 +31,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
         <h2 className="text-xl font-bold mb-4">Shipping information</h2>
 
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Receiver's Name
           </label>
           <input
@@ -46,7 +49,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
         </div>
 
         <div className="mb-4">
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Phone Number
           </label>
           <input
@@ -61,7 +67,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
         </div>
 
         <div className="mb-4">
-          <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="address"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Address
           </label>
           <input
@@ -91,7 +100,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                 onChange={() => onPaymentMethodChange(method.id)}
                 className="h-5 w-5 text-blue-600 focus:ring-blue-500"
               />
-              <label htmlFor={method.id} className="ml-3 text-base font-medium text-gray-700">
+              <label
+                htmlFor={method.id}
+                className="ml-3 text-base font-medium text-gray-700"
+              >
                 {method.label}
               </label>
             </div>

@@ -1,18 +1,50 @@
 import { useState } from 'react';
-import { getAllProducts, getProductById, getTopProducts } from '../services/apis/productApis';
+import {
+  getAllProducts,
+  getProductById,
+  getTopProducts,
+} from '../services/apis/productApis';
+import { ProductResponse, Pageable } from '../interfaces';
 
 export const useProducts = () => {
   const [loading, setLoading] = useState(false);
 
   // Fetch all products
-  const fetchAllProducts = async () => {
+  const fetchAllProducts = async ({
+    page = 0,
+    perPage = 16,
+    sort,
+    keySearch,
+    category,
+    fromPrice,
+    topPrice,
+    color,
+    size,
+  }: {
+    page?: number;
+    perPage?: number;
+    sort?: string[];
+    keySearch?: string;
+    category?: string;
+    fromPrice?: number;
+    topPrice?: number;
+    color?: string;
+    size?: string;
+  }): Promise<Pageable<ProductResponse[]> | undefined> => {
     setLoading(true);
     try {
-      const response = await getAllProducts();
-      return response.data || null;
-    } catch (error) {
-      console.error('Error fetching all products:', error);
-      return null;
+      const response = await getAllProducts(
+        page,
+        perPage,
+        sort,
+        keySearch,
+        category,
+        fromPrice,
+        topPrice,
+        color,
+        size
+      );
+      return response.data;
     } finally {
       setLoading(false);
     }
@@ -24,9 +56,6 @@ export const useProducts = () => {
     try {
       const response = await getProductById(id);
       return response.data || null;
-    } catch (error) {
-      console.error(`Error fetching product with ID ${id}:`, error);
-      return null;
     } finally {
       setLoading(false);
     }
@@ -38,9 +67,6 @@ export const useProducts = () => {
     try {
       const response = await getTopProducts(page, size);
       return response.data || null;
-    } catch (error) {
-      console.error('Error fetching top products:', error);
-      return null;
     } finally {
       setLoading(false);
     }

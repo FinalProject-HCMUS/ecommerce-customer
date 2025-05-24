@@ -25,7 +25,11 @@ const App: React.FC = () => {
         id: Date.now().toString(),
         text,
         sender: 'other',
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }),
+        timestamp: new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+        }),
       };
       setMessages([...messages, newMessage]);
     }

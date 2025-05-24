@@ -4,6 +4,10 @@ import { UserResponse } from '../interfaces/user/UserResponse';
 import { CreateUserRequest } from '../interfaces/user/CreateUserRequest';
 import { UpdateUserRequest } from '../interfaces/user/UpdateUserRequest';
 import { ChangePasswordRequest } from '../interfaces/user/ChangePasswordRequest';
+import {
+  confirmEmail,
+  resendConfirmationEmail,
+} from '../services/apis/authApis';
 
 export const useUser = () => {
   const [user, setUser] = useState<UserResponse | null>(null);
@@ -23,21 +27,21 @@ export const useUser = () => {
     }
   };
 
-   // Fetch a single user by token
-   const fetchUserByToken = async (): Promise<UserResponse | null> => {
+  // Fetch a single user by token
+  const fetchUserByToken = async (): Promise<UserResponse | null> => {
     setLoading(true);
     try {
       const response = await userApi.getUserByToken();
       return response.data || null;
-    } catch {
-      return null;
     } finally {
       setLoading(false);
     }
   };
 
   // Create a new user
-  const createUser = async (data: CreateUserRequest): Promise<UserResponse | null> => {
+  const createUser = async (
+    data: CreateUserRequest
+  ): Promise<UserResponse | null> => {
     setLoading(true);
     try {
       const response = await userApi.createUser(data);
@@ -50,24 +54,53 @@ export const useUser = () => {
   };
 
   // Update an existing user
-  const updateUser = async (id: string, data: UpdateUserRequest): Promise<UserResponse | null> => {
-    setLoading(true);
+  const updateUser = async (
+    id: string,
+    data: UpdateUserRequest
+  ): Promise<UserResponse | null> => {
     try {
       const response = await userApi.updateUser(id, data);
       return response.data || null;
     } catch {
       return null;
+    }
+  };
+
+  // Change user password
+  const changePassword = async (
+    id: string,
+    data: ChangePasswordRequest
+  ): Promise<boolean> => {
+    setLoading(true);
+    try {
+      await userApi.changePassword(id, data);
+      return true;
+    } catch {
+      return false;
     } finally {
       setLoading(false);
     }
   };
 
-  // Change user password
-  const changePassword = async (id: string, data: ChangePasswordRequest): Promise<boolean> => {
+  const confirmUserEmail = async (token: string): Promise<boolean> => {
     setLoading(true);
     try {
-      await userApi.changePassword(id, data);
-      return true;
+      const response = await confirmEmail(token);
+      return response.isSuccess;
+    } catch {
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resendUserConfirmationEmail = async (
+    email: string
+  ): Promise<boolean> => {
+    setLoading(true);
+    try {
+      const response = await resendConfirmationEmail(email);
+      return response.isSuccess;
     } catch {
       return false;
     } finally {
@@ -83,5 +116,7 @@ export const useUser = () => {
     updateUser,
     changePassword,
     fetchUserByToken,
+    confirmUserEmail,
+    resendUserConfirmationEmail,
   };
 };

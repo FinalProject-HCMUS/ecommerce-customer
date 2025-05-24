@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../../lib/utils'; // Utility function for merging classes
+import { cn } from '../../utils/cn'; // Utility function for merging classes
 
 interface DividerProps {
   text?: string; // Optional text to display in the divider
@@ -7,7 +7,11 @@ interface DividerProps {
   textPosition?: 'center' | 'left' | 'right'; // Position of the text
 }
 
-const Divider: React.FC<DividerProps> = ({ text, className, textPosition = 'center' }) => {
+const Divider: React.FC<DividerProps> = ({
+  text,
+  className,
+  textPosition = 'center',
+}) => {
   return (
     <div className={cn('relative flex items-center my-4', className)}>
       {/* Left line */}

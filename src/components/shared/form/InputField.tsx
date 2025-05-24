@@ -6,10 +6,19 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ id, label, type = 'text', className = '', ...props }) => {
+const InputField: React.FC<InputFieldProps> = ({
+  id,
+  label,
+  type = 'text',
+  className = '',
+  ...props
+}) => {
   return (
     <div className="mb-4">
-      <label htmlFor={id} className="mb-2 block text-sm font-medium text-gray-700">
+      <label
+        htmlFor={id}
+        className="mb-2 block text-sm font-medium text-gray-700"
+      >
         {label}
       </label>
       <input

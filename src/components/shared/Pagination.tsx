@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'react-feather';
+import { t } from '../../helpers/i18n';
 
 interface PaginationProps {
   currentPage: number;
@@ -7,7 +8,11 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+const Pagination = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) => {
   // Generate page numbers to display
   const getPageNumbers = () => {
     const pages = [];
@@ -72,7 +77,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         disabled={currentPage === 1}
       >
         <ChevronLeft size={16} className="mr-1" />
-        <span>Previous</span>
+        <span>{t('pagination.previous')}</span>
       </button>
 
       <div className="flex items-center">
@@ -91,16 +96,18 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
             <span key={index} className="mx-1 text-gray-500">
               {page}
             </span>
-          ),
+          )
         )}
       </div>
 
       <button
         className="flex items-center px-3 py-2 text-sm disabled:text-gray-300 disabled:cursor-not-allowed"
-        onClick={() => currentPage < totalPages && onPageChange(currentPage + 1)}
+        onClick={() =>
+          currentPage < totalPages && onPageChange(currentPage + 1)
+        }
         disabled={currentPage === totalPages}
       >
-        <span>Next</span>
+        <span>{t('pagination.next')}</span>
         <ChevronRight size={16} className="ml-1" />
       </button>
     </motion.div>

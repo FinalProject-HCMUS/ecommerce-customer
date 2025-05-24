@@ -10,16 +10,8 @@ export interface CartItemType {
 
 export interface OrderSummaryData {
   subtotal: number;
-  discountRate: number;
-  discountAmount: number;
   deliveryFee: number;
   total: number;
-}
-
-export interface CartItemProps {
-  item: CartItemType;
-  updateQuantity: (id: number, quantity: number) => void;
-  removeItem: (id: number) => void;
 }
 
 export interface QuantityControlProps {

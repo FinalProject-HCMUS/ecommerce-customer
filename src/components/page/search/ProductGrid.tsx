@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import type { Product } from '../../../interfaces/temp/product';
+import type { ProductResponse } from '../../../interfaces/product/ProductResponse';
 import ProductCard from '../../shared/product-card/ProductCard';
+import { t } from '../../../helpers/i18n';
 
 interface ProductGridProps {
-  products: Product[];
+  products: ProductResponse[];
 }
 
 const ProductGrid = ({ products }: ProductGridProps) => {
@@ -21,6 +22,14 @@ const ProductGrid = ({ products }: ProductGridProps) => {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
+
+  if (!products || products.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <p className="text-gray-500">{t('lbl.noProductFound')}</p>
+      </div>
+    );
+  }
 
   return (
     <motion.div

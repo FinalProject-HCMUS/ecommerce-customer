@@ -7,7 +7,11 @@ interface QuantitySelectorProps {
   onDecrease: () => void;
 }
 
-const QuantitySelector: React.FC<QuantitySelectorProps> = ({ quantity, onIncrease, onDecrease }) => {
+const QuantitySelector: React.FC<QuantitySelectorProps> = ({
+  quantity,
+  onIncrease,
+  onDecrease,
+}) => {
   return (
     <div className="flex items-center border border-gray-300 rounded-[8px]">
       <button

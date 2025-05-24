@@ -10,7 +10,13 @@ interface ReviewCardProps {
   date: string;
 }
 
-const ReviewCard: React.FC<ReviewCardProps> = ({ author, isVerified = false, rating, content, date }) => {
+const ReviewCard: React.FC<ReviewCardProps> = ({
+  author,
+  isVerified = false,
+  rating,
+  content,
+  date,
+}) => {
   return (
     <div className="border border-gray-200 rounded-[12px] p-6 mb-4">
       <div className="flex justify-between items-start mb-2">

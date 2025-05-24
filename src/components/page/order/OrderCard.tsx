@@ -27,19 +27,26 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
           <Package className="w-5 h-5 text-gray-500" />
           <div>
             <h3 className="font-medium text-gray-900">{order.orderNumber}</h3>
-            <p className="text-sm text-gray-500">Ordered on {new Date(order.date).toLocaleDateString()}</p>
+            <p className="text-sm text-gray-500">
+              Ordered on {new Date(order.date).toLocaleDateString()}
+            </p>
           </div>
         </div>
         <div className="flex items-center space-x-4">
           <StatusBadge status={order.status} />
-          <span className="font-medium text-gray-900">${order.total.toFixed(2)}</span>
+          <span className="font-medium text-gray-900">
+            ${order.total.toFixed(2)}
+          </span>
           <button
             onClick={() => onViewStatus(order)}
             className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-[12px] transition-colors"
           >
             View Status
           </button>
-          <button onClick={() => setExpanded(!expanded)} className="text-gray-500 focus:outline-none">
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="text-gray-500 focus:outline-none"
+          >
             {expanded ? (
               <ChevronDown className="w-5 h-5 transition-transform duration-300" />
             ) : (
@@ -64,7 +71,9 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
             <div>
               <p className="text-sm text-gray-500">Total</p>
             </div>
-            <div className="font-medium text-lg text-gray-900">${order.total.toFixed(2)}</div>
+            <div className="font-medium text-lg text-gray-900">
+              ${order.total.toFixed(2)}
+            </div>
           </div>
         </div>
       </div>

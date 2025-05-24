@@ -65,7 +65,11 @@ const App: React.FC = () => {
             <motion.div
               className="w-16 h-16 border-4 border-gray-300 border-t-gray-600 rounded-full"
               animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
+              transition={{
+                duration: 1,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: 'linear',
+              }}
             />
           ) : uploadedImage ? (
             <motion.img
@@ -121,7 +125,12 @@ const App: React.FC = () => {
       >
         <label className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 px-6 rounded-md cursor-pointer transition-colors duration-200">
           Upload your image
-          <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageUpload}
+          />
         </label>
       </motion.div>
     </div>

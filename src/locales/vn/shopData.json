@@ -1,0 +1,91 @@
+{
+  "shopName": "Tên cửa hàng",
+  "hero": {
+    "title": "Một câu chào mừng khách hàng",
+    "description": "Một vài câu giới thiệu về cửa hàng. Ví dụ: Khám phá các sản phẩm đa dạng được chế tác tỉ mỉ, thiết kế để thể hiện cá tính của bạn và phù hợp với phong cách của bạn.",
+    "characteristics": [
+      {
+        "title": "Sản phẩm chất lượng cao",
+        "description": "Một số đặc điểm về cửa hàng"
+      },
+      {
+        "title": "Nguyên liệu bền vững",
+        "description": "Một số đặc điểm về cửa hàng"
+      },
+      {
+        "title": "Khách hàng hài lòng",
+        "description": "Một số đặc điểm về cửa hàng"
+      }
+    ]
+  },
+  "about": {
+    "title": "Tiêu đề về chúng tôi",
+    "description": "Một vài câu giới thiệu về cửa hàng. Ví dụ: Tại cửa hàng của chúng tôi, chúng tôi tin vào sức mạnh của thời trang để thể hiện cá tính và nâng cao sự tự tin. Sứ mệnh của chúng tôi là cung cấp cho bạn những sản phẩm chất lượng cao không chỉ đẹp mà còn thoải mái khi mặc. Chúng tôi cam kết sử dụng nguyên liệu thân thiện với môi trường và quy trình sản xuất có đạo đức để tạo ra tác động tích cực đến môi trường."
+  },
+  "footer": {
+    "title": "Tiêu đề chân trang",
+    "description": "Một vài câu giới thiệu về cửa hàng. Ví dụ: Chúng tôi cam kết mang đến cho bạn trải nghiệm mua sắm tốt nhất có thể. Nếu bạn có bất kỳ câu hỏi nào hoặc cần hỗ trợ, đừng ngần ngại liên hệ với chúng tôi. Đội ngũ chăm sóc khách hàng của chúng tôi luôn sẵn sàng hỗ trợ bạn với bất kỳ thắc mắc hoặc vấn đề nào.",
+    "copyright": "Bản quyền © 2023 Tên cửa hàng. Bảo lưu mọi quyền.",
+    "hyperlink": [
+      {
+        "title": "CÔNG TY",
+        "links": [
+          { "label": "Giới thiệu", "path": "/about" },
+          { "label": "Tính năng", "path": "/features" },
+          { "label": "Công việc", "path": "/works" },
+          { "label": "Nghề nghiệp", "path": "/career" }
+        ]
+      },
+      {
+        "title": "HỖ TRỢ",
+        "links": [
+          { "label": "Hỗ trợ khách hàng", "path": "/support" },
+          { "label": "Chi tiết giao hàng", "path": "/delivery" },
+          { "label": "Điều khoản & Điều kiện", "path": "/terms" },
+          { "label": "Chính sách bảo mật", "path": "/privacy" }
+        ]
+      },
+      {
+        "title": "TÀI NGUYÊN",
+        "links": [
+          { "label": "Sách điện tử miễn phí", "path": "/ebooks" },
+          { "label": "Hướng dẫn phát triển", "path": "/tutorials" },
+          { "label": "Cách làm - Blog", "path": "/blog" },
+          { "label": "Danh sách phát YouTube", "path": "/youtube" }
+        ]
+      }
+    ]
+  },
+  "register": {
+    "shopName": "Tên cửa hàng",
+    "description": "Một vài câu giới thiệu về cửa hàng. Ví dụ: Tham gia cộng đồng những người yêu thời trang của chúng tôi và là người đầu tiên biết về các bộ sưu tập mới nhất, ưu đãi độc quyền và sự kiện đặc biệt. Đăng ký nhận bản tin của chúng tôi và kết nối với chúng tôi trên mạng xã hội.",
+    "benefit": [
+      { "value": "Ưu đãi và giảm giá độc quyền" },
+      { "value": "Quyền truy cập sớm vào các bộ sưu tập mới" },
+      { "value": "Trải nghiệm mua sắm cá nhân hóa" },
+      { "value": "Cập nhật xu hướng thời trang và mẹo vặt" }
+    ]
+  },
+  "policy": [
+    {
+      "title": "1. Thu thập thông tin",
+      "content": "Chúng tôi chỉ thu thập những thông tin cần thiết để cung cấp dịch vụ, bao gồm thông tin cá nhân bạn cung cấp trong quá trình đăng ký và dữ liệu sử dụng để cải thiện trải nghiệm của bạn."
+    },
+    {
+      "title": "2. Bảo vệ dữ liệu",
+      "content": "Chúng tôi áp dụng các biện pháp bảo mật theo tiêu chuẩn ngành để bảo vệ dữ liệu của bạn khỏi việc truy cập hoặc tiết lộ trái phép."
+    },
+    {
+      "title": "3. Quyền của bạn",
+      "content": "Bạn có quyền truy cập, chỉnh sửa hoặc yêu cầu xóa dữ liệu cá nhân của mình bất cứ lúc nào."
+    },
+    {
+      "title": "4. Sử dụng dữ liệu",
+      "content": "Chúng tôi chỉ sử dụng thông tin của bạn để cung cấp và cải thiện dịch vụ. Chúng tôi không bán dữ liệu cá nhân của bạn cho bên thứ ba."
+    },
+    {
+      "title": "5. Cập nhật chính sách",
+      "content": "Chúng tôi có thể cập nhật chính sách này định kỳ. Chúng tôi sẽ thông báo cho người dùng về bất kỳ thay đổi đáng kể nào trong cách chúng tôi xử lý thông tin cá nhân."
+    }
+  ]
+}

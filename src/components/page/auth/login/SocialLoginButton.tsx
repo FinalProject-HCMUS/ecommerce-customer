@@ -6,7 +6,11 @@ interface SocialLoginButtonProps {
   onClick: () => void;
 }
 
-const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({ icon, text, onClick }) => {
+const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
+  icon,
+  text,
+  onClick,
+}) => {
   return (
     <button
       type="button"

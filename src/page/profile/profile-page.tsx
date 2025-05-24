@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import ProfileHeader from "../../components/page/profile/ProfileHeader";
-import ProfileImage from "../../components/page/profile/ProfileImage";
-import ProfileForm from "../../components/page/profile/ProfileForm";
-import { UserResponse } from "../../interfaces";
-import { useUser } from "../../hooks/user";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import ProfileHeader from '../../components/page/profile/ProfileHeader';
+import ProfileImage from '../../components/page/profile/ProfileImage';
+import ProfileForm from '../../components/page/profile/ProfileForm';
+import { UserResponse } from '../../interfaces';
+import { useUser } from '../../hooks/user';
+import { t } from '../../helpers/i18n';
+import { UpdateUserRequest } from '../../interfaces/user/UpdateUserRequest';
 
 const ProfilePage: React.FC = () => {
   const { fetchUserByToken, user, updateUser, loading } = useUser(); // Use fetchUserByToken and user from the hook
@@ -27,7 +29,9 @@ const ProfilePage: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     const { name, value } = e.target;
     setFormData((prev) => (prev ? { ...prev, [name]: value } : null));
   };
@@ -51,18 +55,26 @@ const ProfilePage: React.FC = () => {
 
     setIsSaving(true);
 
-    // Simulate API call
-    // const updatedUser = await updateUser(formData.id, formData);
-    // if (updatedUser) {
-    //   setFormData(updatedUser);
-    //   setPreviewImage(updatedUser.photo || null);
-    //   setIsEditing(false);
-    //   setShowSavedMessage(true);
+    const formDataToUpdate: UpdateUserRequest = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phoneNumber: formData.phoneNumber,
+      address: formData.address,
+      height: formData.height,
+      weight: formData.weight,
+    };
 
-    //   setTimeout(() => {
-    //     setShowSavedMessage(false);
-    //   }, 3000);
-    // }
+    const updatedUser = await updateUser(formData.id, formDataToUpdate);
+    if (updatedUser) {
+      setFormData(updatedUser);
+      setPreviewImage(updatedUser.photo || null);
+      setIsEditing(false);
+      setShowSavedMessage(true);
+
+      setTimeout(() => {
+        setShowSavedMessage(false);
+      }, 3000);
+    }
 
     setIsSaving(false);
   };
@@ -78,7 +90,9 @@ const ProfilePage: React.FC = () => {
   if (loading || !formData) {
     return (
       <div className="h-screen w-full flex items-center justify-center bg-white">
-        <div className="animate-pulse text-3xl font-bold">Loading...</div>
+        <div className="animate-pulse text-3xl font-bold">
+          {t('lbl.loading')}
+        </div>
       </div>
     );
   }
@@ -90,10 +104,16 @@ const ProfilePage: React.FC = () => {
 
         <div className="px-4 sm:px-6 pb-6 relative mt-20">
           <div className="flex flex-col sm:flex-row items-center sm:items-end -mt-16 sm:-mt-20 mb-6 sm:mb-8 relative">
-            <ProfileImage previewImage={previewImage || ''} isEditing={isEditing} onImageChange={handleImageChange} />
+            <ProfileImage
+              previewImage={previewImage || ''}
+              isEditing={isEditing}
+              onImageChange={handleImageChange}
+            />
 
             <div className="sm:mt-0 sm:ml-6 text-center sm:text-left mb-10">
-              <h1 className="text-2xl font-bold text-gray-900">{formData.firstName + formData.lastName}</h1>
+              <h1 className="text-2xl font-bold text-gray-900">
+                {formData.firstName + formData.lastName}
+              </h1>
               <p className="text-gray-600">{formData.email}</p>
             </div>
 
@@ -105,7 +125,7 @@ const ProfilePage: React.FC = () => {
                   onClick={() => setIsEditing(true)}
                   className="px-4 py-2 bg-rose-500 text-white rounded-[12px] hover:bg-rose-600 transition-colors"
                 >
-                  Edit Profile
+                  {t('lbl.editProfile')}
                 </motion.button>
               ) : null}
             </div>

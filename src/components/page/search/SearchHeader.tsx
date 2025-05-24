@@ -1,35 +1,23 @@
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'react-feather';
-
+import { t } from '../../../helpers/i18n';
+import React from 'react';
 interface SearchHeaderProps {
-  totalProducts: number;
-  currentPage: number;
-  productsPerPage: number;
+  keySearch: string;
 }
 
-const SearchHeader = ({ totalProducts, currentPage, productsPerPage }: SearchHeaderProps) => {
-  const startProduct = (currentPage - 1) * productsPerPage + 1;
-  const endProduct = Math.min(currentPage * productsPerPage, totalProducts);
+const SearchHeader: React.FC<SearchHeaderProps> = ({ keySearch }) => {
+  if (!keySearch || keySearch.length === 0) {
+    return null;
+  }
 
   return (
     <motion.div
-      className="mb-6"
+      className="my-6"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.1 }}
     >
-      <h1 className="text-2xl font-semibold mb-4">Result for search with keyword "..."</h1>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm text-gray-600">
-        <span>
-          Showing {startProduct}-{endProduct} of {totalProducts} Products
-        </span>
-        <div className="flex items-center mt-2 sm:mt-0">
-          <span>Sort by: </span>
-          <button className="flex items-center ml-1 font-medium text-gray-800">
-            Keyword <ChevronDown size={14} className="ml-1" />
-          </button>
-        </div>
-      </div>
+      <h1 className="text-md font-semibold mb-4">{`${t('lbl.resultSearch')} ${keySearch}`}</h1>
     </motion.div>
   );
 };

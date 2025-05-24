@@ -1,7 +1,6 @@
 import { Clock, CheckCircle, XCircle, Truck, Package } from 'lucide-react';
 import type { StatusConfigRecord } from '../interfaces/temp/order';
 
-// Status configuration
 export const statusConfig: StatusConfigRecord = {
   NEW: {
     icon: <Clock className="w-4 h-4 mr-1" />,

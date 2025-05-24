@@ -1,13 +1,12 @@
 import type React from 'react';
 import { motion } from 'framer-motion';
-import type { PolicySectionType } from '../../../interfaces/temp/policy';
+import { t } from '../../../helpers/i18n';
 
-interface PolicySectionProps {
-  section: PolicySectionType;
+interface PolicyContentProps {
   index: number;
 }
 
-const PolicySection: React.FC<PolicySectionProps> = ({ section, index }) => {
+const PolicySection: React.FC<PolicyContentProps> = ({ index }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,8 +14,10 @@ const PolicySection: React.FC<PolicySectionProps> = ({ section, index }) => {
       transition={{ delay: 0.2 + index * 0.1 }}
       className="mb-6"
     >
-      <h2 className="text-xl font-semibold mb-2">{section.title}</h2>
-      <p className="text-gray-700">{section.content}</p>
+      <h2 className="text-xl font-semibold mb-2">
+        {t(`policy.${index}.title`)}
+      </h2>
+      <p className="text-gray-700">{t(`policy.${index}.content`)}</p>
     </motion.div>
   );
 };

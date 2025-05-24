@@ -4,28 +4,66 @@ import StarRating from '../../shared/RatingStars';
 import PriceDisplay from './PriceDisplay';
 import ColorSelector from './ColorSelector';
 import SizeSelector from './SizeSelector';
-import QuantitySelector from './QuantitySelector';
-import FLAG_KEYS from '../../../constants/flagsup';
-import useFlagFeature from '../../../hooks/useFlagFeature';
+import AddToCartButton from '../../shared/AddToCartButton';
+import QuantityControl from '../../shared/QuantityControl';
+import { useEffect } from 'react';
+import { t } from '../../../helpers/i18n';
 
-const ProductInfo: React.FC = () => {
+import {
+  ProductResponse,
+  ColorResponse,
+  ProductColorSizeResponse,
+  SizeResponse,
+} from '../../../interfaces';
+
+interface ProductInfoProps {
+  product: ProductResponse;
+  colors: ColorResponse[];
+  productColorSize: ProductColorSizeResponse[];
+  sizes: SizeResponse[];
+  isAdding: boolean;
+  handleAddToCart: (quantity: number, itemId: string) => void;
+}
+
+const ProductInfo: React.FC<ProductInfoProps> = ({
+  product,
+  colors,
+  productColorSize,
+  sizes,
+  handleAddToCart,
+  isAdding,
+}) => {
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [selectedSize, setSelectedSize] = useState<string>('');
+  const [itemId, setItemId] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
 
-  const isCartEnable = useFlagFeature(FLAG_KEYS.CART);
+  const [quantityAvailable, setQuantityAvailable] = useState<number>(
+    product.total || 0
+  );
 
-  const colors = [
-    { id: 'brown', bg: 'bg-[#5D4B35]' },
-    { id: 'green', bg: 'bg-[#2D4F44]' },
-    { id: 'navy', bg: 'bg-[#1A2B4D]' },
-  ];
-
-  const sizes = ['Small', 'Medium', 'Large', 'X-Large'];
+  // Update quantityAvailable when selectedColor or selectedSize changes
+  useEffect(() => {
+    if (selectedColor && selectedSize) {
+      const matchingProduct = productColorSize.find(
+        (pcs) => pcs.color.id === selectedColor && pcs.size.id === selectedSize
+      );
+      if (matchingProduct) {
+        setItemId(matchingProduct.id);
+        setQuantityAvailable(matchingProduct.quantity);
+      } else {
+        setQuantityAvailable(0);
+      }
+    } else {
+      setQuantityAvailable(product.total || 0); // Reset to total if no color or size is selected
+    }
+  }, [selectedColor, selectedSize, productColorSize, product.total]);
 
   const handleQuantityChange = (type: 'increase' | 'decrease') => {
     if (type === 'increase') {
-      setQuantity((prev) => prev + 1);
+      setQuantity((prev) =>
+        prev < quantityAvailable ? prev + 1 : quantityAvailable
+      );
     } else {
       setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
     }
@@ -33,41 +71,60 @@ const ProductInfo: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-3xl font-bold mb-2">One Life Graphic T-shirt</h1>
-
+      <div className="flex items-center justify-between mb-2">
+        <h1 className="text-2xl font-bold">{product.name}</h1>
+        {
+          <span className="text-xs font-semibold text-blue-800 bg-blue-100 px-4 py-1 rounded-full mt-1 inline-block">
+            {`${t('lbl.quantity')}: ${quantityAvailable}`}
+          </span>
+        }
+        {
+          <span
+            className={`text-xs font-semibold ${quantityAvailable > 0 ? 'text-green-800 bg-green-100' : 'text-red-800 bg-red-100'} px-4 py-1 rounded-full`}
+          >
+            {quantityAvailable > 0 ? t('lbl.inStock') : t('lbl.outOfStock')}
+          </span>
+        }
+      </div>
       {/* Ratings */}
       <div className="flex items-center mb-4">
-        <StarRating rating={4.5} />
+        <StarRating rating={product.averageRating} />
       </div>
 
       {/* Price */}
       <div className="mb-4">
-        <PriceDisplay currentPrice={260} originalPrice={300} discountPercentage={40} size="lg" />
+        <PriceDisplay
+          currentPrice={(product.price * (100 - product.discountPercent)) / 100}
+          originalPrice={product.price}
+          discountPercentage={product.discountPercent}
+          size="lg"
+        />
       </div>
 
-      {/* Description */}
-      <p className="text-gray-600 mb-6">
-        This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers
-        superior comfort and style.
-      </p>
+      <ColorSelector
+        colors={colors}
+        selectedColor={selectedColor}
+        onChange={setSelectedColor}
+      />
 
-      {/* Color Selection */}
-      {isCartEnable && <ColorSelector colors={colors} selectedColor={selectedColor} onChange={setSelectedColor} />}
-
-      {/* Size Selection */}
-      {isCartEnable && <SizeSelector sizes={sizes} selectedSize={selectedSize} onChange={setSelectedSize} />}
+      <SizeSelector
+        sizes={sizes}
+        selectedSize={selectedSize}
+        onChange={setSelectedSize}
+      />
 
       {/* Quantity and Add to Cart */}
-      {isCartEnable && (
+      {quantityAvailable > 0 && (
         <div className="flex items-center gap-4">
-          <QuantitySelector
+          <QuantityControl
             quantity={quantity}
-            onIncrease={() => handleQuantityChange('increase')}
-            onDecrease={() => handleQuantityChange('decrease')}
+            onDecrement={() => handleQuantityChange('decrease')}
+            onIncrement={() => handleQuantityChange('increase')}
           />
-          <button className="flex-1 bg-black text-white py-3 px-6 rounded-[10px] hover:bg-gray-800 transition-colors duration-200">
-            Add to Cart
-          </button>
+          <AddToCartButton
+            isAdding={isAdding}
+            onClick={() => handleAddToCart(quantity, itemId)}
+          />
         </div>
       )}
     </div>

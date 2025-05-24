@@ -7,7 +7,10 @@ interface ChatContainerProps {
   messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 
-const ChatContainer: React.FC<ChatContainerProps> = ({ messages, messagesEndRef }) => {
+const ChatContainer: React.FC<ChatContainerProps> = ({
+  messages,
+  messagesEndRef,
+}) => {
   return (
     <div className="flex-1 overflow-y-auto p-4 ">
       <div className="max-w-4xl mx-auto space-y-6">

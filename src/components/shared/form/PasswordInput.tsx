@@ -2,14 +2,22 @@ import type React from 'react';
 
 import { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { t } from '../../../helpers/i18n';
 
-interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface PasswordInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label: string;
   forgotPasswordLink?: string;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, forgotPasswordLink, className = '', ...props }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({
+  id,
+  label,
+  forgotPasswordLink,
+  className = '',
+  ...props
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -23,8 +31,11 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, label, forgotPassword
           {label}
         </label>
         {forgotPasswordLink && (
-          <a href={forgotPasswordLink} className="text-sm font-medium text-blue-600 hover:text-blue-500">
-            Forgot ?
+          <a
+            href={forgotPasswordLink}
+            className="text-sm font-medium text-blue-600 hover:text-blue-500"
+          >
+            {t('hyperlink.forgotPassword')}
           </a>
         )}
       </div>

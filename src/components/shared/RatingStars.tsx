@@ -7,7 +7,11 @@ interface RatingProps {
   showText?: boolean;
 }
 
-const Rating: React.FC<RatingProps> = ({ rating, maxRating = 5, showText = true }) => {
+const Rating: React.FC<RatingProps> = ({
+  rating,
+  maxRating = 5,
+  showText = true,
+}) => {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 >= 0.5;
   const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);

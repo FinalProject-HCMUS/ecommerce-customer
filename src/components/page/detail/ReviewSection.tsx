@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import ReviewCard from './ReviewCard';
 import { reviews as initialReviews } from '../../../data/reviews'; // Adjust the import path as necessary
+import { t } from '../../../helpers/i18n'; // Adjust the import path as necessary
 
 const ReviewSection: React.FC = () => {
   const [reviews, setReviews] = useState(initialReviews); // State for reviews
@@ -23,7 +24,9 @@ const ReviewSection: React.FC = () => {
     setIsWritingReview((prev) => !prev); // Toggle the review form
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setNewReview((prev) => ({
       ...prev,
@@ -48,11 +51,12 @@ const ReviewSection: React.FC = () => {
     <div className="mt-16 mb-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">
-          All Reviews <span className="text-gray-500 font-normal">({reviews.length})</span>
+          {t('lbl.allReviews')}{' '}
+          <span className="text-gray-500 font-normal">({reviews.length})</span>
         </h2>
         <div className="flex items-center gap-4">
           <div className="flex items-center border border-gray-300 rounded-full px-3 py-1.5">
-            <span className="text-sm mr-2">Latest</span>
+            <span className="text-sm mr-2">{t('lbl.lastest')}</span>
             <ChevronDown className="h-4 w-4" />
           </div>
           <button
@@ -65,9 +69,15 @@ const ReviewSection: React.FC = () => {
       </div>
 
       {isWritingReview && ( // Show the review form if toggled
-        <form onSubmit={handleSubmitReview} className="mb-6 p-4 border rounded-lg bg-gray-50">
+        <form
+          onSubmit={handleSubmitReview}
+          className="mb-6 p-4 border rounded-lg bg-gray-50"
+        >
           <div className="mb-4">
-            <label htmlFor="author" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="author"
+              className="block text-sm font-medium text-gray-700"
+            >
               Your Name
             </label>
             <input
@@ -81,7 +91,10 @@ const ReviewSection: React.FC = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="rating" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="rating"
+              className="block text-sm font-medium text-gray-700"
+            >
               Rating (1-5)
             </label>
             <input
@@ -97,7 +110,10 @@ const ReviewSection: React.FC = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="content"
+              className="block text-sm font-medium text-gray-700"
+            >
               Your Review
             </label>
             <textarea

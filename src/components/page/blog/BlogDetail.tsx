@@ -3,11 +3,32 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { formatDate } from '../../../utils/formatDate';
+import { formatDateUtils } from '../../../utils';
 import { BlogResponse } from '../../../interfaces';
+import { t } from '../../../helpers/i18n';
+
 export interface BlogDetailProps {
   post: BlogResponse;
 }
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+};
 
 const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
   const navigate = useNavigate();
@@ -16,21 +37,6 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
 
   return (
     <motion.div
@@ -46,20 +52,22 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
         whileHover={{ x: -5 }}
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to blog
+        {t('btn.backToBlog')}
       </motion.button>
 
       <motion.div variants={itemVariants} className="mb-8">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{post.title}</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          {post.title}
+        </h1>
 
         <div className="flex flex-wrap items-center text-gray-600 text-sm mb-6 gap-4">
           <div className="flex items-center">
             <Calendar className="w-4 h-4 mr-1" />
-            <span>{formatDate(post.updatedAt)}</span>
+            <span>{formatDateUtils.formatDate(post.updatedAt)}</span>
           </div>
           <div className="flex items-center">
             <Clock className="w-4 h-4 mr-1" />
-            <span>{formatDate(new Date().toString())}</span>
+            <span>{formatDateUtils.formatDate(new Date().toString())}</span>
           </div>
         </div>
       </motion.div>
@@ -77,7 +85,10 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
 
       <div className="flex flex-col md:flex-row gap-8">
         <motion.div className="md:w-2/3" variants={itemVariants}>
-          <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content || '' }} />
+          <div
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: post.content || '' }}
+          />
         </motion.div>
       </div>
     </motion.div>

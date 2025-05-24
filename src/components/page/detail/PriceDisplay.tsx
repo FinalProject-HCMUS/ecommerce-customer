@@ -1,9 +1,10 @@
 import type React from 'react';
+import { formatCurrency } from '../../../helpers/string';
 
 interface PriceDisplayProps {
   currentPrice: number;
-  originalPrice?: number;
-  discountPercentage?: number;
+  originalPrice: number;
+  discountPercentage: number;
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -33,11 +34,17 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
 
   return (
     <div className="flex items-center gap-2">
-      <span className={sizes[size].current}>${currentPrice}</span>
-
-      {originalPrice && <span className={sizes[size].original}>${originalPrice}</span>}
-
-      {discountPercentage && <span className={sizes[size].discount}>-{discountPercentage}%</span>}
+      <span className={sizes[size].current}>
+        {formatCurrency(currentPrice, 'VND')}
+      </span>
+      {discountPercentage != 0 && (
+        <span className={sizes[size].original}>
+          {formatCurrency(originalPrice, 'VND')}
+        </span>
+      )}
+      {discountPercentage != 0 && (
+        <span className={sizes[size].discount}>-{discountPercentage}%</span>
+      )}
     </div>
   );
 };
