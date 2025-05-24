@@ -25,7 +25,7 @@ const Hero = () => {
             </Link>
 
             <div className="grid grid-cols-3 gap-8 mt-12">
-              {hero.characteristics.map((feature, index) => (
+              {hero.characteristics.map((_, index) => (
                 <div key={index} className="text-center">
                   {/* Construct dynamic keys using template literals */}
                   <h3 className="font-semibold mb-2">

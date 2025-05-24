@@ -18,7 +18,7 @@ const PolicyContent: React.FC<PolicyContentProps> = ({ title }) => {
       <h1 className="text-2xl font-bold mb-8">{title}</h1>
 
       <div className="space-y-6">
-        {policy.map((section, index) => (
+        {policy.map((_, index) => (
           <PolicySection key={index} index={index} />
         ))}
       </div>

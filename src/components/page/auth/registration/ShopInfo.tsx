@@ -10,7 +10,7 @@ const ShopInfo = () => {
         {t('register.description')}
       </p>
       <ul className="text-left max-w-md space-y-2">
-        {register.benefit.map((item, index) => (
+        {register.benefit.map((_, index) => (
           <li key={index} className="flex items-center mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
