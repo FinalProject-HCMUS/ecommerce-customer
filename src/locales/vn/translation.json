@@ -32,7 +32,11 @@
     "seeLess": "Xem ít hơn",
     "latest": "Mới nhất",
     "writeReview": "Viết đánh giá",
-    "reviewAt": "Đăng vào"
+    "reviewAt": "Đăng vào",
+    "backToLogin": "Quay lại đăng nhập",
+    "sendConfirmationEmail": "Gửi email xác nhận",
+    "sendAnother": "Gửi lại",
+    "changePassword": "Đổi mật khẩu"
   },
   "lbl": {
     "topSelling": "Sản phẩm bán chạy nhất",
@@ -51,6 +55,9 @@
     "email": "Email",
     "phone": "Số điện thoại",
     "message": "Nội dung",
+    "address": "Địa chỉ",
+    "weight": "Cân nặng",
+    "height": "Chiều cao",
     "resultSearch": "Kết quả tìm kiếm với từ khóa: ",
     "keyword": "Từ khóa",
     "Showing": "Hiển thị",
@@ -78,7 +85,31 @@
     "policy": "Chính sách",
     "noProductFound": "Không tìm thấy sản phẩm nào",
     "productName": "Tên sản phẩm",
-    "productPrice": "Giá sản phẩm"
+    "productPrice": "Giá sản phẩm",
+    "editProfile": "Chỉnh sửa hồ sơ",
+    "activateAccount": "Kích hoạt tài khoản",
+    "checkEmail": "Vui lòng kiểm tra email của bạn để xác nhận tài khoản.",
+    "verifyingEmail": "Đang xác minh email của bạn...",
+    "pleaseWait": "Vui lòng chờ...",
+    "emailConfirmed": "Email đã được xác nhận thành công!",
+    "proceedToLogin": "Tiến hành đăng nhập",
+    "emailConfirmationFailed": "Xác nhận email không thành công. Vui lòng thử lại.",
+    "emailConfirmationFailedDescription": "Có thể có một số vấn đề với liên kết xác nhận hoặc tài khoản của bạn đã được xác nhận trước đó.",
+    "requestNewConfirmation": "Yêu cầu xác nhận mới",
+    "cancel": "Hủy",
+    "saving": "Đang lưu...",
+    "saveChanges": "Lưu thay đổi",
+    "orderSummary": "Tóm tắt đơn hàng",
+    "subTotal": "Tổng cộng",
+    "deliveryFee": "Phí vận chuyển",
+    "total": "Tổng cộng",
+    "gotoCheckout": "Đi đến thanh toán",
+    "changePassword": "Đổi mật khẩu",
+    "currentPassword": "Mật khẩu hiện tại",
+    "newPassword": "Mật khẩu mới",
+    "confirmNewPassword": "Xác nhận mật khẩu mới",
+    "addItemsToCart": "Thêm sản phẩm vào giỏ hàng",
+    "emptyCart": "Giỏ hàng của bạn đang trống"
   },
   "placeholder": {
     "firstName": "Nhập tên của bạn",
@@ -88,13 +119,19 @@
     "confirmPassword": "Xác nhận mật khẩu của bạn",
     "phone": "Nhập số điện thoại của bạn",
     "search": "Tìm kiếm sản phẩm",
-    "message": "Nhập nội dung của bạn"
+    "message": "Nhập nội dung của bạn",
+    "currentPassword": "Nhập mật khẩu hiện tại",
+    "newPassword": "Nhập mật khẩu mới",
+    "confirmNewPassword": "Xác nhận mật khẩu mới"
   },
   "hyperlink": {
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "forgotPassword": "Quên mật khẩu?",
-    "profile": "Hồ sơ"
+    "profile": "Hồ sơ",
+    "activateAccount": "Kích hoạt tài khoản",
+    "changePassword": "Đổi mật khẩu",
+    "logOut": "Đăng xuất"
   },
   "breadcrumb": {
     "home": "Trang chủ",

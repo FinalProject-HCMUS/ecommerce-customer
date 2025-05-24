@@ -34,7 +34,11 @@
     "writeReview": "Write a Review",
     "reviewAt": "Reviewed at",
     "selectColor": "Select Color",
-    "chooseSize": "Choose Size"
+    "chooseSize": "Choose Size",
+    "backToLogin": "Back to Login",
+    "sendConfirmationEmail": "Send Confirmation Email",
+    "sendAnother": "Send Another",
+    "changePassword": "Change Password"
   },
   "lbl": {
     "topSelling": "Top Selling Products",
@@ -78,7 +82,34 @@
     "policy": "Policy",
     "noProductFound": "No products found",
     "productName": "Product Name",
-    "productPrice": "Product Price"
+    "productPrice": "Product Price",
+    "editProfile": "Edit Profile",
+    "address": "Address",
+    "weight": "Weight",
+    "height": "Height",
+    "activateAccount": "Activate Account",
+    "checkEmail": "Please check your email to verify your account.",
+    "verifyingEmail": "Verifying your account...",
+    "pleaseWait": "Please wait...",
+    "emailConfirmed": "Email confirmed successfully!",
+    "proceedToLogin": "Proceed to Login",
+    "emailConfirmationFailed": "Email confirmation failed. Please try again.",
+    "emailConfirmationFailedDescription": "Account confirmation failed. Please check your email and try again.",
+    "requestNewConfirmation": "Request a new confirmation email",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "saveChanges": "Save Changes",
+    "orderSummary": "Order Summary",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "subTotal": "Subtotal",
+    "deliveryFee": "Delivery Fee",
+    "total": "Total",
+    "gotoCheckout": "Go to Checkout",
+    "addItemsToCart": "Add items to cart",
+    "emptyCart": "Your cart is empty"
   },
   "placeholder": {
     "firstName": "Enter your first name",
@@ -88,13 +119,17 @@
     "confirmPassword": "Confirm your password",
     "phone": "Enter your phone number",
     "search": "Search for products",
-    "message": "Enter your message"
+    "message": "Enter your message",
+    "currentPassword": "Enter your current password",
+    "newPassword": "Enter your new password",
+    "confirmNewPassword": "Confirm your new password"
   },
   "hyperlink": {
     "login": "Log in",
     "register": "Sign up",
     "forgotPassword": "Forgot password?",
-    "profile": "Profile"
+    "profile": "Profile",
+    "activateAccount": "Activate your account"
   },
   "breadcrumb": {
     "home": "Home",

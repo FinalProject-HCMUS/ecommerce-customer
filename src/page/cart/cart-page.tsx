@@ -79,15 +79,12 @@ function App() {
         item.quantity,
     0
   );
-  const discountRate = 0.2; // 20%
-  const discountAmount = subtotal * discountRate;
-  const deliveryFee = 15;
-  const total = subtotal - discountAmount + deliveryFee;
+
+  const deliveryFee = 30000;
+  const total = subtotal + deliveryFee;
 
   const orderSummaryData: OrderSummaryData = {
     subtotal,
-    discountRate,
-    discountAmount,
     deliveryFee,
     total,
   };
@@ -104,21 +101,32 @@ function App() {
       {/* Page Title */}
       <h1 className="text-xl font-bold mb-8">{t('lbl.yourCart')}</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-4">
-          {cartItems.map((item) => (
-            <CartItem
-              key={item.id}
-              item={item}
-              updateQuantity={updateQuantity}
-              removeItem={removeItem}
-            />
-          ))}
+      {cartItems.length === 0 && (
+        <div className="text-center">
+          <h2 className="text-lg font-semibold text-gray-900">
+            {t('lbl.emptyCart')}
+          </h2>
+          <p className="mt-2 text-gray-600">{t('lbl.addItemsToCart')}</p>
         </div>
-        <div className="lg:col-span-1">
-          <OrderSummary data={orderSummaryData} />
+      )}
+
+      {cartItems.length > 0 && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-4">
+            {cartItems.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                updateQuantity={updateQuantity}
+                removeItem={removeItem}
+              />
+            ))}
+          </div>
+          <div className="lg:col-span-1">
+            <OrderSummary data={orderSummaryData} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

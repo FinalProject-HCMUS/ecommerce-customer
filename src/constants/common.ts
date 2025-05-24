@@ -22,6 +22,8 @@ const SIZE_PER_PAGE = 10;
 const CATEGORY_PER_PAGE = 10;
 
 const TIME_OUT_ADD_TO_CART = 2000;
+const DESCREASE = 'decrease';
+const INCREASE = 'increase';
 
 export {
   orderStatus,
@@ -35,4 +37,6 @@ export {
   SIZE_PER_PAGE,
   CATEGORY_PER_PAGE,
   TIME_OUT_ADD_TO_CART,
+  DESCREASE,
+  INCREASE,
 };

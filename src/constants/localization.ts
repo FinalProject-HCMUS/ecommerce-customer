@@ -28,7 +28,12 @@ const REGIONS: IRegion = {
   },
 };
 
+const VN = 'vn-VN';
+const EN = 'en-US';
+
 export default {
   RESOURCES,
   REGIONS,
+  VN,
+  EN,
 };

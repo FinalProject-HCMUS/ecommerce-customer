@@ -5,6 +5,7 @@ import { UserCircle, LogOut, User } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../context/store';
 import { logout } from '../../context/authSlice';
+import { t } from '../../helpers/i18n';
 
 interface UserDropdownProps {
   onClose?: () => void;
@@ -89,7 +90,17 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
                 className="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-500 transition-colors"
               >
                 <User className="mr-3 h-5 w-5 text-gray-400 group-hover:text-rose-500 transition-colors" />
-                Profile
+                {t('hyperlink.profile')}
+              </Link>
+            </div>
+            <div className="py-1">
+              <Link
+                to="/change-password"
+                onClick={() => setIsDropdownOpen(false)}
+                className="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-500 transition-colors"
+              >
+                <User className="mr-3 h-5 w-5 text-gray-400 group-hover:text-rose-500 transition-colors" />
+                {t('hyperlink.changePassword')}
               </Link>
             </div>
             <div className="py-1">
@@ -98,7 +109,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
                 className="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-500 transition-colors"
               >
                 <LogOut className="mr-3 h-5 w-5 text-gray-400 group-hover:text-rose-500 transition-colors" />
-                Logout
+                {t('hyperlink.logOut')}
               </button>
             </div>
           </motion.div>

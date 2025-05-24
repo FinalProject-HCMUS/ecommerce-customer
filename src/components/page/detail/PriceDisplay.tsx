@@ -35,11 +35,11 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
   return (
     <div className="flex items-center gap-2">
       <span className={sizes[size].current}>
-        {formatCurrency(currentPrice, 'USD')}
+        {formatCurrency(currentPrice, 'VND')}
       </span>
       {discountPercentage != 0 && (
         <span className={sizes[size].original}>
-          {formatCurrency(originalPrice, 'USD')}
+          {formatCurrency(originalPrice, 'VND')}
         </span>
       )}
       {discountPercentage != 0 && (

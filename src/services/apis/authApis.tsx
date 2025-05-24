@@ -53,3 +53,23 @@ export const validateToken = async (
   );
   return response.data;
 };
+
+export const confirmEmail = async (
+  token: string
+): Promise<CustomResponse<void>> => {
+  const response = await client.post<CustomResponse<void>>(
+    `/users/confirm-email?token=${encodeURIComponent(token)}`,
+    null
+  );
+  return response.data;
+};
+
+export const resendConfirmationEmail = async (
+  email: string
+): Promise<CustomResponse<void>> => {
+  const response = await client.post<CustomResponse<void>>(
+    `/users/resend-confirmation?email=${encodeURIComponent(email)}`,
+    null
+  );
+  return response.data;
+};

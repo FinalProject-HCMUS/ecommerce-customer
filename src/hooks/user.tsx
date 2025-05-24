@@ -4,6 +4,10 @@ import { UserResponse } from '../interfaces/user/UserResponse';
 import { CreateUserRequest } from '../interfaces/user/CreateUserRequest';
 import { UpdateUserRequest } from '../interfaces/user/UpdateUserRequest';
 import { ChangePasswordRequest } from '../interfaces/user/ChangePasswordRequest';
+import {
+  confirmEmail,
+  resendConfirmationEmail,
+} from '../services/apis/authApis';
 
 export const useUser = () => {
   const [user, setUser] = useState<UserResponse | null>(null);
@@ -54,14 +58,11 @@ export const useUser = () => {
     id: string,
     data: UpdateUserRequest
   ): Promise<UserResponse | null> => {
-    setLoading(true);
     try {
       const response = await userApi.updateUser(id, data);
       return response.data || null;
     } catch {
       return null;
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -81,6 +82,32 @@ export const useUser = () => {
     }
   };
 
+  const confirmUserEmail = async (token: string): Promise<boolean> => {
+    setLoading(true);
+    try {
+      const response = await confirmEmail(token);
+      return response.isSuccess;
+    } catch {
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resendUserConfirmationEmail = async (
+    email: string
+  ): Promise<boolean> => {
+    setLoading(true);
+    try {
+      const response = await resendConfirmationEmail(email);
+      return response.isSuccess;
+    } catch {
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     user,
     loading,
@@ -89,5 +116,7 @@ export const useUser = () => {
     updateUser,
     changePassword,
     fetchUserByToken,
+    confirmUserEmail,
+    resendUserConfirmationEmail,
   };
 };

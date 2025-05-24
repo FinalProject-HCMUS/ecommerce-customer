@@ -10,8 +10,6 @@ export interface CartItemType {
 
 export interface OrderSummaryData {
   subtotal: number;
-  discountRate: number;
-  discountAmount: number;
   deliveryFee: number;
   total: number;
 }

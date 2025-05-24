@@ -9,10 +9,35 @@
     "quantityRequired": "Số lượng là bắt buộc",
     "itemRequired": "Vui lòng chọn kích thước và màu sắc",
     "failedToRemoveItem": "Không thể xóa mặt hàng khỏi giỏ hàng. Vui lòng thử lại sau.",
-    "cartUpdateFailed": "Cập nhật giỏ hàng không thành công. Vui lòng thử lại sau."
+    "cartUpdateFailed": "Cập nhật giỏ hàng không thành công. Vui lòng thử lại sau.",
+    "loginRequired": "Bạn phải đăng nhập để thực hiện hành động này.",
+    "invalidEmail": "Định dạng email không hợp lệ",
+    "invalidPhone": "Định dạng số điện thoại không hợp lệ",
+    "invalidPassword": "Mật khẩu phải có ít nhất 6 ký tự và chứa ít nhất một số và một chữ cái",
+    "invalidQuantity": "Số lượng không hợp lệ",
+    "invalidSize": "Kích thước không hợp lệ",
+    "invalidColor": "Màu sắc không hợp lệ",
+    "invalidAddress": "Định dạng địa chỉ không hợp lệ",
+    "invalidWeight": "Định dạng cân nặng không hợp lệ",
+    "invalidHeight": "Định dạng chiều cao không hợp lệ",
+    "emailRequired": "Email là bắt buộc",
+    "passwordRequired": "Mật khẩu là bắt buộc",
+    "firstNameRequired": "Tên là bắt buộc",
+    "lastNameRequired": "Họ là bắt buộc",
+    "phoneRequired": "Số điện thoại là bắt buộc",
+    "messageRequired": "Nội dung là bắt buộc",
+    "addressRequired": "Địa chỉ là bắt buộc",
+    "weightRequired": "Cân nặng là bắt buộc",
+    "heightRequired": "Chiều cao là bắt buộc",
+    "currentPasswordRequired": "Mật khẩu hiện tại là bắt buộc",
+    "newPasswordRequired": "Mật khẩu mới là bắt buộc",
+    "confirmNewPasswordRequired": "Mật khẩu xác nhận mới là bắt buộc",
+    "passwordUpdateFailed": "Cập nhật mật khẩu không thành công. Vui lòng thử lại sau.",
+    "missMatchPassword": "Mật khẩu mới và mật khẩu xác nhận không khớp",
+    "passwordLength": "Mật khẩu phải có ít nhất 8 ký tự"
   },
   "success": {
-    "registerSuccess": "Đăng ký thành công!",
+    "registerSuccess": "Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản của bạn.",
     "registerSuccessText": "Cảm ơn bạn đã đăng ký tài khoản. Vui lòng kiểm tra email để xác nhận tài khoản của bạn.",
     "loginSuccess": "Đăng nhập thành công!",
     "loginSuccessText": "Chào mừng trở lại! Bạn đã đăng nhập thành công.",
@@ -36,6 +61,8 @@
     "updateOrderSuccess": "Cập nhật đơn hàng thành công!",
     "updateCartSuccess": "Cập nhật giỏ hàng thành công!",
     "itemRemoved": "Mặt hàng đã bị xóa khỏi giỏ hàng.",
-    "cartUpdated": "Giỏ hàng đã được cập nhật thành công!"
+    "cartUpdated": "Giỏ hàng đã được cập nhật thành công!",
+    "sendEmailActivation": "Email kích hoạt đã được gửi thành công! Vui lòng kiểm tra hộp thư của bạn.",
+    "sendEmailActivationFailed": "Gửi email kích hoạt không thành công. Vui lòng thử lại sau."
   }
 }

@@ -3,7 +3,7 @@ export interface UpdateUserRequest {
   firstName: string;
   lastName: string;
   address?: string;
-  weight: number;
-  height: number;
+  weight?: number;
+  height?: number;
   photo?: string;
 }

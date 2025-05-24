@@ -84,14 +84,24 @@ const LoginForm = () => {
         </GeneralButton>
       </form>
 
-      <div className="mt-4 text-center text-sm text-gray-500">
-        {t('lbl.notRegistered')}
-        <Link
-          to="/register"
-          className="ml-1 font-medium text-blue-600 hover:text-blue-500"
-        >
-          {t('hyperlink.register')}
-        </Link>
+      <div className="mt-4 flex items-center justify-between">
+        <div className="mt-4 text-center">
+          <Link
+            to="/activate-account"
+            className="text-sm font-medium text-blue-600 hover:text-blue-500"
+          >
+            {t('hyperlink.activateAccount')}
+          </Link>
+        </div>
+        <div className="mt-4 text-center text-sm text-gray-500">
+          {t('lbl.notRegistered')}
+          <Link
+            to="/register"
+            className="ml-1 font-medium text-blue-600 hover:text-blue-500"
+          >
+            {t('hyperlink.register')}
+          </Link>
+        </div>
       </div>
 
       <Divider text={t('lbl.or')} className="my-6" />

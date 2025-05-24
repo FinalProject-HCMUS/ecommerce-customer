@@ -41,6 +41,10 @@ const App: React.FC = () => {
   const [isAdding, setIsAdding] = useState<boolean>(false);
 
   const { userInfo } = useSelector((state: RootState) => state.auth);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+
   const { addCartItem } = useCart();
 
   useEffect(() => {
@@ -52,8 +56,18 @@ const App: React.FC = () => {
 
       if (productColorSizeData) {
         setProductColorSize(productColorSizeData);
-        const colorRes = productColorSizeData.map((item) => item.color);
-        const sizeRes = productColorSizeData.map((item) => item.size);
+        const colorRes = productColorSizeData
+          .map((item) => item.color)
+          .filter(
+            (color, index, self) =>
+              index === self.findIndex((c) => c.id === color.id)
+          );
+        const sizeRes = productColorSizeData
+          .map((item) => item.size)
+          .filter(
+            (size, index, self) =>
+              index === self.findIndex((s) => s.id === size.id)
+          );
         setColors(colorRes);
         setSizes(sizeRes);
       }
@@ -69,7 +83,10 @@ const App: React.FC = () => {
   }, [id]);
 
   const handleAddToCart = async (quantity: number, itemId: string) => {
-    if (!userInfo?.id) return;
+    if (!userInfo?.id || !isAuthenticated) {
+      showError(t('error.loginRequired'));
+      return;
+    }
 
     if (!quantity) {
       showError(t('error.quantityRequired'));

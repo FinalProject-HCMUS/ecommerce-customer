@@ -55,11 +55,10 @@ const RegistrationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Set loading state
-    console.log('Form Submitted:', formState);
 
     // Validate password and confirm password
     if (formState.password !== formState.confirmPassword) {
-      alert('Passwords do not match!');
+      messageRenderUtils.showError(t('error.passwordMismatch'));
       setIsLoading(false);
       return;
     }

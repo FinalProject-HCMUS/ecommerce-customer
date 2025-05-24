@@ -152,8 +152,8 @@ const Filters = ({
             >
               <div className="py-3">
                 <div className="flex justify-between text-sm text-gray-600 mb-3">
-                  <span>{formatCurrency(priceRange[0], 'USD')}</span>
-                  <span>{formatCurrency(priceRange[1], 'USD')}</span>
+                  <span>{formatCurrency(priceRange[0], 'VND')}</span>
+                  <span>{formatCurrency(priceRange[1], 'VND')}</span>
                 </div>
                 <Slider
                   range

@@ -3,6 +3,7 @@ import { Save } from 'lucide-react';
 import React from 'react';
 import InputField from '../../shared/form/InputField';
 import type { UserResponse } from '../../../interfaces/user/UserResponse';
+import { t } from '../../../helpers/i18n';
 
 interface ProfileFormProps {
   formData: UserResponse;
@@ -29,7 +30,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         <div className="space-y-4">
           <InputField
             id="firstName"
-            label="First Name"
+            label={t('lbl.firstName')}
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
@@ -39,14 +40,13 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
           <InputField
             id="lastName"
-            label="Last Name"
+            label={t('lbl.lastName')}
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
             disabled={!isEditing}
             className={isEditing ? '' : 'bg-gray-50 border-transparent'}
           />
-
           <InputField
             id="email"
             label="Email"
@@ -60,7 +60,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
           <InputField
             id="phone"
-            label="Phone Number"
+            label={t('lbl.phone')}
             type="tel"
             name="phoneNum"
             value={formData.phoneNumber}
@@ -71,7 +71,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Address
+              {t('lbl.address')}
             </label>
             <textarea
               name="address"
@@ -91,7 +91,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         <div className="space-y-4">
           <InputField
             id="weight"
-            label="Weight"
+            label={t('lbl.weight')}
             name="weight"
             value={formData.weight}
             onChange={handleChange}
@@ -102,7 +102,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
           <InputField
             id="height"
-            label="Height"
+            label={t('lbl.height')}
             name="height"
             value={formData.height}
             onChange={handleChange}
@@ -124,7 +124,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             onClick={cancelEdit}
             className="mr-4 px-6 py-3 bg-gray-200 text-gray-700 rounded-[12px] hover:bg-gray-300 transition-colors"
           >
-            Cancel
+            {t('lbl.cancel')}
           </button>
           <button
             type="submit"
@@ -155,12 +155,12 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
-                Saving...
+                {t('lbl.saving')}
               </>
             ) : (
               <>
                 <Save className="h-5 w-5 mr-2" />
-                Save Changes
+                {t('lbl.saveChanges')}
               </>
             )}
           </button>
