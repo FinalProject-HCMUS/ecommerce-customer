@@ -1,0 +1,1 @@
+const s=30,E=16,P=10,_="TOP TRENDING",T="TOP SELLING",a=4,O=100,R=10,c=10,o=2e3,n=[{id:"cod",label:"COD"},{id:"vnpay",label:"VNpay"}];export{P as B,c as C,E as P,R as S,s as T,a as V,T as a,_ as b,O as c,o as d,n as e};
