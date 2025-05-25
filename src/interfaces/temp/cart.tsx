@@ -12,6 +12,8 @@ export interface OrderSummaryData {
   subtotal: number;
   deliveryFee: number;
   total: number;
+  selectedItemCount?: number;
+  totalItemCount?: number;
 }
 
 export interface QuantityControlProps {
@@ -22,4 +24,5 @@ export interface QuantityControlProps {
 
 export interface OrderSummaryProps {
   data: OrderSummaryData;
+  isCheckoutEnabled?: boolean;
 }

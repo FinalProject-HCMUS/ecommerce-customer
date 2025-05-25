@@ -1,6 +1,7 @@
 import type React from 'react';
-import { MoreHorizontal } from 'lucide-react';
 import StarRating from '../../shared/RatingStars';
+import { t } from '../../../helpers/i18n';
+import { formatDateUtils } from '../../../utils';
 
 interface ReviewCardProps {
   author: string;
@@ -31,14 +32,13 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
                 <span className="text-white text-xs">✓</span>
               </span>
             )}
+            <p className="text-sm text-gray-500 mx-5">
+              {t('lbl.postOn')} {formatDateUtils.formatDate(date)}
+            </p>
           </div>
         </div>
-        <button className="text-gray-400 hover:text-gray-600">
-          <MoreHorizontal className="w-5 h-5" />
-        </button>
       </div>
-      <p className="text-gray-700 my-3">{content}</p>
-      <p className="text-sm text-gray-500">Posted on {date}</p>
+      <p className="text-gray-700 my-2">{content}</p>
     </div>
   );
 };

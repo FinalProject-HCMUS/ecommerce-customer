@@ -1,4 +1,6 @@
 import type React from 'react';
+import { PAYMENT_METHOD } from '../../../constants/common';
+import { t } from '../../../helpers/i18n';
 
 interface CheckoutFormProps {
   formData: {
@@ -18,24 +20,19 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
   onPaymentMethodChange,
   onSubmit,
 }) => {
-  const paymentMethods = [
-    { id: 'cod', label: 'COD' },
-    { id: 'momo', label: 'Momo' },
-    { id: 'vnpay', label: 'VNpay' },
-    { id: 'credit', label: 'Credit card' },
-  ];
-
   return (
     <form onSubmit={onSubmit}>
       <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4">Shipping information</h2>
+        <h2 className="text-xl font-bold mb-4">
+          {t('lbl.shippingInformation')}
+        </h2>
 
         <div className="mb-4">
           <label
             htmlFor="name"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Receiver's Name
+            {t('lbl.receiverName')}
           </label>
           <input
             type="text"
@@ -53,7 +50,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Phone Number
+            {t('lbl.receiverPhone')}
           </label>
           <input
             type="tel"
@@ -71,7 +68,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             htmlFor="address"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Address
+            {t('lbl.receiverAddress')}
           </label>
           <input
             type="text"
@@ -86,10 +83,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
       </div>
 
       <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4">Payment method</h2>
+        <h2 className="text-xl font-bold mb-4">{t('lbl.paymentMethod')}</h2>
 
         <div className="space-y-3">
-          {paymentMethods.map((method) => (
+          {PAYMENT_METHOD.map((method) => (
             <div key={method.id} className="flex items-center">
               <input
                 type="radio"

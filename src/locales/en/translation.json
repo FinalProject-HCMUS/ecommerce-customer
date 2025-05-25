@@ -38,7 +38,8 @@
     "backToLogin": "Back to Login",
     "sendConfirmationEmail": "Send Confirmation Email",
     "sendAnother": "Send Another",
-    "changePassword": "Change Password"
+    "changePassword": "Change Password",
+    "loadMoreReviews": "Load More Reviews"
   },
   "lbl": {
     "topSelling": "Top Selling Products",
@@ -110,7 +111,24 @@
     "gotoCheckout": "Go to Checkout",
     "addItemsToCart": "Add items to cart",
     "emptyCart": "Your cart is empty",
-    "authenticating": "Authenticating..."
+    "authenticating": "Authenticating...",
+    "postOn": "Post on ",
+    "noReviewsYet": "No reviews yet",
+    "selectAll": "Select All",
+    "makePayment": "Make Payment",
+    "shippingInformation": "Shipping Information",
+    "receiverName": "Receiver Name",
+    "receiverPhone": "Receiver Phone",
+    "receiverAddress": "Receiver Address",
+    "paymentMethod": "Payment Method",
+    "searchBlogs": "Search Blogs",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "titleAZ": "Title A-Z",
+    "titleZA": "Title Z-A",
+    "noResults": "No results found",
+    "tryDifferentSearch": "Try a different search term",
+    "selectedItems" : "Selected Items"
   },
   "placeholder": {
     "firstName": "Enter your first name",

@@ -10,7 +10,16 @@ export interface BlogPostProps {
   index: number;
 }
 
+// Helper function to extract plain text from HTML
+const stripHtml = (html: string): string => {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || '';
+};
+
 const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
+  // Get plain text from HTML content
+  const plainTextContent = stripHtml(post.content || '');
+
   return (
     <motion.article
       className="flex flex-col sm:flex-row bg-gray-100 rounded-[12px] overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
@@ -54,7 +63,12 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => {
             {post.title}
           </h2>
         </Link>
-        <p className="text-gray-700 mb-2">{post.content}</p>
+
+        {/* Using truncate classes for content preview */}
+        <p className="text-gray-700 mb-2 line-clamp-3 overflow-hidden">
+          {plainTextContent}
+        </p>
+
         <div className="mt-auto flex items-center text-sm text-gray-500">
           <Calendar className="w-3 h-3 mr-1" />
           <span>{formatDate(post.createdAt)}</span>

@@ -36,7 +36,8 @@
     "backToLogin": "Quay lại đăng nhập",
     "sendConfirmationEmail": "Gửi email xác nhận",
     "sendAnother": "Gửi lại",
-    "changePassword": "Đổi mật khẩu"
+    "changePassword": "Đổi mật khẩu",
+    "loadMoreReviews": "Tải thêm đánh giá"
   },
   "lbl": {
     "topSelling": "Sản phẩm bán chạy nhất",
@@ -110,7 +111,24 @@
     "confirmNewPassword": "Xác nhận mật khẩu mới",
     "addItemsToCart": "Thêm sản phẩm vào giỏ hàng",
     "emptyCart": "Giỏ hàng của bạn đang trống",
-    "authenticating": "Đang xác thực..."
+    "authenticating": "Đang xác thực...",
+    "postOn": "Đăng vào ",
+    "noReviewsYet": "Chưa có đánh giá nào",
+    "selectAll": "Chọn tất cả",
+    "makePayment": "Thanh toán",
+    "shippingInformation": "Thông tin giao hàng",
+    "receiverName": "Tên người nhận",
+    "receiverPhone": "Số điện thoại người nhận",
+    "receiverAddress": "Địa chỉ người nhận",
+    "paymentMethod": "Phương thức thanh toán",
+    "searchBlogs": "Tìm kiếm blog",
+    "newest": "Mới nhất",
+    "oldest": "Cũ nhất",
+    "titleAZ": "Tiêu đề A-Z",
+    "titleZA": "Tiêu đề Z-A",
+    "noResults": "Không có kết quả",
+    "tryDifferentSearch": "Thử tìm kiếm khác",
+    "selectedItems": "Mặt hàng đã chọn"
   },
   "placeholder": {
     "firstName": "Nhập tên của bạn",
