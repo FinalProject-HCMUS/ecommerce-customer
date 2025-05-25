@@ -1,95 +1,99 @@
-import type React from 'react';
-import { ProductItem } from './ProductItem';
-import Divider from '../../shared/Divider';
+import React from 'react';
+import { CartItemResponse } from '../../../interfaces';
+import { formatCurrency } from '../../../helpers/string';
+import { t } from '../../../helpers/i18n';
 import { GeneralButton } from '../../shared/Button';
 
-export const OrderSummary: React.FC = () => {
-  const products = [
-    {
-      id: 1,
-      name: 'Checkered Shirt',
-      size: 'Medium',
-      color: 'Red',
-      price: 180,
-      quantity: 1,
-      image:
-        'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
-    },
-    {
-      id: 2,
-      name: 'Checkered Shirt',
-      size: 'Medium',
-      color: 'Red',
-      price: 180,
-      quantity: 1,
-      image:
-        'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
-    },
-    {
-      id: 3,
-      name: 'Checkered Shirt',
-      size: 'Medium',
-      color: 'Red',
-      price: 180,
-      quantity: 1,
-      image:
-        'https://res.cloudinary.com/dt0ps34k9/image/upload/v1743842005/shirt_ckwim3.png',
-    },
-  ];
+interface OrderSummaryProps {
+  items: CartItemResponse[];
+  summary: {
+    subtotal: number;
+    deliveryFee: number;
+    total: number;
+  };
+  handlePayment: () => void;
+}
 
-  const subtotal = products.reduce(
-    (sum, product) => sum + product.price * product.quantity,
-    0
-  );
-  const discountRate = 0.2; // 20%
-  const discountAmount = Math.round(subtotal * discountRate);
-  const deliveryFee = 15;
-  const total = subtotal - discountAmount + deliveryFee;
+export const OrderSummary: React.FC<OrderSummaryProps> = ({
+  items,
+  summary,
+  handlePayment,
+}) => {
+  const { subtotal, deliveryFee, total } = summary;
 
   return (
     <div>
-      <div className="space-y-4 mb-8">
-        {products.map((product) => (
-          <ProductItem key={product.id} product={product} />
+      <h2 className="text-xl font-bold mb-6">{t('lbl.orderSummary')}</h2>
+
+      <div className="divide-y divide-gray-200">
+        {items.map((item) => (
+          <div key={item.id} className="py-4 flex">
+            <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+              <img
+                src={item.product.mainImageUrl}
+                alt={item.product.name}
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+            <div className="ml-4 flex flex-1 flex-col">
+              <div>
+                <div className="flex justify-between text-base font-medium text-gray-900">
+                  <h3>{item.product.name}</h3>
+                  <p className="ml-4">
+                    {formatCurrency(
+                      ((item.product.price *
+                        (100 - item.product.discountPercent)) /
+                        100) *
+                        item.quantity,
+                      'VND'
+                    )}
+                  </p>
+                </div>
+                <p className="mt-1 text-sm text-gray-500">
+                  {`${t('lbl.quantity')}: ${item.quantity}`}
+                </p>
+                {item.color && (
+                  <p className="mt-1 text-sm text-gray-500 flex items-center">
+                    {t('lbl.color')}:{' '}
+                    <span
+                      className="ml-1 inline-block w-3 h-3 rounded-full"
+                      style={{ backgroundColor: item.color }}
+                    />
+                  </p>
+                )}
+                {item.size && (
+                  <p className="mt-1 text-sm text-gray-500">
+                    {`${t('lbl.size')}: ${item.size}`}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
-      <Divider />
-
-      <div className="pt-6">
-        <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-
-        <div className="space-y-3">
-          <div className="flex justify-between">
-            <span className="text-gray-600">Subtotal</span>
-            <span className="font-medium">${subtotal}</span>
-          </div>
-
-          <div className="flex justify-between">
-            <span className="text-gray-600">Discount (-20%)</span>
-            <span className="font-medium text-red-500">-${discountAmount}</span>
-          </div>
-
-          <div className="flex justify-between">
-            <span className="text-gray-600">Delivery Fee</span>
-            <span className="font-medium">${deliveryFee}</span>
-          </div>
-
-          <Divider />
-
-          <div className="flex justify-between pt-3">
-            <span className="font-bold">Total</span>
-            <span className="font-bold text-xl">${total}</span>
-          </div>
+      <div className="border-t border-gray-200 pt-4 mt-6">
+        <div className="flex justify-between text-sm">
+          <p className="text-gray-600">{t('lbl.subTotal')}</p>
+          <p className="font-medium">{formatCurrency(subtotal, 'VND')}</p>
         </div>
-
-        <GeneralButton
-          type="submit"
-          className="w-full mt-6 bg-black text-white py-4 px-6 rounded-full font-medium hover:bg-gray-800 transition-colors"
-        >
-          MAKE PAYMENT
-        </GeneralButton>
+        <div className="flex justify-between text-sm mt-2">
+          <p className="text-gray-600">{t('lbl.deliveryFee')}</p>
+          <p className="font-medium">{formatCurrency(deliveryFee, 'VND')}</p>
+        </div>
+        <div className="flex justify-between text-base font-medium mt-4">
+          <p>{t('lbl.total')}</p>
+          <p>{formatCurrency(total, 'VND')}</p>
+        </div>
       </div>
+
+      <GeneralButton
+        type="submit"
+        onClick={handlePayment}
+        className="w-full mt-6 bg-black text-white py-4 px-6 rounded-full font-medium hover:bg-gray-800 transition-colors"
+      >
+        {t('lbl.makePayment')}
+      </GeneralButton>
     </div>
   );
 };

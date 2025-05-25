@@ -28,6 +28,7 @@ const ProfilePage = lazy(() => import('../page/profile/profile-page'));
 const ChangePasswordPage = lazy(
   () => import('../page/auth/change-password-page')
 );
+const AuthenticatePage = lazy(() => import('../page/auth/authenticate-page'));
 
 const routes: IRoute[] = [
   {
@@ -137,6 +138,12 @@ const routes: IRoute[] = [
     path: '/change-password',
     name: 'Change Password',
     component: withAuthenticatedUser(ChangePasswordPage),
+  },
+  {
+    exact: true,
+    path: '/authenticate',
+    name: 'Authenticate User',
+    component: AuthenticatePage,
   },
 ];
 

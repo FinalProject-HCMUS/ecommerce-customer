@@ -1,26 +1,34 @@
-import type React from 'react';
+import React, { forwardRef } from 'react';
 import MessageBubble from './MessageBubble';
-import type { Message } from '../../../interfaces/temp/message';
+import { Message } from '../../../interfaces/temp/message';
 
 interface ChatContainerProps {
   messages: Message[];
   messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 
-const ChatContainer: React.FC<ChatContainerProps> = ({
+const ChatContainer = forwardRef<HTMLDivElement, ChatContainerProps>(({
   messages,
   messagesEndRef,
 }) => {
   return (
-    <div className="flex-1 overflow-y-auto p-4 ">
-      <div className="max-w-4xl mx-auto space-y-6">
-        {messages.map((message) => (
-          <MessageBubble key={message.id} message={message} />
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
+    <div className="max-w-4xl mx-auto space-y-6 p-4">
+      {messages.length === 0 ? (
+        <div className="text-center text-gray-500 py-8">
+          No messages yet. Start the conversation!
+        </div>
+      ) : (
+        <>
+          {messages.map((message) => (
+            <MessageBubble key={message.id} message={message} />
+          ))}
+          <div ref={messagesEndRef} />
+        </>
+      )}
     </div>
   );
-};
+});
+
+ChatContainer.displayName = 'ChatContainer';
 
 export default ChatContainer;

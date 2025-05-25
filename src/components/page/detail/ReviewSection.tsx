@@ -1,158 +1,132 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
-import { reviews as initialReviews } from '../../../data/reviews'; // Adjust the import path as necessary
-import { t } from '../../../helpers/i18n'; // Adjust the import path as necessary
+import { t } from '../../../helpers/i18n';
+import { useReviews } from '../../../hooks/reviews';
+import { ReviewResponse } from '../../../interfaces/review/ReviewResponse';
 
-const ReviewSection: React.FC = () => {
-  const [reviews, setReviews] = useState(initialReviews); // State for reviews
-  const [visibleCount, setVisibleCount] = useState(2); // Number of reviews to show initially
-  const [isWritingReview, setIsWritingReview] = useState(false); // Toggle review form visibility
-  const [newReview, setNewReview] = useState({
-    author: '',
-    rating: 0,
-    content: '',
-    date: new Date().toLocaleDateString(),
-    isVerified: true,
-  });
+interface ReviewSectionProps {
+  productId?: string;
+}
+
+const ReviewSection: React.FC<ReviewSectionProps> = ({ productId }) => {
+  const {
+    reviews: fetchedReviews,
+    pageable,
+    loading,
+    error,
+    fetchReviews,
+  } = useReviews();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [combinedReviews, setCombinedReviews] = useState<ReviewResponse[]>([]);
+  const pageSize = 5;
+
+  // Initial load of reviews
+  useEffect(() => {
+    // Reset combined reviews when productId changes
+    setCombinedReviews([]);
+    setCurrentPage(0);
+
+    fetchReviews(
+      0, // Always start from page 0 when product changes
+      pageSize,
+      ['createdAt,desc'],
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      productId
+    );
+  }, [productId]);
+
+  // Update combined reviews when new reviews are fetched
+  useEffect(() => {
+    if (fetchedReviews && fetchedReviews.length > 0) {
+      if (currentPage === 0) {
+        // Replace all reviews if we're on the first page
+        setCombinedReviews(fetchedReviews);
+      } else {
+        // Append to existing reviews for subsequent pages
+        setCombinedReviews((prev) => {
+          // Create a Set of existing IDs to avoid duplicates
+          const existingIds = new Set(prev.map((review) => review.id));
+          // Only add reviews that don't already exist
+          const newReviews = fetchedReviews.filter(
+            (review) => !existingIds.has(review.id)
+          );
+          return [...prev, ...newReviews];
+        });
+      }
+    }
+  }, [fetchedReviews, currentPage]);
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 2); // Load 2 more reviews
+    if (pageable && currentPage < pageable.totalPages - 1) {
+      const nextPage = currentPage + 1;
+      setCurrentPage(nextPage);
+
+      fetchReviews(
+        nextPage,
+        pageSize,
+        ['createdAt,desc'],
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        productId
+      );
+    }
   };
 
-  const handleWriteReviewToggle = () => {
-    setIsWritingReview((prev) => !prev); // Toggle the review form
-  };
+  if (loading && currentPage === 0) {
+    return (
+      <div className="flex justify-center items-center mt-16 mb-8">
+        <div className="loader">{t('lbl.loading')}</div>
+      </div>
+    );
+  }
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setNewReview((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmitReview = (e: React.FormEvent) => {
-    e.preventDefault();
-    setReviews((prev) => [{ ...newReview, id: Date.now() }, ...prev]); // Add the new review with a unique id to the top of the list
-    setNewReview({
-      author: '',
-      rating: 0,
-      content: '',
-      date: new Date().toLocaleDateString(),
-      isVerified: true,
-    }); // Reset the form
-    setIsWritingReview(false); // Hide the form
-  };
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
 
   return (
     <div className="mt-16 mb-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">
           {t('lbl.allReviews')}{' '}
-          <span className="text-gray-500 font-normal">({reviews.length})</span>
+          <span className="text-gray-500 font-normal">
+            ({pageable?.totalElements || 0})
+          </span>
         </h2>
-        <div className="flex items-center gap-4">
-          <div className="flex items-center border border-gray-300 rounded-full px-3 py-1.5">
-            <span className="text-sm mr-2">{t('lbl.lastest')}</span>
-            <ChevronDown className="h-4 w-4" />
-          </div>
-          <button
-            className="bg-black text-white px-4 py-1.5 rounded-full text-sm hover:bg-gray-800 transition-colors"
-            onClick={handleWriteReviewToggle}
-          >
-            {isWritingReview ? 'Cancel' : 'Write a Review'}
-          </button>
-        </div>
       </div>
 
-      {isWritingReview && ( // Show the review form if toggled
-        <form
-          onSubmit={handleSubmitReview}
-          className="mb-6 p-4 border rounded-lg bg-gray-50"
-        >
-          <div className="mb-4">
-            <label
-              htmlFor="author"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Your Name
-            </label>
-            <input
-              type="text"
-              id="author"
-              name="author"
-              value={newReview.author}
-              onChange={handleInputChange}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black sm:text-sm"
-              required
+      {combinedReviews && combinedReviews.length > 0 ? (
+        <>
+          {combinedReviews.map((review) => (
+            <ReviewCard
+              key={review.id}
+              author={review.userName}
+              isVerified={true}
+              rating={review.rating}
+              content={review.comment}
+              date={review.createdAt}
             />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="rating"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Rating (1-5)
-            </label>
-            <input
-              type="number"
-              id="rating"
-              name="rating"
-              value={newReview.rating}
-              onChange={handleInputChange}
-              min="1"
-              max="5"
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black sm:text-sm"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="content"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Your Review
-            </label>
-            <textarea
-              id="content"
-              name="content"
-              value={newReview.content}
-              onChange={handleInputChange}
-              rows={4}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black sm:text-sm"
-              required
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="bg-black text-white px-4 py-2 rounded-full text-sm hover:bg-gray-800 transition-colors"
-          >
-            Submit Review
-          </button>
-        </form>
-      )}
+          ))}
 
-      {reviews.slice(0, visibleCount).map((review) => (
-        <ReviewCard
-          key={review.id}
-          author={review.author}
-          isVerified={review.isVerified}
-          rating={review.rating}
-          content={review.content}
-          date={review.date}
-        />
-      ))}
-
-      {visibleCount < reviews.length && ( // Show "Load More Reviews" only if there are more reviews to load
-        <button
-          className="w-full py-3 border border-gray-300 rounded-[12px] text-gray-600 hover:bg-gray-50 transition-colors"
-          onClick={handleLoadMore}
-        >
-          Load More Reviews
-        </button>
+          {pageable && currentPage < pageable.totalPages - 1 && (
+            <button
+              className="w-full py-3 border border-gray-300 rounded-[12px] text-gray-600 hover:bg-gray-50 transition-colors"
+              onClick={handleLoadMore}
+              disabled={loading}
+            >
+              {loading ? t('btn.loading') : t('btn.loadMoreReviews')}
+            </button>
+          )}
+        </>
+      ) : (
+        <p className="text-gray-500 text-center py-6">
+          {t('lbl.noReviewsYet')}
+        </p>
       )}
     </div>
   );

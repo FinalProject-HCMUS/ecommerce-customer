@@ -6,15 +6,23 @@ import { Pageable } from '../interfaces/common/Pageable';
 export const useBlogs = () => {
   const [loading, setLoading] = useState(false);
 
-  // Fetch all blogs
   const fetchBlogs = async (
-    page: number,
-    pagesize: number
-  ): Promise<Pageable<BlogResponse[]> | undefined> => {
+    page: number = 0,
+    size: number = 10,
+    sort?: string[],
+    keysearch?: string
+  ): Promise<Pageable<BlogResponse[]> | null> => {
     setLoading(true);
     try {
-      const response = await getAllBlogs(page, pagesize);
-      return response.data;
+      const response = await getAllBlogs(page, size, sort, keysearch);
+
+      if (response.isSuccess && response.data) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch {
+      return null;
     } finally {
       setLoading(false);
     }

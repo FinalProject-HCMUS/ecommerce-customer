@@ -163,7 +163,8 @@ const Filters = ({
                   onChange={(value) => setPriceRange(value as [number, number])}
                   className="mt-6 mx-2"
                   tooltip={{
-                    formatter: (value) => `$${value}`,
+                    formatter: (value) =>
+                      `${formatCurrency(value ?? 0, 'VND')}`,
                   }}
                 />
               </div>

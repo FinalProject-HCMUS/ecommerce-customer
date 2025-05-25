@@ -63,6 +63,7 @@
     "itemRemoved": "Mặt hàng đã bị xóa khỏi giỏ hàng.",
     "cartUpdated": "Giỏ hàng đã được cập nhật thành công!",
     "sendEmailActivation": "Email kích hoạt đã được gửi thành công! Vui lòng kiểm tra hộp thư của bạn.",
-    "sendEmailActivationFailed": "Gửi email kích hoạt không thành công. Vui lòng thử lại sau."
+    "sendEmailActivationFailed": "Gửi email kích hoạt không thành công. Vui lòng thử lại sau.",
+    "passwordChanged": "Mật khẩu đã được thay đổi thành công! Vui lòng đăng nhập bằng mật khẩu mới của bạn."
   }
 }

@@ -27,7 +27,7 @@ const router = createBrowserRouter(
     </Route>
   ),
   {
-    basename: '/ecommerce-customer'
+    basename: '/ecommerce-customer',
   }
 );
 

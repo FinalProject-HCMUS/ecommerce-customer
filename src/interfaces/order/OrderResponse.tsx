@@ -22,3 +22,23 @@ export interface OrderResponse {
   updatedAt: string;
   updatedBy: string;
 }
+
+export interface OrderSummaryData {
+  subtotal: number;
+  deliveryFee: number;
+  total: number;
+  selectedItemCount?: number;
+  totalItemCount?: number;
+}
+
+export interface QuantityControlProps {
+  quantity: number;
+  onDecrease: () => void;
+  onIncrease: () => void;
+}
+
+export interface OrderSummaryProps {
+  data: OrderSummaryData;
+  isCheckoutEnabled?: boolean;
+  onCheckout?: () => void;
+}

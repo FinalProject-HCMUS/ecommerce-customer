@@ -1,16 +1,55 @@
 import type React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CheckoutForm } from '../../components/page/checkout/CheckoutForm';
 import { OrderSummary } from '../../components/page/checkout/OrderSummary';
 import Breadcrumb from '../../components/shared/Breadcrumb';
+import { CartItemResponse } from '../../interfaces';
+import { t } from '../../helpers/i18n';
+
+interface LocationState {
+  selectedCartItems: CartItemResponse[];
+  orderSummary: {
+    subtotal: number;
+    deliveryFee: number;
+    total: number;
+  };
+}
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [selectedItems, setSelectedItems] = useState<CartItemResponse[]>([]);
+  const [orderSummary, setOrderSummary] = useState({
+    subtotal: 0,
+    deliveryFee: 0,
+    total: 0,
+  });
+
   const [formData, setFormData] = useState({
-    name: 'Le Minh Hoang',
-    phone: '09876543223',
+    name: '',
+    phone: '',
     address: '',
     paymentMethod: '',
   });
+
+  // Get selected cart items from navigation state
+  useEffect(() => {
+    const state = location.state as LocationState;
+
+    if (
+      !state ||
+      !state.selectedCartItems ||
+      state.selectedCartItems.length === 0
+    ) {
+      // If no items were passed, redirect back to cart
+      navigate('/cart');
+      return;
+    }
+
+    setSelectedItems(state.selectedCartItems);
+    setOrderSummary(state.orderSummary);
+  }, [location, navigate]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,9 +66,11 @@ function App() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    // Process checkout with selectedItems and formData
     console.log('Form submitted:', formData);
+    console.log('Selected items:', selectedItems);
+    console.log('Order summary:', orderSummary);
     // Here you would typically send the data to your backend
   };
 
@@ -39,8 +80,9 @@ function App() {
         {/* Breadcrumb */}
         <Breadcrumb
           items={[
-            { label: 'Home', path: '/' },
-            { label: 'Checkout', path: '/checkout' },
+            { label: t('breadcrumb.home'), path: '/' },
+            { label: t('breadcrumb.cart'), path: '/cart' },
+            { label: t('breadcrumb.checkout'), path: '/checkout' },
           ]}
         />
 
@@ -58,7 +100,11 @@ function App() {
           {/* Right Column - Order Summary */}
           <div className="w-full lg:w-1/2">
             <div className="bg-gray-100 rounded-[12px] p-6">
-              <OrderSummary />
+              <OrderSummary
+                items={selectedItems}
+                summary={orderSummary}
+                handlePayment={handleSubmit}
+              />
             </div>
           </div>
         </div>

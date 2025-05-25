@@ -16,7 +16,6 @@ const ROUTE = {
     LIST: '/blog',
     DETAIL: '/blog/:id',
   },
-  
 };
 
 export default ROUTE;
