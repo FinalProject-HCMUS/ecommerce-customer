@@ -162,7 +162,26 @@
     "policy": "Chính sách",
     "orders": "Đơn hàng",
     "chat": "Trò chuyện",
-    "profile": "Hồ sơ"
+    "profile": "Hồ sơ",
+    "orderConfirmation": "Xác nhận đơn hàng"
+  },
+  "checkout": {
+    "orderConfirmed": "Đơn hàng đã xác nhận!",
+    "orderConfirmationEmail": "Cảm ơn bạn đã đặt hàng! Xác nhận đơn hàng đã được gửi đến địa chỉ email của bạn.",
+    "orderSummary": "Thông tin đơn hàng",
+    "orderNumber": "Mã đơn hàng",
+    "orderDate": "Ngày đặt hàng",
+    "deliveryAddress": "Địa chỉ giao hàng",
+    "paymentMethod": "Phương thức thanh toán",
+    "subtotal": "Tạm tính",
+    "shippingFee": "Phí vận chuyển",
+    "total": "Tổng cộng",
+    "orderStatus": "Trạng thái đơn hàng",
+    "trackingInstructions": "Bạn có thể theo dõi trạng thái đơn hàng trong tài khoản của mình.",
+    "continueShopping": "Tiếp tục mua sắm",
+    "viewOrders": "Xem đơn hàng của tôi",
+    "orderSuccess": "Đặt hàng thành công!",
+    "orderFailed": "Đặt hàng thất bại. Vui lòng thử lại."
   },
   "pagination": {
     "previous": "Trước",

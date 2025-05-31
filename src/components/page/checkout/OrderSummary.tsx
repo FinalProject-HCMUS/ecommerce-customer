@@ -12,12 +12,14 @@ interface OrderSummaryProps {
     total: number;
   };
   handlePayment: () => void;
+  loading?: boolean;
 }
 
 export const OrderSummary: React.FC<OrderSummaryProps> = ({
   items,
   summary,
   handlePayment,
+  loading
 }) => {
   const { subtotal, deliveryFee, total } = summary;
 
@@ -89,6 +91,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
 
       <GeneralButton
         type="submit"
+        isLoading={loading}
         onClick={handlePayment}
         className="w-full mt-6 bg-black text-white py-4 px-6 rounded-full font-medium hover:bg-gray-800 transition-colors"
       >

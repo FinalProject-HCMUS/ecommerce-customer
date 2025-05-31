@@ -29,6 +29,7 @@ const ChangePasswordPage = lazy(
   () => import('../page/auth/change-password-page')
 );
 const AuthenticatePage = lazy(() => import('../page/auth/authenticate-page'));
+const OrderConfirmationPage = lazy(()=> import('../page/checkout/order-confirmation'));
 
 const routes: IRoute[] = [
   {
@@ -145,6 +146,12 @@ const routes: IRoute[] = [
     name: 'Authenticate User',
     component: AuthenticatePage,
   },
+  {
+    exact: true,
+    path: '/order-confirmation',
+    name: 'Order Confirmation',
+    component: OrderConfirmationPage
+  }
 ];
 
 export default routes;
