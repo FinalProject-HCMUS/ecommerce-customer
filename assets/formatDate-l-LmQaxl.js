@@ -1,1 +1,0 @@
-import{e as n,d as t}from"./index-D05w7RTC.js";const r=a=>{const e=new Date(a);return new Intl.DateTimeFormat(n()===t.REGIONS.vi.key?t.VN:t.EN,{year:"numeric",month:"long",day:"numeric"}).format(e)};export{r as f};

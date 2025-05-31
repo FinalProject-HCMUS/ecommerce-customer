@@ -1,1 +1,0 @@
-import{j as t}from"./index-D05w7RTC.js";import{B as s,L as a}from"./Button-DpK4s1vH.js";import{R as o}from"./index-BOwjOCoq.js";import"./App-4Od_FrKz.js";const u=()=>t.jsx(o,{className:"app-result-page mt-10",status:"500",title:"500",extra:t.jsxs(t.Fragment,{children:[t.jsx(s,{className:"mr-half"}),t.jsx(a,{})]})});export{u as default};
