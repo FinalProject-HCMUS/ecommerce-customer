@@ -26,7 +26,7 @@ const DESCREASE = 'decrease';
 const INCREASE = 'increase';
 
 const PAYMENT_METHOD = [
-  { id: 'cod', label: 'COD' },
+  { id: 'COD', label: 'COD' },
   { id: 'vnpay', label: 'VNpay' },
 ];
 

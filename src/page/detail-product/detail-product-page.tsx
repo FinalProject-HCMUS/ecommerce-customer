@@ -142,7 +142,7 @@ const App: React.FC = () => {
       {product?.description && (
         <ProductDescription description={product.description} />
       )}
-      <ReviewSection />
+      <ReviewSection productId={product?.id} />
     </div>
   );
 };

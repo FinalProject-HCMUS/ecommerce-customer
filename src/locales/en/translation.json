@@ -160,7 +160,26 @@
     "policy": "Policy",
     "orders": "Orders",
     "chat": "Chat",
-    "profile": "Profile"
+    "profile": "Profile",
+    "orderConfirmation": "Order Confirmation"
+  },
+   "checkout": {
+    "orderConfirmed": "Order Confirmed!",
+    "orderConfirmationEmail": "Thank you for your order! A confirmation has been sent to your email address.",
+    "orderSummary": "Order Summary",
+    "orderNumber": "Order Number",
+    "orderDate": "Order Date",
+    "deliveryAddress": "Delivery Address",
+    "paymentMethod": "Payment Method",
+    "subtotal": "Subtotal",
+    "shippingFee": "Shipping Fee",
+    "total": "Total",
+    "orderStatus": "Order Status",
+    "trackingInstructions": "You can track your order status in your account dashboard.",
+    "continueShopping": "Continue Shopping",
+    "viewOrders": "View My Orders",
+    "orderSuccess": "Order placed successfully!",
+    "orderFailed": "Failed to place order. Please try again."
   },
   "pagination": {
     "previous": "Previous",

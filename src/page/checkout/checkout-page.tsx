@@ -6,6 +6,11 @@ import { OrderSummary } from '../../components/page/checkout/OrderSummary';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import { CartItemResponse } from '../../interfaces';
 import { t } from '../../helpers/i18n';
+import { useCheckout } from '../../hooks/order';
+import { toast } from 'react-toastify'; // Assuming you use this for notifications
+import { showError, showSuccess } from '../../utils/messageRender';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../context/store';
 
 interface LocationState {
   selectedCartItems: CartItemResponse[];
@@ -19,18 +24,21 @@ interface LocationState {
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { loading, performCheckout } = useCheckout();
   const [selectedItems, setSelectedItems] = useState<CartItemResponse[]>([]);
   const [orderSummary, setOrderSummary] = useState({
     subtotal: 0,
     deliveryFee: 0,
     total: 0,
   });
+   const { userInfo } = useSelector((state: RootState) => state.auth);
 
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     address: '',
     paymentMethod: '',
+    
   });
 
   // Get selected cart items from navigation state
@@ -66,12 +74,77 @@ function App() {
     });
   };
 
-  const handleSubmit = () => {
-    // Process checkout with selectedItems and formData
-    console.log('Form submitted:', formData);
-    console.log('Selected items:', selectedItems);
-    console.log('Order summary:', orderSummary);
-    // Here you would typically send the data to your backend
+  const validateForm = (): boolean => {
+    // Name validation
+    if (!formData.name.trim()) {
+      showError(t('checkout.validation.nameRequired'));
+      return false;
+    }
+
+    // Phone validation - simple pattern for demonstration
+    const phonePattern = /^[0-9]{9,11}$/;
+    if (!formData.phone.trim() || !phonePattern.test(formData.phone.trim())) {
+      showError(t('checkout.validation.invalidPhone'));
+      return false;
+    }
+
+    // Address validation
+    if (!formData.address.trim()) {
+      showError(t('checkout.validation.addressRequired'));
+      return false;
+    }
+
+    // Payment method validation
+    if (!formData.paymentMethod) {
+      showError(t('checkout.validation.selectPaymentMethod'));
+      return false;
+    }
+
+    return true;
+  };
+
+
+  const handleSubmit = async () => {
+    // Validate form data
+    if (!validateForm()) {
+      return;
+    }
+
+    // Split name into firstName and lastName
+    const nameParts = formData.name.trim().split(' ');
+    const lastName = nameParts.pop() || '';
+    const firstName = nameParts.join(' ') || lastName;
+
+    // Map cart items to order details format
+    const orderDetails = selectedItems.map((item) => ({
+      itemId: item.itemId,
+      quantity: item.quantity,
+    }));
+
+    try {
+      const checkoutData = {
+        firstName,
+        lastName,
+        phoneNumber: formData.phone.trim(),
+        address: formData.address.trim(),
+        paymentMethod: formData.paymentMethod,
+        orderDetails: orderDetails,
+        customerId: userInfo?.id || '',
+      };
+
+      const response = await performCheckout(checkoutData);
+
+      if (response?.isSuccess) {
+        showSuccess(t('checkout.orderSuccess'));
+        navigate('/order-confirmation', {
+          state: { order: response.data },
+        });
+      } else {
+        showError(t('checkout.orderFailed'));
+      }
+    } catch  {
+      toast.error(t('checkout.orderFailed'));
+    }
   };
 
   return (
@@ -104,6 +177,7 @@ function App() {
                 items={selectedItems}
                 summary={orderSummary}
                 handlePayment={handleSubmit}
+                loading={loading}
               />
             </div>
           </div>
