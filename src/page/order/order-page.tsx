@@ -1,8 +1,6 @@
 import type React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Search, Filter, ChevronDown, X } from 'lucide-react';
-import { mockOrders } from '../../data/order';
-import type { Order, OrderStatus } from '../../interfaces/temp/order';
 import EmptyState from '../../components/page/order/EmptyState';
 import LoadingSkeleton from '../../components/page/order/LoadingSkeleton';
 import { statusConfig } from '../../data/statusConfig';
@@ -10,10 +8,15 @@ import StatusBadge from '../../components/page/order/StatusBadge';
 import OrderCard from '../../components/page/order/OrderCard';
 import Pagination from '../../components/shared/Pagination';
 import Breadcrumb from '../../components/shared/Breadcrumb';
+import { useOrderSearch } from '../../hooks/order';
+import { OrderResponse, Status } from '../../interfaces';
+import { t } from 'i18next';
+import { formatCurrency } from '../../helpers/string';
+
 
 // Status Timeline Modal
 const StatusModalComponent: React.FC<{
-  order: Order | null;
+  order: OrderResponse | null;
   onClose: () => void;
 }> = ({ order, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -52,25 +55,27 @@ const StatusModalComponent: React.FC<{
   if (!order) return null;
 
   // All possible statuses in order
-  const allStatuses: OrderStatus[] = [
-    'NEW',
-    'PROCESSING',
-    'PACKAGED',
-    'PICKED',
-    'SHIPPING',
-    'DELIVERED',
+  const allStatuses: Status[] = [
+    Status.NEW,
+    Status.PROCESSING,
+    Status.PACKAGED,
+    Status.PICKED,
+    Status.SHIPPING,
+    Status.DELIVERED,
+    Status.CANCELLED,
+    Status.REFUNDED,
   ];
 
   // Special statuses that can happen at any point
-  const specialStatuses: OrderStatus[] = ['CANCELLED', 'REFUNDED'];
+  const specialStatuses: Status[] = [Status.CANCELLED, Status.REFUNDED];
 
   // Check if a status is completed
-  const isCompleted = (status: OrderStatus) => {
-    return order.statusHistory.some((history) => history.status === status);
+  const isCompleted = (status: Status) => {
+    return order.orderTracks.some((history) => history.status === status);
   };
 
   // Check if status is the current one
-  const isCurrent = (status: OrderStatus) => {
+  const isCurrent = (status: Status) => {
     return order.status === status;
   };
 
@@ -81,22 +86,22 @@ const StatusModalComponent: React.FC<{
   };
 
   // Find status history entry
-  const getStatusHistory = (status: OrderStatus) => {
-    return order.statusHistory.find((history) => history.status === status);
+  const getStatusHistory = (status: Status) => {
+    return order.orderTracks.find((history) => history.status === status);
   };
 
   return (
-    <div className="fixed inset-0 rounded-[12px] bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 animate-fade-in">
+    <div className="fixed inset-0  bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 animate-fade-in">
       <div
         ref={modalRef}
-        className="bg-white  shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-[12px] shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
         style={{
           animation: 'scaleIn 0.3s ease-out forwards',
         }}
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">
-            Order Status: {order.orderNumber}
+            {t('order.orderStatus')}: {order.id}
           </h2>
           <button
             onClick={onClose}
@@ -110,7 +115,7 @@ const StatusModalComponent: React.FC<{
           {/* Main status timeline */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-900 mb-4">
-              Status Timeline
+              {t('order.timeline')}
             </h3>
             <div className="relative">
               {/* Timeline line */}
@@ -148,11 +153,11 @@ const StatusModalComponent: React.FC<{
                         {statusHistory ? (
                           <>
                             <div className="text-sm text-gray-500">
-                              {formatDate(statusHistory.date)}
+                              {formatDate(statusHistory.updatedTime)}
                             </div>
-                            {statusHistory.note && (
+                            {statusHistory.notes && (
                               <div className="mt-1 text-sm text-gray-600">
-                                {statusHistory.note}
+                                {statusHistory.notes}
                               </div>
                             )}
                           </>
@@ -171,7 +176,7 @@ const StatusModalComponent: React.FC<{
           {specialStatuses.some((status) => isCompleted(status)) && (
             <div className="mt-8 pt-6 border-t border-gray-200">
               <h3 className="text-lg font-medium text-gray-900 mb-4">
-                Special Status Updates
+                {t('order.specialStatuses')}
               </h3>
               <div className="space-y-4">
                 {specialStatuses.map((status) => {
@@ -193,11 +198,11 @@ const StatusModalComponent: React.FC<{
                           {statusConfig[status].text}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {formatDate(statusHistory.date)}
+                          {formatDate(statusHistory.updatedTime)}
                         </div>
-                        {statusHistory.note && (
+                        {statusHistory.notes && (
                           <div className="mt-1 text-sm text-gray-600">
-                            {statusHistory.note}
+                            {statusHistory.notes}
                           </div>
                         )}
                       </div>
@@ -211,29 +216,29 @@ const StatusModalComponent: React.FC<{
           {/* Order summary */}
           <div className="mt-8 pt-6 border-t border-gray-200">
             <h3 className="text-lg font-medium text-gray-900 mb-4">
-              Order Summary
+              {t('order.orderSummary')}
             </h3>
             <div className="bg-gray-50 rounded-[12px] p-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <div className="text-sm text-gray-500">Order Date</div>
+                  <div className="text-sm text-gray-500">{t('order.orderDate')}</div>
                   <div className="font-medium">
-                    {new Date(order.date).toLocaleDateString()}
+                    {new Date(order.createdAt).toLocaleDateString()}
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">Total Amount</div>
-                  <div className="font-medium">${order.total.toFixed(2)}</div>
+                  <div className="text-sm text-gray-500">{t('order.totalAmount')}</div>
+                  <div className="font-medium">{formatCurrency(order.total, 'VND')}</div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">Items</div>
-                  <div className="font-medium">
-                    {order.items.reduce((sum, item) => sum + item.quantity, 0)}{' '}
+                  <div className="text-sm text-gray-500">{t('order.items')}</div>
+                  {/* <div className="font-medium">
+                    {order..reduce((sum, item) => sum + item.quantity, 0)}{' '}
                     items
-                  </div>
+                  </div> */}
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">Current Status</div>
+                  <div className="text-sm text-gray-500">{t('order.currentStatus')}</div>
                   <div className="font-medium flex items-center mt-1">
                     <StatusBadge status={order.status} />
                   </div>
@@ -248,7 +253,7 @@ const StatusModalComponent: React.FC<{
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 rounded-[12px] text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
           >
-            Close
+            {t('order.close')}
           </button>
         </div>
       </div>
@@ -257,40 +262,41 @@ const StatusModalComponent: React.FC<{
 };
 
 const OrdersPage: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-
-  // Simulate loading data
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setOrders(mockOrders);
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Filter orders based on search term and status
-  const filteredOrders = orders.filter((order) => {
-    const matchesSearch =
-      order.orderNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.items.some((item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
-    const matchesStatus =
-      filterStatus === 'all' || order.status === filterStatus;
-
-    return matchesSearch && matchesStatus;
+  // Replace mock data with useOrderSearch hook
+  const { 
+    orders, 
+    loading, 
+    pageable, 
+    searchParams, 
+    setSearchParams 
+  } = useOrderSearch({
+    page: 0,
+    size: 5,
+    sort: ['createdAt,desc']
   });
 
-  // Handle view status
-  const handleViewStatus = (order: Order) => {
+  const [selectedOrder, setSelectedOrder] = useState<OrderResponse | null>(null);
+
+  // Handle search input changes
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const keyword = e.target.value;
+    setSearchParams({ keyword });
+  };
+
+  // Handle status filter changes
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const status = e.target.value === 'all' ? undefined : e.target.value as Status;
+    setSearchParams({ status });
+  };
+
+  // Handle pagination
+  const handlePageChange = (page: number) => {
+    console.log('Changing page to:', page);
+    setSearchParams({ page: page - 1 });
+  };
+
+  // View order status details
+  const handleViewStatus = (order: OrderResponse) => {
     setSelectedOrder(order);
   };
 
@@ -301,24 +307,25 @@ const OrdersPage: React.FC = () => {
 
   // Clear search
   const clearSearch = () => {
-    setSearchTerm('');
-    setFilterStatus('all');
+    setSearchParams({ keyword: undefined, status: undefined });
   };
+
+  // Get current page for pagination component (convert from 0-based to 1-based)
+  const currentPage = (pageable?.pageable.pageNumber ?? 0) + 1;
+  const totalPages = pageable?.totalPages ?? 1;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-10">
       <Breadcrumb
         items={[
-          { label: 'Home', path: '/' },
-          { label: 'Orders', path: '/orders' },
+          { label: t('breadcrumb.home'), path: '/' },
+          { label: t('breadcrumb.orders'), path: '/orders' },
         ]}
       />
       {/* Page header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Your Orders</h1>
-        <p className="text-gray-600">
-          View and track all your orders in one place
-        </p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('order.title')}</h1>
+
       </div>
 
       {/* Search and filters */}
@@ -330,9 +337,9 @@ const OrdersPage: React.FC = () => {
           <input
             type="text"
             className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-[12px] leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 sm:text-sm transition duration-150 ease-in-out"
-            placeholder="Search orders..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder={t('order.searchOrders')}
+            value={searchParams.keyword || ''}
+            onChange={handleSearchChange}
           />
         </div>
         <div className="relative inline-block w-full md:w-48 rounded-[12px]">
@@ -341,14 +348,13 @@ const OrdersPage: React.FC = () => {
           </div>
           <select
             className="block w-full pl-10 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 sm:text-sm rounded-[12px] transition duration-150 ease-in-out appearance-none bg-white"
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
+            value={searchParams.status || 'all'}
+            onChange={handleStatusChange}
           >
-            {/* {orderStatus.map((status) => (
-              <option key={status.value} value={status.value}>
-                {status.label}
-              </option>
-            ))} */}
+            <option value="all">{t('order.allStatuses')}</option>
+            {Object.values(Status).map((status) => (
+              <option key={status} value={status}>{t(`order.status.${status}`)}</option>
+            ))}
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <ChevronDown className="h-5 w-5 text-gray-400" />
@@ -359,29 +365,36 @@ const OrdersPage: React.FC = () => {
       {/* Orders list */}
       <div className="space-y-4">
         {loading ? (
-          <LoadingSkeleton count={3} />
-        ) : filteredOrders.length > 0 ? (
-          filteredOrders.map((order) => (
+          <LoadingSkeleton count={5} />
+        ) : orders.length > 0 ? (
+          orders.map((order) => (
             <OrderCard
               key={order.id}
               order={order}
-              onViewStatus={handleViewStatus}
+              onViewStatus={() => handleViewStatus(order)}
             />
           ))
         ) : (
-          <EmptyState searchTerm={searchTerm} onClearSearch={clearSearch} />
+          <EmptyState 
+            searchTerm={searchParams.keyword || ''} 
+            onClearSearch={clearSearch} 
+          />
         )}
       </div>
 
       {/* Pagination */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(filteredOrders.length / itemsPerPage)}
-        onPageChange={(page) => setCurrentPage(page)}
-      />
+      {!loading && orders.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
 
       {/* Status Modal */}
-      <StatusModalComponent order={selectedOrder} onClose={closeModal} />
+      {selectedOrder && (
+        <StatusModalComponent order={selectedOrder} onClose={closeModal} />
+      )}
     </div>
   );
 };
