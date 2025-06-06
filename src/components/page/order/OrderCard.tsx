@@ -21,7 +21,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
   const handleToggleExpand = () => {
     const newExpandedState = !expanded;
     setExpanded(newExpandedState);
-    
+
     // Fetch order details when expanding
     if (newExpandedState) {
       fetchOrderDetails(order.id);
@@ -43,14 +43,15 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
           <div>
             <h3 className="font-medium text-gray-900">{order.id}</h3>
             <p className="text-sm text-gray-500">
-              {t('order.orderOn')} {new Date(order.createdAt).toLocaleDateString()}
+              {t('order.orderOn')}{' '}
+              {new Date(order.createdAt).toLocaleDateString()}
             </p>
           </div>
         </div>
         <div className="flex items-center space-x-4">
           <StatusBadge status={order.status} />
           <span className="font-medium text-gray-900">
-           {formatCurrency(order.total, 'VND')}
+            {formatCurrency(order.total, 'VND')}
           </span>
           <button
             onClick={() => onViewStatus(order)}
@@ -78,16 +79,19 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
       >
         <div className="p-4 bg-gray-50">
           {loading ? (
-          <Loading/>
+            <Loading />
           ) : (
             <div className="space-y-3">
               {orderDetails.map((item) => (
-                <div key={item.id} className="flex items-center justify-between p-2 border-b border-gray-100">
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between p-2 border-b border-gray-100"
+                >
                   <div className="flex items-center space-x-3">
-                    <img 
-                      src={item.product.mainImageUrl} 
-                      alt={item.product.name} 
-                      className="w-16 h-16 object-cover rounded-md" 
+                    <img
+                      src={item.product.mainImageUrl}
+                      alt={item.product.name}
+                      className="w-16 h-16 object-cover rounded-md"
                     />
                     <div>
                       <h4 className="font-medium">{item.product.name}</h4>
@@ -95,7 +99,8 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
                         {item.color?.name}, {item.size?.name}
                       </p>
                       <p className="text-sm">
-                        {formatCurrency(item.unitPrice, 'VND')} x {item.quantity}
+                        {formatCurrency(item.unitPrice, 'VND')} x{' '}
+                        {item.quantity}
                       </p>
                     </div>
                   </div>
@@ -106,10 +111,10 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
               ))}
             </div>
           )}
-          
+
           <div className="mt-4 pt-4 border-t border-gray-200 flex justify-between">
             <div>
-              <p className="text-sm text-gray-500">{t("order.total")}</p>
+              <p className="text-sm text-gray-500">{t('order.total')}</p>
             </div>
             <div className="font-medium text-lg text-gray-900">
               {formatCurrency(order.total, 'VND')}

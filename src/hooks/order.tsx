@@ -8,17 +8,21 @@ import { Pageable } from '../interfaces';
 
 export const useCheckout = () => {
   const [loading, setLoading] = useState(false);
-  const [orderResponse, setOrderResponse] = useState<OrderResponse | null>(null);
+  const [orderResponse, setOrderResponse] = useState<OrderResponse | null>(
+    null
+  );
 
-  const performCheckout = async (checkoutData: CheckoutRequest): Promise<CustomResponse<OrderResponse> | undefined> => {
+  const performCheckout = async (
+    checkoutData: CheckoutRequest
+  ): Promise<CustomResponse<OrderResponse> | undefined> => {
     setLoading(true);
     try {
       const response = await checkout(checkoutData);
-      
+
       if (response.isSuccess && response.data) {
         setOrderResponse(response.data);
       }
-      
+
       setLoading(false);
       return response;
     } catch {
@@ -30,15 +34,17 @@ export const useCheckout = () => {
   return {
     loading,
     orderResponse,
-    performCheckout
+    performCheckout,
   };
 };
 
 export const useOrderSearch = (initialParams?: OrderSearchParams) => {
-  const [searchParams, setSearchParamsState] = useState<OrderSearchParams>(initialParams || {
-    page: 0,
-    size: 10,
-  });
+  const [searchParams, setSearchParamsState] = useState<OrderSearchParams>(
+    initialParams || {
+      page: 0,
+      size: 10,
+    }
+  );
   const [orders, setOrders] = useState<OrderResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [pageable, setPageable] = useState<Pageable<OrderResponse[]>>();
@@ -51,17 +57,21 @@ export const useOrderSearch = (initialParams?: OrderSearchParams) => {
       if (response.isSuccess && response.data) {
         setOrders(response.data.content);
         setPageable(response.data);
-      } 
-    }  finally {
+      }
+    } finally {
       setLoading(false);
     }
   }, [searchParams]);
 
   // Update search parameters and fetch results
   const setSearchParams = useCallback((params: Partial<OrderSearchParams>) => {
-    setSearchParamsState(prev => {
+    setSearchParamsState((prev) => {
       // If changing filters (not pagination), reset to first page
-      if (params.keyword !== undefined || params.status !== undefined || params.size !== undefined) {
+      if (
+        params.keyword !== undefined ||
+        params.status !== undefined ||
+        params.size !== undefined
+      ) {
         return { ...prev, ...params, page: 0 };
       }
       return { ...prev, ...params };

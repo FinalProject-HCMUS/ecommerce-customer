@@ -79,7 +79,7 @@ const LoginForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder={t('placeholder.password')}
-          forgotPasswordLink="#"
+          forgotPasswordLink="/request-password-reset"
           required
         />
 

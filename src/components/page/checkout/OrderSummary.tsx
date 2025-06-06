@@ -19,7 +19,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
   items,
   summary,
   handlePayment,
-  loading
+  loading,
 }) => {
   const { subtotal, deliveryFee, total } = summary;
 

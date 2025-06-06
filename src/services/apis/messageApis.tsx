@@ -17,9 +17,9 @@ export const getMessagesByConversationIdPaginated = async (
     sort.forEach((sortParam) => params.append('sort', sortParam));
   }
 
-  const response = await client.get<CustomResponse<Pageable<MessageResponse[]>>>(
-    `/messages/conversation/${conversationId}/paginated?${params.toString()}`
-  );
-  
+  const response = await client.get<
+    CustomResponse<Pageable<MessageResponse[]>>
+  >(`/messages/conversation/${conversationId}/paginated?${params.toString()}`);
+
   return response.data;
 };
