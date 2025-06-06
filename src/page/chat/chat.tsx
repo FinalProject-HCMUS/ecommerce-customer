@@ -14,20 +14,26 @@ const App: React.FC = () => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
-  
+
   // State for conversation and message handling
-  const [selectedConversationId, setSelectedConversationId] = useState<string | null>(null);
+  const [selectedConversationId, setSelectedConversationId] = useState<
+    string | null
+  >(null);
   const [hasMoreMessages, setHasMoreMessages] = useState(true);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  
+
   // Get conversations and messages using hooks
-  const { conversations, loading: loadingConversations, fetchCustomerConversations } = useConversation();
-  const { 
-    messages: apiMessages, 
-    loading: loadingMessages, 
+  const {
+    conversations,
+    loading: loadingConversations,
+    fetchCustomerConversations,
+  } = useConversation();
+  const {
+    messages: apiMessages,
+    loading: loadingMessages,
     pagination,
     fetchMessages,
-    changePage
+    changePage,
   } = useMessage();
 
   // Fetch conversations when component mounts
@@ -69,12 +75,19 @@ const App: React.FC = () => {
   const handleScroll = useCallback(() => {
     const container = messageContainerRef.current;
     if (!container || loadingMessages || !hasMoreMessages) return;
-    
+
     // If user has scrolled near the top (within 100px), load more messages
     if (container.scrollTop < 100) {
-      changePage(selectedConversationId as string, pagination.page + 1, ['createdAt,desc']);
+      changePage(selectedConversationId as string, pagination.page + 1, [
+        'createdAt,desc',
+      ]);
     }
-  }, [selectedConversationId, loadingMessages, pagination.page, hasMoreMessages]);
+  }, [
+    selectedConversationId,
+    loadingMessages,
+    pagination.page,
+    hasMoreMessages,
+  ]);
 
   // Add scroll event listener
   useEffect(() => {
@@ -94,11 +107,13 @@ const App: React.FC = () => {
   // Send a new message
   const handleSendMessage = async (text: string) => {
     if (!text.trim() || !selectedConversationId || !userInfo?.id) return;
-    
+
     try {
       // Refresh messages to get the server-generated message
-      fetchMessages(selectedConversationId, 0, pagination.size, ['createdAt,desc']);
-      
+      fetchMessages(selectedConversationId, 0, pagination.size, [
+        'createdAt,desc',
+      ]);
+
       // Scroll to bottom to show new message
       setTimeout(scrollToBottom, 100);
     } catch (error) {
@@ -117,7 +132,7 @@ const App: React.FC = () => {
           { label: t('breadcrumb.chat'), path: '/chat' },
         ]}
       />
-      
+
       {loadingConversations && !conversations.length ? (
         <div className="flex-1 flex items-center justify-center">
           <Loading />
@@ -125,30 +140,35 @@ const App: React.FC = () => {
       ) : conversations.length === 0 ? (
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-xl font-semibold mb-2">{t('msg.noConversations')}</h2>
+            <h2 className="text-xl font-semibold mb-2">
+              {t('msg.noConversations')}
+            </h2>
             <p className="text-gray-500">{t('msg.startNewConversation')}</p>
           </div>
         </div>
       ) : (
         <>
-          <div ref={messageContainerRef} className="flex-1 overflow-y-auto relative">
+          <div
+            ref={messageContainerRef}
+            className="flex-1 overflow-y-auto relative"
+          >
             {loadingMessages && pagination.page > 0 && (
               <div className="sticky top-0 w-full bg-gray-100 p-2 text-center">
                 <Loading />
               </div>
             )}
-            
-            <ChatContainer 
-              messages={displayMessages.map(msg => ({
+
+            <ChatContainer
+              messages={displayMessages.map((msg) => ({
                 id: msg.id,
                 text: msg.content,
                 sender: msg.roleChat === RoleChat.CUSTOMER ? 'user' : 'other',
                 timestamp: new Date(msg.createdAt).toLocaleTimeString([], {
                   hour: '2-digit',
-                  minute: '2-digit'
-                })
-              }))} 
-              messagesEndRef={messagesEndRef} 
+                  minute: '2-digit',
+                }),
+              }))}
+              messagesEndRef={messagesEndRef}
             />
           </div>
           <MessageInput onSendMessage={handleSendMessage} />

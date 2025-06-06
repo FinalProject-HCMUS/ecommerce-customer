@@ -1,4 +1,4 @@
-import { Status } from "./Status";
+import { Status } from './Status';
 
 export interface OrderSearchParams {
   keyword?: string;
@@ -7,4 +7,3 @@ export interface OrderSearchParams {
   size?: number;
   sort?: string[];
 }
- 

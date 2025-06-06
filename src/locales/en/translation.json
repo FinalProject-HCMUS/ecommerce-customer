@@ -128,7 +128,7 @@
     "titleZA": "Title Z-A",
     "noResults": "No results found",
     "tryDifferentSearch": "Try a different search term",
-    "selectedItems" : "Selected Items"
+    "selectedItems": "Selected Items"
   },
   "placeholder": {
     "firstName": "Enter your first name",
@@ -163,7 +163,7 @@
     "profile": "Profile",
     "orderConfirmation": "Order Confirmation"
   },
-   "checkout": {
+  "checkout": {
     "orderConfirmed": "Order Confirmed!",
     "orderConfirmationEmail": "Thank you for your order! A confirmation has been sent to your email address.",
     "orderSummary": "Order Summary",
@@ -193,17 +193,17 @@
     "viewStatus": "View Status",
     "total": "Total",
     "searchOrders": "Search Orders",
-    "title" : "Your Orders",
+    "title": "Your Orders",
     "allStatuses": "All Statuses",
     "timeline": "Timeline",
-    "totalAmount" : "Total Amount",
+    "totalAmount": "Total Amount",
     "items": "Items",
     "specialStatuses": "Special Statuses",
     "close": "Close",
     "currentStatus": "Current Status",
     "orderSummary": "Order Summary",
     "status": {
-      "NEW" : "New",
+      "NEW": "New",
       "CONFIRMED": "Confirmed",
       "PENDING": "Pending",
       "PROCESSING": "Processing",
@@ -224,5 +224,18 @@
   "pagination": {
     "previous": "Previous",
     "next": "Next"
+  },
+  "auth": {
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email format",
+    "resetEmailSent": "A password reset email has been sent to your email address.",
+    "resetEmailFailed": "Failed to send password reset email. Please try again.",
+    "resetPassword": "Reset Password",
+    "checkYourEmail": "Please check your email for the password reset link.",
+    "resetEmailInstructions": "Enter your email address to receive a password reset link.",
+    "backToLogin": "Back to Login",
+    "email": "Email",
+    "sendResetLink": "Send Reset Link",
+    "enterYourEmail": "Enter your email address"
   }
 }

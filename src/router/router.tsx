@@ -29,7 +29,15 @@ const ChangePasswordPage = lazy(
   () => import('../page/auth/change-password-page')
 );
 const AuthenticatePage = lazy(() => import('../page/auth/authenticate-page'));
-const OrderConfirmationPage = lazy(()=> import('../page/checkout/order-confirmation'));
+const OrderConfirmationPage = lazy(
+  () => import('../page/checkout/order-confirmation')
+);
+const RequestPasswordResetPage = lazy(
+  () => import('../page/auth/request-password-reset-page')
+);
+const ResetPasswordPage = lazy(
+  () => import('../page/auth/reset-password-page')
+);
 
 const routes: IRoute[] = [
   {
@@ -40,67 +48,67 @@ const routes: IRoute[] = [
   },
   {
     exact: true,
-    path: '/products',
+    path: routeConstants.SEARCH,
     name: 'Products',
     component: SearchPage,
   },
   {
     exact: true,
-    path: '/login',
+    path: routeConstants.AUTH.LOGIN,
     name: 'Login',
     component: withUnAuthenticatedUser(LoginPage),
   },
   {
     exact: true,
-    path: '/register',
+    path: routeConstants.AUTH.REGISTER,
     name: 'Register',
     component: RegistrationPage,
   },
   {
     exact: true,
-    path: '/product/:id',
+    path: routeConstants.PRODUCT.DETAIL,
     name: 'Detail Product',
     component: DetailProduct,
   },
   {
     exact: true,
-    path: '/profile',
+    path: routeConstants.PROFILE,
     name: 'Profile Page',
     component: withAuthenticatedUser(ProfilePage),
   },
   {
     exact: true,
-    path: '/cart',
+    path: routeConstants.CART,
     name: 'Cart Page',
     component: withAuthenticatedUser(CartPage),
   },
   {
     exact: true,
-    path: '/checkout',
+    path: routeConstants.CHECKOUT,
     name: 'Checkout Page',
     component: withAuthenticatedUser(CheckoutPage),
   },
   {
     exact: true,
-    path: '/chat',
+    path: routeConstants.CHAT,
     name: 'Chat Pages',
     component: withAuthenticatedUser(Chat),
   },
   {
     exact: true,
-    path: '/policy',
+    path: routeConstants.POLICY,
     name: 'Policy Page',
     component: Policy,
   },
   {
     exact: true,
-    path: '/blog',
+    path: routeConstants.BLOG.LIST,
     name: 'Blog Page',
     component: BlogPage,
   },
   {
     exact: true,
-    path: '/blog/:id',
+    path: routeConstants.BLOG.DETAIL,
     name: 'Detail Blog Page',
     component: DetailBlogPage,
   },
@@ -118,40 +126,58 @@ const routes: IRoute[] = [
   },
   {
     exact: true,
-    path: '/orders',
+    path: routeConstants.ORDER.ROOT,
     name: 'Orders Page',
     component: withAuthenticatedUser(OrdersPage),
   },
   {
     exact: true,
-    path: 'activate-account',
+    path: routeConstants.AUTH.ACTIVATE_ACCOUNT,
     name: 'Activate Account',
     component: ActivateAccountPage,
   },
   {
     exact: true,
-    path: '/confirm-email',
+    path: routeConstants.AUTH.CONFIRM_EMAIL,
     name: 'Confirm Email',
     component: ConfirmEmailPage,
   },
   {
     exact: true,
-    path: '/change-password',
+    path: routeConstants.AUTH.CHANGE_PASSWORD,
     name: 'Change Password',
     component: withAuthenticatedUser(ChangePasswordPage),
   },
   {
     exact: true,
-    path: '/authenticate',
+    path: routeConstants.AUTH.AUTHENTICATE,
     name: 'Authenticate User',
     component: AuthenticatePage,
   },
   {
     exact: true,
-    path: '/order-confirmation',
+    path: routeConstants.ORDER.CONFIRMATION,
     name: 'Order Confirmation',
-    component: OrderConfirmationPage
-  }
+    component: OrderConfirmationPage,
+  },
+  {
+    exact: true,
+    path: routeConstants.AUTH.RESET_PASSWORD_REQUEST,
+    name: 'Request Password Reset',
+    component: RequestPasswordResetPage,
+  },
+  {
+    exact: true,
+    path: routeConstants.AUTH.RESET_PASSWORD_REQUEST,
+    name: 'Request Password Reset',
+    component: RequestPasswordResetPage,
+  },
+  {
+    exact: true,
+    path: routeConstants.AUTH.RESET_PASSWORD,
+    name: 'Reset Password',
+    component: ResetPasswordPage,
+  },
 ];
 
 export default routes;

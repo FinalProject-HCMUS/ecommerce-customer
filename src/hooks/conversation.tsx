@@ -10,15 +10,17 @@ interface ConversationState {
 export const useConversation = () => {
   const [state, setState] = useState<ConversationState>({
     conversations: [],
-    loading: false
+    loading: false,
   });
 
-  const fetchCustomerConversations = async (customerId: string): Promise<void> => {
-    setState(prev => ({ ...prev, loading: true, error: null }));
+  const fetchCustomerConversations = async (
+    customerId: string
+  ): Promise<void> => {
+    setState((prev) => ({ ...prev, loading: true, error: null }));
 
     try {
       const response = await getConversationsByCustomerId(customerId);
-      
+
       if (response.isSuccess && response.data) {
         setState({
           conversations: response.data,
@@ -26,7 +28,7 @@ export const useConversation = () => {
         });
       }
     } finally {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         loading: false,
       }));
@@ -36,6 +38,6 @@ export const useConversation = () => {
   return {
     conversations: state.conversations,
     loading: state.loading,
-    fetchCustomerConversations
+    fetchCustomerConversations,
   };
 };

@@ -13,7 +13,6 @@ import { OrderResponse, Status } from '../../interfaces';
 import { t } from 'i18next';
 import { formatCurrency } from '../../helpers/string';
 
-
 // Status Timeline Modal
 const StatusModalComponent: React.FC<{
   order: OrderResponse | null;
@@ -221,24 +220,34 @@ const StatusModalComponent: React.FC<{
             <div className="bg-gray-50 rounded-[12px] p-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <div className="text-sm text-gray-500">{t('order.orderDate')}</div>
+                  <div className="text-sm text-gray-500">
+                    {t('order.orderDate')}
+                  </div>
                   <div className="font-medium">
                     {new Date(order.createdAt).toLocaleDateString()}
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">{t('order.totalAmount')}</div>
-                  <div className="font-medium">{formatCurrency(order.total, 'VND')}</div>
+                  <div className="text-sm text-gray-500">
+                    {t('order.totalAmount')}
+                  </div>
+                  <div className="font-medium">
+                    {formatCurrency(order.total, 'VND')}
+                  </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">{t('order.items')}</div>
+                  <div className="text-sm text-gray-500">
+                    {t('order.items')}
+                  </div>
                   {/* <div className="font-medium">
                     {order..reduce((sum, item) => sum + item.quantity, 0)}{' '}
                     items
                   </div> */}
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">{t('order.currentStatus')}</div>
+                  <div className="text-sm text-gray-500">
+                    {t('order.currentStatus')}
+                  </div>
                   <div className="font-medium flex items-center mt-1">
                     <StatusBadge status={order.status} />
                   </div>
@@ -263,19 +272,16 @@ const StatusModalComponent: React.FC<{
 
 const OrdersPage: React.FC = () => {
   // Replace mock data with useOrderSearch hook
-  const { 
-    orders, 
-    loading, 
-    pageable, 
-    searchParams, 
-    setSearchParams 
-  } = useOrderSearch({
-    page: 0,
-    size: 5,
-    sort: ['createdAt,desc']
-  });
+  const { orders, loading, pageable, searchParams, setSearchParams } =
+    useOrderSearch({
+      page: 0,
+      size: 5,
+      sort: ['createdAt,desc'],
+    });
 
-  const [selectedOrder, setSelectedOrder] = useState<OrderResponse | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<OrderResponse | null>(
+    null
+  );
 
   // Handle search input changes
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -285,7 +291,8 @@ const OrdersPage: React.FC = () => {
 
   // Handle status filter changes
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const status = e.target.value === 'all' ? undefined : e.target.value as Status;
+    const status =
+      e.target.value === 'all' ? undefined : (e.target.value as Status);
     setSearchParams({ status });
   };
 
@@ -324,8 +331,9 @@ const OrdersPage: React.FC = () => {
       />
       {/* Page header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('order.title')}</h1>
-
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          {t('order.title')}
+        </h1>
       </div>
 
       {/* Search and filters */}
@@ -353,7 +361,9 @@ const OrdersPage: React.FC = () => {
           >
             <option value="all">{t('order.allStatuses')}</option>
             {Object.values(Status).map((status) => (
-              <option key={status} value={status}>{t(`order.status.${status}`)}</option>
+              <option key={status} value={status}>
+                {t(`order.status.${status}`)}
+              </option>
             ))}
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -375,9 +385,9 @@ const OrdersPage: React.FC = () => {
             />
           ))
         ) : (
-          <EmptyState 
-            searchTerm={searchParams.keyword || ''} 
-            onClearSearch={clearSearch} 
+          <EmptyState
+            searchTerm={searchParams.keyword || ''}
+            onClearSearch={clearSearch}
           />
         )}
       </div>

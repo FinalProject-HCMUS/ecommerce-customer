@@ -4,6 +4,7 @@ import { UserResponse } from '../../interfaces/user/UserResponse';
 import { CreateUserRequest } from '../../interfaces/user/CreateUserRequest';
 import { UpdateUserRequest } from '../../interfaces/user/UpdateUserRequest';
 import { ChangePasswordRequest } from '../../interfaces/user/ChangePasswordRequest';
+import { ResetPasswordRequest } from '../../interfaces/auth/ResetPasswordRequest';
 
 const BASE_URL = '/users';
 
@@ -46,13 +47,31 @@ export const userApi = {
     return response.data;
   },
 
-  // Change user password
   changePassword: async (
     id: string,
     data: ChangePasswordRequest
   ): Promise<CustomResponse<void>> => {
     const response = await client.post<CustomResponse<void>>(
       `${BASE_URL}/${id}/change-password`,
+      data
+    );
+    return response.data;
+  },
+
+  requestPasswordReset: async (
+    email: string
+  ): Promise<CustomResponse<void>> => {
+    const response = await client.post<CustomResponse<void>>(
+      `${BASE_URL}/request-password-reset?email=${encodeURIComponent(email)}`
+    );
+    return response.data;
+  },
+
+  resetPassword: async (
+    data: ResetPasswordRequest
+  ): Promise<CustomResponse<void>> => {
+    const response = await client.post<CustomResponse<void>>(
+      `${BASE_URL}/reset-password`,
       data
     );
     return response.data;

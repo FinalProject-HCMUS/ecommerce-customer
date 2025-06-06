@@ -3,6 +3,7 @@ import type React from 'react';
 import { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { t } from '../../../helpers/i18n';
+import { Link } from 'react-router-dom';
 
 interface PasswordInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -31,12 +32,12 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
           {label}
         </label>
         {forgotPasswordLink && (
-          <a
-            href={forgotPasswordLink}
+          <Link
+            to={forgotPasswordLink}
             className="text-sm font-medium text-blue-600 hover:text-blue-500"
           >
             {t('hyperlink.forgotPassword')}
-          </a>
+          </Link>
         )}
       </div>
       <div className="relative">

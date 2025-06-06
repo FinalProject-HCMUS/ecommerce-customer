@@ -8,6 +8,7 @@ import {
   confirmEmail,
   resendConfirmationEmail,
 } from '../services/apis/authApis';
+import { ResetPasswordRequest } from '../interfaces/auth/ResetPasswordRequest';
 
 export const useUser = () => {
   const [user, setUser] = useState<UserResponse | null>(null);
@@ -108,6 +109,32 @@ export const useUser = () => {
     }
   };
 
+  const requestPasswordReset = async (email: string): Promise<boolean> => {
+    setLoading(true);
+    try {
+      const response = await userApi.requestPasswordReset(email);
+      return response.isSuccess;
+    } catch {
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resetPassword = async (
+    data: ResetPasswordRequest
+  ): Promise<boolean> => {
+    setLoading(true);
+    try {
+      const response = await userApi.resetPassword(data);
+      return response.isSuccess;
+    } catch {
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     user,
     loading,
@@ -118,5 +145,7 @@ export const useUser = () => {
     fetchUserByToken,
     confirmUserEmail,
     resendUserConfirmationEmail,
+    requestPasswordReset,
+    resetPassword,
   };
 };

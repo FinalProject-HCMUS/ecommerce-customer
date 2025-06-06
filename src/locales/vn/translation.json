@@ -163,7 +163,12 @@
     "orders": "Đơn hàng",
     "chat": "Trò chuyện",
     "profile": "Hồ sơ",
-    "orderConfirmation": "Xác nhận đơn hàng"
+    "orderConfirmation": "Xác nhận đơn hàng",
+    "forgotPassword": "Quên mật khẩu",
+    "resetPassword": "Đặt lại mật khẩu",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "activateAccount": "Kích hoạt tài khoản"
   },
   "checkout": {
     "orderConfirmed": "Đơn hàng đã xác nhận!",
@@ -195,17 +200,17 @@
     "viewStatus": "Xem trạng thái",
     "total": "Tổng cộng",
     "searchOrders": "Tìm kiếm đơn hàng",
-    "title" : "Đơn hàng của bạn",
+    "title": "Đơn hàng của bạn",
     "allStatuses": "Tất cả trạng thái",
     "timeline": "Dòng thời gian",
     "totalAmount": "Tổng số tiền",
     "specialStatuses": "Trạng thái đặc biệt",
-    "items" : "Các mặt hàng",
+    "items": "Các mặt hàng",
     "close": "Đóng",
     "currentStatus": "Trạng thái hiện tại",
     "orderSummary": "Tóm tắt đơn hàng",
     "status": {
-      "NEW" : "Mới",
+      "NEW": "Mới",
       "CONFIRMED": "Đã xác nhận",
       "PENDING": "Đang chờ xử lý",
       "PROCESSING": "Đang xử lý",
@@ -226,5 +231,20 @@
   "pagination": {
     "previous": "Trước",
     "next": "Tiếp theo"
+  },
+  "auth": {
+    "emailRequired": "Email là bắt buộc",
+    "invalidEmail": "Định dạng email không hợp lệ",
+    "resetEmailSent": "Email đặt lại mật khẩu đã được gửi. Vui lòng kiểm tra hộp thư đến của bạn.",
+    "resetEmailFailed": "Không thể gửi email đặt lại mật khẩu. Vui lòng thử lại.",
+    "resetPassword": "Đặt lại mật khẩu",
+    "checkYourEmail": "Vui lòng kiểm tra email của bạn để nhận liên kết đặt lại mật khẩu.",
+    "resetEmailInstructions": "Nhập địa chỉ email của bạn để nhận liên kết đặt lại mật khẩu.",
+    "backToLogin": "Quay lại đăng nhập",
+    "email": "Email",
+    "sendResetLink": "Gửi liên kết đặt lại",
+    "enterYourEmail": "Nhập địa chỉ email của bạn",
+    "newPassword": "Mật khẩu mới",
+    "confirmPassword": "Xác nhận mật khẩu"
   }
 }

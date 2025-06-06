@@ -31,14 +31,13 @@ function App() {
     deliveryFee: 0,
     total: 0,
   });
-   const { userInfo } = useSelector((state: RootState) => state.auth);
+  const { userInfo } = useSelector((state: RootState) => state.auth);
 
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     address: '',
     paymentMethod: '',
-    
   });
 
   // Get selected cart items from navigation state
@@ -103,7 +102,6 @@ function App() {
     return true;
   };
 
-
   const handleSubmit = async () => {
     // Validate form data
     if (!validateForm()) {
@@ -142,7 +140,7 @@ function App() {
       } else {
         showError(t('checkout.orderFailed'));
       }
-    } catch  {
+    } catch {
       toast.error(t('checkout.orderFailed'));
     }
   };
