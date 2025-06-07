@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { getAllReviews } from '../services/apis/reviewApis';
+import { createReview, getAllReviews } from '../services/apis/reviewApis';
 import { Pageable, ReviewResponse } from '../interfaces';
+import { CreateReviewRequest } from '../interfaces/review/CreateReviewRequest';
 
 interface ReviewsState {
   data?: ReviewResponse[];
@@ -77,5 +78,76 @@ export const useReviews = () => {
     loading: state.loading,
     error: state.error,
     fetchReviews,
+  };
+};
+
+interface CreateReviewState {
+  loading: boolean;
+  error: string | null;
+  success: boolean;
+  data?: ReviewResponse;
+}
+
+export const useCreateReview = () => {
+  const [state, setState] = useState<CreateReviewState>({
+    loading: false,
+    error: null,
+    success: false,
+    data: undefined,
+  });
+
+  const submitReview = async (
+    reviewData: CreateReviewRequest
+  ): Promise<ReviewResponse | null> => {
+    setState({ loading: true, error: null, success: false, data: undefined });
+
+    try {
+      const response = await createReview(reviewData);
+
+      if (response.isSuccess && response.data) {
+        setState({
+          loading: false,
+          error: null,
+          success: true,
+          data: response.data,
+        });
+        return response.data;
+      } else {
+        setState({
+          loading: false,
+          error: 'Failed to submit review',
+          success: false,
+          data: undefined,
+        });
+        return null;
+      }
+    } catch (error) {
+      setState({
+        loading: false,
+        error:
+          error instanceof Error ? error.message : 'An unknown error occurred',
+        success: false,
+        data: undefined,
+      });
+      return null;
+    }
+  };
+
+  const resetState = () => {
+    setState({
+      loading: false,
+      error: null,
+      success: false,
+      data: undefined,
+    });
+  };
+
+  return {
+    submitReview,
+    resetState,
+    loading: state.loading,
+    error: state.error,
+    success: state.success,
+    createdReview: state.data,
   };
 };

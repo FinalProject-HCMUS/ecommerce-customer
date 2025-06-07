@@ -5,9 +5,7 @@ const ShopInfo = () => {
   return (
     <div className="w-full md:w-5/12 bg-gray-100 p-8 flex flex-col py-8 text-center">
       <h1 className="text-3xl font-bold mb-8">{t('register.shopName')}</h1>
-      <p className="text-lg mb-6 text-justify">
-        {t('register.description')}
-      </p>
+      <p className="text-lg mb-6 text-justify">{t('register.description')}</p>
       <ul className="text-left max-w-md space-y-2">
         {register.benefit.map((_, index) => (
           <li key={index} className="flex items-center mb-4">

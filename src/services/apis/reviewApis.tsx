@@ -1,6 +1,7 @@
 import client from './request';
 import { CustomResponse } from '../../interfaces/common/CustomResponse';
 import { Pageable, ReviewResponse } from '../../interfaces';
+import { CreateReviewRequest } from '../../interfaces/review/CreateReviewRequest';
 
 export const getAllReviews = async (
   page: number = 0,
@@ -27,6 +28,16 @@ export const getAllReviews = async (
 
   const response = await client.get<CustomResponse<Pageable<ReviewResponse[]>>>(
     `/reviews?${params.toString()}`
+  );
+  return response.data;
+};
+
+export const createReview = async (
+  request: CreateReviewRequest
+): Promise<CustomResponse<ReviewResponse>> => {
+  const response = await client.post<CustomResponse<ReviewResponse>>(
+    '/reviews',
+    request
   );
   return response.data;
 };

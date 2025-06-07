@@ -25,30 +25,40 @@ const Hero = () => {
             </Link>
 
             <div className="mt-12 space-y-10">
-  {/* Chunk characteristics into rows of 3 and display each row */}
-  {Array.from({ length: Math.ceil(hero.characteristics.length / 3) }, (_, rowIndex) => {
-    const startIndex = rowIndex * 3;
-    
-    return (
-      <div key={`row-${rowIndex}`} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {hero.characteristics.slice(startIndex, startIndex + 3).map((_, itemIndex) => {
-          const actualIndex = startIndex + itemIndex;
-          
-          return (
-            <div key={actualIndex} className="text-center">
-              <h3 className="font-semibold mb-2">
-                {t(`hero.characteristics.${actualIndex}.title`)}
-              </h3>
-              <p className="text-sm text-gray-500 text-justify">
-                {t(`hero.characteristics.${actualIndex}.description`)}
-              </p>
+              {/* Chunk characteristics into rows of 3 and display each row */}
+              {Array.from(
+                { length: Math.ceil(hero.characteristics.length / 3) },
+                (_, rowIndex) => {
+                  const startIndex = rowIndex * 3;
+
+                  return (
+                    <div
+                      key={`row-${rowIndex}`}
+                      className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                    >
+                      {hero.characteristics
+                        .slice(startIndex, startIndex + 3)
+                        .map((_, itemIndex) => {
+                          const actualIndex = startIndex + itemIndex;
+
+                          return (
+                            <div key={actualIndex} className="text-center">
+                              <h3 className="font-semibold mb-2">
+                                {t(`hero.characteristics.${actualIndex}.title`)}
+                              </h3>
+                              <p className="text-sm text-gray-500 text-justify">
+                                {t(
+                                  `hero.characteristics.${actualIndex}.description`
+                                )}
+                              </p>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  );
+                }
+              )}
             </div>
-          );
-        })}
-      </div>
-    );
-  })}
-</div>
           </div>
 
           <div className="relative animate-fade-in flex items-center justify-center">

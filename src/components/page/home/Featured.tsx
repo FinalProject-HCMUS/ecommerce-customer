@@ -7,7 +7,7 @@ const Featured = () => {
     <section className="py-16 bg-white px-8">
       <div className="px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-         <div className="relative animate-fade-in flex items-center justify-center">
+          <div className="relative animate-fade-in flex items-center justify-center">
             <img
               src={image}
               alt="Fashion models"

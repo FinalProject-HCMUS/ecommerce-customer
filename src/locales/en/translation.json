@@ -237,5 +237,27 @@
     "email": "Email",
     "sendResetLink": "Send Reset Link",
     "enterYourEmail": "Enter your email address"
+  },
+  "common": {
+    "cancel": "Cancel"
+  },
+  "review": {
+    "write": "Write Review",
+    "view": "View Review",
+    "submit": "Submit",
+    "writeReview": "Write a Review",
+    "yourReview": "Your Review",
+    "headline": "Headline",
+    "comment": "Comment",
+    "headlinePlaceholder": "Summarize your review",
+    "commentPlaceholder": "Share your experience with this product",
+    "errors": {
+      "headlineRequired": "Please provide a headline for your review",
+      "headlineTooLong": "Headline must be less than 100 characters",
+      "commentRequired": "Please provide a comment for your review",
+      "commentTooLong": "Comment must be less than 1000 characters",
+      "ratingRequired": "Please select a rating",
+      "success": "Review submitted successfully!"
+    }
   }
 }
