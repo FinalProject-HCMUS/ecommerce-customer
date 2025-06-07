@@ -6,15 +6,27 @@
     "characteristics": [
       {
         "title": "High-Quality Products",
-        "description": "Some characteristics about shop"
+        "description": "Every item in our collection is crafted with meticulous attention to detail"
       },
       {
         "title": "Sustainable Materials",
-        "description": "Some characteristics about shop"
+        "description": "We're committed to reducing our environmental footprint by sourcing eco-friendly, organic"
       },
       {
         "title": "Happy Customers",
-        "description": "Some characteristics about shop"
+        "description": "With a 4.8/5 satisfaction rating from over 10,000 reviews."
+      },
+      {
+        "title": "Fast & Free Shipping",
+        "description": "Enjoy complimentary standard shipping on all domestic orders over $50"
+      },
+      {
+        "title": "Easy Returns",
+        "description": "Shop with confidence knowing our hassle-free 30-day return policy"
+      },
+      {
+        "title": "Secure Payments",
+        "description": "Your transactions are protected with bank-level encryption and multiple payment options"
       }
     ]
   },

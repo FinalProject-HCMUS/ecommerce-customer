@@ -7,7 +7,7 @@ const PolicyPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-gray-800">
       {/* Main content */}
-      <div className="container mx-auto px-4 pb-12">
+      <div className="px-4 pb-12">
         {/* Breadcrumb navigation */}
         <Breadcrumb
           items={[

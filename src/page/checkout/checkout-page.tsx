@@ -147,7 +147,7 @@ function App() {
 
   return (
     <div className="min-h-screen mt-10 mx-8 bg-white">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <Breadcrumb
           items={[

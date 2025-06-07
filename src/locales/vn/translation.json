@@ -246,5 +246,27 @@
     "enterYourEmail": "Nhập địa chỉ email của bạn",
     "newPassword": "Mật khẩu mới",
     "confirmPassword": "Xác nhận mật khẩu"
+  },
+  "common": {
+    "cancel": "Hủy"
+  },
+  "review": {
+    "write": "Viết đánh giá",
+    "view": "Xem đánh giá",
+    "submit": "Gửi đánh giá",
+    "writeReview": "Viết đánh giá",
+    "yourReview": "Đánh giá của bạn",
+    "headline": "Tiêu đề",
+    "comment": "Nội dung",
+    "headlinePlaceholder": "Tóm tắt đánh giá của bạn",
+    "commentPlaceholder": "Chia sẻ trải nghiệm của bạn về sản phẩm này",
+    "errors": {
+      "headlineRequired": "Vui lòng nhập tiêu đề đánh giá",
+      "headlineTooLong": "Tiêu đề không được vượt quá 100 ký tự",
+      "commentRequired": "Vui lòng nhập nội dung đánh giá",
+      "commentTooLong": "Nội dung không được vượt quá 1000 ký tự",
+      "ratingRequired": "Vui lòng chọn đánh giá sao"
+    },
+    "success": "Đánh giá đã được gửi thành công!"
   }
 }

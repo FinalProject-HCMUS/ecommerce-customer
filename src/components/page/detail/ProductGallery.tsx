@@ -14,7 +14,7 @@ const ProductGallery: React.FC<{ images: ProductImageResponse[] }> = ({
           <img
             key={image.id}
             src={image.url}
-            className={`w-16 h-16 object-cover cursor-pointer rounded-[12px] ${
+            className={`w-24 h-24 object-cover cursor-pointer rounded-[12px] ${
               selectedImage === index ? 'border-2 border-blue-500' : ''
             }`}
             onClick={() => setSelectedImage(index)}

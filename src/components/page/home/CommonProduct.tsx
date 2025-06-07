@@ -23,9 +23,9 @@ const CommonProducts: React.FC<CommonProductsProps> = ({ title, data }) => {
 
   return (
     <section className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
+      <div className="px-8">
         <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2">
           {data.slice(0, visibleCount).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

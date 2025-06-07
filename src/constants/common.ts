@@ -10,12 +10,12 @@ const orderStatus = [
   { value: 'REFUNDED', label: 'Refunded' },
 ];
 
-const TOP_PRODUCTS_PER_PAGE = 30;
-const PRODUCT_PER_PAGE = 16;
+const TOP_PRODUCTS_PER_PAGE = 100;
+const PRODUCT_PER_PAGE = 18;
 const BLOG_PER_PAGE = 10;
 const TOP_TRENDING = 'TOP TRENDING';
 const TOP_SELLING = 'TOP SELLING';
-const VISIBLE_PRODUCT = 4;
+const VISIBLE_PRODUCT = 18;
 
 const COLOR_PER_PAGE = 100;
 const SIZE_PER_PAGE = 10;

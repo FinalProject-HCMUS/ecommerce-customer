@@ -40,7 +40,7 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
 
   return (
     <motion.div
-      className="max-w-7xl mt-10 mx-10 px-4 py-8"
+      className="mt-10 mx-10 px-4 py-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

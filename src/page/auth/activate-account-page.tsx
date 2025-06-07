@@ -41,7 +41,7 @@ const ActivateAccountPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md w-full mx-auto mb-8">
+    <div className="max-w-md w-full mx-auto my-20">
       <div className="mb-6 text-center">
         <div className="flex justify-center mb-4">
           <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">

@@ -76,9 +76,9 @@ const Contact = () => {
 
   return (
     <section className="py-16 mx-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="bg-white p-8 rounded-lg shadow-sm">
+      <div className="px-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-5 bg-white p-8 rounded-lg shadow-sm">
             <h2 className="text-2xl font-bold mb-4">{t('lbl.contact')}</h2>
             <p className="text-gray-600 mb-8">{t('lbl.contactText')}</p>
 
@@ -98,7 +98,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="md:col-span-7 space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <InputField
                 id="firstName"

@@ -156,7 +156,7 @@ function App() {
     cartItems.length > 0 && selectedItems.size === cartItems.length;
 
   return (
-    <div className="max-w-7xl mx-auto mt-10 px-4 py-8">
+    <div className="mx-auto mt-10 px-4 py-8">
       <Breadcrumb
         items={[
           { label: t('breadcrumb.home'), path: '/' },
