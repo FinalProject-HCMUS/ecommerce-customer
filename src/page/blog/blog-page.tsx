@@ -73,7 +73,7 @@ const BlogListPage: React.FC = () => {
     )?.label || sortOptions[0].label;
 
   return (
-    <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8 py-8">
+    <div className="mx-auto mt-10 px-4 sm:px-6 lg:px-8 py-8">
       <Breadcrumb
         items={[
           { label: t('breadcrumb.home'), path: '/' },
@@ -85,7 +85,7 @@ const BlogListPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-8">
         <div className="relative flex-grow max-w-md">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-10 w-5 text-gray-400" />
           </div>
           <input
             type="text"

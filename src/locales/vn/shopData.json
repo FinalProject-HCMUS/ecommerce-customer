@@ -3,20 +3,32 @@
   "hero": {
     "title": "Một câu chào mừng khách hàng",
     "description": "Một vài câu giới thiệu về cửa hàng. Ví dụ: Khám phá các sản phẩm đa dạng được chế tác tỉ mỉ, thiết kế để thể hiện cá tính của bạn và phù hợp với phong cách của bạn.",
-    "characteristics": [
-      {
-        "title": "Sản phẩm chất lượng cao",
-        "description": "Một số đặc điểm về cửa hàng"
-      },
-      {
-        "title": "Nguyên liệu bền vững",
-        "description": "Một số đặc điểm về cửa hàng"
-      },
-      {
-        "title": "Khách hàng hài lòng",
-        "description": "Một số đặc điểm về cửa hàng"
-      }
-    ]
+   "characteristics": [
+  {
+    "title": "Sản phẩm chất lượng cao",
+    "description": "Mỗi sản phẩm trong bộ sưu tập được chế tác với sự chú ý tỉ mỉ đến từng chi tiết, sử dụng vải và nguyên liệu cao cấp đảm bảo độ bền và thoải mái."
+  },
+  {
+    "title": "Nguyên liệu bền vững",
+    "description": "Chúng tôi cam kết giảm thiểu tác động đến môi trường bằng cách sử dụng nguyên liệu thân thiện với môi trường, hữu cơ và tái chế cho sản phẩm và bao bì."
+  },
+  {
+    "title": "Khách hàng hài lòng",
+    "description": "Với đánh giá 4.8/5 từ hơn 10.000 đánh giá, khách hàng của chúng tôi yêu thích dịch vụ phản hồi nhanh và chất lượng sản phẩm."
+  },
+  {
+    "title": "Giao hàng nhanh & miễn phí",
+    "description": "Tận hưởng giao hàng tiêu chuẩn miễn phí cho tất cả đơn hàng nội địa trên 50$, với hầu hết đơn hàng được xử lý trong vòng 24 giờ sau khi mua."
+  },
+  {
+    "title": "Đổi trả dễ dàng",
+    "description": "Mua sắm với sự tự tin khi biết chính sách đổi trả trong 30 ngày đơn giản của chúng tôi đảm bảo bạn sẽ hoàn toàn hài lòng với sản phẩm."
+  },
+  {
+    "title": "Thanh toán an toàn",
+    "description": "Các giao dịch của bạn được bảo vệ bằng mã hóa cấp ngân hàng và nhiều phương thức thanh toán, đảm bảo trải nghiệm mua sắm luôn an toàn và thuận tiện."
+  }
+]
   },
   "about": {
     "title": "Tiêu đề về chúng tôi",

@@ -116,7 +116,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mt-10 px-4 py-8 font-sans">
+    <div className="mt-10 px-4 py-8 font-sans">
       <Breadcrumb
         items={[
           { label: t('breadcrumb.home'), path: '/' },
@@ -124,7 +124,7 @@ const App: React.FC = () => {
         ]}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {images && <ProductGallery images={images} />}
         {product && (
           <ProductInfo

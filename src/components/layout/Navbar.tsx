@@ -31,7 +31,7 @@ const Navbar = () => {
         isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4'
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold">

@@ -18,4 +18,5 @@ export interface OrderDetailWithProductResponse {
   createdBy: string;
   updatedAt: string;
   updatedBy: string;
+  reviewed: boolean;
 }

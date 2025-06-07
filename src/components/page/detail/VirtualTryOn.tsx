@@ -24,7 +24,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center px-4 py-8">
+    <div className="min-h-screen bg-white flex flex-col items-center px-4 mt-10">
       <motion.h1
         className="text-4xl font-bold text-center mb-12"
         initial={{ opacity: 0, y: -20 }}

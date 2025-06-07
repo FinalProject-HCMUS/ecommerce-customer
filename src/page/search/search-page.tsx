@@ -96,7 +96,7 @@ function App() {
   }
 
   return (
-    <div className="max-w-7xl mt-20 px-4 sm:px-6 font-sans">
+    <div className=" mt-20 px-4 sm:px-6 font-sans">
       <Breadcrumb
         items={[
           { label: t('breadcrumb.home'), path: '/' },

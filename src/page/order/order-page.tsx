@@ -93,7 +93,7 @@ const StatusModalComponent: React.FC<{
     <div className="fixed inset-0  bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 animate-fade-in">
       <div
         ref={modalRef}
-        className="bg-white rounded-[12px] shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+        className="bg-white shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
         style={{
           animation: 'scaleIn 0.3s ease-out forwards',
         }}
@@ -322,7 +322,7 @@ const OrdersPage: React.FC = () => {
   const totalPages = pageable?.totalPages ?? 1;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-10">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-10">
       <Breadcrumb
         items={[
           { label: t('breadcrumb.home'), path: '/' },
