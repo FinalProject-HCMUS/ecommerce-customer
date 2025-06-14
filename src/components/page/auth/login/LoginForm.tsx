@@ -59,7 +59,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <h1 className="text-center text-2xl font-bold text-gray-900">
+      <h1 className="text-center text-2xl mb-8 font-bold text-gray-900">
         {t('lbl.login')}
       </h1>
       <form onSubmit={handleSubmit}>

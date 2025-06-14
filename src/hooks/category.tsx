@@ -6,7 +6,9 @@ import {
   getCategoryById,
 } from '../services/apis/category';
 import { Pageable } from '../interfaces/common/Pageable';
-import { CATEGORY_PER_PAGE } from '../constants/common';
+import { common } from '../constants';
+
+const { CATEGORY_PER_PAGE } = common;
 
 export const useCategory = () => {
   const [loading, setLoading] = useState(false);

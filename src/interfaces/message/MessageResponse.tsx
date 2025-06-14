@@ -1,12 +1,13 @@
-import { RoleChat } from './RoleChat';
 export interface MessageResponse {
   id: string;
   content: string;
-  roleChat: RoleChat;
-  customerId: string;
-  adminId: string;
+  userId: string;
+  conversationId: string;
+  messageType: string;
+  contentUrl?: string;
   createdAt: string;
   createdBy: string;
-  updatedAt: string;
-  updatedBy: string;
+  updatedAt?: string;
+  updatedBy?: string;
+  role: 'user' | 'admin';
 }

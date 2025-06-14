@@ -55,7 +55,7 @@ const RequestPasswordResetPage: React.FC = () => {
         ]}
       />
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-bold mb-6 text-gray-900">
           {t('auth.resetPassword')}
         </h2>
       </div>

@@ -1,6 +1,9 @@
 import { SizeResponse, CustomResponse, Pageable } from '../../interfaces';
 import client from './request';
-import { SIZE_PER_PAGE } from '../../constants/common';
+
+import { common } from '../../constants';
+
+const { SIZE_PER_PAGE } = common;
 
 export const getAllSizes = async (): Promise<
   CustomResponse<Pageable<SizeResponse[]>>

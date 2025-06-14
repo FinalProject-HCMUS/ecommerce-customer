@@ -18,8 +18,9 @@ import QuantityControl from '../QuantityControl';
 import AddToCartButton from '../AddToCartButton';
 import { RootState } from '../../../context/store';
 import { formatCurrency } from '../../../helpers/string';
-import { TIME_OUT_ADD_TO_CART } from '../../../constants/common';
+import { common } from '../../../constants';
 
+const { TIME_OUT_ADD_TO_CART } = common;
 interface QuickAddDialogProps {
   product: ProductResponse;
   isOpen: boolean;
