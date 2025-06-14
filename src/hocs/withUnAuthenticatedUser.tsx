@@ -7,12 +7,10 @@ export const withUnAuthenticatedUser = <P extends object>(
   Component: React.FC<P>
 ): React.FC<P> => {
   return (props: P) => {
-    const isAuthenticated = useSelector(
-      (state: RootState) => state.auth.isAuthenticated
-    );
+    const auth = useSelector((state: RootState) => state.auth);
 
     // If authenticated, redirect to home page
-    if (isAuthenticated) {
+    if (auth.isAuthenticated && auth.userInfo && auth.accessToken) {
       return <Navigate to="/" replace />;
     }
 
