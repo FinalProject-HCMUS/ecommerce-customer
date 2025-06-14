@@ -140,7 +140,7 @@ const App: React.FC = () => {
         )}
       </div>
 
-      <VirtualTryOn />
+      <VirtualTryOn garment={images[0]}/>
       {product?.description && (
         <ProductDescription description={product.description} />
       )}
