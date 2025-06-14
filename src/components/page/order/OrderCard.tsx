@@ -231,7 +231,12 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
                       className="w-16 h-16 object-cover rounded-md"
                     />
                     <div>
-                      <Link to={`/product/${item.product.id}`} target='_blank'> <h4 className="font-medium hover:text-blue-500">{item.product.name}</h4></Link>
+                      <Link to={`/product/${item.product.id}`} target="_blank">
+                        {' '}
+                        <h4 className="font-medium hover:text-blue-500">
+                          {item.product.name}
+                        </h4>
+                      </Link>
                       <p className="text-sm text-gray-500">
                         {item.color?.name}, {item.size?.name}
                       </p>
