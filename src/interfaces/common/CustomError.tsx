@@ -4,6 +4,7 @@ export interface CustomError {
   header: string;
   message?: string;
   isSuccess: boolean;
+  exceptionName?: string;
   subsErrors?: CustomSubError[];
 }
 

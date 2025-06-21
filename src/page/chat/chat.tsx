@@ -219,6 +219,8 @@ const App: React.FC = () => {
     (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
   );
 
+  console.log('Display messages:', displayMessages);
+
   return (
     <div className="flex mt-10 px-8 py-8 flex-col h-screen bg-gray-50 bg-white text-gray-800 overflow-hidden">
       <Breadcrumb

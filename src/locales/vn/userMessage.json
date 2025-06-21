@@ -65,5 +65,27 @@
     "sendEmailActivation": "Email kích hoạt đã được gửi thành công! Vui lòng kiểm tra hộp thư của bạn.",
     "sendEmailActivationFailed": "Gửi email kích hoạt không thành công. Vui lòng thử lại sau.",
     "passwordChanged": "Mật khẩu đã được thay đổi thành công! Vui lòng đăng nhập bằng mật khẩu mới của bạn."
-  }
+  },
+  "CategoryNotFoundException": "Danh mục không tìm thấy",
+  "DataIntegrityViolationException": "Vi phạm tính toàn vẹn dữ liệu. Vui lòng kiểm tra đầu vào của bạn và thử lại.",
+  "RuntimeException": "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại sau.",
+  "ProductNotFoundException": "Sản phẩm không tìm thấy",
+  "OrderNotFoundException": "Đơn hàng không tìm thấy",
+  "CartItemNotFoundException": "Mặt hàng trong giỏ hàng không tìm thấy",
+  "OrderTrackNotFoundException": "Thông tin theo dõi đơn hàng không tìm thấy",
+  "ReviewNotFoundException": "Đánh giá không tìm thấy",
+  "MessageNotFoundException": "Tin nhắn không tìm thấy",
+  "UserAlreadyExistsException": "Người dùng đã tồn tại. Vui lòng sử dụng địa chỉ email khác.",
+  "UserNotFoundException": "Người dùng không tìm thấy. Vui lòng kiểm tra thông tin đăng nhập của bạn và thử lại.",
+  "UserNotAuthorizedException": "Bạn không được phép thực hiện hành động này. Vui lòng đăng nhập bằng tài khoản đúng.",
+  "VerificationTokenAlreadyExpired": "Mã xác minh đã hết hạn. Vui lòng yêu cầu mã xác minh mới.",
+  "VerificationTokenNotFoundException": "Mã xác minh không tìm thấy. Vui lòng kiểm tra lại và thử lại.",
+  "EmailAlreadyConfirmedException": "Email đã được xác nhận. Vui lòng đăng nhập.",
+  "ConversationNotFoundException": "Cuộc trò chuyện không tìm thấy. Vui lòng kiểm tra ID cuộc trò chuyện và thử lại.",
+  "ConversationAlreadyExistsException": "Cuộc trò chuyện đã tồn tại. Vui lòng sử dụng một ID khác.",
+  "ImageUploadException": "Lỗi tải lên hình ảnh. Vui lòng thử lại sau.",
+  "BlogNotFoundException": "Blog không tìm thấy",
+  "UserNotActivatedException": "Tài khoản người dùng chưa được kích hoạt. Vui lòng kiểm tra email để kích hoạt tài khoản của bạn.",
+  "InsufficientInventoryException": "Không đủ hàng trong kho. Vui lòng kiểm tra lại số lượng và thử lại.",
+  "PasswordNotValidException": "Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất một chữ cái và một số."
 }

@@ -32,7 +32,7 @@ client.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
     const errorMessage =
-      (error?.response?.data as { message?: string })?.message ||
+      (error?.response?.data as { exceptionName?: string })?.exceptionName ||
       t('error.commonError');
     messageRenderUtils.showError(errorMessage);
     return Promise.reject(error);

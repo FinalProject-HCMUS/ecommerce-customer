@@ -8,9 +8,8 @@ import {
   removeFace,
   loadImage,
   processVirtualTryOn,
-  recoverFace
+  recoverFace,
 } from '../../../utils/virtual-try-on';
-import { set } from 'lodash';
 
 interface VirtualTryOnProps {
   garment?: ProductImageResponse;
@@ -30,20 +29,22 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
   const [facelessImage, setFacelessImage] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [faceData, setFaceData] = useState<FaceData | null>(null);
-  const [previousGarmentUrl, setPreviousGarmentUrl] = useState<string | null>(null);
 
   // Processing states
-  const [processingStage, setProcessingStage] = useState<ProcessingStage>('idle');
+  const [processingStage, setProcessingStage] =
+    useState<ProcessingStage>('idle');
   const [error, setError] = useState<string | null>(null);
 
   // API key
-  const apiKey = import.meta.env.VITE_HUGGINGFACE_API_KEY || "";
+  const apiKey = import.meta.env.VITE_HUGGINGFACE_API_KEY || '';
 
   // Derived state for detecting if any processing is happening
   const isProcessing = processingStage !== 'idle';
 
   // Handle image upload
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (!event.target.files || !event.target.files[0]) return;
 
     try {
@@ -52,7 +53,6 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
       setFacelessImage(null);
       setResult(null);
       setFaceData(null);
-      setPreviousGarmentUrl(null);
 
       // Create and set uploaded image URL
       const file = event.target.files[0];
@@ -62,8 +62,10 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
       // Process the uploaded image
       await processOriginalImage(url);
     } catch (error) {
-      console.error("Upload error:", error);
-      setError(error instanceof Error ? error.message : "Error uploading image");
+      console.error('Upload error:', error);
+      setError(
+        error instanceof Error ? error.message : 'Error uploading image'
+      );
       setProcessingStage('idle');
     }
   };
@@ -81,16 +83,17 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
       // console.log("Running face segmentation...");
       const segmentationOutput = await runSegmentation(imageUrl, FACE_PARTS);
 
-      if (!segmentationOutput.some((seg: any) => seg?.label === "Face")) {
-        throw new Error("No face detected in the image");
+      if (
+        !segmentationOutput.some(
+          (seg: SegmentationSegment) => seg?.label === 'Face'
+        )
+      ) {
+        throw new Error('No face detected in the image');
       }
 
-      // Step 2: Process the masks
-      console.log("Processing face masks...");
       const processed = await processMasks(segmentationOutput, imageUrl);
 
-      // Store face data for later recovery
-      const originalImage = await loadImage(imageUrl);
+      const originalImage: HTMLImageElement = await loadImage(imageUrl);
 
       const newFaceData: FaceData = {
         originalImage,
@@ -112,35 +115,42 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
         // console.log("Proceeding to try-on with garment:", garment.url);
         setProcessingStage('tryon');
         await tryOnGarment(facelessUrl, garment, newFaceData);
-
       } else {
         // console.log("No garment available for try-on, process complete");
         setProcessingStage('idle');
       }
     } catch (error) {
-      console.error("Processing error:", error);
-      setError(error instanceof Error ? error.message : "An error occurred during image processing");
+      console.error('Processing error:', error);
+      setError(
+        error instanceof Error
+          ? error.message
+          : 'An error occurred during image processing'
+      );
       setProcessingStage('idle');
     }
   };
 
   // Try on garment function
-  const tryOnGarment = async (faceImageUrl: string, garmentItem: ProductImageResponse, faceDataParam: FaceData) => {
+  const tryOnGarment = async (
+    faceImageUrl: string,
+    garmentItem: ProductImageResponse,
+    faceDataParam: FaceData
+  ) => {
     // console.log("tryOnGarment called with:", {
     //   faceImageUrl,
     //   garmentUrl: garmentItem?.url,
     //   hasFaceData: !!faceDataParam
     // });
     if (!faceImageUrl) {
-      console.error("Missing faceImageUrl in tryOnGarment");
+      console.error('Missing faceImageUrl in tryOnGarment');
       return;
     }
     if (!garmentItem || !garmentItem.url) {
-      console.error("Missing or invalid garmentItem in tryOnGarment");
+      console.error('Missing or invalid garmentItem in tryOnGarment');
       return;
     }
     if (!faceDataParam) {
-      console.error("Missing faceData in tryOnGarment");
+      console.error('Missing faceData in tryOnGarment');
       return;
     }
 
@@ -150,7 +160,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
     try {
       // Try-on options
       const options = {
-        modelEndpoint: "zhengchong/CatVTON",
+        modelEndpoint: 'zhengchong/CatVTON',
         inferenceSteps: 20,
         guidanceScale: 2.5,
         seed: Math.floor(Math.random() * 10000),
@@ -174,8 +184,12 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
         // console.log("Face recovery complete");
       }
     } catch (error) {
-      console.error("Try-on error:", error);
-      setError(error instanceof Error ? error.message : "An error occurred during virtual try-on");
+      console.error('Try-on error:', error);
+      setError(
+        error instanceof Error
+          ? error.message
+          : 'An error occurred during virtual try-on'
+      );
     } finally {
       setProcessingStage('idle');
     }
@@ -192,13 +206,13 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
     placeholderText,
     isLoading,
     alt,
-    delay
+    delay,
   }: {
-    image: string | null | undefined,
-    placeholderText: string,
-    isLoading: boolean,
-    alt: string,
-    delay: number
+    image: string | null | undefined;
+    placeholderText: string;
+    isLoading: boolean;
+    alt: string;
+    delay: number;
   }) => (
     <motion.div
       className="bg-gray-100 rounded-lg aspect-square flex items-center justify-center overflow-hidden"
@@ -271,9 +285,9 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          {processingStage === 'segmentation' && "Analyzing image..."}
-          {processingStage === 'faceless' && "Processing face..."}
-          {processingStage === 'tryon' && "Generating try-on result..."}
+          {processingStage === 'segmentation' && 'Analyzing image...'}
+          {processingStage === 'faceless' && 'Processing face...'}
+          {processingStage === 'tryon' && 'Generating try-on result...'}
         </motion.div>
       )}
 
@@ -291,7 +305,9 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
         <ImagePanel
           image={facelessImage}
           placeholderText="Processed Photo"
-          isLoading={isStageLoading('segmentation') || isStageLoading('faceless')}
+          isLoading={
+            isStageLoading('segmentation') || isStageLoading('faceless')
+          }
           alt="Processed Photo"
           delay={0.2}
         />
@@ -322,10 +338,13 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <label className={`py-3 px-6 rounded-md font-medium transition-colors duration-200 ${isProcessing
-          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-          : 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer'
-          }`}>
+        <label
+          className={`py-3 px-6 rounded-md font-medium transition-colors duration-200 ${
+            isProcessing
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer'
+          }`}
+        >
           Upload your image
           <input
             type="file"
@@ -340,10 +359,11 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
           <button
             onClick={() => tryOnGarment(facelessImage, garment)}
             disabled={isProcessing}
-            className={`py-3 px-6 rounded-md font-medium transition-colors duration-200 ${isProcessing
-              ? 'bg-blue-300 text-blue-100 cursor-not-allowed'
-              : 'bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
-              }`}
+            className={`py-3 px-6 rounded-md font-medium transition-colors duration-200 ${
+              isProcessing
+                ? 'bg-blue-300 text-blue-100 cursor-not-allowed'
+                : 'bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
+            }`}
           >
             {isProcessing ? 'Processing...' : 'Try Again'}
           </button>
