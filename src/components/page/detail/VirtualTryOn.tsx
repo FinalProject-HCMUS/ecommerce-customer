@@ -20,6 +20,17 @@ interface FaceData {
   faceMask: ImageData;
 }
 
+interface SegmentationSegment {
+  label: string;
+  mask: SegmentationMask;
+}
+
+interface SegmentationMask {
+  width: number;
+  height: number;
+  data: Uint8ClampedArray;
+}
+
 // Type for different processing stages
 type ProcessingStage = 'idle' | 'segmentation' | 'faceless' | 'tryon';
 
@@ -357,7 +368,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
 
         {facelessImage && garment && faceData && (
           <button
-            onClick={() => tryOnGarment(facelessImage, garment)}
+            onClick={() => tryOnGarment(facelessImage, garment, faceData)}
             disabled={isProcessing}
             className={`py-3 px-6 rounded-md font-medium transition-colors duration-200 ${
               isProcessing
