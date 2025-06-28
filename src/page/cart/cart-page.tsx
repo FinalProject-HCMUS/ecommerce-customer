@@ -26,8 +26,8 @@ function App() {
   const { settings } = useSettingsContext();
 
   const shippingFee = (settings.find(
-    (setting) => setting.key === 'ShippingPrice')?.value || 0) as number;
-  
+    (setting) => setting.key === 'ShippingPrice'
+  )?.value || 0) as number;
 
   useEffect(() => {
     const fetchCartItems = async () => {

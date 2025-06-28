@@ -45,22 +45,28 @@ export async function runSegmentation(
     const output = await Promise.race([
       segmenter(imageUrl),
       new Promise<Error>((_, reject) =>
-        setTimeout(() => reject(new Error('Segmentation timed out after 60s')), 60000)
+        setTimeout(
+          () => reject(new Error('Segmentation timed out after 60s')),
+          60000
+        )
       ),
     ]);
 
     if (Array.isArray(output)) {
       return partsToSegment && partsToSegment.length > 0
         ? output
-          .filter((segment) => segment.label !== null && partsToSegment.includes(segment.label))
-          .map((segment) => ({
+            .filter(
+              (segment) =>
+                segment.label !== null && partsToSegment.includes(segment.label)
+            )
+            .map((segment) => ({
+              label: segment.label as string, // Ensure label is non-null
+              mask: segment.mask,
+            }))
+        : output.map((segment) => ({
             label: segment.label as string, // Ensure label is non-null
             mask: segment.mask,
-          }))
-        : output.map((segment) => ({
-          label: segment.label as string, // Ensure label is non-null
-          mask: segment.mask,
-        }));
+          }));
     }
 
     throw new Error('Unexpected segmentation output format');
@@ -166,7 +172,7 @@ export async function processMasks(
   // Create the composite view with colored overlays
   const compositeCanvas = await createCompositeView(
     filteredSegments,
-    originalImage,
+    originalImage
     // originalImageUrl
   );
 
@@ -186,7 +192,10 @@ export async function processMasks(
  * @param {HTMLImageElement} originalImage - Original loaded image
  * @returns {Promise<HTMLCanvasElement>} Canvas with composite view
  */
-async function createCompositeView(segments:SegmentationSegment[], originalImage:HTMLImageElement): Promise<HTMLCanvasElement> {
+async function createCompositeView(
+  segments: SegmentationSegment[],
+  originalImage: HTMLImageElement
+): Promise<HTMLCanvasElement> {
   // console.log("Creating composite view");
 
   // Create canvas for the composite image
@@ -310,7 +319,9 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
  * @param {Object} processedData - Data from processMasks
  * @returns {Promise<Blob>} Image blob with face removed
  */
-export async function removeFace(processedData: ProcessMasksResult): Promise<Blob> {
+export async function removeFace(
+  processedData: ProcessMasksResult
+): Promise<Blob> {
   const { originalImage, processedMasks, width, height } = processedData;
 
   // Check if we have face mask
@@ -338,7 +349,7 @@ export async function removeFace(processedData: ProcessMasksResult): Promise<Blo
   return new Promise((resolve) => {
     canvas.toBlob(
       (blob) => {
-        if(blob === null) {
+        if (blob === null) {
           throw new Error('Canvas conversion to blob failed');
         }
         resolve(blob);
@@ -393,7 +404,10 @@ function applyPixelation(
       }
 
       if (hasFacePixel) {
-        let r = 0, g = 0, b = 0, count = 0;
+        let r = 0,
+          g = 0,
+          b = 0,
+          count = 0;
 
         for (let by = 0; by < blockSize && y + by < ctx.canvas.height; by++) {
           for (let bx = 0; bx < blockSize && x + bx < ctx.canvas.width; bx++) {
@@ -555,7 +569,10 @@ export const processVirtualTryOn = async (
  * @param {Object} faceData - Object containing face mask and original image
  * @returns {Promise<Blob>} Image blob with face recovered
  */
-export async function recoverFace(tryOnImageUrl:string, faceData:FaceData): Promise<Blob> {
+export async function recoverFace(
+  tryOnImageUrl: string,
+  faceData: FaceData
+): Promise<Blob> {
   const { originalImage, faceMask } = faceData;
 
   // Load the try-on image
@@ -602,7 +619,7 @@ export async function recoverFace(tryOnImageUrl:string, faceData:FaceData): Prom
   return new Promise((resolve) => {
     canvas.toBlob(
       (blob) => {
-        if(blob === null) {
+        if (blob === null) {
           throw new Error('Canvas conversion to blob failed');
         }
         resolve(blob);
@@ -623,7 +640,7 @@ function blendFace(
   targetImageData: ImageData,
   sourceImageData: ImageData,
   faceMask: SegmentationMask
-):void {
+): void {
   const targetData = targetImageData.data;
   const sourceData = sourceImageData.data;
 

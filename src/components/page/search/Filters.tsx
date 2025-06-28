@@ -45,15 +45,12 @@ const Filters = ({
     size: true,
   });
 
-   const { settings } = useSettingsContext();
-   const maxPrice = (settings.find(
-    (setting) => setting.key === 'MaxPriceFilter')?.value || 2000000) as number;
-   const currencyCode = (settings.find(
-    (setting) => setting.key === 'CurrencyCode')?.value  || 'VND'
-   ) as (
-    | 'USD'
-    | 'VND'
-   );
+  const { settings } = useSettingsContext();
+  const maxPrice = (settings.find((setting) => setting.key === 'MaxPriceFilter')
+    ?.value || 2000000) as number;
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections({

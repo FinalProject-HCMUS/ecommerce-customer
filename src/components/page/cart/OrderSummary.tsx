@@ -30,7 +30,9 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
       <div className="space-y-4">
         <div className="flex justify-between">
           <span className="text-gray-600">{t('lbl.subTotal')}</span>
-          <span className="font-medium">{formatCurrency(subtotal, currencyCode)}</span>
+          <span className="font-medium">
+            {formatCurrency(subtotal, currencyCode)}
+          </span>
         </div>
 
         <div className="flex justify-between">

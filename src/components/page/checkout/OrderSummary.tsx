@@ -24,7 +24,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
 }) => {
   const { subtotal, deliveryFee, total } = summary;
   const { settings } = useSettingsContext();
-   const currencyCode = (settings.find(
+  const currencyCode = (settings.find(
     (setting) => setting.key === 'CurrencyCode'
   )?.value || 'VND') as 'USD' | 'VND';
 
@@ -82,15 +82,19 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
       <div className="border-t border-gray-200 pt-4 mt-6">
         <div className="flex justify-between text-sm">
           <p className="text-gray-600">{t('lbl.subTotal')}</p>
-          <p className="font-medium">{formatCurrency(subtotal, currencyCode)}</p>
+          <p className="font-medium">
+            {formatCurrency(subtotal, currencyCode)}
+          </p>
         </div>
         <div className="flex justify-between text-sm mt-2">
           <p className="text-gray-600">{t('lbl.deliveryFee')}</p>
-          <p className="font-medium">{formatCurrency(deliveryFee,currencyCode )}</p>
+          <p className="font-medium">
+            {formatCurrency(deliveryFee, currencyCode)}
+          </p>
         </div>
         <div className="flex justify-between text-base font-medium mt-4">
           <p>{t('lbl.total')}</p>
-          <p>{formatCurrency(total,currencyCode)}</p>
+          <p>{formatCurrency(total, currencyCode)}</p>
         </div>
       </div>
 
