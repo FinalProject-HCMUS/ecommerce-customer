@@ -17,6 +17,8 @@ const Navbar = () => {
     (state: RootState) => state.auth.isAuthenticated
   );
 
+  console.log('isAuthenticated:', isAuthenticated);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);

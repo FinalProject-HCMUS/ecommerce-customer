@@ -9,6 +9,7 @@ import {
   ColorResponse,
   SizeResponse,
 } from '../../../interfaces';
+import { useSettingsContext } from '../../../context/settingContext';
 
 interface FiltersProps {
   priceRange: [number, number];
@@ -43,6 +44,13 @@ const Filters = ({
     colors: true,
     size: true,
   });
+
+  const { settings } = useSettingsContext();
+  const maxPrice = (settings.find((setting) => setting.key === 'MaxPriceFilter')
+    ?.value || 2000000) as number;
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections({
@@ -152,19 +160,19 @@ const Filters = ({
             >
               <div className="py-3">
                 <div className="flex justify-between text-sm text-gray-600 mb-3">
-                  <span>{formatCurrency(priceRange[0], 'VND')}</span>
-                  <span>{formatCurrency(priceRange[1], 'VND')}</span>
+                  <span>{formatCurrency(priceRange[0], currencyCode)}</span>
+                  <span>{formatCurrency(priceRange[1], currencyCode)}</span>
                 </div>
                 <Slider
                   range
                   min={0}
-                  max={10000000}
+                  max={maxPrice}
                   value={priceRange}
                   onChange={(value) => setPriceRange(value as [number, number])}
                   className="mt-6 mx-2"
                   tooltip={{
                     formatter: (value) =>
-                      `${formatCurrency(value ?? 0, 'VND')}`,
+                      `${formatCurrency(value ?? 0, currencyCode)}`,
                   }}
                 />
               </div>

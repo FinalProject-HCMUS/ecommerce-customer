@@ -58,5 +58,27 @@
     "sendEmailActivation": "Activation email sent successfully! Please check your inbox.",
     "sendEmailActivationFailed": "Failed to send activation email. Please try again later.",
     "passwordChanged": "Password changed successfully! Please log in with your new password."
-  }
+  },
+  "CategoryNotFoundException": "Category not found",
+  "DataIntegrityViolationException": "Data integrity violation. Please check your input and try again.",
+  "RuntimeException": "An unexpected error occurred. Please try again later.",
+  "ProductNotFoundException": "Product not found",
+  "OrderNotFoundException": "Order not found",
+  "CartItemNotFoundException": "Cart item not found",
+  "OrderTrackNotFoundException": "Order tracking information not found",
+  "ReviewNotFoundException": "Review not found",
+  "MessageNotFoundException": "Message not found",
+  "UserAlreadyExistsException": "User already exists. Please use a different email address.",
+  "UserNotFoundException": "User not found. Please check your credentials and try again.",
+  "UserNotAuthorizedException": "You are not authorized to perform this action. Please log in with the correct account.",
+  "VerificationTokenAlreadyExpired": "Verification token has already expired. Please request a new verification email.",
+  "VerificationTokenNotFoundException": "Verification token not found. Please request a new verification email.",
+  "EmailAlreadyConfirmedException": "Email has already been confirmed. Please log in with your account.",
+  "ConversationNotFoundException": "Conversation not found. Please check the conversation ID and try again.",
+  "ConversationAlreadyExistsException": "Conversation already exists. Please check the conversation ID and try again.",
+  "ImageUploadException": "Image upload failed. Please try again later.",
+  "BlogNotFoundException": "Blog not found. Please check the blog ID and try again.",
+  "UserNotActivatedException": "User account is not activated. Please check your email for the activation link.",
+  "InsufficientInventoryException": "Insufficient inventory. Please reduce the quantity or choose a different product.",
+  "PasswordNotValidException": "Password is not valid. It must be at least 8 characters long and contain at least 8 characters"
 }

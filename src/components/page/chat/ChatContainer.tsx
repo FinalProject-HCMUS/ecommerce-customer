@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import MessageBubble from './MessageBubble';
-import { Message } from '../../../interfaces/temp/message';
+import { MessageResponse } from '../../../interfaces';
 
 interface ChatContainerProps {
-  messages: Message[];
+  messages: MessageResponse[];
   messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 

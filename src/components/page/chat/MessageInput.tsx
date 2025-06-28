@@ -1,6 +1,8 @@
 import type React from 'react';
 import { useState } from 'react';
 import { Send } from 'lucide-react';
+import { RootState } from '../../../context/store';
+import { useSelector } from 'react-redux';
 
 interface MessageInputProps {
   onSendMessage: (text: string) => void;
@@ -8,6 +10,7 @@ interface MessageInputProps {
 
 const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
   const [inputValue, setInputValue] = useState('');
+  const userInfo = useSelector((state: RootState) => state.auth.userInfo);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +44,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
           </div>
           <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-300">
             <img
-              src="/placeholder.svg?height=40&width=40"
+              src={userInfo?.photo || '/placeholder.svg?height=40&width=40'}
               alt="Your avatar"
               className="w-full h-full object-cover"
             />

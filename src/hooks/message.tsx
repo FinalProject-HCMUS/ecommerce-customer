@@ -5,6 +5,7 @@ import { MessageResponse } from '../interfaces/message/MessageResponse';
 interface MessageState {
   messages: MessageResponse[];
   loading: boolean;
+  hasMore: boolean;
   pagination: {
     page: number;
     size: number;
@@ -17,6 +18,7 @@ export const useMessage = () => {
   const [state, setState] = useState<MessageState>({
     messages: [],
     loading: false,
+    hasMore: true,
     pagination: {
       page: 0,
       size: 10,
@@ -59,9 +61,15 @@ export const useMessage = () => {
         );
 
         if (response.isSuccess && response.data) {
+          const totalPages = response.data.totalPages || 0;
+          const currentPage = response.data.pageable?.pageNumber || page;
+
+          // Calculate if there are more pages
+          const hasMorePages = currentPage < totalPages - 1;
           setState({
             messages: response.data.content,
             loading: false,
+            hasMore: hasMorePages,
             pagination: {
               page: response.data.pageable?.pageNumber || page,
               size: response.data.pageable?.pageSize || size,
@@ -72,6 +80,7 @@ export const useMessage = () => {
         } else {
           setState((prev) => ({
             ...prev,
+            hasMore: false,
             loading: false,
           }));
         }
@@ -81,6 +90,7 @@ export const useMessage = () => {
         setState((prev) => ({
           ...prev,
           loading: false,
+          hasMore: false,
           error: errorMessage,
         }));
       }
@@ -112,6 +122,7 @@ export const useMessage = () => {
     messages: state.messages,
     loading: state.loading,
     pagination: state.pagination,
+    hasMore: state.hasMore,
     fetchMessages,
     changePage,
     changePageSize,

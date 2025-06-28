@@ -1,7 +1,9 @@
 import { ColorResponse, CustomResponse, Pageable } from '../../interfaces';
 import client from './request';
 
-import { COLOR_PER_PAGE } from '../../constants/common';
+import { common } from '../../constants';
+
+const { COLOR_PER_PAGE } = common;
 
 export const getAllColors = async (): Promise<
   CustomResponse<Pageable<ColorResponse[]>>

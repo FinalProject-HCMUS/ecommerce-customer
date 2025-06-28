@@ -1,6 +1,8 @@
 import { CustomResponse, Pageable, CategoryResponse } from '../../interfaces';
 import client from './request';
-import { CATEGORY_PER_PAGE } from '../../constants/common';
+import { common } from '../../constants';
+
+const { CATEGORY_PER_PAGE } = common;
 
 export const getAllCategories = async (
   page: number = 0,

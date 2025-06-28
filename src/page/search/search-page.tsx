@@ -13,12 +13,14 @@ import {
   ColorResponse,
   SizeResponse,
 } from '../../interfaces';
-import { PRODUCT_PER_PAGE } from '../../constants/common';
+import { common } from '../../constants';
 import Loading from '../../components/shared/Loading';
 import { t } from '../../helpers/i18n';
 import SearchInput from '../../components/page/search/SearchInput';
 import { useColors } from '../../hooks/color';
 import { useSizes } from '../../hooks/size';
+
+const { PRODUCT_PER_PAGE } = common;
 
 function App() {
   const { loading: loadingProduct, fetchAllProducts } = useProducts();

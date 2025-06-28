@@ -1,7 +1,8 @@
 import type React from 'react';
-import { PAYMENT_METHOD } from '../../../constants/common';
+import { common } from '../../../constants';
 import { t } from '../../../helpers/i18n';
 
+const { PAYMENT_METHOD } = common;
 interface CheckoutFormProps {
   formData: {
     name: string;

@@ -18,8 +18,10 @@ import QuantityControl from '../QuantityControl';
 import AddToCartButton from '../AddToCartButton';
 import { RootState } from '../../../context/store';
 import { formatCurrency } from '../../../helpers/string';
-import { TIME_OUT_ADD_TO_CART } from '../../../constants/common';
+import { common } from '../../../constants';
+import { useSettingsContext } from '../../../context/settingContext';
 
+const { TIME_OUT_ADD_TO_CART } = common;
 interface QuickAddDialogProps {
   product: ProductResponse;
   isOpen: boolean;
@@ -53,6 +55,10 @@ const QuickAddDialog: React.FC<QuickAddDialogProps> = ({
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
+  const { settings } = useSettingsContext();
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   useEffect(() => {
     if (!isOpen || !product.id) return;
@@ -168,7 +174,7 @@ const QuickAddDialog: React.FC<QuickAddDialogProps> = ({
               <div className="flex flex-col">
                 <h2 className="text-xl font-bold mb-2">{product?.name}</h2>
                 <p className="text-lg font-semibold text-gray-800 mb-2">
-                  {product && formatCurrency(product.price, 'VND')}
+                  {product && formatCurrency(product.price, currencyCode)}
                 </p>
 
                 {colors.length > 0 && (

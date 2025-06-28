@@ -6,13 +6,16 @@ import './index.css';
 import { store } from './context/store';
 import './i18n.ts';
 import { lazy } from 'react';
+import { SettingsProvider } from './context/settingContext.tsx';
 
 const App = lazy(() => import('./App.tsx'));
 
 createRoot(document.getElementById('root')!).render(
   <I18nextProvider i18n={i18n}>
     <Provider store={store}>
-      <App />
+      <SettingsProvider>
+        <App />
+      </SettingsProvider>
     </Provider>
   </I18nextProvider>
 );

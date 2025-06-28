@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import ProductCard from '../../shared/product-card/ProductCard';
 import { ProductResponse } from '../../../interfaces';
-import { VISIBLE_PRODUCT } from '../../../constants/common';
+import { common } from '../../../constants';
 import { t } from '../../../helpers/i18n';
 
+const { VISIBLE_PRODUCT } = common;
 interface CommonProductsProps {
   title: string;
   data: ProductResponse[];

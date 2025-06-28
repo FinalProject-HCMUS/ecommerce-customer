@@ -5,14 +5,22 @@ import ProfileImage from '../../components/page/profile/ProfileImage';
 import ProfileForm from '../../components/page/profile/ProfileForm';
 import { UserResponse } from '../../interfaces';
 import { useUser } from '../../hooks/user';
+import { useImage } from '../../hooks/image';
 import { t } from '../../helpers/i18n';
 import { UpdateUserRequest } from '../../interfaces/user/UpdateUserRequest';
+import { showError, showSuccess } from '../../utils/messageRender';
+import { useDispatch } from 'react-redux';
+import { updateUserInfo } from '../../context/authSlice';
 
 const ProfilePage: React.FC = () => {
-  const { fetchUserByToken, user, updateUser, loading } = useUser(); // Use fetchUserByToken and user from the hook
+  const dispatch = useDispatch();
+  const { fetchUserByToken, user, updateUser, loading } = useUser();
+  const { uploadImage, uploading, error: imageError } = useImage();
+
   const [formData, setFormData] = useState<UserResponse | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [showSavedMessage, setShowSavedMessage] = useState<boolean>(false);
 
@@ -29,6 +37,13 @@ const ProfilePage: React.FC = () => {
     fetchData();
   }, []);
 
+  // Show image errors if any
+  useEffect(() => {
+    if (imageError) {
+      showError(imageError);
+    }
+  }, [imageError]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
@@ -36,16 +51,31 @@ const ProfilePage: React.FC = () => {
     setFormData((prev) => (prev ? { ...prev, [name]: value } : null));
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleImageChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
     const file = e.target.files?.[0];
     if (file) {
+      // Show preview immediately for better UX
       const reader = new FileReader();
       reader.onloadend = () => {
         const result = reader.result as string;
         setPreviewImage(result);
-        setFormData((prev) => (prev ? { ...prev, image: result } : null));
       };
       reader.readAsDataURL(file);
+
+      // Upload the image to the server
+      try {
+        const imageUrl = await uploadImage(file);
+        if (imageUrl) {
+          setUploadedImageUrl(imageUrl);
+          showSuccess(t('msg.imageUploaded'));
+        }
+      } catch {
+        showError(t('msg.imageUploadFailed'));
+        // Revert to previous image if upload fails
+        setPreviewImage(formData?.photo || null);
+      }
     }
   };
 
@@ -62,12 +92,15 @@ const ProfilePage: React.FC = () => {
       address: formData.address,
       height: formData.height,
       weight: formData.weight,
+      // Include the uploaded image URL if available
+      photo: uploadedImageUrl || formData.photo,
     };
 
     const updatedUser = await updateUser(formData.id, formDataToUpdate);
     if (updatedUser) {
       setFormData(updatedUser);
       setPreviewImage(updatedUser.photo || null);
+      dispatch(updateUserInfo(updatedUser));
       setIsEditing(false);
       setShowSavedMessage(true);
 
@@ -81,6 +114,7 @@ const ProfilePage: React.FC = () => {
 
   const cancelEdit = (): void => {
     setIsEditing(false);
+    setUploadedImageUrl(null);
     if (user) {
       setFormData(user);
       setPreviewImage(user.photo || null);
@@ -108,11 +142,12 @@ const ProfilePage: React.FC = () => {
               previewImage={previewImage || ''}
               isEditing={isEditing}
               onImageChange={handleImageChange}
+              isUploading={uploading}
             />
 
             <div className="sm:mt-0 sm:ml-6 text-center sm:text-left mb-10">
               <h1 className="text-2xl font-bold text-gray-900">
-                {formData.firstName + formData.lastName}
+                {formData.firstName} {formData.lastName}
               </h1>
               <p className="text-gray-600">{formData.email}</p>
             </div>

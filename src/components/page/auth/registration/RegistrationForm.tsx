@@ -85,7 +85,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="w-full md:w-7/12  flex mx-16 justify-center">
+    <div className="w-full md:w-7/12 mt-8 flex justify-center px-16">
       <div className="mx-auto w-full">
         <h2 className="text-3xl font-bold mb-6">{t('lbl.register')}</h2>
 

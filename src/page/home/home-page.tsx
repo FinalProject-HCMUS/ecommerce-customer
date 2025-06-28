@@ -7,8 +7,9 @@ import CommonProducts from '../../components/page/home/CommonProduct';
 import { useProducts } from '../../hooks/products';
 import { ProductResponse } from '../../interfaces';
 import { t } from '../../helpers/i18n';
-import { TOP_PRODUCTS_PER_PAGE } from '../../constants/common';
-import { TOP_SELLING, TOP_TRENDING } from '../../constants/common';
+import { common } from '../../constants';
+
+const { TOP_PRODUCTS_PER_PAGE, TOP_SELLING, TOP_TRENDING } = common;
 
 const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(true);

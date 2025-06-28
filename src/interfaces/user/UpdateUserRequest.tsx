@@ -1,9 +1,9 @@
 export interface UpdateUserRequest {
-  phoneNumber: string;
   firstName: string;
   lastName: string;
+  phoneNumber: string;
   address?: string;
-  weight?: number;
   height?: number;
-  photo?: string;
+  weight?: number;
+  photo?: string | null; // Add this line for the photo URL
 }

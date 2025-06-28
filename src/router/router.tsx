@@ -1,4 +1,3 @@
-import { IRoute } from '../interfaces/temp/common';
 import { lazy } from 'react';
 import { withAuthenticatedUser } from '../hocs/withAuthenticatedUser';
 import { withUnAuthenticatedUser } from '../hocs/withUnAuthenticatedUser';
@@ -39,6 +38,15 @@ const ResetPasswordPage = lazy(
   () => import('../page/auth/reset-password-page')
 );
 
+export interface IRoute {
+  exact?: boolean;
+  path: string;
+  name: string;
+  component?: React.ElementType;
+  children?: string[];
+  flagKey?: string;
+  root?: string;
+}
 const routes: IRoute[] = [
   {
     exact: true,

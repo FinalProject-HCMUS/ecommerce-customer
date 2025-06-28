@@ -5,6 +5,7 @@ import { t } from '../../helpers/i18n';
 import { OrderResponse } from '../../interfaces/order/OrderResponse';
 import { formatCurrency } from '../../helpers/string';
 import { formatDate } from '../../utils/formatDate';
+import { useSettingsContext } from '../../context/settingContext';
 
 interface LocationState {
   order: OrderResponse;
@@ -22,6 +23,11 @@ const OrderConfirmation: React.FC = () => {
       navigate('/');
     }
   }, [order, navigate]);
+
+  const { settings } = useSettingsContext();
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   if (!order) {
     return null;
@@ -74,15 +80,15 @@ const OrderConfirmation: React.FC = () => {
           <div className="border-t border-gray-200 pt-4 mb-4">
             <div className="flex justify-between mb-2">
               <span>{t('checkout.subtotal')}</span>
-              <span>{formatCurrency(order.subTotal, 'VND')}</span>
+              <span>{formatCurrency(order.subTotal, currencyCode)}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>{t('checkout.shippingFee')}</span>
-              <span>{formatCurrency(order.shippingCost, 'VND')}</span>
+              <span>{formatCurrency(order.shippingCost, currencyCode)}</span>
             </div>
             <div className="flex justify-between font-bold text-lg">
               <span>{t('checkout.total')}</span>
-              <span>{formatCurrency(order.total, 'VND')}</span>
+              <span>{formatCurrency(order.total, currencyCode)}</span>
             </div>
           </div>
         </div>

@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../context/store';
 import { showError, showSuccess } from '../../utils/messageRender';
 import { useNavigate } from 'react-router-dom';
+import { useSettingsContext } from '../../context/settingContext';
 
 function App() {
   const navigate = useNavigate();
@@ -22,6 +23,11 @@ function App() {
   const [cartItems, setCartItems] = useState<CartItemResponse[]>([]);
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
   const { userInfo } = useSelector((state: RootState) => state.auth);
+  const { settings } = useSettingsContext();
+
+  const shippingFee = (settings.find(
+    (setting) => setting.key === 'ShippingPrice'
+  )?.value || 0) as number;
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -141,7 +147,7 @@ function App() {
       0
     );
 
-  const deliveryFee = selectedItems.size > 0 ? 30000 : 0;
+  const deliveryFee = selectedItems.size > 0 ? shippingFee : 0;
   const total = subtotal + deliveryFee;
 
   const orderSummaryData: OrderSummaryData = {

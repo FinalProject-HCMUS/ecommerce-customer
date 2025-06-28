@@ -1,17 +1,17 @@
 import type React from 'react';
-import TypingIndicator from './TypingIndicator';
-import type { Message } from '../../../interfaces/temp/message';
+import { MessageResponse } from '../../../interfaces';
+import { formatTime } from '../../../utils/formatDate';
 
 interface MessageBubbleProps {
-  message: Message;
+  message: MessageResponse;
 }
 
 const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   return (
     <div
-      className={`flex items-start gap-3 ${message.sender === 'other' ? 'justify-end' : ''}`}
+      className={`flex items-start gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}
     >
-      {message.sender === 'user' && (
+      {message.role === 'admin' && (
         <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-300">
           <img
             src="/placeholder.svg?height=40&width=40"
@@ -22,38 +22,24 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
       )}
 
       <div
-        className={`group max-w-[80%] sm:max-w-[70%] ${message.sender === 'other' ? 'order-1' : 'order-2'}`}
+        className={`group max-w-[80%] sm:max-w-[70%] ${message.role === 'admin' ? 'order-1' : 'order-2'}`}
       >
-        {message.isTyping ? (
-          <div className="bg-gray-200 rounded-3xl py-3 px-4 inline-block">
-            <TypingIndicator />
-          </div>
-        ) : (
-          <div
-            className={`rounded-3xl py-3 px-4 animate-fade-in ${
-              message.sender === 'user'
-                ? 'bg-black text-white'
-                : 'bg-gray-800 text-white'
-            }`}
-          >
-            {message.text}
-          </div>
-        )}
+        <div
+          className={`rounded-3xl py-3 px-4 animate-fade-in ${
+            message.role === 'user'
+              ? 'bg-black text-white'
+              : 'bg-gray-800 text-white'
+          }`}
+        >
+          {message.content}
+        </div>
 
-        {message.timestamp && (
-          <div className="text-xs text-gray-500 mt-1">{message.timestamp}</div>
+        {message.createdAt && (
+          <div className="text-xs text-gray-500 mt-1">
+            {formatTime(message.createdAt)}
+          </div>
         )}
       </div>
-
-      {message.sender === 'other' && (
-        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-gray-300 order-2">
-          <img
-            src="/placeholder.svg?height=40&width=40"
-            alt="Other user avatar"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
     </div>
   );
 };

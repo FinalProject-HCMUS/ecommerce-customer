@@ -5,9 +5,11 @@ import Breadcrumb from '../../components/shared/Breadcrumb';
 import Pagination from '../../components/shared/Pagination';
 import { useBlogs } from '../../hooks/blogs';
 import { t } from '../../helpers/i18n';
-import { BLOG_PER_PAGE } from '../../constants/common';
+import { common } from '../../constants';
 import { BlogResponse } from '../../interfaces/blog/BlogResponse';
 import { Pageable } from '../../interfaces/common/Pageable';
+
+const { BLOG_PER_PAGE } = common;
 
 const BlogListPage: React.FC = () => {
   const { loading, fetchBlogs } = useBlogs();

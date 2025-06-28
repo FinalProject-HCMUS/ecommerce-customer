@@ -53,6 +53,15 @@ const authSlice = createSlice({
         JSON.stringify(action.payload.userInfo)
       );
     },
+    updateUserInfo: (state, action: PayloadAction<UserResponse>) => {
+      state.userInfo = action.payload;
+
+      // Also update userInfo in localStorage
+      localStorage.setItem(
+        localStorageConstants.USER_INFO,
+        JSON.stringify(action.payload)
+      );
+    },
     updateTokens: (
       state,
       action: PayloadAction<{ accessToken: string; refreshAccessToken: string }>
@@ -83,5 +92,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, updateTokens, logout } = authSlice.actions;
+export const { login, updateTokens, logout, updateUserInfo } =
+  authSlice.actions;
 export default authSlice.reducer;

@@ -3,6 +3,7 @@ import { CartItemResponse } from '../../../interfaces';
 import { formatCurrency } from '../../../helpers/string';
 import { t } from '../../../helpers/i18n';
 import { GeneralButton } from '../../shared/Button';
+import { useSettingsContext } from '../../../context/settingContext';
 
 interface OrderSummaryProps {
   items: CartItemResponse[];
@@ -22,6 +23,10 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
   loading,
 }) => {
   const { subtotal, deliveryFee, total } = summary;
+  const { settings } = useSettingsContext();
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   return (
     <div>
@@ -47,7 +52,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
                         (100 - item.product.discountPercent)) /
                         100) *
                         item.quantity,
-                      'VND'
+                      currencyCode
                     )}
                   </p>
                 </div>
@@ -77,15 +82,19 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
       <div className="border-t border-gray-200 pt-4 mt-6">
         <div className="flex justify-between text-sm">
           <p className="text-gray-600">{t('lbl.subTotal')}</p>
-          <p className="font-medium">{formatCurrency(subtotal, 'VND')}</p>
+          <p className="font-medium">
+            {formatCurrency(subtotal, currencyCode)}
+          </p>
         </div>
         <div className="flex justify-between text-sm mt-2">
           <p className="text-gray-600">{t('lbl.deliveryFee')}</p>
-          <p className="font-medium">{formatCurrency(deliveryFee, 'VND')}</p>
+          <p className="font-medium">
+            {formatCurrency(deliveryFee, currencyCode)}
+          </p>
         </div>
         <div className="flex justify-between text-base font-medium mt-4">
           <p>{t('lbl.total')}</p>
-          <p>{formatCurrency(total, 'VND')}</p>
+          <p>{formatCurrency(total, currencyCode)}</p>
         </div>
       </div>
 

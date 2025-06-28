@@ -25,12 +25,14 @@ const TIME_OUT_ADD_TO_CART = 2000;
 const DESCREASE = 'decrease';
 const INCREASE = 'increase';
 
+const MESSAGE_PER_PAGE = 100;
+
 const PAYMENT_METHOD = [
   { id: 'COD', label: 'COD' },
   { id: 'vnpay', label: 'VNpay' },
 ];
 
-export {
+export default {
   orderStatus,
   TOP_PRODUCTS_PER_PAGE,
   PRODUCT_PER_PAGE,
@@ -45,4 +47,5 @@ export {
   DESCREASE,
   INCREASE,
   PAYMENT_METHOD,
+  MESSAGE_PER_PAGE,
 };

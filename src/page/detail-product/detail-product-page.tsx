@@ -22,8 +22,10 @@ import {
 import { useSelector } from 'react-redux';
 import { RootState } from '../../context/store';
 import { useCart } from '../../hooks/cart';
-import { TIME_OUT_ADD_TO_CART } from '../../constants/common';
+import { common } from '../../constants';
 import { showError } from '../../utils/messageRender';
+
+const { TIME_OUT_ADD_TO_CART } = common;
 
 const App: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get product ID from URL
@@ -138,7 +140,7 @@ const App: React.FC = () => {
         )}
       </div>
 
-      <VirtualTryOn />
+      <VirtualTryOn garment={images[0]} />
       {product?.description && (
         <ProductDescription description={product.description} />
       )}
