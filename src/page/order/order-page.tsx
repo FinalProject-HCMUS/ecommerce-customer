@@ -12,6 +12,7 @@ import { useOrderSearch } from '../../hooks/order';
 import { OrderResponse, Status } from '../../interfaces';
 import { t } from 'i18next';
 import { formatCurrency } from '../../helpers/string';
+import { useSettingsContext } from '../../context/settingContext';
 
 // Status Timeline Modal
 const StatusModalComponent: React.FC<{
@@ -19,6 +20,10 @@ const StatusModalComponent: React.FC<{
   onClose: () => void;
 }> = ({ order, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const { settings } = useSettingsContext();
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   // Close modal when clicking outside
   useEffect(() => {
@@ -232,7 +237,7 @@ const StatusModalComponent: React.FC<{
                     {t('order.totalAmount')}
                   </div>
                   <div className="font-medium">
-                    {formatCurrency(order.total, 'VND')}
+                    {formatCurrency(order.total, currencyCode)}
                   </div>
                 </div>
                 <div>

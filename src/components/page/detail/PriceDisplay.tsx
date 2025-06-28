@@ -1,5 +1,6 @@
 import type React from 'react';
 import { formatCurrency } from '../../../helpers/string';
+import { useSettingsContext } from '../../../context/settingContext';
 
 interface PriceDisplayProps {
   currentPrice: number;
@@ -14,6 +15,10 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
   discountPercentage,
   size = 'md',
 }) => {
+  const { settings } = useSettingsContext();
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
   const sizes = {
     sm: {
       current: 'text-base font-bold',
@@ -35,11 +40,11 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
   return (
     <div className="flex items-center gap-2">
       <span className={sizes[size].current}>
-        {formatCurrency(currentPrice, 'VND')}
+        {formatCurrency(currentPrice, currencyCode)}
       </span>
       {discountPercentage != 0 && (
         <span className={sizes[size].original}>
-          {formatCurrency(originalPrice, 'VND')}
+          {formatCurrency(originalPrice, currencyCode)}
         </span>
       )}
       {discountPercentage != 0 && (
