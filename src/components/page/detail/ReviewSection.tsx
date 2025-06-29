@@ -79,7 +79,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ productId }) => {
 
   if (loading && currentPage === 0) {
     return (
-      <div className="flex justify-center items-center mt-16 mb-8">
+      <div className="flex justify-center items-center mb-8">
         <div className="loader">{t('lbl.loading')}</div>
       </div>
     );
@@ -90,7 +90,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ productId }) => {
   }
 
   return (
-    <div className="mt-16 mb-8">
+    <div className="mt-8 mb-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">
           {t('lbl.allReviews')}{' '}

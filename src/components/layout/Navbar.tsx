@@ -97,37 +97,24 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <nav className="flex flex-col space-y-4">
-              {navbarLinks.map((link) => {
+             {navbarLinks.map((link) => {
                 // Conditionally render links based on authentication
                 if (link.authenticate && !isAuthenticated) {
                   return null; // Hide links that require authentication if not authenticated
                 }
                 return (
-                  <Link key={link.path} to={link.path} className="font-medium">
-                    {t(link.label)}
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className="font-medium"
+                  >
+                    {t('navbar.' + link.label)}
                   </Link>
                 );
               })}
             </nav>
 
-            {/* Conditionally show cart and user icons or login button */}
-            <div className="mt-4 flex flex-col space-y-4">
-              {isAuthenticated ? (
-                <>
-                  <Link to="/cart" className="flex items-center space-x-2">
-                    <FiShoppingCart size={20} />
-                    <span>{t('cart')}</span>
-                  </Link>
-                  <UserDropdown />
-                </>
-              ) : (
-                <Link to="/login" className="flex items-center space-x-2">
-                  <button className="p-2 hover:text-gray-600 transition-colors">
-                    {t('login')}
-                  </button>
-                </Link>
-              )}
-            </div>
+          
           </div>
         )}
       </div>

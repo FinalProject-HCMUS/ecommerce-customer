@@ -28,11 +28,13 @@
         "title": "Secure Payments",
         "description": "Your transactions are protected with bank-level encryption and multiple payment options"
       }
-    ]
+    ],
+    "image": "https://res.cloudinary.com/dt0ps34k9/image/upload/v1751162540/hero_sdi6jk.png"
   },
   "about": {
     "title": "Title about",
-    "description": "Some sentences to introduce about shop. Example: At our shop, we believe in the power of fashion to express individuality and enhance confidence. Our mission is to provide you with high-quality garments that not only look good but also feel good to wear. We are committed to sustainability, using eco-friendly materials and ethical production practices to create a positive impact on the environment."
+    "description": "Some sentences to introduce about shop. Example: At our shop, we believe in the power of fashion to express individuality and enhance confidence. Our mission is to provide you with high-quality garments that not only look good but also feel good to wear. We are committed to sustainability, using eco-friendly materials and ethical production practices to create a positive impact on the environment.",
+    "image": "https://res.cloudinary.com/dt0ps34k9/image/upload/v1751162540/hero_sdi6jk.png"
   },
   "footer": {
     "title": "Title footer",

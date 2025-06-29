@@ -63,7 +63,7 @@ const Hero = () => {
 
           <div className="relative animate-fade-in flex items-center justify-center">
             <img
-              src={image}
+              src={shopData.hero.image || image}
               alt="Fashion models"
               className="w-3/4 h-auto rounded-lg"
             />

@@ -16,6 +16,16 @@ export const checkout = async (
   return response.data;
 };
 
+export const createVNPayPayment = async (
+  checkoutData: CheckoutRequest
+): Promise<string> => {
+  const response = await client.post<string>(
+    '/vn-payment/create',
+    checkoutData
+  );
+  return response.data;
+};
+
 export const searchOrders = async (params: {
   keyword?: string;
   status?: Status;

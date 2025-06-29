@@ -19,6 +19,7 @@ import { t } from '../../helpers/i18n';
 import SearchInput from '../../components/page/search/SearchInput';
 import { useColors } from '../../hooks/color';
 import { useSizes } from '../../hooks/size';
+import { useSettingsContext } from '../../context/settingContext';
 
 const { PRODUCT_PER_PAGE } = common;
 
@@ -27,6 +28,7 @@ function App() {
   const { loading: loadingCategory, fetchAllCategories } = useCategory();
   const { loading: loadingColor, fetchAllColors } = useColors();
   const { loading: loadingSize, fetchAllSizes } = useSizes();
+  const { settings } = useSettingsContext();
 
   const [productResponse, setProductRes] =
     useState<Pageable<ProductResponse[]>>();
@@ -36,7 +38,8 @@ function App() {
 
   const [keySearch, setKeySearch] = useState<string>();
   const [currentPage, setCurrentPage] = useState(0);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, (settings.find((setting) => setting.key === 'MaxPriceFilter')?.value ||
+        20000000) as number]);
   const [selectedColors, setSelectedColors] = useState<string>();
   const [selectedSizes, setSelectedSizes] = useState<string>();
   const [selectedCategories, setSelectedCategories] = useState<string>();

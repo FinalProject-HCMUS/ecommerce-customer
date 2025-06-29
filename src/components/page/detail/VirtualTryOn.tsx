@@ -10,6 +10,7 @@ import {
   processVirtualTryOn,
   recoverFace,
 } from '../../../utils/virtual-try-on';
+import { t, tUpperCase } from '../../../helpers/i18n';
 
 interface VirtualTryOnProps {
   garment?: ProductImageResponse;
@@ -269,14 +270,14 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
   );
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center px-4 mt-10">
+    <div className="bg-white flex flex-col items-center px-4 mt-10 mb-2">
       <motion.h1
         className="text-4xl font-bold text-center mb-6"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Virtual Try On
+        {tUpperCase('virtualTryOn')}
       </motion.h1>
 
       {error && (
@@ -356,7 +357,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
               : 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer'
           }`}
         >
-          Upload your image
+          {t('uploadImage')}
           <input
             type="file"
             accept="image/*"
