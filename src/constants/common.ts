@@ -29,7 +29,7 @@ const MESSAGE_PER_PAGE = 100;
 
 const PAYMENT_METHOD = [
   { id: 'COD', label: 'COD' },
-  { id: 'vnpay', label: 'VNpay' },
+  { id: 'VN_PAY', label: 'Vn Pay' },
 ];
 
 export default {

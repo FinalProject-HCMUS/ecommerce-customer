@@ -39,7 +39,8 @@
     "sendConfirmationEmail": "Send Confirmation Email",
     "sendAnother": "Send Another",
     "changePassword": "Change Password",
-    "loadMoreReviews": "Load More Reviews"
+    "loadMoreReviews": "Load More Reviews",
+    "backToCart": "Back to Cart"
   },
   "lbl": {
     "topSelling": "Top Selling Products",
@@ -179,7 +180,17 @@
     "continueShopping": "Continue Shopping",
     "viewOrders": "View My Orders",
     "orderSuccess": "Order placed successfully!",
-    "orderFailed": "Failed to place order. Please try again."
+    "orderFailed": "Failed to place order. Please try again.",
+    "nameRequired": "Receiver name is required",
+    "invalidPhone": "Invalid phone number format",
+    "addressRequired": "Receiver address is required",
+    "selectPaymentMethod": "Please select a payment method",
+    "invalidPaymentMethod": "Invalid payment method selected",
+    "paymentSuccess": "Payment successful!",
+    "paymentSuccessDescription": "Your payment has been processed successfully. Thank you for your order!",
+    "paymentFailed": "Payment failed",
+    "paymentFailedDescription": "There was an issue processing your payment"
+
   },
   "order": {
     "orderDetails": "Order Details",
@@ -259,5 +270,13 @@
       "ratingRequired": "Please select a rating",
       "success": "Review submitted successfully!"
     }
-  }
+  },
+  "profile": {
+    "imageUploaded" : "Image uploaded successfully!",
+    "imageUploadFailed" : "Image upload failed. Please try again.",
+    "updateProfile": "Update Profile Successfully!"
+  },
+  "pending": "Pending",
+  "virtualTryOn": "Virtual Try-On",
+  "uploadImage": "Upload your image"
 }

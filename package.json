@@ -64,6 +64,7 @@
     "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.6",
     "recharts": "^2.15.0",
+    "styled-components": "^6.1.19",
     "tailwind-merge": "^2.5.5",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss-animate": "^1.0.7",

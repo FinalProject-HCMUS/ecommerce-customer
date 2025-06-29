@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import { Slider } from 'antd';
@@ -46,8 +46,13 @@ const Filters = ({
   });
 
   const { settings } = useSettingsContext();
-  const maxPrice = (settings.find((setting) => setting.key === 'MaxPriceFilter')
-    ?.value || 2000000) as number;
+  const maxPrice = useMemo(
+    () =>
+      (settings.find((setting) => setting.key === 'MaxPriceFilter')?.value ||
+        20000000) as number,
+    [settings]
+  );
+   
   const currencyCode = (settings.find(
     (setting) => setting.key === 'CurrencyCode'
   )?.value || 'VND') as 'USD' | 'VND';
@@ -248,10 +253,10 @@ const Filters = ({
               <div className="py-3">
                 <div className="flex flex-wrap gap-2 mb-2">
                   {sizes &&
-                    sizes.slice(0, 4).map((size) => (
+                    sizes.slice(0, 20).map((size) => (
                       <motion.div
                         key={size.id}
-                        className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSize?.includes(size.name) ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
+                        className={`px-2.5 py-1.5 text-xs border rounded-[12px] cursor-pointer ${selectedSize === size.name ? 'bg-black text-white border-black' : 'border-gray-300 hover:bg-gray-100'}`}
                         onClick={() => handleSizeSelect(size.name)}
                         whileTap={{ scale: 0.98 }}
                       >

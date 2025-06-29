@@ -27,6 +27,7 @@ const ROUTE = {
     ROOT: '/orders',
     CONFIRMATION: '/order-confirmation',
   },
+  VN_PAY_CHECKOUT_RESULT: '/confirm-vnpay/:statusCode',
 };
 
 export default ROUTE;

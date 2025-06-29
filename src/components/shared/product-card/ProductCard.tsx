@@ -7,6 +7,7 @@ import { ProductResponse } from '../../../interfaces/product/ProductResponse';
 import { formatCurrency } from '../../../helpers/string';
 import { Link } from 'react-router-dom';
 import RatingStars from '../RatingStars';
+import { useSettingsContext } from '../../../context/settingContext';
 
 interface ProductCardProps {
   product: ProductResponse;
@@ -15,6 +16,11 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const { settings } = useSettingsContext();
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   const incrementQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -44,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <div className="flex items-center justify-between mb-4 gap-2 mt-2">
             <span className="text font-bold text-gray-800">
-              {formatCurrency(product.price, 'VND')}
+              {formatCurrency(product.price, currencyCode)}
             </span>
             <QuantityControl
               quantity={quantity}

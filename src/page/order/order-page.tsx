@@ -166,7 +166,9 @@ const StatusModalComponent: React.FC<{
                             )}
                           </>
                         ) : (
-                          <div className="text-sm text-gray-400">Pending</div>
+                          <div className="text-sm text-gray-400">
+                            {t('pending')}
+                          </div>
                         )}
                       </div>
                     </div>
@@ -280,7 +282,7 @@ const OrdersPage: React.FC = () => {
   const { orders, loading, pageable, searchParams, setSearchParams } =
     useOrderSearch({
       page: 0,
-      size: 5,
+      size: 20,
       sort: ['createdAt,desc'],
     });
 
@@ -303,7 +305,6 @@ const OrdersPage: React.FC = () => {
 
   // Handle pagination
   const handlePageChange = (page: number) => {
-    console.log('Changing page to:', page);
     setSearchParams({ page: page - 1 });
   };
 

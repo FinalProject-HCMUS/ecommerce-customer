@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { tUpperCase, t } from '../../../helpers/i18n';
+import shopData from '../../../locales/en/shopData.json';
 import image from '../../../assets/images/about/about.png';
 
 const Featured = () => {
@@ -9,7 +10,7 @@ const Featured = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative animate-fade-in flex items-center justify-center">
             <img
-              src={image}
+              src={shopData.about.image || image}
               alt="Fashion models"
               className="w-3/4 h-auto rounded-lg"
             />

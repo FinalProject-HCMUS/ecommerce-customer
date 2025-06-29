@@ -11,7 +11,11 @@ import { toast } from 'react-toastify'; // Assuming you use this for notificatio
 import { showError, showSuccess } from '../../utils/messageRender';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../context/store';
+import { CheckoutRequest } from '../../interfaces/order/CheckOut';
+import { common } from '../../constants';
+import useVNPayPayment from '../../hooks/vn-pay-checkout';
 
+const { PAYMENT_METHOD } = common;
 interface LocationState {
   selectedCartItems: CartItemResponse[];
   orderSummary: {
@@ -25,6 +29,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const { loading, performCheckout } = useCheckout();
+  const { createPayment, loading: vnPay_loading } = useVNPayPayment();
   const [selectedItems, setSelectedItems] = useState<CartItemResponse[]>([]);
   const [orderSummary, setOrderSummary] = useState({
     subtotal: 0,
@@ -76,30 +81,43 @@ function App() {
   const validateForm = (): boolean => {
     // Name validation
     if (!formData.name.trim()) {
-      showError(t('checkout.validation.nameRequired'));
+      showError(t('checkout.nameRequired'));
       return false;
     }
 
     // Phone validation - simple pattern for demonstration
     const phonePattern = /^[0-9]{9,11}$/;
     if (!formData.phone.trim() || !phonePattern.test(formData.phone.trim())) {
-      showError(t('checkout.validation.invalidPhone'));
+      showError(t('checkout.invalidPhone'));
       return false;
     }
 
     // Address validation
     if (!formData.address.trim()) {
-      showError(t('checkout.validation.addressRequired'));
+      showError(t('checkout.addressRequired'));
       return false;
     }
 
     // Payment method validation
     if (!formData.paymentMethod) {
-      showError(t('checkout.validation.selectPaymentMethod'));
+      showError(t('checkout.selectPaymentMethod'));
       return false;
     }
 
     return true;
+  };
+
+  const handlePaymentCOD = async (data: CheckoutRequest) => {
+    const response = await performCheckout(data);
+
+    if (response?.isSuccess) {
+      showSuccess(t('checkout.orderSuccess'));
+      navigate('/order-confirmation', {
+        state: { order: response.data },
+      });
+    } else {
+      showError(t('checkout.orderFailed'));
+    }
   };
 
   const handleSubmit = async () => {
@@ -129,16 +147,18 @@ function App() {
         orderDetails: orderDetails,
         customerId: userInfo?.id || '',
       };
+      // Handle different payment methods
+      if (formData.paymentMethod === PAYMENT_METHOD[0].id) {
+        // Process Cash on Delivery checkout
+        await handlePaymentCOD(checkoutData);
+      } else if (formData.paymentMethod === 'VN_PAY') {
+        // Process VNPay checkout
 
-      const response = await performCheckout(checkoutData);
-
-      if (response?.isSuccess) {
-        showSuccess(t('checkout.orderSuccess'));
-        navigate('/order-confirmation', {
-          state: { order: response.data },
-        });
+        await createPayment(checkoutData, true);
+        // The user will be redirected to VNPay by the hook
+        // Return flow will be handled by the payment return component
       } else {
-        showError(t('checkout.orderFailed'));
+        showError(t('checkout.invalidPaymentMethod'));
       }
     } catch {
       toast.error(t('checkout.orderFailed'));
@@ -175,7 +195,7 @@ function App() {
                 items={selectedItems}
                 summary={orderSummary}
                 handlePayment={handleSubmit}
-                loading={loading}
+                loading={loading || vnPay_loading}
               />
             </div>
           </div>

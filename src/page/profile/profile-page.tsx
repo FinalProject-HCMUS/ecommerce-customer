@@ -69,10 +69,10 @@ const ProfilePage: React.FC = () => {
         const imageUrl = await uploadImage(file);
         if (imageUrl) {
           setUploadedImageUrl(imageUrl);
-          showSuccess(t('msg.imageUploaded'));
+          showSuccess(t('profile.imageUploaded'));
         }
       } catch {
-        showError(t('msg.imageUploadFailed'));
+        showError(t('profile.imageUploadFailed'));
         // Revert to previous image if upload fails
         setPreviewImage(formData?.photo || null);
       }

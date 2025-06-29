@@ -8,7 +8,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
   description,
 }) => {
   return (
-    <div className="mb-8">
+    <div>
       <h2 className="text-xl font-bold mb-4">{t('lbl.description')}</h2>
       <div
         className="border border-gray-200 rounded-[12px] p-4"
