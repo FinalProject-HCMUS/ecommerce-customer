@@ -6,7 +6,6 @@ import QuickAddDialog from './QuickAddDialog';
 import { ProductResponse } from '../../../interfaces/product/ProductResponse';
 import { formatCurrency } from '../../../helpers/string';
 import { Link } from 'react-router-dom';
-import RatingStars from '../RatingStars';
 import { useSettingsContext } from '../../../context/settingContext';
 
 interface ProductCardProps {
@@ -46,7 +45,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           >
             {product.name}
           </Link>
-          <RatingStars rating={product.averageRating} />
 
           <div className="flex items-center justify-between mb-4 gap-2 mt-2">
             <span className="text font-bold text-gray-800">
