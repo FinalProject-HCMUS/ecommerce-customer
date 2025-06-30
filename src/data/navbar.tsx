@@ -5,18 +5,8 @@ export const navbarLinks = [
     authenticate: false,
   },
   {
-    label: 'chat',
-    path: '/chat',
-    authenticate: true,
-  },
-  {
     label: 'policy',
     path: '/policy',
-    authenticate: false,
-  },
-  {
-    label: 'blog',
-    path: '/blog',
     authenticate: false,
   },
   {

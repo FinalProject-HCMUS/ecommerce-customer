@@ -16,10 +16,7 @@ const DetailProduct = lazy(
 );
 const CartPage = lazy(() => import('../page/cart/cart-page'));
 const CheckoutPage = lazy(() => import('../page/checkout/checkout-page'));
-const Chat = lazy(() => import('../page/chat/chat'));
 const Policy = lazy(() => import('../page/policy/policy'));
-const BlogPage = lazy(() => import('../page/blog/blog-page'));
-const DetailBlogPage = lazy(() => import('../page/blog/detail-blog-page'));
 const Page403 = lazy(() => import('../page/error/Page403'));
 const Page500 = lazy(() => import('../page/error/Page500'));
 const OrdersPage = lazy(() => import('../page/order/order-page'));
@@ -100,12 +97,6 @@ const routes: IRoute[] = [
   },
   {
     exact: true,
-    path: routeConstants.CHAT,
-    name: 'Chat Pages',
-    component: withAuthenticatedUser(Chat),
-  },
-  {
-    exact: true,
     path: routeConstants.POLICY,
     name: 'Policy Page',
     component: Policy,
@@ -115,18 +106,6 @@ const routes: IRoute[] = [
     path: routeConstants.VN_PAY_CHECKOUT_RESULT,
     name: 'Checkout VN Pay Result',
     component: CheckoutResult,
-  },
-  {
-    exact: true,
-    path: routeConstants.BLOG.LIST,
-    name: 'Blog Page',
-    component: BlogPage,
-  },
-  {
-    exact: true,
-    path: routeConstants.BLOG.DETAIL,
-    name: 'Detail Blog Page',
-    component: DetailBlogPage,
   },
   {
     exact: true,
