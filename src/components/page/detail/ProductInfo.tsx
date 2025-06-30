@@ -1,11 +1,8 @@
 import type React from 'react';
 import { useState } from 'react';
-import StarRating from '../../shared/RatingStars';
 import PriceDisplay from './PriceDisplay';
 import ColorSelector from './ColorSelector';
 import SizeSelector from './SizeSelector';
-import AddToCartButton from '../../shared/AddToCartButton';
-import QuantityControl from '../../shared/QuantityControl';
 import { useEffect } from 'react';
 import { t } from '../../../helpers/i18n';
 
@@ -21,8 +18,6 @@ interface ProductInfoProps {
   colors: ColorResponse[];
   productColorSize: ProductColorSizeResponse[];
   sizes: SizeResponse[];
-  isAdding: boolean;
-  handleAddToCart: (quantity: number, itemId: string) => void;
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({
@@ -30,13 +25,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   colors,
   productColorSize,
   sizes,
-  handleAddToCart,
-  isAdding,
 }) => {
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [selectedSize, setSelectedSize] = useState<string>('');
-  const [itemId, setItemId] = useState<string>('');
-  const [quantity, setQuantity] = useState<number>(1);
 
   const [quantityAvailable, setQuantityAvailable] = useState<number>(
     product.total || 0
@@ -49,7 +40,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         (pcs) => pcs.color.id === selectedColor && pcs.size.id === selectedSize
       );
       if (matchingProduct) {
-        setItemId(matchingProduct.id);
         setQuantityAvailable(matchingProduct.quantity);
       } else {
         setQuantityAvailable(0);
@@ -58,16 +48,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       setQuantityAvailable(product.total || 0); // Reset to total if no color or size is selected
     }
   }, [selectedColor, selectedSize, productColorSize, product.total]);
-
-  const handleQuantityChange = (type: 'increase' | 'decrease') => {
-    if (type === 'increase') {
-      setQuantity((prev) =>
-        prev < quantityAvailable ? prev + 1 : quantityAvailable
-      );
-    } else {
-      setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-    }
-  };
 
   return (
     <div className="flex flex-col">
@@ -86,11 +66,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
           </span>
         }
       </div>
-      {/* Ratings */}
-      <div className="flex items-center mb-4">
-        <StarRating rating={product.averageRating} />
-      </div>
-
+      
       {/* Price */}
       <div className="mb-4">
         <PriceDisplay
@@ -112,21 +88,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         selectedSize={selectedSize}
         onChange={setSelectedSize}
       />
-
-      {/* Quantity and Add to Cart */}
-      {quantityAvailable > 0 && (
-        <div className="flex items-center gap-4">
-          <QuantityControl
-            quantity={quantity}
-            onDecrement={() => handleQuantityChange('decrease')}
-            onIncrement={() => handleQuantityChange('increase')}
-          />
-          <AddToCartButton
-            isAdding={isAdding}
-            onClick={() => handleAddToCart(quantity, itemId)}
-          />
-        </div>
-      )}
     </div>
   );
 };

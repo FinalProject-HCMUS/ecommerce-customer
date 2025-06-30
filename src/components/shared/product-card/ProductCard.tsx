@@ -1,12 +1,7 @@
-import { useState } from 'react';
 import ProductImage from './ProductImage';
-import QuantityControl from '../QuantityControl';
-import AddToCartButton from '../AddToCartButton';
-import QuickAddDialog from './QuickAddDialog';
 import { ProductResponse } from '../../../interfaces/product/ProductResponse';
 import { formatCurrency } from '../../../helpers/string';
 import { Link } from 'react-router-dom';
-import RatingStars from '../RatingStars';
 import { useSettingsContext } from '../../../context/settingContext';
 
 interface ProductCardProps {
@@ -14,25 +9,10 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   const { settings } = useSettingsContext();
   const currencyCode = (settings.find(
     (setting) => setting.key === 'CurrencyCode'
   )?.value || 'VND') as 'USD' | 'VND';
-
-  const incrementQuantity = () => {
-    setQuantity((prev) => prev + 1);
-  };
-
-  const decrementQuantity = () => {
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-  };
-
-  const handleAddToCart = () => {
-    setIsDialogOpen(true);
-  };
 
   return (
     <>
@@ -46,29 +26,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           >
             {product.name}
           </Link>
-          <RatingStars rating={product.averageRating} />
 
           <div className="flex items-center justify-between mb-4 gap-2 mt-2">
             <span className="text font-bold text-gray-800">
               {formatCurrency(product.price, currencyCode)}
             </span>
-            <QuantityControl
-              quantity={quantity}
-              onIncrement={incrementQuantity}
-              onDecrement={decrementQuantity}
-            />
           </div>
-
-          <AddToCartButton isAdding={false} onClick={handleAddToCart} />
         </div>
       </div>
-
-      {/* Quick Add Dialog */}
-      <QuickAddDialog
-        product={product}
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-      />
     </>
   );
 };

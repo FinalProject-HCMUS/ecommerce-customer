@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
-import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { navbarLinks } from '../../data/navbar';
-import { RootState } from '../../context/store';
-import { useSelector } from 'react-redux';
-import UserDropdown from './UserDropdown';
 import LanguageSwitcher from './LanguageSwitcher';
 import { t } from '../../helpers/i18n';
 
@@ -12,12 +8,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Get authentication state from Redux
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
-  );
-
-  console.log('isAuthenticated:', isAuthenticated);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,10 +32,6 @@ const Navbar = () => {
 
             <nav className="hidden md:flex ml-10 space-x-8">
               {navbarLinks.map((link) => {
-                // Conditionally render links based on authentication
-                if (link.authenticate && !isAuthenticated) {
-                  return null; // Hide links that require authentication if not authenticated
-                }
                 return (
                   <Link
                     key={link.path}
@@ -61,26 +47,6 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4">
             <LanguageSwitcher />
-
-            {/* Conditionally show cart and user icons if authenticated */}
-            {isAuthenticated ? (
-              <>
-                <Link to="/cart">
-                  <button className="p-2 hover:text-gray-600 transition-colors">
-                    <FiShoppingCart size={20} />
-                  </button>
-                </Link>
-
-                <UserDropdown />
-              </>
-            ) : (
-              // Show Login button if not authenticated
-              <Link to="/login">
-                <button className="p-2 hover:text-gray-600 transition-colors">
-                  {t('login')}
-                </button>
-              </Link>
-            )}
 
             <button
               className="md:hidden p-2"
@@ -98,10 +64,6 @@ const Navbar = () => {
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <nav className="flex flex-col space-y-4">
              {navbarLinks.map((link) => {
-                // Conditionally render links based on authentication
-                if (link.authenticate && !isAuthenticated) {
-                  return null; // Hide links that require authentication if not authenticated
-                }
                 return (
                   <Link
                     key={link.path}

@@ -9,11 +9,6 @@ export const navbarLinks = [
     path: '/policy',
     authenticate: false,
   },
-  {
-    label: 'orders',
-    path: '/orders',
-    authenticate: true,
-  },
 ];
 
 export const shopName = 'ShopName';
