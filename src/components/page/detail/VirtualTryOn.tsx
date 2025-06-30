@@ -270,9 +270,9 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
   );
 
   return (
-    <div className="bg-white flex flex-col items-center px-4 mt-10 mb-2">
+    <div className="bg-white flex flex-col items-center px-4 mt-20 mb-20">
       <motion.h1
-        className="text-4xl font-bold text-center mb-6"
+        className="text-2xl font-bold text-center mb-6"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}

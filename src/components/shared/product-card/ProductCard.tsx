@@ -39,10 +39,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="max-w-sm w-full mx-auto overflow-hidden bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow mb-4 duration-300 sm:max-w-xs md:max-w-md lg:max-w-lg">
         <ProductImage id={product.id} imageUrl={product.mainImageUrl} />
 
-        <div className="p-4 sm:p-5">
+        <div className="p-4 sm:p-5 truncate">
           <Link
             to={`/product/${product.id}`}
-            className="text-md font-semibold text-gray-800 mb-2 truncate"
+            className="text-md font-semibold text-gray-800 mb-2 "
           >
             {product.name}
           </Link>

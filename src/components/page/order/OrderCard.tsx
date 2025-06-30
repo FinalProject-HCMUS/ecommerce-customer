@@ -13,6 +13,7 @@ import { OrderDetailWithProductResponse } from '../../../interfaces/order/OrderD
 import { CreateReviewRequest } from '../../../interfaces/review/CreateReviewRequest';
 import { showSuccess } from '../../../utils/messageRender';
 import { Link } from 'react-router-dom';
+import { useSettingsContext } from '../../../context/settingContext';
 
 const { TextArea } = Input;
 
@@ -50,6 +51,11 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
     comment: undefined,
     rating: undefined,
   });
+
+  const { settings } = useSettingsContext();
+  const currencyCode = (settings.find(
+    (setting) => setting.key === 'CurrencyCode'
+  )?.value || 'VND') as 'USD' | 'VND';
 
   // Fetch order details when expanded
   const handleToggleExpand = () => {
@@ -188,7 +194,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
         <div className="flex items-center space-x-4">
           <StatusBadge status={order.status} />
           <span className="font-medium text-gray-900">
-            {formatCurrency(order.total, 'VND')}
+            {formatCurrency(order.total, currencyCode)}
           </span>
           <button
             onClick={() => onViewStatus(order)}
@@ -241,14 +247,14 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
                         {item.color?.name}, {item.size?.name}
                       </p>
                       <p className="text-sm">
-                        {formatCurrency(item.unitPrice, 'VND')} x{' '}
+                        {formatCurrency(item.unitPrice, currencyCode)} x{' '}
                         {item.quantity}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="font-medium">
-                      {formatCurrency(item.total, 'VND')}
+                      {formatCurrency(item.total, currencyCode)}
                     </div>
                     {/* Review button - either write or view based on status */}
                     {order.status === 'DELIVERED' && (
@@ -316,7 +322,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
               <p className="text-sm text-gray-500">{t('order.total')}</p>
             </div>
             <div className="font-medium text-lg text-gray-900">
-              {formatCurrency(order.total, 'VND')}
+              {formatCurrency(order.total, currencyCode)}
             </div>
           </div>
         </div>
