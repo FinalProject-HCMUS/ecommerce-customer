@@ -73,6 +73,7 @@ const CartItem: React.FC<CartItemProps> = ({
               <button
                 onClick={() => removeItem(item.id)}
                 className="text-red-500 hover:text-red-700"
+                data-testid={`remove-item-${item.id}`}
               >
                 <Trash2 size={18} />
               </button>

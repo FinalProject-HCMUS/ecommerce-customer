@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BlogList matches snapshot with populated posts 1`] = `
+<div>
+  <div
+    class="space-y-4 mx-5"
+  >
+    <div
+      data-index="0"
+      data-testid="blog-post-1"
+    >
+      First Blog Post
+    </div>
+    <div
+      data-index="1"
+      data-testid="blog-post-2"
+    >
+      Second Blog Post
+    </div>
+    <div
+      data-index="2"
+      data-testid="blog-post-3"
+    >
+      Third Blog Post
+    </div>
+  </div>
+</div>
+`;

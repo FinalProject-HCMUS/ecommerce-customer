@@ -3,6 +3,7 @@ import HomePage from './home-page';
 import { useProducts } from '../../hooks/products';
 import { common } from '../../constants';
 import { BrowserRouter } from 'react-router-dom';
+import { ProductResponse } from '../../interfaces';
 
 const { TOP_SELLING, TOP_TRENDING } = common;
 
@@ -25,7 +26,7 @@ jest.mock('../../components/page/home/Brands', () => () => <div data-testid="bra
 jest.mock('../../components/page/home/Featured', () => () => <div data-testid="featured-component">Featured Component</div>);
 jest.mock('../../components/page/home/Contact', () => () => <div data-testid="contact-component">Contact Component</div>);
 jest.mock('../../components/page/home/CommonProduct', () => (
-  { title, data }: { title: string; data: any[] }
+  { title, data }: { title: string; data: ProductResponse[] }
 ) => (
   <div data-testid={`common-product-${title}`}>
     <div data-testid={`common-product-title-${title}`}>{title}</div>
