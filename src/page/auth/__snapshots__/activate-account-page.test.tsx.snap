@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivateAccountPage matches snapshot in initial state: initial-state 1`] = `
+<div>
+  <div
+    data-testid="mock-activate-account-page"
+  />
+</div>
+`;

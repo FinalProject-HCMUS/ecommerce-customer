@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`statusConfig should match snapshot 1`] = `
+{
+  "CANCELLED": {
+    "bgColor": "bg-red-100",
+    "borderColor": "border-red-200",
+    "color": "text-red-800",
+    "icon": <CircleX
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "Cancelled",
+  },
+  "DELIVERED": {
+    "bgColor": "bg-green-100",
+    "borderColor": "border-green-200",
+    "color": "text-green-800",
+    "icon": <CircleCheckBig
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "Delivered",
+  },
+  "NEW": {
+    "bgColor": "bg-purple-100",
+    "borderColor": "border-purple-200",
+    "color": "text-purple-800",
+    "icon": <Clock
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "New",
+  },
+  "PACKAGED": {
+    "bgColor": "bg-blue-100",
+    "borderColor": "border-blue-200",
+    "color": "text-blue-800",
+    "icon": <Package
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "Packaged",
+  },
+  "PICKED": {
+    "bgColor": "bg-indigo-100",
+    "borderColor": "border-indigo-200",
+    "color": "text-indigo-800",
+    "icon": <CircleCheckBig
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "Picked",
+  },
+  "PROCESSING": {
+    "bgColor": "bg-amber-100",
+    "borderColor": "border-amber-200",
+    "color": "text-amber-800",
+    "icon": <Clock
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "Processing",
+  },
+  "REFUNDED": {
+    "bgColor": "bg-rose-100",
+    "borderColor": "border-rose-200",
+    "color": "text-rose-800",
+    "icon": <CircleCheckBig
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "Refunded",
+  },
+  "SHIPPING": {
+    "bgColor": "bg-cyan-100",
+    "borderColor": "border-cyan-200",
+    "color": "text-cyan-800",
+    "icon": <Truck
+      className="w-4 h-4 mr-1"
+    />,
+    "text": "Shipping",
+  },
+}
+`;

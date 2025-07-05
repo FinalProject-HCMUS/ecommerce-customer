@@ -19,6 +19,24 @@ const config: Config = {
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/index.{ts,tsx}',
+    '!src/main.tsx',
+    '!src/vite-env.d.ts',
+    '!src/mocks/**',
+    '!**/node_modules/**'
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 70,
+      functions: 70,
+      lines: 70,
+      statements: 70
+    }
+  },
+  coverageDirectory: "coverage"
 };
 
 export default config;

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage matches snapshot 1`] = `
+<div>
+  <div
+    class="flex items-center justify-center bg-white my-12 p-4"
+  >
+    <div
+      class="w-full max-w-md"
+    >
+      <div
+        data-testid="mock-login-form"
+      >
+        Login Form Component
+      </div>
+    </div>
+  </div>
+</div>
+`;
