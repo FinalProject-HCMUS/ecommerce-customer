@@ -14,6 +14,11 @@ import { login } from '../../../../context/authSlice';
 import { useUser } from '../../../../hooks/user';
 import { t } from '../../../../helpers/i18n';
 import storageConstants from '../../../../constants/localStorage';
+import {
+  VITE_REDIRECT_URI,
+  VITE_AUTH_URI,
+  VITE_CLIENT_ID,
+} from '../../../../helpers/env';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -47,9 +52,9 @@ const LoginForm = () => {
   };
 
   const handleLoginGoogle = (): void => {
-    const callbackUrl = import.meta.env.VITE_REDIRECT_URI;
-    const authUrl = import.meta.env.VITE_AUTH_URI;
-    const googleClientId = import.meta.env.VITE_CLIENT_ID;
+    const callbackUrl = VITE_REDIRECT_URI;
+    const authUrl = VITE_AUTH_URI;
+    const googleClientId = VITE_CLIENT_ID;
 
     const targetUrl = `${authUrl}?redirect_uri=${encodeURIComponent(
       callbackUrl

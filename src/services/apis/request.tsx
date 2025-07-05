@@ -2,9 +2,8 @@ import axios, { AxiosResponse, AxiosError } from 'axios';
 import { messageRenderUtils } from '../../utils';
 import { t } from '../../helpers/i18n';
 import localStorageConstants from '../../constants/localStorage';
+import {VITE_BACKEND_URL} from '../../helpers/env'
 
-// Base URL for the eCommerce API
-const ECOMMERCE_API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const getToken = () => {
   return localStorage.getItem(localStorageConstants.TOKEN || '');
@@ -12,7 +11,7 @@ const getToken = () => {
 
 // Create an Axios client for eCommerce
 const client = axios.create({
-  baseURL: ECOMMERCE_API_BASE_URL,
+  baseURL: VITE_BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
   },
