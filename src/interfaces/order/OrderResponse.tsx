@@ -21,6 +21,7 @@ export interface OrderResponse {
   createdBy: string;
   updatedAt: string;
   updatedBy: string;
+  isPaid: boolean;
 }
 
 export interface OrderSummaryData {
