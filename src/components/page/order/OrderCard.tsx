@@ -1,14 +1,15 @@
 import type React from 'react';
 import { useState } from 'react';
-import { Package, ChevronDown, ChevronRight } from 'lucide-react';// Add Ant Design imports
+import { Package, ChevronDown, ChevronRight } from 'lucide-react';
 import StatusBadge from './StatusBadge';
-import { OrderResponse } from '../../../interfaces';
+import { OrderResponse, PaymentMethod } from '../../../interfaces';
 import { formatCurrency } from '../../../helpers/string';
 import { t } from 'i18next';
 import { useOrderDetails } from '../../../hooks/order-detail';
 import Loading from '../../shared/Loading';
 import { Link } from 'react-router-dom';
 import { useSettingsContext } from '../../../context/settingContext';
+import { useRetryVNPay } from '../../../hooks/vn-pay-checkout';
 
 interface OrderCardProps {
   order: OrderResponse;
@@ -18,6 +19,7 @@ interface OrderCardProps {
 const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
   const [expanded, setExpanded] = useState(false);
   const { orderDetails, loading, fetchOrderDetails } = useOrderDetails();
+  const { loading: retryLoading, retryPayment } = useRetryVNPay();
 
   const { settings } = useSettingsContext();
   const currencyCode = (settings.find(
@@ -33,6 +35,11 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
     if (newExpandedState) {
       fetchOrderDetails(order.id);
     }
+  };
+
+  // Handler for re-checkout
+  const handleReCheckout = async () => {
+    await retryPayment(order.id);
   };
 
   return (
@@ -57,6 +64,38 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
         </div>
         <div className="flex items-center space-x-4">
           <StatusBadge status={order.status} />
+          {/* Payment Method Badge */}
+          <span
+            className={`px-2 py-0.5 rounded-full text-xs font-semibold
+              ${order.paymentMethod === PaymentMethod.COD
+                ? 'bg-green-100 text-green-700'
+                : 'bg-blue-100 text-blue-700'}
+            `}
+            title={order.paymentMethod}
+          >
+            {order.paymentMethod === PaymentMethod.COD ? 'COD' : 'VN Pay'}
+          </span>
+          {/* isPaid Badge */}
+          <span
+            className={`px-2 py-0.5 rounded-full text-xs font-semibold
+              ${order.isPaid ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}
+            `}
+            title={order.isPaid ? t('order.paid') : t('order.unpaid')}
+          >
+            {order.isPaid ? t('order.paid') : t('order.unpaid')}
+          </span>
+          {/* Re-checkout Button for VN_PAY and not paid */}
+          {order.paymentMethod === PaymentMethod.VN_PAY && !order.isPaid && (
+            <button
+              onClick={handleReCheckout}
+              disabled={retryLoading}
+              className="px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded-[12px] transition-colors disabled:opacity-60"
+            >
+              {retryLoading
+                ? t('order.reCheckoutLoading', 'Đang chuyển hướng...')
+                : t('order.reCheckout', 'Thanh toán lại')}
+            </button>
+          )}
           <span className="font-medium text-gray-900">
             {formatCurrency(order.total, currencyCode)}
           </span>
