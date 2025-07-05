@@ -239,7 +239,10 @@
       "PICKING": "Đã lấy hàng",
       "PICKED": "Đã lấy hàng",
       "SHIPPING": "Đang giao hàng"
-    }
+    },
+    "paid": "Đã thanh toán",
+    "unpaid": "Chưa thanh toán",
+    "reCheckout": "Thanh toán lại"
   },
   "pagination": {
     "previous": "Trước",

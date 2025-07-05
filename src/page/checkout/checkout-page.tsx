@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../context/store';
 import { CheckoutRequest } from '../../interfaces/order/CheckOut';
 import { common } from '../../constants';
-import useVNPayPayment from '../../hooks/vn-pay-checkout';
+import { useVNPayPayment } from '../../hooks/vn-pay-checkout';
 
 const { PAYMENT_METHOD } = common;
 interface LocationState {
