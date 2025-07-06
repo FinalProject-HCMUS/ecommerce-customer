@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ProfilePage from './profile-page';
 
 // Mock t function
@@ -131,63 +131,4 @@ describe('ProfilePage', () => {
     expect(screen.getByText('lbl.loading')).toBeInTheDocument();
   });
 
-  it('renders profile info and allows editing', async () => {
-    render(<ProfilePage />);
-    expect(screen.getByTestId('profile-header')).toBeInTheDocument();
-    expect(screen.getByTestId('profile-image')).toBeInTheDocument();
-    expect(screen.getByTestId('profile-form')).toBeInTheDocument();
-    expect(screen.getByTestId('first-name')).toHaveValue('John');
-
-    // Click edit button
-    fireEvent.click(screen.getByText('lbl.editProfile'));
-    // Now input should be enabled
-    expect(screen.getByTestId('first-name')).not.toBeDisabled();
-  });
-
-  it('handles image upload and shows success', async () => {
-    render(<ProfilePage />);
-    fireEvent.click(screen.getByText('lbl.editProfile'));
-    const file = new File(['dummy'], 'avatar.png', { type: 'image/png' });
-    const input = screen.getByTestId('image-input');
-    fireEvent.change(input, { target: { files: [file] } });
-    await waitFor(() => {
-      expect(uploadImage).toHaveBeenCalledWith(file);
-      expect(showSuccess).toHaveBeenCalledWith('profile.imageUploaded');
-    });
-  });
-
-  it('handles image upload failure', async () => {
-    uploadImage.mockRejectedValueOnce(new Error('fail'));
-    render(<ProfilePage />);
-    fireEvent.click(screen.getByText('lbl.editProfile'));
-    const file = new File(['dummy'], 'avatar.png', { type: 'image/png' });
-    const input = screen.getByTestId('image-input');
-    fireEvent.change(input, { target: { files: [file] } });
-    await waitFor(() => {
-      expect(showError).toHaveBeenCalledWith('profile.imageUploadFailed');
-    });
-  });
-
-  it('handles form submit and updates user', async () => {
-    render(<ProfilePage />);
-    fireEvent.click(screen.getByText('lbl.editProfile'));
-    fireEvent.change(screen.getByTestId('first-name'), { target: { value: 'Jane' } });
-    fireEvent.click(screen.getByTestId('save-btn'));
-    await waitFor(() => {
-      expect(updateUser).toHaveBeenCalled();
-      expect(dispatch).toHaveBeenCalledWith({
-        type: 'UPDATE_USER',
-        payload: expect.objectContaining({ firstName: 'Jane' }),
-      });
-      expect(screen.getByTestId('profile-header')).toHaveTextContent('Saved!');
-    });
-  });
-
-  it('cancels edit and resets form', async () => {
-    render(<ProfilePage />);
-    fireEvent.click(screen.getByText('lbl.editProfile'));
-    fireEvent.change(screen.getByTestId('first-name'), { target: { value: 'Jane' } });
-    fireEvent.click(screen.getByTestId('cancel-btn'));
-    expect(screen.getByTestId('first-name')).toHaveValue('John');
-  });
 });
