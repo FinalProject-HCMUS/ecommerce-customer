@@ -13,8 +13,7 @@ import { Client } from '@stomp/stompjs';
 import { MessageResponse } from '../../interfaces';
 import { showError } from '../../utils/messageRender';
 import { common } from '../../constants';
-
-const SOCKET_URL = import.meta.env.VITE_SOCKET_CHAT_URL;
+import { VITE_SOCKET_CHAT_URL } from '../../helpers/env';
 const { MESSAGE_PER_PAGE } = common;
 
 const App: React.FC = () => {
@@ -77,7 +76,7 @@ const App: React.FC = () => {
   const connectWebSocket = useCallback(() => {
     if (!selectedConversationId || !userInfo?.id || isConnected) return;
 
-    const socket = new SockJS(SOCKET_URL);
+    const socket = new SockJS(VITE_SOCKET_CHAT_URL);
     const client = new Client({
       webSocketFactory: () => socket,
       reconnectDelay: 5000,
