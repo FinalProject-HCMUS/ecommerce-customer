@@ -17,8 +17,6 @@ const Navbar = () => {
     (state: RootState) => state.auth.isAuthenticated
   );
 
-  console.log('isAuthenticated:', isAuthenticated);
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -66,7 +64,7 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <Link to="/cart">
-                  <button className="p-2 hover:text-gray-600 transition-colors">
+                  <button data-testid="cart-button" className="p-2 hover:text-gray-600 transition-colors">
                     <FiShoppingCart size={20} />
                   </button>
                 </Link>
