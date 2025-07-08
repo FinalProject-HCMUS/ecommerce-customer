@@ -16,11 +16,17 @@ jest.mock('./BlogPost', () => ({
 // Mock framer-motion to avoid animation-related issues in tests
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, className }: { children: React.ReactNode; className: string }) => (
-      <div className={className}>{children}</div>
-    ),
+    div: ({
+      children,
+      className,
+    }: {
+      children: React.ReactNode;
+      className: string;
+    }) => <div className={className}>{children}</div>,
   },
-  AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  AnimatePresence: ({ children }: { children: React.ReactNode }) => (
+    <>{children}</>
+  ),
 }));
 
 describe('BlogList', () => {
@@ -35,7 +41,7 @@ describe('BlogList', () => {
       createdAt: '2023-01-01T00:00:00Z',
       updatedAt: '2023-01-01T00:00:00Z',
       createdBy: 'John Doe',
-      updatedBy: 'John Doe'
+      updatedBy: 'John Doe',
     },
     {
       id: '2',
@@ -46,7 +52,7 @@ describe('BlogList', () => {
       createdAt: '2023-01-02T00:00:00Z',
       updatedAt: '2023-01-02T00:00:00Z',
       createdBy: 'Jane Smith',
-      updatedBy: 'Jane Smith'
+      updatedBy: 'Jane Smith',
     },
     {
       id: '3',
@@ -57,46 +63,55 @@ describe('BlogList', () => {
       createdAt: '2023-01-03T00:00:00Z',
       updatedAt: '2023-01-03T00:00:00Z',
       createdBy: 'Alex Johnson',
-      updatedBy: 'Alex Johnson'
+      updatedBy: 'Alex Johnson',
     },
   ];
 
-   test('matches snapshot with populated posts', () => {
+  test('matches snapshot with populated posts', () => {
     const { container } = render(<BlogList posts={mockPosts} />);
     expect(container).toMatchSnapshot();
   });
 
   test('renders all blog posts when posts array is provided', () => {
     render(<BlogList posts={mockPosts} />);
-    
+
     // Check if all posts are rendered
     expect(screen.getByTestId('blog-post-1')).toBeInTheDocument();
     expect(screen.getByTestId('blog-post-2')).toBeInTheDocument();
     expect(screen.getByTestId('blog-post-3')).toBeInTheDocument();
-    
+
     // Check if they are rendered in correct order with correct index
-    expect(screen.getByTestId('blog-post-1')).toHaveAttribute('data-index', '0');
-    expect(screen.getByTestId('blog-post-2')).toHaveAttribute('data-index', '1');
-    expect(screen.getByTestId('blog-post-3')).toHaveAttribute('data-index', '2');
+    expect(screen.getByTestId('blog-post-1')).toHaveAttribute(
+      'data-index',
+      '0'
+    );
+    expect(screen.getByTestId('blog-post-2')).toHaveAttribute(
+      'data-index',
+      '1'
+    );
+    expect(screen.getByTestId('blog-post-3')).toHaveAttribute(
+      'data-index',
+      '2'
+    );
   });
 
   test('renders nothing when posts array is empty', () => {
     render(<BlogList posts={[]} />);
-    
+
     // Check that no posts are rendered
     expect(screen.queryByTestId(/blog-post-/)).not.toBeInTheDocument();
   });
 
   test('renders nothing when posts is undefined', () => {
     render(<BlogList posts={undefined} />);
-    
+
     // Check that no posts are rendered
     expect(screen.queryByTestId(/blog-post-/)).not.toBeInTheDocument();
   });
 
   test('renders correct number of blog posts', () => {
     render(<BlogList posts={mockPosts.slice(0, 2)} />);
-    
+
     // Check if only the first two posts are rendered
     expect(screen.getByTestId('blog-post-1')).toBeInTheDocument();
     expect(screen.getByTestId('blog-post-2')).toBeInTheDocument();
@@ -105,11 +120,13 @@ describe('BlogList', () => {
 
   test('renders with proper structure', () => {
     const { container } = render(<BlogList posts={mockPosts} />);
-    
+
     // Check if the main container has the correct class
     expect(container.firstChild).toHaveClass('space-y-4 mx-5');
-    
+
     // Check if the correct number of children are rendered
-    expect(container.querySelectorAll('[data-testid^="blog-post-"]').length).toBe(3);
+    expect(
+      container.querySelectorAll('[data-testid^="blog-post-"]').length
+    ).toBe(3);
   });
 });

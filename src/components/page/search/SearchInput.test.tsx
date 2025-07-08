@@ -19,10 +19,10 @@ jest.mock('react-icons/fi', () => ({
 describe('SearchInput', () => {
   it('renders input with correct placeholder', () => {
     render(<SearchInput keySearch="" setKeySearch={jest.fn()} />);
-    expect(screen.getByPlaceholderText('placeholder.search')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('placeholder.search')
+    ).toBeInTheDocument();
   });
-
-
 
   it('shows the search icon', () => {
     render(<SearchInput keySearch="" setKeySearch={jest.fn()} />);

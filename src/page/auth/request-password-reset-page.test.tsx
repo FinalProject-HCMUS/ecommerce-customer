@@ -60,29 +60,38 @@ describe('RequestPasswordResetPage', () => {
   it('renders email input and submit button', () => {
     render(<RequestPasswordResetPage />);
     expect(screen.getByLabelText('auth.email')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'auth.sendResetLink' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'auth.sendResetLink' })
+    ).toBeInTheDocument();
     expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
   });
-
 
   it('calls requestPasswordReset and shows success on valid email', async () => {
     requestPasswordReset.mockResolvedValueOnce(true);
     render(<RequestPasswordResetPage />);
-    fireEvent.change(screen.getByLabelText('auth.email'), { target: { value: 'test@example.com' } });
+    fireEvent.change(screen.getByLabelText('auth.email'), {
+      target: { value: 'test@example.com' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'auth.sendResetLink' }));
     await waitFor(() => {
       expect(requestPasswordReset).toHaveBeenCalledWith('test@example.com');
       expect(showSuccess).toHaveBeenCalledWith('auth.resetEmailSent');
       expect(screen.getByText('auth.checkYourEmail')).toBeInTheDocument();
-      expect(screen.getByText('auth.resetEmailInstructions')).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: 'auth.backToLogin' })).toBeInTheDocument();
+      expect(
+        screen.getByText('auth.resetEmailInstructions')
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: 'auth.backToLogin' })
+      ).toBeInTheDocument();
     });
   });
 
   it('shows error if requestPasswordReset fails', async () => {
     requestPasswordReset.mockResolvedValueOnce(false);
     render(<RequestPasswordResetPage />);
-    fireEvent.change(screen.getByLabelText('auth.email'), { target: { value: 'test@example.com' } });
+    fireEvent.change(screen.getByLabelText('auth.email'), {
+      target: { value: 'test@example.com' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'auth.sendResetLink' }));
     await waitFor(() => {
       expect(showError).toHaveBeenCalledWith('auth.resetEmailFailed');
