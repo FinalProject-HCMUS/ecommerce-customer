@@ -1,4 +1,3 @@
-
 import { render, screen, fireEvent } from '@testing-library/react';
 import { OrderSummary } from './OrderSummary';
 import { CartItemResponse } from '../../../interfaces';
@@ -16,7 +15,9 @@ jest.mock('../../../helpers/string', () => ({
 // Mock GeneralButton to just render children and call onClick
 jest.mock('../../shared/Button', () => ({
   GeneralButton: ({ children, onClick, ...props }: any) => (
-    <button onClick={onClick} {...props}>{children}</button>
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
   ),
 }));
 
@@ -74,7 +75,10 @@ describe('OrderSummary', () => {
     );
     expect(screen.getByText('lbl.orderSummary')).toBeInTheDocument();
     expect(screen.getByText('Product 1')).toBeInTheDocument();
-    expect(screen.getByAltText('Product 1')).toHaveAttribute('src', mockItems[0].product.mainImageUrl);
+    expect(screen.getByAltText('Product 1')).toHaveAttribute(
+      'src',
+      mockItems[0].product.mainImageUrl
+    );
     expect(screen.getByText('lbl.quantity: 2')).toBeInTheDocument();
     expect(screen.getByText('lbl.color:')).toBeInTheDocument();
     expect(screen.getByText('lbl.size: M')).toBeInTheDocument();

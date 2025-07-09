@@ -48,9 +48,15 @@ describe('ConfirmEmailPage', () => {
     mockUseLocation.mockReturnValue({ search: '' });
     render(<ConfirmEmailPage />);
     await waitFor(() => {
-      expect(screen.getByText('lbl.emailConfirmationFailed')).toBeInTheDocument();
-      expect(screen.getByText('lbl.emailConfirmationFailedDescription')).toBeInTheDocument();
-      expect(screen.getByText('lbl.requestNewConfirmation')).toBeInTheDocument();
+      expect(
+        screen.getByText('lbl.emailConfirmationFailed')
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText('lbl.emailConfirmationFailedDescription')
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText('lbl.requestNewConfirmation')
+      ).toBeInTheDocument();
       expect(screen.getByTestId('x-circle')).toBeInTheDocument();
     });
   });
@@ -71,9 +77,15 @@ describe('ConfirmEmailPage', () => {
     confirmUserEmail.mockResolvedValueOnce(false);
     render(<ConfirmEmailPage />);
     await waitFor(() => {
-      expect(screen.getByText('lbl.emailConfirmationFailed')).toBeInTheDocument();
-      expect(screen.getByText('lbl.emailConfirmationFailedDescription')).toBeInTheDocument();
-      expect(screen.getByText('lbl.requestNewConfirmation')).toBeInTheDocument();
+      expect(
+        screen.getByText('lbl.emailConfirmationFailed')
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText('lbl.emailConfirmationFailedDescription')
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText('lbl.requestNewConfirmation')
+      ).toBeInTheDocument();
       expect(screen.getByTestId('x-circle')).toBeInTheDocument();
     });
   });

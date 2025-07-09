@@ -66,13 +66,17 @@ describe('ReviewSection', () => {
   });
 
   it('renders loading state', () => {
-    (useReviews as jest.Mock).mockImplementation(() => mockUseReviews({ loading: true }));
+    (useReviews as jest.Mock).mockImplementation(() =>
+      mockUseReviews({ loading: true })
+    );
     render(<ReviewSection productId="p1" />);
     expect(screen.getByText('lbl.loading')).toBeInTheDocument();
   });
 
   it('renders no reviews message', () => {
-    (useReviews as jest.Mock).mockImplementation(() => mockUseReviews({ reviews: [] }));
+    (useReviews as jest.Mock).mockImplementation(() =>
+      mockUseReviews({ reviews: [] })
+    );
     render(<ReviewSection productId="p1" />);
     expect(screen.getByText('lbl.noReviewsYet')).toBeInTheDocument();
   });
@@ -127,7 +131,9 @@ describe('ReviewSection', () => {
       })
     );
     render(<ReviewSection productId="p1" />);
-    const loadMoreBtn = screen.getByRole('button', { name: 'btn.loadMoreReviews' });
+    const loadMoreBtn = screen.getByRole('button', {
+      name: 'btn.loadMoreReviews',
+    });
     fireEvent.click(loadMoreBtn);
     await waitFor(() => {
       expect(mockFetchReviews).toHaveBeenCalledWith(

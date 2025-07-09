@@ -14,14 +14,18 @@ jest.mock('../../components/shared/Breadcrumb', () => (props: any) => (
 // Mock CartItem
 jest.mock('../../components/page/cart/CartItem', () => (props: any) => (
   <div data-testid={`cart-item-${props.item.id}`}>
-    <button onClick={() => props.updateQuantity(props.item.id, props.item.quantity + 1)}>
+    <button
+      onClick={() =>
+        props.updateQuantity(props.item.id, props.item.quantity + 1)
+      }
+    >
       Increase
     </button>
     <button onClick={() => props.removeItem(props.item.id)}>Remove</button>
     <input
       type="checkbox"
       checked={props.isSelected}
-      onChange={e => props.onSelect(props.item.id, e.target.checked)}
+      onChange={(e) => props.onSelect(props.item.id, e.target.checked)}
       data-testid={`select-${props.item.id}`}
     />
     {props.item.product.name}
@@ -163,12 +167,15 @@ describe('CartPage', () => {
     render(<App />);
     await waitFor(() => {
       fireEvent.click(screen.getByTestId('checkout-btn'));
-      expect(navigate).toHaveBeenCalledWith('/checkout', expect.objectContaining({
-        state: expect.objectContaining({
-          selectedCartItems: expect.any(Array),
-          orderSummary: expect.any(Object),
-        }),
-      }));
+      expect(navigate).toHaveBeenCalledWith(
+        '/checkout',
+        expect.objectContaining({
+          state: expect.objectContaining({
+            selectedCartItems: expect.any(Array),
+            orderSummary: expect.any(Object),
+          }),
+        })
+      );
     });
   });
 

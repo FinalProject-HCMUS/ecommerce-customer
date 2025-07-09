@@ -203,9 +203,11 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onViewStatus }) => {
           {/* Payment Method Badge */}
           <span
             className={`px-2 py-0.5 rounded-full text-xs font-semibold
-              ${order.paymentMethod === PaymentMethod.COD
-                ? 'bg-green-100 text-green-700'
-                : 'bg-blue-100 text-blue-700'}
+              ${
+                order.paymentMethod === PaymentMethod.COD
+                  ? 'bg-green-100 text-green-700'
+                  : 'bg-blue-100 text-blue-700'
+              }
             `}
             title={order.paymentMethod}
           >

@@ -25,25 +25,34 @@ jest.mock('../../../../helpers/i18n', () => ({
       'placeholder.confirmPassword': 'Confirm your password',
       'btn.createAccount': 'Create Account',
       'error.passwordMismatch': 'Passwords do not match',
-      'success.registerSuccess': 'Registration successful! Please check your email to confirm your account.',
+      'success.registerSuccess':
+        'Registration successful! Please check your email to confirm your account.',
       'lbl.notRegistered': 'Already have an account?',
-      'hyperlink.login': 'Sign in'
+      'hyperlink.login': 'Sign in',
     };
     return translations[key] || key;
-  }
+  },
 }));
 
 jest.mock('../../../../utils', () => ({
   messageRenderUtils: {
     showError: jest.fn(),
-    showSuccess: jest.fn()
-  }
+    showSuccess: jest.fn(),
+  },
 }));
 
 // Mock form components
 jest.mock('../../../shared/form/InputField', () => ({
   __esModule: true,
-  default: ({ id, label, type, value, onChange, placeholder, required }: any) => (
+  default: ({
+    id,
+    label,
+    type,
+    value,
+    onChange,
+    placeholder,
+    required,
+  }: any) => (
     <div data-testid={`input-field-${id}`}>
       <label htmlFor={id}>{label}</label>
       <input
@@ -56,7 +65,7 @@ jest.mock('../../../shared/form/InputField', () => ({
         data-testid={id}
       />
     </div>
-  )
+  ),
 }));
 
 jest.mock('../../../shared/form/PasswordInput', () => ({
@@ -74,7 +83,7 @@ jest.mock('../../../shared/form/PasswordInput', () => ({
         data-testid={id}
       />
     </div>
-  )
+  ),
 }));
 
 jest.mock('../../../shared/Button', () => ({
@@ -89,7 +98,7 @@ jest.mock('../../../shared/Button', () => ({
     >
       {isLoading ? 'Loading...' : children}
     </button>
-  )
+  ),
 }));
 
 jest.mock('../../../../helpers/env', () => ({
@@ -101,10 +110,10 @@ jest.mock('../../../../helpers/env', () => ({
 describe('RegistrationForm', () => {
   // Mock createUser function
   const mockCreateUser = jest.fn();
-  
+
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Mock the useUser hook
     jest.spyOn(userHook, 'useUser').mockReturnValue({
       createUser: mockCreateUser,
@@ -117,7 +126,7 @@ describe('RegistrationForm', () => {
       confirmUserEmail: jest.fn(),
       resendUserConfirmationEmail: jest.fn(),
       requestPasswordReset: jest.fn(),
-      resetPassword: jest.fn()
+      resetPassword: jest.fn(),
     });
   });
 
@@ -127,7 +136,7 @@ describe('RegistrationForm', () => {
         <RegistrationForm />
       </BrowserRouter>
     );
-    
+
     // Check that all form elements are present
     expect(screen.getByText('Register')).toBeInTheDocument();
     expect(screen.getByTestId('input-field-firstName')).toBeInTheDocument();
@@ -135,7 +144,9 @@ describe('RegistrationForm', () => {
     expect(screen.getByTestId('input-field-email')).toBeInTheDocument();
     expect(screen.getByTestId('input-field-phone')).toBeInTheDocument();
     expect(screen.getByTestId('password-input-password')).toBeInTheDocument();
-    expect(screen.getByTestId('password-input-confirmPassword')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('password-input-confirmPassword')
+    ).toBeInTheDocument();
     expect(screen.getByTestId('submit-button')).toBeInTheDocument();
     expect(screen.getByText('Already have an account?')).toBeInTheDocument();
     expect(screen.getByText('Sign in')).toBeInTheDocument();
@@ -147,23 +158,27 @@ describe('RegistrationForm', () => {
         <RegistrationForm />
       </BrowserRouter>
     );
-    
+
     // Get all input fields
     const firstNameInput = screen.getByTestId('firstName') as HTMLInputElement;
     const lastNameInput = screen.getByTestId('lastName') as HTMLInputElement;
     const emailInput = screen.getByTestId('email') as HTMLInputElement;
     const phoneInput = screen.getByTestId('phone') as HTMLInputElement;
     const passwordInput = screen.getByTestId('password') as HTMLInputElement;
-    const confirmPasswordInput = screen.getByTestId('confirmPassword') as HTMLInputElement;
-    
+    const confirmPasswordInput = screen.getByTestId(
+      'confirmPassword'
+    ) as HTMLInputElement;
+
     // Change input values
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john.doe@example.com' } });
     fireEvent.change(phoneInput, { target: { value: '1234567890' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
-    fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
-    
+    fireEvent.change(confirmPasswordInput, {
+      target: { value: 'password123' },
+    });
+
     // Check that input values were updated
     expect(firstNameInput).toHaveValue('John');
     expect(lastNameInput).toHaveValue('Doe');
@@ -179,30 +194,36 @@ describe('RegistrationForm', () => {
         <RegistrationForm />
       </BrowserRouter>
     );
-    
+
     // Fill in the form with mismatched passwords
     const firstNameInput = screen.getByTestId('firstName') as HTMLInputElement;
     const lastNameInput = screen.getByTestId('lastName') as HTMLInputElement;
     const emailInput = screen.getByTestId('email') as HTMLInputElement;
     const phoneInput = screen.getByTestId('phone') as HTMLInputElement;
     const passwordInput = screen.getByTestId('password') as HTMLInputElement;
-    const confirmPasswordInput = screen.getByTestId('confirmPassword') as HTMLInputElement;
-    
+    const confirmPasswordInput = screen.getByTestId(
+      'confirmPassword'
+    ) as HTMLInputElement;
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john.doe@example.com' } });
     fireEvent.change(phoneInput, { target: { value: '1234567890' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
-    fireEvent.change(confirmPasswordInput, { target: { value: 'differentpassword' } });
-    
+    fireEvent.change(confirmPasswordInput, {
+      target: { value: 'differentpassword' },
+    });
+
     // Submit the form
     fireEvent.click(screen.getByTestId('submit-button'));
-    
+
     // Check that error message was shown
     await waitFor(() => {
-      expect(messageRenderUtils.showError).toHaveBeenCalledWith('Passwords do not match');
+      expect(messageRenderUtils.showError).toHaveBeenCalledWith(
+        'Passwords do not match'
+      );
     });
-    
+
     // Check that createUser was not called
     expect(mockCreateUser).not.toHaveBeenCalled();
   });
@@ -220,38 +241,45 @@ describe('RegistrationForm', () => {
       createdAt: '2023-07-05T10:30:00Z',
       updatedAt: '2023-07-05T10:30:00Z',
       createdBy: 'system',
-      updatedBy: 'system'
+      updatedBy: 'system',
     };
-    
+
     mockCreateUser.mockResolvedValueOnce(userResponse);
-    
+
     render(
       <BrowserRouter>
         <RegistrationForm />
       </BrowserRouter>
     );
-    
+
     // Fill in the form
     const firstNameInput = screen.getByTestId('firstName') as HTMLInputElement;
     const lastNameInput = screen.getByTestId('lastName') as HTMLInputElement;
     const emailInput = screen.getByTestId('email') as HTMLInputElement;
     const phoneInput = screen.getByTestId('phone') as HTMLInputElement;
     const passwordInput = screen.getByTestId('password') as HTMLInputElement;
-    const confirmPasswordInput = screen.getByTestId('confirmPassword') as HTMLInputElement;
-    
+    const confirmPasswordInput = screen.getByTestId(
+      'confirmPassword'
+    ) as HTMLInputElement;
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john.doe@example.com' } });
     fireEvent.change(phoneInput, { target: { value: '1234567890' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
-    fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
-    
+    fireEvent.change(confirmPasswordInput, {
+      target: { value: 'password123' },
+    });
+
     // Submit the form
     fireEvent.click(screen.getByTestId('submit-button'));
-    
+
     // Check that the button shows loading state
-    expect(screen.getByTestId('submit-button')).toHaveAttribute('data-loading', 'true');
-    
+    expect(screen.getByTestId('submit-button')).toHaveAttribute(
+      'data-loading',
+      'true'
+    );
+
     // Check that createUser was called with correct data
     await waitFor(() => {
       expect(mockCreateUser).toHaveBeenCalledWith({
@@ -260,15 +288,15 @@ describe('RegistrationForm', () => {
         email: 'john.doe@example.com',
         phoneNumber: '1234567890',
         password: 'password123',
-        role: 'USER'
+        role: 'USER',
       });
     });
-    
+
     // Check success message was shown
     expect(messageRenderUtils.showSuccess).toHaveBeenCalledWith(
       'Registration successful! Please check your email to confirm your account.'
     );
-    
+
     // Check that form was reset
     await waitFor(() => {
       expect(firstNameInput).toHaveValue('');
@@ -283,57 +311,61 @@ describe('RegistrationForm', () => {
   test('handles API error on form submission', async () => {
     // Setup mock to return failure
     mockCreateUser.mockResolvedValueOnce(null);
-    
+
     render(
       <BrowserRouter>
         <RegistrationForm />
       </BrowserRouter>
     );
-    
+
     // Fill in the form
     const firstNameInput = screen.getByTestId('firstName') as HTMLInputElement;
     const lastNameInput = screen.getByTestId('lastName') as HTMLInputElement;
     const emailInput = screen.getByTestId('email') as HTMLInputElement;
     const phoneInput = screen.getByTestId('phone') as HTMLInputElement;
     const passwordInput = screen.getByTestId('password') as HTMLInputElement;
-    const confirmPasswordInput = screen.getByTestId('confirmPassword') as HTMLInputElement;
-    
+    const confirmPasswordInput = screen.getByTestId(
+      'confirmPassword'
+    ) as HTMLInputElement;
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john.doe@example.com' } });
     fireEvent.change(phoneInput, { target: { value: '1234567890' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
-    fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
-    
+    fireEvent.change(confirmPasswordInput, {
+      target: { value: 'password123' },
+    });
+
     // Submit the form
     fireEvent.click(screen.getByTestId('submit-button'));
-    
+
     // Check that createUser was called
     await waitFor(() => {
       expect(mockCreateUser).toHaveBeenCalled();
     });
-    
+
     // Success message should not be shown
     expect(messageRenderUtils.showSuccess).not.toHaveBeenCalled();
-    
+
     // Form should not be reset
     expect(firstNameInput).toHaveValue('John');
     expect(lastNameInput).toHaveValue('Doe');
     expect(emailInput).toHaveValue('john.doe@example.com');
   });
-  
+
   test('renders the link to login page', () => {
     render(
       <BrowserRouter>
         <RegistrationForm />
       </BrowserRouter>
     );
-    
+
     const loginLink = screen.getByText('Sign in');
     expect(loginLink).toBeInTheDocument();
     expect(loginLink.closest('a')).toHaveAttribute('href', '/login');
   });
-  
+
   test('form submission via Enter key works', async () => {
     // Setup mock to return success
     mockCreateUser.mockResolvedValueOnce({
@@ -347,33 +379,37 @@ describe('RegistrationForm', () => {
       createdAt: '2023-07-05T10:30:00Z',
       updatedAt: '2023-07-05T10:30:00Z',
       createdBy: 'system',
-      updatedBy: 'system'
+      updatedBy: 'system',
     });
-    
+
     render(
       <BrowserRouter>
         <RegistrationForm />
       </BrowserRouter>
     );
-    
+
     // Fill in the form
     const firstNameInput = screen.getByTestId('firstName') as HTMLInputElement;
     const lastNameInput = screen.getByTestId('lastName') as HTMLInputElement;
     const emailInput = screen.getByTestId('email') as HTMLInputElement;
     const phoneInput = screen.getByTestId('phone') as HTMLInputElement;
     const passwordInput = screen.getByTestId('password') as HTMLInputElement;
-    const confirmPasswordInput = screen.getByTestId('confirmPassword') as HTMLInputElement;
-    
+    const confirmPasswordInput = screen.getByTestId(
+      'confirmPassword'
+    ) as HTMLInputElement;
+
     fireEvent.change(firstNameInput, { target: { value: 'John' } });
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john.doe@example.com' } });
     fireEvent.change(phoneInput, { target: { value: '1234567890' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
-    fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
-    
+    fireEvent.change(confirmPasswordInput, {
+      target: { value: 'password123' },
+    });
+
     // Submit form with Enter key
     fireEvent.submit(screen.getByTestId('submit-button').closest('form')!);
-    
+
     // Verify the form submission was processed
     await waitFor(() => {
       expect(mockCreateUser).toHaveBeenCalled();

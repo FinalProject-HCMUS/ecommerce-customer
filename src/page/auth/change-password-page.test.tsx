@@ -75,14 +75,20 @@ describe('ChangePasswordPage', () => {
     expect(screen.getByTestId('currentPassword')).toBeInTheDocument();
     expect(screen.getByTestId('newPassword')).toBeInTheDocument();
     expect(screen.getByTestId('confirmPassword')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'btn.changePassword' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'btn.changePassword' })
+    ).toBeInTheDocument();
     expect(screen.getByTestId('lock-icon')).toBeInTheDocument();
   });
 
   it('shows error if current password is empty', async () => {
     render(<ChangePasswordPage />);
-    fireEvent.change(screen.getByTestId('newPassword'), { target: { value: 'newpassword123' } });
-    fireEvent.change(screen.getByTestId('confirmPassword'), { target: { value: 'newpassword123' } });
+    fireEvent.change(screen.getByTestId('newPassword'), {
+      target: { value: 'newpassword123' },
+    });
+    fireEvent.change(screen.getByTestId('confirmPassword'), {
+      target: { value: 'newpassword123' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'btn.changePassword' }));
     await waitFor(() => {
       expect(showError).toHaveBeenCalledWith('error.currentPasswordRequired');
@@ -92,8 +98,12 @@ describe('ChangePasswordPage', () => {
 
   it('shows error if new password is empty', async () => {
     render(<ChangePasswordPage />);
-    fireEvent.change(screen.getByTestId('currentPassword'), { target: { value: 'oldpass' } });
-    fireEvent.change(screen.getByTestId('confirmPassword'), { target: { value: 'newpassword123' } });
+    fireEvent.change(screen.getByTestId('currentPassword'), {
+      target: { value: 'oldpass' },
+    });
+    fireEvent.change(screen.getByTestId('confirmPassword'), {
+      target: { value: 'newpassword123' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'btn.changePassword' }));
     await waitFor(() => {
       expect(showError).toHaveBeenCalledWith('error.newPasswordRequired');
@@ -103,9 +113,15 @@ describe('ChangePasswordPage', () => {
 
   it('shows error if new password is less than 8 characters', async () => {
     render(<ChangePasswordPage />);
-    fireEvent.change(screen.getByTestId('currentPassword'), { target: { value: 'oldpass' } });
-    fireEvent.change(screen.getByTestId('newPassword'), { target: { value: 'short' } });
-    fireEvent.change(screen.getByTestId('confirmPassword'), { target: { value: 'short' } });
+    fireEvent.change(screen.getByTestId('currentPassword'), {
+      target: { value: 'oldpass' },
+    });
+    fireEvent.change(screen.getByTestId('newPassword'), {
+      target: { value: 'short' },
+    });
+    fireEvent.change(screen.getByTestId('confirmPassword'), {
+      target: { value: 'short' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'btn.changePassword' }));
     await waitFor(() => {
       expect(showError).toHaveBeenCalledWith('error.passwordLength');
@@ -115,8 +131,12 @@ describe('ChangePasswordPage', () => {
 
   it('shows error if confirm password is empty', async () => {
     render(<ChangePasswordPage />);
-    fireEvent.change(screen.getByTestId('currentPassword'), { target: { value: 'oldpass' } });
-    fireEvent.change(screen.getByTestId('newPassword'), { target: { value: 'newpassword123' } });
+    fireEvent.change(screen.getByTestId('currentPassword'), {
+      target: { value: 'oldpass' },
+    });
+    fireEvent.change(screen.getByTestId('newPassword'), {
+      target: { value: 'newpassword123' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'btn.changePassword' }));
     await waitFor(() => {
       expect(showError).toHaveBeenCalledWith('error.confirmPasswordRequired');
@@ -126,9 +146,15 @@ describe('ChangePasswordPage', () => {
 
   it('shows error if new password and confirm password do not match', async () => {
     render(<ChangePasswordPage />);
-    fireEvent.change(screen.getByTestId('currentPassword'), { target: { value: 'oldpass' } });
-    fireEvent.change(screen.getByTestId('newPassword'), { target: { value: 'newpassword123' } });
-    fireEvent.change(screen.getByTestId('confirmPassword'), { target: { value: 'differentpass' } });
+    fireEvent.change(screen.getByTestId('currentPassword'), {
+      target: { value: 'oldpass' },
+    });
+    fireEvent.change(screen.getByTestId('newPassword'), {
+      target: { value: 'newpassword123' },
+    });
+    fireEvent.change(screen.getByTestId('confirmPassword'), {
+      target: { value: 'differentpass' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'btn.changePassword' }));
     await waitFor(() => {
       expect(showError).toHaveBeenCalledWith('error.passwordMismatch');
@@ -139,9 +165,15 @@ describe('ChangePasswordPage', () => {
   it('calls changePassword and shows success on valid input', async () => {
     changePassword.mockResolvedValueOnce(true);
     render(<ChangePasswordPage />);
-    fireEvent.change(screen.getByTestId('currentPassword'), { target: { value: 'oldpass' } });
-    fireEvent.change(screen.getByTestId('newPassword'), { target: { value: 'newpassword123' } });
-    fireEvent.change(screen.getByTestId('confirmPassword'), { target: { value: 'newpassword123' } });
+    fireEvent.change(screen.getByTestId('currentPassword'), {
+      target: { value: 'oldpass' },
+    });
+    fireEvent.change(screen.getByTestId('newPassword'), {
+      target: { value: 'newpassword123' },
+    });
+    fireEvent.change(screen.getByTestId('confirmPassword'), {
+      target: { value: 'newpassword123' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'btn.changePassword' }));
     await waitFor(() => {
       expect(changePassword).toHaveBeenCalledWith('user1', {
@@ -157,9 +189,15 @@ describe('ChangePasswordPage', () => {
   it('resets form after successful password change', async () => {
     changePassword.mockResolvedValueOnce(true);
     render(<ChangePasswordPage />);
-    fireEvent.change(screen.getByTestId('currentPassword'), { target: { value: 'oldpass' } });
-    fireEvent.change(screen.getByTestId('newPassword'), { target: { value: 'newpassword123' } });
-    fireEvent.change(screen.getByTestId('confirmPassword'), { target: { value: 'newpassword123' } });
+    fireEvent.change(screen.getByTestId('currentPassword'), {
+      target: { value: 'oldpass' },
+    });
+    fireEvent.change(screen.getByTestId('newPassword'), {
+      target: { value: 'newpassword123' },
+    });
+    fireEvent.change(screen.getByTestId('confirmPassword'), {
+      target: { value: 'newpassword123' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'btn.changePassword' }));
     await waitFor(() => {
       expect(screen.getByTestId('currentPassword')).toHaveValue('');

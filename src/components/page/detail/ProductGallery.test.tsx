@@ -2,8 +2,24 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import ProductGallery from './ProductGallery';
 
 const mockImages = [
-  { id: '1', url: 'https://example.com/img1.jpg', productId: 'p1', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: '2', url: 'https://example.com/img2.jpg', productId: 'p1', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: '1',
+    url: 'https://example.com/img1.jpg',
+    productId: 'p1',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: '2',
+    url: 'https://example.com/img2.jpg',
+    productId: 'p1',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 
 describe('ProductGallery', () => {

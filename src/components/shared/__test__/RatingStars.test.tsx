@@ -4,7 +4,9 @@ import RatingStars from '../RatingStars';
 // Mock StarIcon to simplify assertions
 jest.mock('../../../icon/icon', () => ({
   StarIcon: ({ filled, half }: { filled: boolean; half?: boolean }) => (
-    <span data-testid={half ? 'half-star' : filled ? 'full-star' : 'empty-star'} />
+    <span
+      data-testid={half ? 'half-star' : filled ? 'full-star' : 'empty-star'}
+    />
   ),
 }));
 

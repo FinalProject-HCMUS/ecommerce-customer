@@ -109,12 +109,12 @@ describe('userApi', () => {
   });
 
   it('updateUser should call client.put with correct args and return data', async () => {
-    const req : UpdateUserRequest = {
+    const req: UpdateUserRequest = {
       firstName: 'Updated',
       lastName: 'User',
       phoneNumber: '0987654321',
     };
-    const mockUser : UserResponse= {
+    const mockUser: UserResponse = {
       id: '1',
       email: 'test@example.com',
       phoneNumber: '0123456789',
@@ -141,7 +141,11 @@ describe('userApi', () => {
   });
 
   it('changePassword should call client.post with correct args and return data', async () => {
-    const req : ChangePasswordRequest = { currentPassword: 'old', newPassword: 'new', confirmPassword: 'new' };
+    const req: ChangePasswordRequest = {
+      currentPassword: 'old',
+      newPassword: 'new',
+      confirmPassword: 'new',
+    };
     const mockResponse = {
       timestamp: '',
       httpStatus: 'OK',
@@ -164,8 +168,9 @@ describe('userApi', () => {
 
     const email = 'test@example.com';
     const res = await userApi.requestPasswordReset(email);
-    expect(mockPost).toHaveBeenCalledWith('/users/request-password-reset?email=test%40example.com');
+    expect(mockPost).toHaveBeenCalledWith(
+      '/users/request-password-reset?email=test%40example.com'
+    );
     expect(res).toEqual(mockResponse);
   });
-
 });

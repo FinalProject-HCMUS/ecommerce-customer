@@ -53,10 +53,20 @@ describe('useBlogs', () => {
     const { result } = renderHook(() => useBlogs());
     let res: any;
     await act(async () => {
-      res = await result.current.fetchBlogs(0, 10, ['createdAt,desc'], 'search');
+      res = await result.current.fetchBlogs(
+        0,
+        10,
+        ['createdAt,desc'],
+        'search'
+      );
     });
 
-    expect(blogApis.getAllBlogs).toHaveBeenCalledWith(0, 10, ['createdAt,desc'], 'search');
+    expect(blogApis.getAllBlogs).toHaveBeenCalledWith(
+      0,
+      10,
+      ['createdAt,desc'],
+      'search'
+    );
     expect(res).toEqual(mockPageable);
     expect(result.current.loading).toBe(false);
   });
@@ -78,7 +88,9 @@ describe('useBlogs', () => {
   });
 
   it('fetchBlogs should return null on error', async () => {
-    (blogApis.getAllBlogs as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (blogApis.getAllBlogs as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useBlogs());
     let res: any;
@@ -118,7 +130,9 @@ describe('useBlogs', () => {
   });
 
   it('fetchBlogById should return null on error', async () => {
-    (blogApis.getBlogById as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (blogApis.getBlogById as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useBlogs());
     let res: any;

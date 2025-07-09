@@ -43,7 +43,9 @@ describe('useColors', () => {
       sort: { sorted: false, unsorted: true, empty: true },
       empty: false,
     };
-    (colorApis.getAllColors as jest.Mock).mockResolvedValueOnce({ data: mockPageable });
+    (colorApis.getAllColors as jest.Mock).mockResolvedValueOnce({
+      data: mockPageable,
+    });
 
     const { result } = renderHook(() => useColors());
     let res: any;
@@ -87,7 +89,9 @@ describe('useColors', () => {
       sort: { sorted: false, unsorted: true, empty: true },
       empty: false,
     };
-    (colorApis.getColorById as jest.Mock).mockResolvedValueOnce({ data: mockPageable });
+    (colorApis.getColorById as jest.Mock).mockResolvedValueOnce({
+      data: mockPageable,
+    });
 
     const { result } = renderHook(() => useColors());
     let res: any;
@@ -99,5 +103,4 @@ describe('useColors', () => {
     expect(res).toEqual(mockPageable);
     expect(result.current.loading).toBe(false);
   });
-
 });

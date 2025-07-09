@@ -14,10 +14,27 @@ jest.mock('../../components/shared/Breadcrumb', () => (props: any) => (
 // Mock Filters
 jest.mock('../../components/page/search/Filters', () => (props: any) => (
   <div data-testid="filters">
-    <button data-testid="color-btn" onClick={() => props.setSelectedColor('red')}>Color</button>
-    <button data-testid="size-btn" onClick={() => props.setSelectedSize('L')}>Size</button>
-    <button data-testid="category-btn" onClick={() => props.setSelectedCategory('cat1')}>Category</button>
-    <button data-testid="price-btn" onClick={() => props.setPriceRange([0, 100])}>Price</button>
+    <button
+      data-testid="color-btn"
+      onClick={() => props.setSelectedColor('red')}
+    >
+      Color
+    </button>
+    <button data-testid="size-btn" onClick={() => props.setSelectedSize('L')}>
+      Size
+    </button>
+    <button
+      data-testid="category-btn"
+      onClick={() => props.setSelectedCategory('cat1')}
+    >
+      Category
+    </button>
+    <button
+      data-testid="price-btn"
+      onClick={() => props.setPriceRange([0, 100])}
+    >
+      Price
+    </button>
   </div>
 ));
 
@@ -43,7 +60,7 @@ jest.mock('../../components/page/search/SearchInput', () => (props: any) => (
   <input
     data-testid="search-input"
     value={props.keySearch || ''}
-    onChange={e => props.setKeySearch(e.target.value)}
+    onChange={(e) => props.setKeySearch(e.target.value)}
     placeholder="Search"
   />
 ));
@@ -148,6 +165,9 @@ describe('SearchPage', () => {
     window.scrollTo = jest.fn();
     render(<App />);
     fireEvent.click(screen.getByTestId('pagination'));
-    expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      top: 0,
+      behavior: 'smooth',
+    });
   });
 });

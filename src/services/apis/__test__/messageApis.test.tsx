@@ -57,7 +57,12 @@ describe('messageApis', () => {
     };
     mockGet.mockResolvedValueOnce({ data: mockResponse });
 
-    const res = await messageApis.getMessagesByConversationIdPaginated('c1', 0, 10, ['createdAt,desc']);
+    const res = await messageApis.getMessagesByConversationIdPaginated(
+      'c1',
+      0,
+      10,
+      ['createdAt,desc']
+    );
     expect(mockGet).toHaveBeenCalledWith(
       '/messages/conversation/c1/paginated?page=0&size=10&sort=createdAt%2Cdesc'
     );

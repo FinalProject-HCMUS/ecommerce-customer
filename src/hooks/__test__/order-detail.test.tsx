@@ -33,7 +33,9 @@ describe('useOrderDetails', () => {
   ];
 
   it('fetchOrderDetails should call API and update orderDetails state', async () => {
-    (detailOrderApis.getOrderDetailsByOrderId as jest.Mock).mockResolvedValueOnce({
+    (
+      detailOrderApis.getOrderDetailsByOrderId as jest.Mock
+    ).mockResolvedValueOnce({
       isSuccess: true,
       data: mockOrderDetails,
     });
@@ -49,7 +51,9 @@ describe('useOrderDetails', () => {
   });
 
   it('fetchOrderDetails should use id argument if provided', async () => {
-    (detailOrderApis.getOrderDetailsByOrderId as jest.Mock).mockResolvedValueOnce({
+    (
+      detailOrderApis.getOrderDetailsByOrderId as jest.Mock
+    ).mockResolvedValueOnce({
       isSuccess: true,
       data: mockOrderDetails,
     });
@@ -76,7 +80,9 @@ describe('useOrderDetails', () => {
   });
 
   it('fetchOrderDetails should set loading false and not update orderDetails on error', async () => {
-    (detailOrderApis.getOrderDetailsByOrderId as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (
+      detailOrderApis.getOrderDetailsByOrderId as jest.Mock
+    ).mockRejectedValueOnce(new Error('fail'));
 
     const { result } = renderHook(() => useOrderDetails('o1'));
     await act(async () => {

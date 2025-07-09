@@ -34,7 +34,9 @@ describe('Footer', () => {
       // Section links
       section.links.forEach((_, linkIdx) => {
         expect(
-          screen.getByText(`footer.hyperlink.${sectionIdx}.links.${linkIdx}.label`)
+          screen.getByText(
+            `footer.hyperlink.${sectionIdx}.links.${linkIdx}.label`
+          )
         ).toBeInTheDocument();
       });
     });

@@ -23,7 +23,9 @@ describe('useProductImages', () => {
         updatedBy: 'admin',
       },
     ];
-    (productApis.getProductImagesByProductId as jest.Mock).mockResolvedValueOnce({
+    (
+      productApis.getProductImagesByProductId as jest.Mock
+    ).mockResolvedValueOnce({
       data: mockImages,
     });
 
@@ -37,5 +39,4 @@ describe('useProductImages', () => {
     expect(res).toEqual(mockImages);
     expect(result.current.loading).toBe(false);
   });
-
 });

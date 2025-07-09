@@ -61,7 +61,9 @@ describe('ActivateAccountPage', () => {
   it('renders email input and submit button', () => {
     render(<ActivateAccountPage />);
     expect(screen.getByTestId('email-input')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'btn.sendConfirmationEmail' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'btn.sendConfirmationEmail' })
+    ).toBeInTheDocument();
     expect(screen.getByTestId('mail-icon')).toBeInTheDocument();
   });
 
@@ -72,7 +74,9 @@ describe('ActivateAccountPage', () => {
     fireEvent.blur(input);
     expect(showError).not.toHaveBeenCalledWith('error.emailRequired');
     // Should not call showError for invalid format, just not proceed
-    fireEvent.click(screen.getByRole('button', { name: 'btn.sendConfirmationEmail' }));
+    fireEvent.click(
+      screen.getByRole('button', { name: 'btn.sendConfirmationEmail' })
+    );
     expect(resendUserConfirmationEmail).not.toHaveBeenCalled();
   });
 
@@ -82,13 +86,19 @@ describe('ActivateAccountPage', () => {
     const input = screen.getByTestId('email-input');
     fireEvent.change(input, { target: { value: 'test@example.com' } });
     fireEvent.blur(input);
-    fireEvent.click(screen.getByRole('button', { name: 'btn.sendConfirmationEmail' }));
+    fireEvent.click(
+      screen.getByRole('button', { name: 'btn.sendConfirmationEmail' })
+    );
     await waitFor(() => {
-      expect(resendUserConfirmationEmail).toHaveBeenCalledWith('test@example.com');
+      expect(resendUserConfirmationEmail).toHaveBeenCalledWith(
+        'test@example.com'
+      );
       expect(showSuccess).toHaveBeenCalledWith('success.sendEmailActivation');
     });
     expect(screen.getByText('lbl.checkEmail')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'btn.sendAnother' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'btn.sendAnother' })
+    ).toBeInTheDocument();
   });
 
   it('shows error if resendUserConfirmationEmail fails', async () => {
@@ -97,9 +107,13 @@ describe('ActivateAccountPage', () => {
     const input = screen.getByTestId('email-input');
     fireEvent.change(input, { target: { value: 'test@example.com' } });
     fireEvent.blur(input);
-    fireEvent.click(screen.getByRole('button', { name: 'btn.sendConfirmationEmail' }));
+    fireEvent.click(
+      screen.getByRole('button', { name: 'btn.sendConfirmationEmail' })
+    );
     await waitFor(() => {
-      expect(showError).toHaveBeenCalledWith('success.sendEmailActivationFailed');
+      expect(showError).toHaveBeenCalledWith(
+        'success.sendEmailActivationFailed'
+      );
     });
   });
 
@@ -109,9 +123,13 @@ describe('ActivateAccountPage', () => {
     const input = screen.getByTestId('email-input');
     fireEvent.change(input, { target: { value: 'test@example.com' } });
     fireEvent.blur(input);
-    fireEvent.click(screen.getByRole('button', { name: 'btn.sendConfirmationEmail' }));
+    fireEvent.click(
+      screen.getByRole('button', { name: 'btn.sendConfirmationEmail' })
+    );
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'btn.sendAnother' })).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: 'btn.sendAnother' })
+      ).toBeInTheDocument();
     });
     fireEvent.click(screen.getByRole('button', { name: 'btn.sendAnother' }));
     expect(screen.getByTestId('email-input')).toBeInTheDocument();

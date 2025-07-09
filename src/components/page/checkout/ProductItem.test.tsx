@@ -14,7 +14,10 @@ const mockProduct = {
 describe('ProductItem', () => {
   it('renders product image, name, size, color, price, and quantity', () => {
     render(<ProductItem product={mockProduct} />);
-    expect(screen.getByAltText('Test Product')).toHaveAttribute('src', mockProduct.image);
+    expect(screen.getByAltText('Test Product')).toHaveAttribute(
+      'src',
+      mockProduct.image
+    );
     expect(screen.getByText('Test Product')).toBeInTheDocument();
     expect(screen.getByText('Size: L')).toBeInTheDocument();
     expect(screen.getByText('Color: Red')).toBeInTheDocument();

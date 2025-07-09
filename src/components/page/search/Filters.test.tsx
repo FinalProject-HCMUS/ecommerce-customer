@@ -32,7 +32,7 @@ jest.mock('antd', () => ({
       min={props.min}
       max={props.max}
       value={props.value[1]}
-      onChange={e => props.onChange([props.value[0], Number(e.target.value)])}
+      onChange={(e) => props.onChange([props.value[0], Number(e.target.value)])}
     />
   ),
 }));
@@ -48,16 +48,70 @@ jest.mock('../../../context/settingContext', () => ({
 }));
 
 const categories = [
-  { id: 'cat1', name: 'Shirts', description: '', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: 'cat2', name: 'Pants', description: '', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: 'cat1',
+    name: 'Shirts',
+    description: '',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: 'cat2',
+    name: 'Pants',
+    description: '',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 const colors = [
-  { id: 'col1', name: 'Red', code: '#ff0000', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: 'col2', name: 'Blue', code: '#0000ff', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: 'col1',
+    name: 'Red',
+    code: '#ff0000',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: 'col2',
+    name: 'Blue',
+    code: '#0000ff',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 const sizes = [
-  { id: 'sz1', name: 'M', minHeight: 0, maxHeight: 0, minWeight: 0, maxWeight: 0, createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: 'sz2', name: 'L', minHeight: 0, maxHeight: 0, minWeight: 0, maxWeight: 0, createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: 'sz1',
+    name: 'M',
+    minHeight: 0,
+    maxHeight: 0,
+    minWeight: 0,
+    maxWeight: 0,
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: 'sz2',
+    name: 'L',
+    minHeight: 0,
+    maxHeight: 0,
+    minWeight: 0,
+    maxWeight: 0,
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 
 describe('Filters', () => {
@@ -86,7 +140,9 @@ describe('Filters', () => {
 
   it('renders categories and handles category selection', () => {
     const setSelectedCategory = jest.fn();
-    render(<Filters {...defaultProps} setSelectedCategory={setSelectedCategory} />);
+    render(
+      <Filters {...defaultProps} setSelectedCategory={setSelectedCategory} />
+    );
     expect(screen.getByText('Shirts')).toBeInTheDocument();
     expect(screen.getByText('Pants')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Shirts'));

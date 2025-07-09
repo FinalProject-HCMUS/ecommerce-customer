@@ -3,7 +3,11 @@ import BlogPost from './BlogPost';
 
 // Mock react-router-dom Link
 jest.mock('react-router-dom', () => ({
-  Link: ({ to, children, ...props }: any) => <a href={to} {...props}>{children}</a>,
+  Link: ({ to, children, ...props }: any) => (
+    <a href={to} {...props}>
+      {children}
+    </a>
+  ),
 }));
 
 // Mock formatDate
@@ -28,9 +32,15 @@ describe('BlogPost', () => {
     render(<BlogPost post={mockPost} index={0} />);
     expect(screen.getByText('Blog Title')).toBeInTheDocument();
     expect(screen.getByText('Hello world!')).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /blog title/i })).toHaveAttribute('src', mockPost.image);
-    expect(screen.getByText('formatted-2024-07-01T00:00:00Z')).toBeInTheDocument();
-    expect(screen.getAllByRole('link', { name: /blog title/i })[0]).toHaveAttribute('href', '/blog/1');
+    expect(screen.getByRole('img', { name: /blog title/i })).toHaveAttribute(
+      'src',
+      mockPost.image
+    );
+    expect(
+      screen.getByText('formatted-2024-07-01T00:00:00Z')
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('link', { name: /blog title/i })[0]
+    ).toHaveAttribute('href', '/blog/1');
   });
-
 });

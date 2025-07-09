@@ -20,7 +20,7 @@ describe('colorApis', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  
+
   it('getColorById should call client.get with correct URL and return data', async () => {
     const mockData = {
       timestamp: '2024-07-06T12:00:00Z',

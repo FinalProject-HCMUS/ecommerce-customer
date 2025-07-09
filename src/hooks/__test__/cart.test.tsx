@@ -26,7 +26,9 @@ describe('useCart', () => {
       userId: 'u1',
       itemId: 'i1',
     };
-    (cartApis.getCartItemById as jest.Mock).mockResolvedValueOnce({ data: mockCartItem });
+    (cartApis.getCartItemById as jest.Mock).mockResolvedValueOnce({
+      data: mockCartItem,
+    });
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -40,7 +42,9 @@ describe('useCart', () => {
   });
 
   it('fetchCartItemById should return null on error', async () => {
-    (cartApis.getCartItemById as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (cartApis.getCartItemById as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -64,7 +68,9 @@ describe('useCart', () => {
         itemId: 'i1',
       },
     ];
-    (cartApis.getCartItemsByUserId as jest.Mock).mockResolvedValueOnce({ data: mockCartItems });
+    (cartApis.getCartItemsByUserId as jest.Mock).mockResolvedValueOnce({
+      data: mockCartItems,
+    });
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -88,7 +94,9 @@ describe('useCart', () => {
       userId: 'u1',
       itemId: 'i1',
     };
-    (cartApis.createCartItem as jest.Mock).mockResolvedValueOnce({ data: mockCartItem });
+    (cartApis.createCartItem as jest.Mock).mockResolvedValueOnce({
+      data: mockCartItem,
+    });
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -102,12 +110,18 @@ describe('useCart', () => {
   });
 
   it('addCartItem should return null on error', async () => {
-    (cartApis.createCartItem as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (cartApis.createCartItem as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useCart());
     let res: any;
     await act(async () => {
-      res = await result.current.addCartItem({ quantity: 1, userId: 'u1', itemId: 'i1' });
+      res = await result.current.addCartItem({
+        quantity: 1,
+        userId: 'u1',
+        itemId: 'i1',
+      });
     });
 
     expect(res).toBeNull();
@@ -125,7 +139,9 @@ describe('useCart', () => {
       userId: 'u1',
       itemId: 'i1',
     };
-    (cartApis.updateCartItem as jest.Mock).mockResolvedValueOnce({ data: mockCartItem });
+    (cartApis.updateCartItem as jest.Mock).mockResolvedValueOnce({
+      data: mockCartItem,
+    });
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -138,7 +154,9 @@ describe('useCart', () => {
   });
 
   it('modifyCartItem should return null on error', async () => {
-    (cartApis.updateCartItem as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (cartApis.updateCartItem as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -163,7 +181,9 @@ describe('useCart', () => {
   });
 
   it('removeCartItem should return false on error', async () => {
-    (cartApis.deleteCartItem as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (cartApis.deleteCartItem as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -175,7 +195,9 @@ describe('useCart', () => {
   });
 
   it('removeCartItemByUserAndItem should call deleteCartItemByUserIdAndItemId and return true', async () => {
-    (cartApis.deleteCartItemByUserIdAndItemId as jest.Mock).mockResolvedValueOnce({});
+    (
+      cartApis.deleteCartItemByUserIdAndItemId as jest.Mock
+    ).mockResolvedValueOnce({});
 
     const { result } = renderHook(() => useCart());
     let res: any;
@@ -183,13 +205,18 @@ describe('useCart', () => {
       res = await result.current.removeCartItemByUserAndItem('u1', 'i1');
     });
 
-    expect(cartApis.deleteCartItemByUserIdAndItemId).toHaveBeenCalledWith('u1', 'i1');
+    expect(cartApis.deleteCartItemByUserIdAndItemId).toHaveBeenCalledWith(
+      'u1',
+      'i1'
+    );
     expect(res).toBe(true);
     expect(result.current.loading).toBe(false);
   });
 
   it('removeCartItemByUserAndItem should return false on error', async () => {
-    (cartApis.deleteCartItemByUserIdAndItemId as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (
+      cartApis.deleteCartItemByUserIdAndItemId as jest.Mock
+    ).mockRejectedValueOnce(new Error('fail'));
 
     const { result } = renderHook(() => useCart());
     let res: any;

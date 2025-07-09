@@ -112,7 +112,9 @@ describe('ProfileForm', () => {
         cancelEdit={jest.fn()}
       />
     );
-    fireEvent.change(screen.getByTestId('firstName'), { target: { value: 'Jane' } });
+    fireEvent.change(screen.getByTestId('firstName'), {
+      target: { value: 'Jane' },
+    });
     expect(handleChange).toHaveBeenCalled();
   });
 

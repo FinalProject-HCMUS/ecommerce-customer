@@ -22,7 +22,9 @@ jest.mock('lucide-react', () => ({
 // Mock EmptyState
 jest.mock('../../components/page/order/EmptyState', () => (props: any) => (
   <div data-testid="empty-state">
-    <button data-testid="clear-search" onClick={props.onClearSearch}>Clear</button>
+    <button data-testid="clear-search" onClick={props.onClearSearch}>
+      Clear
+    </button>
     {props.searchTerm}
   </div>
 ));
@@ -40,7 +42,9 @@ jest.mock('../../components/page/order/StatusBadge', () => (props: any) => (
 // Mock OrderCard
 jest.mock('../../components/page/order/OrderCard', () => (props: any) => (
   <div data-testid="order-card">
-    <button data-testid="view-status" onClick={props.onViewStatus}>View Status</button>
+    <button data-testid="view-status" onClick={props.onViewStatus}>
+      View Status
+    </button>
     {props.order.id}
   </div>
 ));
@@ -93,7 +97,9 @@ describe('OrdersPage', () => {
   it('renders search and filter UI', () => {
     render(<OrdersPage />);
     expect(screen.getByTestId('search-icon')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('order.searchOrders')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('order.searchOrders')
+    ).toBeInTheDocument();
     expect(screen.getByTestId('filter-icon')).toBeInTheDocument();
     expect(screen.getByTestId('chevron-icon')).toBeInTheDocument();
   });

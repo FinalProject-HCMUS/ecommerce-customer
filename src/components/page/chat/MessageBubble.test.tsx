@@ -21,7 +21,9 @@ describe('MessageBubble', () => {
   it('renders user message with correct content and time', () => {
     render(<MessageBubble message={baseMessage} />);
     expect(screen.getByText('Hello, world!')).toBeInTheDocument();
-    expect(screen.getByText('formatted-2024-07-01T12:34:00Z')).toBeInTheDocument();
+    expect(
+      screen.getByText('formatted-2024-07-01T12:34:00Z')
+    ).toBeInTheDocument();
     // Should not render avatar for user
     expect(screen.queryByAltText('User avatar')).not.toBeInTheDocument();
   });
@@ -29,7 +31,9 @@ describe('MessageBubble', () => {
   it('renders admin message with avatar, content, and time', () => {
     render(<MessageBubble message={{ ...baseMessage, role: 'admin' }} />);
     expect(screen.getByText('Hello, world!')).toBeInTheDocument();
-    expect(screen.getByText('formatted-2024-07-01T12:34:00Z')).toBeInTheDocument();
+    expect(
+      screen.getByText('formatted-2024-07-01T12:34:00Z')
+    ).toBeInTheDocument();
     // Should render avatar for admin
     expect(screen.getByAltText('User avatar')).toBeInTheDocument();
   });

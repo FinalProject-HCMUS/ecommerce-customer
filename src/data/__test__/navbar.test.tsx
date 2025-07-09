@@ -5,7 +5,7 @@ describe('navbar data', () => {
     expect(Array.isArray(navbarLinks)).toBe(true);
     expect(navbarLinks.length).toBeGreaterThan(0);
 
-    navbarLinks.forEach(link => {
+    navbarLinks.forEach((link) => {
       expect(link).toHaveProperty('label');
       expect(typeof link.label).toBe('string');
       expect(link).toHaveProperty('path');
@@ -15,7 +15,7 @@ describe('navbar data', () => {
     });
 
     // Check for some expected links
-    expect(navbarLinks.map(l => l.label)).toEqual(
+    expect(navbarLinks.map((l) => l.label)).toEqual(
       expect.arrayContaining(['products', 'chat', 'policy', 'blog', 'orders'])
     );
   });
@@ -31,6 +31,10 @@ describe('navbar data', () => {
   });
 
   test('should match snapshot', () => {
-    expect({ navbarLinks, shopName, navbarSearchPlaceholder }).toMatchSnapshot();
+    expect({
+      navbarLinks,
+      shopName,
+      navbarSearchPlaceholder,
+    }).toMatchSnapshot();
   });
 });

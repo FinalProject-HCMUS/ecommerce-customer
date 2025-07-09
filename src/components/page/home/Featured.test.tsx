@@ -8,16 +8,22 @@ jest.mock('../../../helpers/i18n', () => ({
 }));
 
 // Mock shopData
-jest.mock('../../../locales/en/shopData.json', () => ({
-  about: {
-    title: 'About Us',
-    description: 'About description',
-    image: 'https://example.com/about.jpg',
-  },
-}), { virtual: true });
+jest.mock(
+  '../../../locales/en/shopData.json',
+  () => ({
+    about: {
+      title: 'About Us',
+      description: 'About description',
+      image: 'https://example.com/about.jpg',
+    },
+  }),
+  { virtual: true }
+);
 
 // Mock image import
-jest.mock('../../../assets/images/about/about.png', () => 'mock-about-img', { virtual: true });
+jest.mock('../../../assets/images/about/about.png', () => 'mock-about-img', {
+  virtual: true,
+});
 
 // Mock Link from react-router-dom
 jest.mock('react-router-dom', () => ({

@@ -2,24 +2,38 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import ProductInfo from './ProductInfo';
 
 // Mock child components and t function
-jest.mock('../../shared/RatingStars', () => () => <div data-testid="rating-stars" />);
+jest.mock('../../shared/RatingStars', () => () => (
+  <div data-testid="rating-stars" />
+));
 jest.mock('./PriceDisplay', () => () => <div data-testid="price-display" />);
 jest.mock('./ColorSelector', () => (props: any) => (
-  <button data-testid="color-selector" onClick={() => props.onChange('color2')}>ColorSelector</button>
+  <button data-testid="color-selector" onClick={() => props.onChange('color2')}>
+    ColorSelector
+  </button>
 ));
 jest.mock('./SizeSelector', () => (props: any) => (
-  <button data-testid="size-selector" onClick={() => props.onChange('size2')}>SizeSelector</button>
+  <button data-testid="size-selector" onClick={() => props.onChange('size2')}>
+    SizeSelector
+  </button>
 ));
 jest.mock('../../shared/AddToCartButton', () => (props: any) => (
-  <button data-testid="add-to-cart" onClick={props.onClick} disabled={props.isAdding}>
+  <button
+    data-testid="add-to-cart"
+    onClick={props.onClick}
+    disabled={props.isAdding}
+  >
     {props.isAdding ? 'Adding...' : 'Add to Cart'}
   </button>
 ));
 jest.mock('../../shared/QuantityControl', () => (props: any) => (
   <div>
-    <button data-testid="decrement" onClick={props.onDecrement}>-</button>
+    <button data-testid="decrement" onClick={props.onDecrement}>
+      -
+    </button>
     <span data-testid="quantity">{props.quantity}</span>
-    <button data-testid="increment" onClick={props.onIncrement}>+</button>
+    <button data-testid="increment" onClick={props.onIncrement}>
+      +
+    </button>
   </div>
 ));
 jest.mock('../../../helpers/i18n', () => ({
@@ -47,13 +61,51 @@ const mockProduct = {
 };
 
 const mockColors = [
-  { id: 'color1', name: 'Red', code: '#ff0000', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: 'color2', name: 'Blue', code: '#0000ff', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: 'color1',
+    name: 'Red',
+    code: '#ff0000',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: 'color2',
+    name: 'Blue',
+    code: '#0000ff',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 
 const mockSizes = [
-  { id: 'size1', name: 'M', minHeight: 0, maxHeight: 0, minWeight: 0, maxWeight: 0, createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: 'size2', name: 'L', minHeight: 0, maxHeight: 0, minWeight: 0, maxWeight: 0, createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: 'size1',
+    name: 'M',
+    minHeight: 0,
+    maxHeight: 0,
+    minWeight: 0,
+    maxWeight: 0,
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: 'size2',
+    name: 'L',
+    minHeight: 0,
+    maxHeight: 0,
+    minWeight: 0,
+    maxWeight: 0,
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 
 const mockProductColorSize = [

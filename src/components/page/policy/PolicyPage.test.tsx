@@ -20,9 +20,15 @@ describe('PolicyPage', () => {
   it('renders breadcrumb and policy content', () => {
     render(<PolicyPage />);
     expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
-    expect(screen.getByTestId('breadcrumb')).toHaveTextContent('breadcrumb.home');
-    expect(screen.getByTestId('breadcrumb')).toHaveTextContent('breadcrumb.policy');
+    expect(screen.getByTestId('breadcrumb')).toHaveTextContent(
+      'breadcrumb.home'
+    );
+    expect(screen.getByTestId('breadcrumb')).toHaveTextContent(
+      'breadcrumb.policy'
+    );
     expect(screen.getByTestId('policy-content')).toBeInTheDocument();
-    expect(screen.getByTestId('policy-content')).toHaveTextContent('lbl.policy');
+    expect(screen.getByTestId('policy-content')).toHaveTextContent(
+      'lbl.policy'
+    );
   });
 });

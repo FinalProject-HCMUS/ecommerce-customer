@@ -13,7 +13,9 @@ describe('ProductDescription', () => {
   });
 
   it('renders HTML content from description', () => {
-    render(<ProductDescription description="<p><b>Bold text</b> and <i>italic</i></p>" />);
+    render(
+      <ProductDescription description="<p><b>Bold text</b> and <i>italic</i></p>" />
+    );
     expect(screen.getByText('Bold text')).toBeInTheDocument();
     expect(screen.getByText('italic')).toBeInTheDocument();
   });

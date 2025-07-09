@@ -54,7 +54,9 @@ describe('useProducts', () => {
       sort: { sorted: false, unsorted: true, empty: true },
       empty: false,
     };
-    (productApis.getAllProducts as jest.Mock).mockResolvedValueOnce({ data: mockPageable });
+    (productApis.getAllProducts as jest.Mock).mockResolvedValueOnce({
+      data: mockPageable,
+    });
 
     const { result } = renderHook(() => useProducts());
     let res: any;
@@ -63,7 +65,15 @@ describe('useProducts', () => {
     });
 
     expect(productApis.getAllProducts).toHaveBeenCalledWith(
-      0, 16, undefined, undefined, undefined, undefined, undefined, undefined, undefined
+      0,
+      16,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined
     );
     expect(res).toEqual(mockPageable);
     expect(result.current.loading).toBe(false);
@@ -89,7 +99,9 @@ describe('useProducts', () => {
       createdBy: 'admin',
       updatedBy: 'admin',
     };
-    (productApis.getProductById as jest.Mock).mockResolvedValueOnce({ data: mockProduct });
+    (productApis.getProductById as jest.Mock).mockResolvedValueOnce({
+      data: mockProduct,
+    });
 
     const { result } = renderHook(() => useProducts());
     let res: any;
@@ -116,7 +128,9 @@ describe('useProducts', () => {
         },
       ],
     };
-    (productApis.getTopProducts as jest.Mock).mockResolvedValueOnce({ data: mockTopProducts });
+    (productApis.getTopProducts as jest.Mock).mockResolvedValueOnce({
+      data: mockTopProducts,
+    });
 
     const { result } = renderHook(() => useProducts());
     let res: any;

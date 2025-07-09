@@ -64,7 +64,10 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <Link to="/cart">
-                  <button data-testid="cart-button" className="p-2 hover:text-gray-600 transition-colors">
+                  <button
+                    data-testid="cart-button"
+                    className="p-2 hover:text-gray-600 transition-colors"
+                  >
                     <FiShoppingCart size={20} />
                   </button>
                 </Link>
@@ -95,24 +98,18 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <nav className="flex flex-col space-y-4">
-             {navbarLinks.map((link) => {
+              {navbarLinks.map((link) => {
                 // Conditionally render links based on authentication
                 if (link.authenticate && !isAuthenticated) {
                   return null; // Hide links that require authentication if not authenticated
                 }
                 return (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className="font-medium"
-                  >
+                  <Link key={link.path} to={link.path} className="font-medium">
                     {t('navbar.' + link.label)}
                   </Link>
                 );
               })}
             </nav>
-
-          
           </div>
         )}
       </div>

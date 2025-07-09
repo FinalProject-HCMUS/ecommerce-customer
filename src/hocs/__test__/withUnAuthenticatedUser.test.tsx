@@ -14,11 +14,15 @@ jest.mock('react-router-dom', () => {
   const actual = jest.requireActual('react-router-dom');
   return {
     ...actual,
-    Navigate: ({ to }: { to: string }) => <div data-testid="navigate">Navigate to {to}</div>,
+    Navigate: ({ to }: { to: string }) => (
+      <div data-testid="navigate">Navigate to {to}</div>
+    ),
   };
 });
 
-const DummyComponent: React.FC = () => <div data-testid="dummy">UnAuthenticated Content</div>;
+const DummyComponent: React.FC = () => (
+  <div data-testid="dummy">UnAuthenticated Content</div>
+);
 const WrappedComponent = withUnAuthenticatedUser(DummyComponent);
 
 describe('withUnAuthenticatedUser HOC', () => {
@@ -27,8 +31,10 @@ describe('withUnAuthenticatedUser HOC', () => {
   });
 
   test('renders wrapped component when not authenticated', () => {
-    ((useSelector as unknown) as jest.Mock).mockImplementation(cb =>
-      cb({ auth: { isAuthenticated: false, userInfo: null, accessToken: null } })
+    (useSelector as unknown as jest.Mock).mockImplementation((cb) =>
+      cb({
+        auth: { isAuthenticated: false, userInfo: null, accessToken: null },
+      })
     );
 
     const { getByTestId, queryByTestId } = render(
@@ -42,7 +48,7 @@ describe('withUnAuthenticatedUser HOC', () => {
   });
 
   test('redirects to home when authenticated', () => {
-    ((useSelector as unknown) as jest.Mock).mockImplementation(cb =>
+    (useSelector as unknown as jest.Mock).mockImplementation((cb) =>
       cb({
         auth: {
           isAuthenticated: true,

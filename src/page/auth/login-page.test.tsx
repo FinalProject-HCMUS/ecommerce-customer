@@ -16,11 +16,18 @@ describe('LoginPage', () => {
 
   test('renders with correct container structure', () => {
     const { container } = render(<LoginPage />);
-    
+
     // Check the outer container
     const outerContainer = container.firstChild;
-    expect(outerContainer).toHaveClass('flex', 'items-center', 'justify-center', 'bg-white', 'my-12', 'p-4');
-    
+    expect(outerContainer).toHaveClass(
+      'flex',
+      'items-center',
+      'justify-center',
+      'bg-white',
+      'my-12',
+      'p-4'
+    );
+
     // Check the inner container
     const innerContainer = outerContainer?.firstChild;
     expect(innerContainer).toHaveClass('w-full', 'max-w-md');
@@ -28,19 +35,19 @@ describe('LoginPage', () => {
 
   test('renders the LoginForm component', () => {
     render(<LoginPage />);
-    
+
     // Check that the LoginForm is rendered
     const loginForm = screen.getByTestId('mock-login-form');
     expect(loginForm).toBeInTheDocument();
     expect(loginForm).toHaveTextContent('Login Form Component');
-    
+
     // Check that LoginForm is inside the correct container
     const loginFormParent = loginForm.parentElement;
     expect(loginFormParent).toHaveClass('w-full', 'max-w-md');
   });
 
-    test('matches snapshot', () => {
-      const { container } = render(<LoginPage />);
-      expect(container).toMatchSnapshot();
-    });
+  test('matches snapshot', () => {
+    const { container } = render(<LoginPage />);
+    expect(container).toMatchSnapshot();
+  });
 });

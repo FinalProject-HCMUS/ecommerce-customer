@@ -9,7 +9,9 @@ jest.mock('../../../helpers/i18n', () => ({
 }));
 
 // Mock LanguageSwitcher and UserDropdown to simple components for isolation
-jest.mock('../LanguageSwitcher', () => () => <div data-testid="language-switcher" />);
+jest.mock('../LanguageSwitcher', () => () => (
+  <div data-testid="language-switcher" />
+));
 jest.mock('../UserDropdown', () => () => <div data-testid="user-dropdown" />);
 
 // Mock useSelector globally
@@ -21,10 +23,27 @@ jest.mock('react-redux', () => ({
 
 const renderWithProviders = (isAuthenticated = false) => {
   mockUseSelector.mockImplementation((selector: any) =>
-    selector({ auth: { isAuthenticated, userInfo: { firstName: 'Test', lastName: 'User', email: 'test@example.com' } } })
+    selector({
+      auth: {
+        isAuthenticated,
+        userInfo: {
+          firstName: 'Test',
+          lastName: 'User',
+          email: 'test@example.com',
+        },
+      },
+    })
   );
   return render(
-    <Provider store={{ getState: () => ({ auth: { isAuthenticated } }), subscribe: () => {}, dispatch: () => {} } as any}>
+    <Provider
+      store={
+        {
+          getState: () => ({ auth: { isAuthenticated } }),
+          subscribe: () => {},
+          dispatch: () => {},
+        } as any
+      }
+    >
       <MemoryRouter>
         <Navbar />
       </MemoryRouter>
@@ -58,7 +77,7 @@ describe('Navbar', () => {
   it('shows cart and user dropdown when authenticated', () => {
     renderWithProviders(true);
     expect(screen.getByTestId('user-dropdown')).toBeInTheDocument();
-    expect(screen.getByTestId('cart-button')).toBeInTheDocument();// Cart button (icon only)
+    expect(screen.getByTestId('cart-button')).toBeInTheDocument(); // Cart button (icon only)
     // Authenticated links should be visible
     expect(screen.getByText('navbar.chat')).toBeInTheDocument();
     expect(screen.getByText('navbar.orders')).toBeInTheDocument();

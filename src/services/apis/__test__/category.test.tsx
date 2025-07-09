@@ -56,7 +56,9 @@ describe('category apis', () => {
     (client.get as jest.Mock).mockResolvedValue({ data: mockData });
 
     const result = await getAllCategories(0, 10, ['name,asc']);
-    expect(client.get).toHaveBeenCalledWith('/categories?page=0&size=10&sort=name,asc');
+    expect(client.get).toHaveBeenCalledWith(
+      '/categories?page=0&size=10&sort=name,asc'
+    );
     expect(result).toEqual(mockData);
   });
 
@@ -109,7 +111,9 @@ describe('category apis', () => {
   it('should throw error if client.get rejects', async () => {
     (client.get as jest.Mock).mockRejectedValue(new Error('Network error'));
     await expect(getAllCategories()).rejects.toThrow('Network error');
-    await expect(getAllCategoriesWithoutPagination()).rejects.toThrow('Network error');
+    await expect(getAllCategoriesWithoutPagination()).rejects.toThrow(
+      'Network error'
+    );
     await expect(getCategoryById('cat1')).rejects.toThrow('Network error');
   });
 });

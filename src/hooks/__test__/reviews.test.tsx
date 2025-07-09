@@ -52,11 +52,27 @@ describe('useReviews', () => {
     const { result } = renderHook(() => useReviews());
     let res: any;
     await act(async () => {
-      res = await result.current.fetchReviews(0, 10, ['createdAt,desc'], 'search', 4, 5, 'od1', 'p1');
+      res = await result.current.fetchReviews(
+        0,
+        10,
+        ['createdAt,desc'],
+        'search',
+        4,
+        5,
+        'od1',
+        'p1'
+      );
     });
 
     expect(reviewApis.getAllReviews).toHaveBeenCalledWith(
-      0, 10, ['createdAt,desc'], 'search', 4, 5, 'od1', 'p1'
+      0,
+      10,
+      ['createdAt,desc'],
+      'search',
+      4,
+      5,
+      'od1',
+      'p1'
     );
     expect(result.current.reviews).toEqual(mockPageable.content);
     expect(result.current.pageable).toEqual(mockPageable);
@@ -83,7 +99,9 @@ describe('useReviews', () => {
   });
 
   it('fetchReviews should set error on exception', async () => {
-    (reviewApis.getAllReviews as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (reviewApis.getAllReviews as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useReviews());
     let res: any;
@@ -170,7 +188,9 @@ describe('useCreateReview', () => {
   });
 
   it('submitReview should set error on exception', async () => {
-    (reviewApis.createReview as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (reviewApis.createReview as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useCreateReview());
     let res: any;

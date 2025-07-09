@@ -16,8 +16,19 @@ describe('authApis', () => {
   });
 
   it('login should call client.post with correct args and return data', async () => {
-    const mockData = { accessToken: 'token', accessTokenExpiresAt: 123, refreshToken: 'refresh' };
-    mockPost.mockResolvedValueOnce({ data: { timestamp: '', httpStatus: 'OK', isSuccess: true, data: mockData } });
+    const mockData = {
+      accessToken: 'token',
+      accessTokenExpiresAt: 123,
+      refreshToken: 'refresh',
+    };
+    mockPost.mockResolvedValueOnce({
+      data: {
+        timestamp: '',
+        httpStatus: 'OK',
+        isSuccess: true,
+        data: mockData,
+      },
+    });
     const req = { email: 'a', password: 'b' };
     const res = await authApis.login(req);
     expect(mockPost).toHaveBeenCalledWith('/auth/login', req);
@@ -25,8 +36,19 @@ describe('authApis', () => {
   });
 
   it('refreshToken should call client.post with correct args and return data', async () => {
-    const mockData = { accessToken: 'token', accessTokenExpiresAt: 123, refreshToken: 'refresh' };
-    mockPost.mockResolvedValueOnce({ data: { timestamp: '', httpStatus: 'OK', isSuccess: true, data: mockData } });
+    const mockData = {
+      accessToken: 'token',
+      accessTokenExpiresAt: 123,
+      refreshToken: 'refresh',
+    };
+    mockPost.mockResolvedValueOnce({
+      data: {
+        timestamp: '',
+        httpStatus: 'OK',
+        isSuccess: true,
+        data: mockData,
+      },
+    });
     const req = { refreshToken: 'refresh' };
     const res = await authApis.refreshToken(req);
     expect(mockPost).toHaveBeenCalledWith('/auth/refresh-token', req);
@@ -34,7 +56,9 @@ describe('authApis', () => {
   });
 
   it('logout should call client.post with correct args and return data', async () => {
-    mockPost.mockResolvedValueOnce({ data: { timestamp: '', httpStatus: 'OK', isSuccess: true } });
+    mockPost.mockResolvedValueOnce({
+      data: { timestamp: '', httpStatus: 'OK', isSuccess: true },
+    });
     const req = { accessToken: 'token', refreshToken: 'refresh' };
     const res = await authApis.logout(req);
     expect(mockPost).toHaveBeenCalledWith('/auth/logout', req);
@@ -42,19 +66,21 @@ describe('authApis', () => {
   });
 
   it('validateToken should call client.post with correct args and return data', async () => {
-    mockPost.mockResolvedValueOnce({ data: { timestamp: '', httpStatus: 'OK', isSuccess: true } });
+    mockPost.mockResolvedValueOnce({
+      data: { timestamp: '', httpStatus: 'OK', isSuccess: true },
+    });
     const header = 'Bearer token';
     const res = await authApis.validateToken(header);
-    expect(mockPost).toHaveBeenCalledWith(
-      '/auth/validate-token',
-      null,
-      { headers: { Authorization: header } }
-    );
+    expect(mockPost).toHaveBeenCalledWith('/auth/validate-token', null, {
+      headers: { Authorization: header },
+    });
     expect(res.isSuccess).toBe(true);
   });
 
   it('confirmEmail should call client.post with correct args and return data', async () => {
-    mockPost.mockResolvedValueOnce({ data: { timestamp: '', httpStatus: 'OK', isSuccess: true } });
+    mockPost.mockResolvedValueOnce({
+      data: { timestamp: '', httpStatus: 'OK', isSuccess: true },
+    });
     const token = 'abc123';
     const res = await authApis.confirmEmail(token);
     expect(mockPost).toHaveBeenCalledWith(
@@ -65,7 +91,9 @@ describe('authApis', () => {
   });
 
   it('resendConfirmationEmail should call client.post with correct args and return data', async () => {
-    mockPost.mockResolvedValueOnce({ data: { timestamp: '', httpStatus: 'OK', isSuccess: true } });
+    mockPost.mockResolvedValueOnce({
+      data: { timestamp: '', httpStatus: 'OK', isSuccess: true },
+    });
     const email = 'test@example.com';
     const res = await authApis.resendConfirmationEmail(email);
     expect(mockPost).toHaveBeenCalledWith(
@@ -76,8 +104,19 @@ describe('authApis', () => {
   });
 
   it('outboundAuthenticate should call client.post with correct args and return data', async () => {
-    const mockData = { accessToken: 'token', accessTokenExpiresAt: 123, refreshToken: 'refresh' };
-    mockPost.mockResolvedValueOnce({ data: { timestamp: '', httpStatus: 'OK', isSuccess: true, data: mockData } });
+    const mockData = {
+      accessToken: 'token',
+      accessTokenExpiresAt: 123,
+      refreshToken: 'refresh',
+    };
+    mockPost.mockResolvedValueOnce({
+      data: {
+        timestamp: '',
+        httpStatus: 'OK',
+        isSuccess: true,
+        data: mockData,
+      },
+    });
     const code = 'oauth-code';
     const res = await authApis.outboundAuthenticate(code);
     expect(mockPost).toHaveBeenCalledWith(

@@ -34,7 +34,9 @@ describe('useImage', () => {
 
   it('uploadImage should set error if api fails', async () => {
     const mockFile = new File(['dummy'], 'test.png', { type: 'image/png' });
-    (imageApi.uploadImage as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (imageApi.uploadImage as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useImage());
     let res: any;
@@ -49,7 +51,9 @@ describe('useImage', () => {
 
   it('uploadImage should set error if response is not success', async () => {
     const mockFile = new File(['dummy'], 'test.png', { type: 'image/png' });
-    (imageApi.uploadImage as jest.Mock).mockResolvedValueOnce({ isSuccess: false });
+    (imageApi.uploadImage as jest.Mock).mockResolvedValueOnce({
+      isSuccess: false,
+    });
 
     const { result } = renderHook(() => useImage());
     let res: any;
@@ -89,7 +93,9 @@ describe('useImage', () => {
 
   it('deleteImage should set error if api fails', async () => {
     const mockUrl = 'http://img.com/test.png';
-    (imageApi.deleteImage as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (imageApi.deleteImage as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useImage());
     let res: any;
@@ -104,7 +110,9 @@ describe('useImage', () => {
 
   it('deleteImage should set error if response is not success', async () => {
     const mockUrl = 'http://img.com/test.png';
-    (imageApi.deleteImage as jest.Mock).mockResolvedValueOnce({ isSuccess: false });
+    (imageApi.deleteImage as jest.Mock).mockResolvedValueOnce({
+      isSuccess: false,
+    });
 
     const { result } = renderHook(() => useImage());
     let res: any;

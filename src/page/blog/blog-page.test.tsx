@@ -26,7 +26,9 @@ jest.mock('../../components/shared/Pagination', () => (props: any) => (
 // Mock lucide-react icons
 jest.mock('lucide-react', () => ({
   Search: (props: any) => <svg data-testid="search-icon" {...props} />,
-  SlidersHorizontal: (props: any) => <svg data-testid="sliders-icon" {...props} />,
+  SlidersHorizontal: (props: any) => (
+    <svg data-testid="sliders-icon" {...props} />
+  ),
   X: (props: any) => <svg data-testid="x-icon" {...props} />,
   ArrowUpDown: (props: any) => <svg data-testid="arrow-icon" {...props} />,
 }));

@@ -25,7 +25,14 @@ describe('useCheckout', () => {
     const { result } = renderHook(() => useCheckout());
     let res: any;
     await act(async () => {
-      res = await result.current.performCheckout({ firstName: 'John', lastName: 'Doe', phoneNumber: '123', address: 'A', paymentMethod: 'COD', orderDetails: [] });
+      res = await result.current.performCheckout({
+        firstName: 'John',
+        lastName: 'Doe',
+        phoneNumber: '123',
+        address: 'A',
+        paymentMethod: 'COD',
+        orderDetails: [],
+      });
     });
 
     expect(orderApis.checkout).toHaveBeenCalled();
@@ -40,7 +47,14 @@ describe('useCheckout', () => {
     const { result } = renderHook(() => useCheckout());
     let res: any;
     await act(async () => {
-      res = await result.current.performCheckout({ firstName: 'John', lastName: 'Doe', phoneNumber: '123', address: 'A', paymentMethod: 'COD', orderDetails: [] });
+      res = await result.current.performCheckout({
+        firstName: 'John',
+        lastName: 'Doe',
+        phoneNumber: '123',
+        address: 'A',
+        paymentMethod: 'COD',
+        orderDetails: [],
+      });
     });
 
     expect(res).toBeUndefined();
@@ -95,8 +109,6 @@ describe('useOrderSearch', () => {
     sort: { sorted: false, unsorted: true, empty: true },
     empty: false,
   };
-
-
 
   it('setSearchParams should update searchParams and reset page if filter changes', async () => {
     (orderApis.searchOrders as jest.Mock).mockResolvedValue({

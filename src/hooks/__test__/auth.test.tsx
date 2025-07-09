@@ -16,7 +16,11 @@ describe('useAuth', () => {
   });
 
   it('loginUser should call login and return token response', async () => {
-    const mockToken = { accessToken: 'token', accessTokenExpiresAt: 123, refreshToken: 'refresh' };
+    const mockToken = {
+      accessToken: 'token',
+      accessTokenExpiresAt: 123,
+      refreshToken: 'refresh',
+    };
     (authApis.login as jest.Mock).mockResolvedValueOnce({ data: mockToken });
 
     const { result } = renderHook(() => useAuth());
@@ -31,8 +35,14 @@ describe('useAuth', () => {
   });
 
   it('refreshUserToken should call refreshToken and return token response', async () => {
-    const mockToken = { accessToken: 'token', accessTokenExpiresAt: 123, refreshToken: 'refresh' };
-    (authApis.refreshToken as jest.Mock).mockResolvedValueOnce({ data: mockToken });
+    const mockToken = {
+      accessToken: 'token',
+      accessTokenExpiresAt: 123,
+      refreshToken: 'refresh',
+    };
+    (authApis.refreshToken as jest.Mock).mockResolvedValueOnce({
+      data: mockToken,
+    });
 
     const { result } = renderHook(() => useAuth());
     let res: any;
@@ -40,13 +50,17 @@ describe('useAuth', () => {
       res = await result.current.refreshUserToken({ refreshToken: 'refresh' });
     });
 
-    expect(authApis.refreshToken).toHaveBeenCalledWith({ refreshToken: 'refresh' });
+    expect(authApis.refreshToken).toHaveBeenCalledWith({
+      refreshToken: 'refresh',
+    });
     expect(res).toEqual(mockToken);
     expect(result.current.loading).toBe(false);
   });
 
   it('refreshUserToken should return null on error', async () => {
-    (authApis.refreshToken as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (authApis.refreshToken as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useAuth());
     let res: any;
@@ -64,10 +78,16 @@ describe('useAuth', () => {
     const { result } = renderHook(() => useAuth());
     let res: any;
     await act(async () => {
-      res = await result.current.logoutUser({ accessToken: 'a', refreshToken: 'b' });
+      res = await result.current.logoutUser({
+        accessToken: 'a',
+        refreshToken: 'b',
+      });
     });
 
-    expect(authApis.logout).toHaveBeenCalledWith({ accessToken: 'a', refreshToken: 'b' });
+    expect(authApis.logout).toHaveBeenCalledWith({
+      accessToken: 'a',
+      refreshToken: 'b',
+    });
     expect(res).toBe(true);
     expect(result.current.loading).toBe(false);
   });
@@ -78,7 +98,10 @@ describe('useAuth', () => {
     const { result } = renderHook(() => useAuth());
     let res: any;
     await act(async () => {
-      res = await result.current.logoutUser({ accessToken: 'a', refreshToken: 'b' });
+      res = await result.current.logoutUser({
+        accessToken: 'a',
+        refreshToken: 'b',
+      });
     });
 
     expect(res).toBe(false);
@@ -100,7 +123,9 @@ describe('useAuth', () => {
   });
 
   it('validateUserToken should return false on error', async () => {
-    (authApis.validateToken as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (authApis.validateToken as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useAuth());
     let res: any;
@@ -113,8 +138,14 @@ describe('useAuth', () => {
   });
 
   it('authenticateWithCode should call outboundAuthenticate and return token response', async () => {
-    const mockToken = { accessToken: 'token', accessTokenExpiresAt: 123, refreshToken: 'refresh' };
-    (authApis.outboundAuthenticate as jest.Mock).mockResolvedValueOnce({ data: mockToken });
+    const mockToken = {
+      accessToken: 'token',
+      accessTokenExpiresAt: 123,
+      refreshToken: 'refresh',
+    };
+    (authApis.outboundAuthenticate as jest.Mock).mockResolvedValueOnce({
+      data: mockToken,
+    });
 
     const { result } = renderHook(() => useAuth());
     let res: any;
@@ -128,7 +159,9 @@ describe('useAuth', () => {
   });
 
   it('authenticateWithCode should return null on error', async () => {
-    (authApis.outboundAuthenticate as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (authApis.outboundAuthenticate as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useAuth());
     let res: any;

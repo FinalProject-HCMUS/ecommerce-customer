@@ -27,7 +27,9 @@ describe('SettingsService', () => {
     mockGet.mockResolvedValueOnce({ data: mockSettings });
 
     const res = await SettingsService.getAllSystemSettings('ecommerce');
-    expect(mockGet).toHaveBeenCalledWith('/system-settings', { params: { serviceName: 'ecommerce' } });
+    expect(mockGet).toHaveBeenCalledWith('/system-settings', {
+      params: { serviceName: 'ecommerce' },
+    });
     expect(res).toEqual(mockSettings);
   });
 

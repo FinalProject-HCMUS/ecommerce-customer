@@ -6,10 +6,10 @@ import CozeChat from './CozeChat';
 const App: React.FC = () => {
   return (
     <>
-      <CozeChat/>
+      <CozeChat />
       <RouterProvider router={router} />
     </>
-  )
+  );
 };
 
 export default App;

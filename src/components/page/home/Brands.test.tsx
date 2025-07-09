@@ -23,6 +23,8 @@ describe('Brands', () => {
 
   it('renders correct number of brand logo elements', () => {
     render(<Brands />);
-    expect(screen.getAllByText(/VERSACE|ZARA|GUCCI|PRADA|Calvin Klein/)).toHaveLength(5);
+    expect(
+      screen.getAllByText(/VERSACE|ZARA|GUCCI|PRADA|Calvin Klein/)
+    ).toHaveLength(5);
   });
 });

@@ -39,13 +39,7 @@ describe('InputField', () => {
 
   it('calls onChange when input value changes', () => {
     const handleChange = jest.fn();
-    render(
-      <InputField
-        id="test"
-        label="Test"
-        onChange={handleChange}
-      />
-    );
+    render(<InputField id="test" label="Test" onChange={handleChange} />);
     const input = screen.getByLabelText('Test');
     fireEvent.change(input, { target: { value: 'abc' } });
     expect(handleChange).toHaveBeenCalled();

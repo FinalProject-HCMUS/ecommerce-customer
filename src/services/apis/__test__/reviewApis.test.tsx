@@ -56,7 +56,16 @@ describe('reviewApis', () => {
     };
     mockGet.mockResolvedValueOnce({ data: mockResponse });
 
-    const res = await reviewApis.getAllReviews(0, 10, ['createdAt,desc'], 'search', 4, 5, 'od1', 'p1');
+    const res = await reviewApis.getAllReviews(
+      0,
+      10,
+      ['createdAt,desc'],
+      'search',
+      4,
+      5,
+      'od1',
+      'p1'
+    );
     expect(mockGet).toHaveBeenCalledWith(
       '/reviews?page=0&size=10&sort=createdAt%2Cdesc&keyword=search&minRating=4&maxRating=5&orderDetailId=od1&productId=p1'
     );

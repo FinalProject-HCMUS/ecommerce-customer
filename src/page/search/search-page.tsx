@@ -38,8 +38,11 @@ function App() {
 
   const [keySearch, setKeySearch] = useState<string>();
   const [currentPage, setCurrentPage] = useState(0);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, (settings.find((setting) => setting.key === 'MaxPriceFilter')?.value ||
-        20000000) as number]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    0,
+    (settings.find((setting) => setting.key === 'MaxPriceFilter')?.value ||
+      20000000) as number,
+  ]);
   const [selectedColors, setSelectedColors] = useState<string>();
   const [selectedSizes, setSelectedSizes] = useState<string>();
   const [selectedCategories, setSelectedCategories] = useState<string>();

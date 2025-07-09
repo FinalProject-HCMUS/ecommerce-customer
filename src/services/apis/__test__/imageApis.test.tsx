@@ -18,7 +18,9 @@ describe('imageApi', () => {
   });
 
   it('uploadImage should call client.post with correct args and return data', async () => {
-    const mockFile = new File(['dummy content'], 'test.png', { type: 'image/png' });
+    const mockFile = new File(['dummy content'], 'test.png', {
+      type: 'image/png',
+    });
     const mockResponse = {
       timestamp: '',
       httpStatus: 'OK',
@@ -53,10 +55,9 @@ describe('imageApi', () => {
     const imageUrl = 'http://example.com/image.png';
     const res = await imageApi.deleteImage(imageUrl);
 
-    expect(mockDelete).toHaveBeenCalledWith(
-      '/images/delete',
-      { params: { imageUrl } }
-    );
+    expect(mockDelete).toHaveBeenCalledWith('/images/delete', {
+      params: { imageUrl },
+    });
     expect(res).toEqual(mockResponse);
   });
 });

@@ -14,7 +14,11 @@ describe('GeneralButton', () => {
   });
 
   it('applies variant and size classes', () => {
-    render(<GeneralButton variant="secondary" size="lg">Test</GeneralButton>);
+    render(
+      <GeneralButton variant="secondary" size="lg">
+        Test
+      </GeneralButton>
+    );
     const btn = screen.getByRole('button');
     expect(btn.className).toMatch(/bg-gray-200/);
     expect(btn.className).toMatch(/px-5/);

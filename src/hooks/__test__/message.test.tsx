@@ -32,7 +32,9 @@ describe('useMessage', () => {
       totalElements: 1,
       pageable: { pageNumber: 0, pageSize: 10 },
     };
-    (messageApis.getMessagesByConversationIdPaginated as jest.Mock).mockResolvedValueOnce({
+    (
+      messageApis.getMessagesByConversationIdPaginated as jest.Mock
+    ).mockResolvedValueOnce({
       isSuccess: true,
       data: mockPageable,
     });
@@ -42,7 +44,9 @@ describe('useMessage', () => {
       await result.current.fetchMessages('c1', 0, 10, ['createdAt,asc']);
     });
 
-    expect(messageApis.getMessagesByConversationIdPaginated).toHaveBeenCalledWith('c1', 0, 10, ['createdAt,asc']);
+    expect(
+      messageApis.getMessagesByConversationIdPaginated
+    ).toHaveBeenCalledWith('c1', 0, 10, ['createdAt,asc']);
     expect(result.current.messages).toEqual(mockMessages);
     expect(result.current.pagination.page).toBe(0);
     expect(result.current.pagination.totalPages).toBe(2);
@@ -51,7 +55,9 @@ describe('useMessage', () => {
   });
 
   it('fetchMessages should set hasMore false if not success', async () => {
-    (messageApis.getMessagesByConversationIdPaginated as jest.Mock).mockResolvedValueOnce({
+    (
+      messageApis.getMessagesByConversationIdPaginated as jest.Mock
+    ).mockResolvedValueOnce({
       isSuccess: false,
       data: null,
     });

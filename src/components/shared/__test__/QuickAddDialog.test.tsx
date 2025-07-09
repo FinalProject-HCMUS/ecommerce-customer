@@ -3,20 +3,32 @@ import QuickAddDialog from '../product-card/QuickAddDialog';
 
 // Mock child components and hooks
 jest.mock('../../page/detail/ColorSelector', () => (props: any) => (
-  <div data-testid="color-selector" onClick={() => props.onChange('color1')}>ColorSelector</div>
+  <div data-testid="color-selector" onClick={() => props.onChange('color1')}>
+    ColorSelector
+  </div>
 ));
 jest.mock('../../page/detail/SizeSelector', () => (props: any) => (
-  <div data-testid="size-selector" onClick={() => props.onChange('size1')}>SizeSelector</div>
+  <div data-testid="size-selector" onClick={() => props.onChange('size1')}>
+    SizeSelector
+  </div>
 ));
 jest.mock('../QuantityControl', () => (props: any) => (
   <div>
-    <button onClick={props.onDecrement} aria-label="Decrease quantity">-</button>
+    <button onClick={props.onDecrement} aria-label="Decrease quantity">
+      -
+    </button>
     <span>{props.quantity}</span>
-    <button onClick={props.onIncrement} aria-label="Increase quantity">+</button>
+    <button onClick={props.onIncrement} aria-label="Increase quantity">
+      +
+    </button>
   </div>
 ));
 jest.mock('../AddToCartButton', () => (props: any) => (
-  <button onClick={props.onClick} disabled={props.isAdding} data-testid="add-to-cart-btn">
+  <button
+    onClick={props.onClick}
+    disabled={props.isAdding}
+    data-testid="add-to-cart-btn"
+  >
     {props.isAdding ? 'Adding...' : 'Add to cart'}
   </button>
 ));
@@ -26,11 +38,33 @@ jest.mock('../../../hooks/product-color-size', () => ({
       {
         id: 'pcs1',
         quantity: 5,
-        color: { id: 'color1', name: 'Red', code: '#f00', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-        size: { id: 'size1', name: 'M', minHeight: 160, maxHeight: 170, minWeight: 50, maxWeight: 60, createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+        color: {
+          id: 'color1',
+          name: 'Red',
+          code: '#f00',
+          createdAt: '',
+          createdBy: '',
+          updatedAt: '',
+          updatedBy: '',
+        },
+        size: {
+          id: 'size1',
+          name: 'M',
+          minHeight: 160,
+          maxHeight: 170,
+          minWeight: 50,
+          maxWeight: 60,
+          createdAt: '',
+          createdBy: '',
+          updatedAt: '',
+          updatedBy: '',
+        },
         product: { id: 'p1' },
-        createdAt: '', createdBy: '', updatedAt: '', updatedBy: ''
-      }
+        createdAt: '',
+        createdBy: '',
+        updatedAt: '',
+        updatedBy: '',
+      },
     ]),
   }),
 }));
@@ -86,12 +120,16 @@ const product = {
 
 describe('QuickAddDialog', () => {
   it('renders loading state', () => {
-    render(<QuickAddDialog product={product} isOpen={true} onClose={() => {}} />);
+    render(
+      <QuickAddDialog product={product} isOpen={true} onClose={() => {}} />
+    );
     expect(screen.getByText('loading')).toBeInTheDocument();
   });
 
   it('renders product info after loading', async () => {
-    render(<QuickAddDialog product={product} isOpen={true} onClose={() => {}} />);
+    render(
+      <QuickAddDialog product={product} isOpen={true} onClose={() => {}} />
+    );
     await waitFor(() => {
       expect(screen.getByText('Test Product')).toBeInTheDocument();
       expect(screen.getByText('$120')).toBeInTheDocument();
@@ -102,7 +140,9 @@ describe('QuickAddDialog', () => {
   });
 
   it('increments and decrements quantity', async () => {
-    render(<QuickAddDialog product={product} isOpen={true} onClose={() => {}} />);
+    render(
+      <QuickAddDialog product={product} isOpen={true} onClose={() => {}} />
+    );
     await waitFor(() => screen.getByText('Test Product'));
     const increment = screen.getByLabelText('Increase quantity');
     const decrement = screen.getByLabelText('Decrease quantity');
@@ -113,7 +153,9 @@ describe('QuickAddDialog', () => {
   });
 
   it('calls addCartItem when AddToCartButton is clicked', async () => {
-    render(<QuickAddDialog product={product} isOpen={true} onClose={() => {}} />);
+    render(
+      <QuickAddDialog product={product} isOpen={true} onClose={() => {}} />
+    );
     await waitFor(() => screen.getByText('Test Product'));
     // Select color and size
     fireEvent.click(screen.getByTestId('color-selector'));
@@ -127,7 +169,9 @@ describe('QuickAddDialog', () => {
 
   it('calls onClose when close button is clicked', async () => {
     const onClose = jest.fn();
-    render(<QuickAddDialog product={product} isOpen={true} onClose={onClose} />);
+    render(
+      <QuickAddDialog product={product} isOpen={true} onClose={onClose} />
+    );
     await waitFor(() => screen.getByText('Test Product'));
     fireEvent.click(screen.getByRole('button', { name: '' })); // The close (X) button
     expect(onClose).toHaveBeenCalled();

@@ -16,7 +16,7 @@ jest.mock('../../constants/localization', () => ({
 
 describe('formatDate', () => {
   const testDate = '2023-05-15T10:30:00';
-  
+
   it('should format date in Vietnamese format when language is Vietnamese', () => {
     jest.spyOn(localization, 'getCurrentLanguage').mockReturnValue('vi');
     const result = formatDate(testDate);
@@ -30,7 +30,6 @@ describe('formatDate', () => {
     expect(result).toContain('2023');
     expect(result).not.toBe('');
   });
-
 });
 
 describe('formatTime', () => {

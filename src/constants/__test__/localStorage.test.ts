@@ -11,7 +11,7 @@ describe('localStorage constants', () => {
       'EMAIL',
       'USER_INFO',
     ];
-    expectedKeys.forEach(key => {
+    expectedKeys.forEach((key) => {
       expect(localStorageConstants).toHaveProperty(key);
     });
   });

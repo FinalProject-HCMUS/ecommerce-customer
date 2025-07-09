@@ -40,7 +40,9 @@ describe('useConversation', () => {
         updatedBy: 'c1',
       },
     ];
-    (conversationApis.getConversationsByCustomerId as jest.Mock).mockResolvedValueOnce({
+    (
+      conversationApis.getConversationsByCustomerId as jest.Mock
+    ).mockResolvedValueOnce({
       isSuccess: true,
       data: mockConversations,
     });
@@ -50,7 +52,9 @@ describe('useConversation', () => {
       await result.current.fetchCustomerConversations('c1');
     });
 
-    expect(conversationApis.getConversationsByCustomerId).toHaveBeenCalledWith('c1');
+    expect(conversationApis.getConversationsByCustomerId).toHaveBeenCalledWith(
+      'c1'
+    );
     expect(result.current.conversations).toEqual(mockConversations);
     expect(result.current.loading).toBe(false);
   });

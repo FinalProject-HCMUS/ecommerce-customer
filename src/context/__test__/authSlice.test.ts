@@ -1,4 +1,9 @@
-import reducer, { login, logout, updateTokens, updateUserInfo } from '../authSlice';
+import reducer, {
+  login,
+  logout,
+  updateTokens,
+  updateUserInfo,
+} from '../authSlice';
 import localStorageConstants from '../../constants/localStorage';
 import { Role, UserResponse } from '../../interfaces';
 
@@ -40,10 +45,18 @@ describe('authSlice', () => {
     expect(state.refreshAccessToken).toBe('refresh-token');
     expect(state.userInfo).toEqual(userInfo);
 
-    expect(localStorage.getItem(localStorageConstants.TOKEN)).toBe('access-token');
-    expect(localStorage.getItem(localStorageConstants.REFRESH_TOKEN)).toBe('refresh-token');
-    expect(localStorage.getItem(localStorageConstants.EMAIL)).toBe(userInfo.email);
-    expect(localStorage.getItem(localStorageConstants.USER_INFO)).toBe(JSON.stringify(userInfo));
+    expect(localStorage.getItem(localStorageConstants.TOKEN)).toBe(
+      'access-token'
+    );
+    expect(localStorage.getItem(localStorageConstants.REFRESH_TOKEN)).toBe(
+      'refresh-token'
+    );
+    expect(localStorage.getItem(localStorageConstants.EMAIL)).toBe(
+      userInfo.email
+    );
+    expect(localStorage.getItem(localStorageConstants.USER_INFO)).toBe(
+      JSON.stringify(userInfo)
+    );
   });
 
   test('should handle updateUserInfo', () => {
@@ -58,7 +71,9 @@ describe('authSlice', () => {
     const state = reducer(prevState, action);
 
     expect(state.userInfo).toEqual(updatedUser);
-    expect(localStorage.getItem(localStorageConstants.USER_INFO)).toBe(JSON.stringify(updatedUser));
+    expect(localStorage.getItem(localStorageConstants.USER_INFO)).toBe(
+      JSON.stringify(updatedUser)
+    );
   });
 
   test('should handle updateTokens', () => {
@@ -76,15 +91,22 @@ describe('authSlice', () => {
 
     expect(state.accessToken).toBe('new-access-token');
     expect(state.refreshAccessToken).toBe('new-refresh-token');
-    expect(localStorage.getItem(localStorageConstants.TOKEN)).toBe('new-access-token');
-    expect(localStorage.getItem(localStorageConstants.REFRESH_TOKEN)).toBe('new-refresh-token');
+    expect(localStorage.getItem(localStorageConstants.TOKEN)).toBe(
+      'new-access-token'
+    );
+    expect(localStorage.getItem(localStorageConstants.REFRESH_TOKEN)).toBe(
+      'new-refresh-token'
+    );
   });
 
   test('should handle logout', () => {
     localStorage.setItem(localStorageConstants.TOKEN, 'token');
     localStorage.setItem(localStorageConstants.REFRESH_TOKEN, 'refresh');
     localStorage.setItem(localStorageConstants.EMAIL, 'email');
-    localStorage.setItem(localStorageConstants.USER_INFO, JSON.stringify(userInfo));
+    localStorage.setItem(
+      localStorageConstants.USER_INFO,
+      JSON.stringify(userInfo)
+    );
 
     const prevState = {
       isAuthenticated: true,
@@ -100,7 +122,9 @@ describe('authSlice', () => {
     expect(state.userInfo).toBeNull();
 
     expect(localStorage.getItem(localStorageConstants.TOKEN)).toBeNull();
-    expect(localStorage.getItem(localStorageConstants.REFRESH_TOKEN)).toBeNull();
+    expect(
+      localStorage.getItem(localStorageConstants.REFRESH_TOKEN)
+    ).toBeNull();
     expect(localStorage.getItem(localStorageConstants.EMAIL)).toBeNull();
     expect(localStorage.getItem(localStorageConstants.USER_INFO)).toBeNull();
   });

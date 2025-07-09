@@ -14,13 +14,13 @@ describe('statusConfig', () => {
       Status.DELIVERED,
       Status.REFUNDED,
     ];
-    expectedStatuses.forEach(status => {
+    expectedStatuses.forEach((status) => {
       expect(statusConfig).toHaveProperty(status);
     });
   });
 
   test('each status config should have correct structure', () => {
-    Object.values(statusConfig).forEach(cfg => {
+    Object.values(statusConfig).forEach((cfg) => {
       expect(cfg).toHaveProperty('icon');
       expect(cfg).toHaveProperty('color');
       expect(cfg).toHaveProperty('bgColor');

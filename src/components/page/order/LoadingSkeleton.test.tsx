@@ -16,8 +16,11 @@ describe('LoadingSkeleton', () => {
   it('renders skeleton structure', () => {
     const { container } = render(<LoadingSkeleton />);
     // Check for some skeleton elements by class
-    expect(container.getElementsByClassName('animate-pulse').length).toBeGreaterThan(0);
-    expect(container.getElementsByClassName('bg-gray-300').length).toBeGreaterThan(0);
+    expect(
+      container.getElementsByClassName('animate-pulse').length
+    ).toBeGreaterThan(0);
+    expect(
+      container.getElementsByClassName('bg-gray-300').length
+    ).toBeGreaterThan(0);
   });
 });
-

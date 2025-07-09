@@ -31,25 +31,27 @@ describe('productApis', () => {
       },
       numberOfElements: 1,
       size: 10,
-      content: [{
-        id: '1',
-        name: 'Product 1',
-        description: 'desc',
-        cost: 100,
-        total: 10,
-        price: 120,
-        discountPercent: 0,
-        enable: true,
-        inStock: true,
-        mainImageUrl: 'img.png',
-        averageRating: 4.5,
-        reviewCount: 2,
-        categoryId: 'cat1',
-        createdAt: '2023-01-01',
-        updatedAt: '2023-01-02',
-        createdBy: 'admin',
-        updatedBy: 'admin',
-      }],
+      content: [
+        {
+          id: '1',
+          name: 'Product 1',
+          description: 'desc',
+          cost: 100,
+          total: 10,
+          price: 120,
+          discountPercent: 0,
+          enable: true,
+          inStock: true,
+          mainImageUrl: 'img.png',
+          averageRating: 4.5,
+          reviewCount: 2,
+          categoryId: 'cat1',
+          createdAt: '2023-01-01',
+          updatedAt: '2023-01-02',
+          createdBy: 'admin',
+          updatedBy: 'admin',
+        },
+      ],
       number: 0,
       sort: { sorted: false, unsorted: true, empty: true },
       empty: false,
@@ -62,7 +64,17 @@ describe('productApis', () => {
     };
     mockGet.mockResolvedValueOnce({ data: mockResponse });
 
-    const res = await productApis.getAllProducts(0, 10, ['createdAt,desc'], 'search', 'cat1', 100, 200, 'red', 'M');
+    const res = await productApis.getAllProducts(
+      0,
+      10,
+      ['createdAt,desc'],
+      'search',
+      'cat1',
+      100,
+      200,
+      'red',
+      'M'
+    );
     expect(mockGet).toHaveBeenCalledWith('/products', {
       params: {
         page: 0,

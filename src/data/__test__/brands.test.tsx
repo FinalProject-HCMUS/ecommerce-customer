@@ -7,7 +7,7 @@ describe('brands data', () => {
   });
 
   test('each brand should have name and logo properties', () => {
-    brands.forEach(brand => {
+    brands.forEach((brand) => {
       expect(brand).toHaveProperty('name');
       expect(typeof brand.name).toBe('string');
       expect(brand).toHaveProperty('logo');
@@ -16,9 +16,15 @@ describe('brands data', () => {
   });
 
   test('should contain specific brands', () => {
-    const brandNames = brands.map(b => b.name);
+    const brandNames = brands.map((b) => b.name);
     expect(brandNames).toEqual(
-      expect.arrayContaining(['Versace', 'Zara', 'Gucci', 'Prada', 'Calvin Klein'])
+      expect.arrayContaining([
+        'Versace',
+        'Zara',
+        'Gucci',
+        'Prada',
+        'Calvin Klein',
+      ])
     );
   });
 

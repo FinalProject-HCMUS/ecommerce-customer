@@ -25,7 +25,10 @@ describe('MessageInput', () => {
   it('renders input, avatar, and send button', () => {
     render(<MessageInput onSendMessage={jest.fn()} />);
     expect(screen.getByPlaceholderText('Type something')).toBeInTheDocument();
-    expect(screen.getByAltText('Your avatar')).toHaveAttribute('src', mockUserInfo.photo);
+    expect(screen.getByAltText('Your avatar')).toHaveAttribute(
+      'src',
+      mockUserInfo.photo
+    );
     expect(screen.getByRole('button')).toBeDisabled();
   });
 

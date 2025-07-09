@@ -7,8 +7,24 @@ jest.mock('../../../helpers/i18n', () => ({
 }));
 
 const mockColors = [
-  { id: '1', name: 'purple', code: '#800080', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: '2', name: 'yellow', code: '#FFFF00', createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: '1',
+    name: 'purple',
+    code: '#800080',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: '2',
+    name: 'yellow',
+    code: '#FFFF00',
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 
 describe('ColorSelector', () => {

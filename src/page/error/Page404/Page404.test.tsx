@@ -14,8 +14,16 @@ jest.mock('antd', () => ({
 
 // Mock BackToHomeButton and LogoutButton
 jest.mock('../../../components/shared/Button', () => ({
-  BackToHomeButton: (props: any) => <button data-testid="back-home-btn" {...props}>Back Home</button>,
-  LogoutButton: (props: any) => <button data-testid="logout-btn" {...props}>Logout</button>,
+  BackToHomeButton: (props: any) => (
+    <button data-testid="back-home-btn" {...props}>
+      Back Home
+    </button>
+  ),
+  LogoutButton: (props: any) => (
+    <button data-testid="logout-btn" {...props}>
+      Logout
+    </button>
+  ),
 }));
 
 describe('Page404', () => {

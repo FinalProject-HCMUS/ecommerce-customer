@@ -6,21 +6,38 @@ import { MemoryRouter } from 'react-router-dom';
 jest.mock('../product-card/ProductImage', () => ({ id, imageUrl }: any) => (
   <div data-testid="product-image" data-id={id} data-url={imageUrl} />
 ));
-jest.mock('../QuantityControl', () => ({ quantity, onIncrement, onDecrement }: any) => (
-  <div>
-    <button onClick={onDecrement} data-testid="decrement">-</button>
-    <span data-testid="quantity">{quantity}</span>
-    <button onClick={onIncrement} data-testid="increment">+</button>
-  </div>
-));
+jest.mock(
+  '../QuantityControl',
+  () =>
+    ({ quantity, onIncrement, onDecrement }: any) => (
+      <div>
+        <button onClick={onDecrement} data-testid="decrement">
+          -
+        </button>
+        <span data-testid="quantity">{quantity}</span>
+        <button onClick={onIncrement} data-testid="increment">
+          +
+        </button>
+      </div>
+    )
+);
 jest.mock('../AddToCartButton', () => ({ isAdding, onClick }: any) => (
-  <button onClick={onClick} data-testid="add-to-cart">{isAdding ? 'Adding...' : 'Add to cart'}</button>
+  <button onClick={onClick} data-testid="add-to-cart">
+    {isAdding ? 'Adding...' : 'Add to cart'}
+  </button>
 ));
 jest.mock('../RatingStars', () => ({ rating }: any) => (
   <div data-testid="rating-stars">{rating}</div>
 ));
-jest.mock('../product-card/QuickAddDialog', () => ({ isOpen, onClose }: any) =>
-  isOpen ? <div data-testid="quick-add-dialog"><button onClick={onClose}>Close</button></div> : null
+jest.mock(
+  '../product-card/QuickAddDialog',
+  () =>
+    ({ isOpen, onClose }: any) =>
+      isOpen ? (
+        <div data-testid="quick-add-dialog">
+          <button onClick={onClose}>Close</button>
+        </div>
+      ) : null
 );
 jest.mock('../../../context/settingContext', () => ({
   useSettingsContext: () => ({
@@ -56,8 +73,14 @@ describe('ProductCard', () => {
       </MemoryRouter>
     );
     expect(screen.getByText('Test Product')).toBeInTheDocument();
-    expect(screen.getByTestId('product-image')).toHaveAttribute('data-id', 'p1');
-    expect(screen.getByTestId('product-image')).toHaveAttribute('data-url', 'img.png');
+    expect(screen.getByTestId('product-image')).toHaveAttribute(
+      'data-id',
+      'p1'
+    );
+    expect(screen.getByTestId('product-image')).toHaveAttribute(
+      'data-url',
+      'img.png'
+    );
     expect(screen.getByTestId('rating-stars')).toHaveTextContent('4.5');
     expect(screen.getByText('$120')).toBeInTheDocument();
   });

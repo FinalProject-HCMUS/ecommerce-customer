@@ -21,7 +21,7 @@ describe('routeConstants', () => {
       'BLOG',
       'ORDER',
     ];
-    expectedKeys.forEach(key => {
+    expectedKeys.forEach((key) => {
       expect(routeConstants).toHaveProperty(key);
     });
   });

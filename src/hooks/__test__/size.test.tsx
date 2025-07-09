@@ -46,7 +46,9 @@ describe('useSizes', () => {
       sort: { sorted: false, unsorted: true, empty: true },
       empty: false,
     };
-    (sizeApis.getAllSizes as jest.Mock).mockResolvedValueOnce({ data: mockPageable });
+    (sizeApis.getAllSizes as jest.Mock).mockResolvedValueOnce({
+      data: mockPageable,
+    });
 
     const { result } = renderHook(() => useSizes());
     let res: any;
@@ -58,8 +60,6 @@ describe('useSizes', () => {
     expect(res).toEqual(mockPageable);
     expect(result.current.loading).toBe(false);
   });
-
-
 
   it('fetchSizeById should call getSizeById and return pageable data', async () => {
     const mockPageable = {
@@ -93,7 +93,9 @@ describe('useSizes', () => {
       sort: { sorted: false, unsorted: true, empty: true },
       empty: false,
     };
-    (sizeApis.getSizeById as jest.Mock).mockResolvedValueOnce({ data: mockPageable });
+    (sizeApis.getSizeById as jest.Mock).mockResolvedValueOnce({
+      data: mockPageable,
+    });
 
     const { result } = renderHook(() => useSizes());
     let res: any;

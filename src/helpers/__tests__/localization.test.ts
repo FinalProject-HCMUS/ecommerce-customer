@@ -2,12 +2,12 @@ import * as localization from '../localization';
 
 jest.mock('../../constants/localStorage', () => ({
   // Remove the "default" nesting level
-  LOCALIZATION: 'LOCALIZATION'
+  LOCALIZATION: 'LOCALIZATION',
 }));
 
 jest.mock('../../constants/localization', () => ({
   // Remove the "default" nesting level
-  REGIONS: { vi: { key: 'vi' }, en: { key: 'en' } }
+  REGIONS: { vi: { key: 'vi' }, en: { key: 'en' } },
 }));
 
 const LOCALIZATION_KEY = 'LOCALIZATION';

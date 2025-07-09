@@ -4,7 +4,7 @@ describe('common constants', () => {
   test('should export an object with all expected properties', () => {
     expect(common).toBeDefined();
     expect(typeof common).toBe('object');
-    
+
     // Check that all expected properties exist
     const expectedProps = [
       'orderStatus',
@@ -21,10 +21,10 @@ describe('common constants', () => {
       'DESCREASE',
       'INCREASE',
       'PAYMENT_METHOD',
-      'MESSAGE_PER_PAGE'
+      'MESSAGE_PER_PAGE',
     ];
-    
-    expectedProps.forEach(prop => {
+
+    expectedProps.forEach((prop) => {
       expect(common).toHaveProperty(prop);
     });
   });
@@ -32,16 +32,28 @@ describe('common constants', () => {
   test('orderStatus should contain all expected statuses', () => {
     expect(Array.isArray(common.orderStatus)).toBe(true);
     expect(common.orderStatus).toHaveLength(9);
-    
+
     // Check specific entries
-    expect(common.orderStatus).toContainEqual({ value: 'all', label: 'All Orders' });
+    expect(common.orderStatus).toContainEqual({
+      value: 'all',
+      label: 'All Orders',
+    });
     expect(common.orderStatus).toContainEqual({ value: 'NEW', label: 'New' });
-    expect(common.orderStatus).toContainEqual({ value: 'PROCESSING', label: 'Processing' });
-    expect(common.orderStatus).toContainEqual({ value: 'DELIVERED', label: 'Delivered' });
-    expect(common.orderStatus).toContainEqual({ value: 'CANCELLED', label: 'Cancelled' });
-    
+    expect(common.orderStatus).toContainEqual({
+      value: 'PROCESSING',
+      label: 'Processing',
+    });
+    expect(common.orderStatus).toContainEqual({
+      value: 'DELIVERED',
+      label: 'Delivered',
+    });
+    expect(common.orderStatus).toContainEqual({
+      value: 'CANCELLED',
+      label: 'Cancelled',
+    });
+
     // Check structure of each entry
-    common.orderStatus.forEach(status => {
+    common.orderStatus.forEach((status) => {
       expect(status).toHaveProperty('value');
       expect(status).toHaveProperty('label');
       expect(typeof status.value).toBe('string');
@@ -75,13 +87,16 @@ describe('common constants', () => {
   test('PAYMENT_METHOD should contain all expected payment methods', () => {
     expect(Array.isArray(common.PAYMENT_METHOD)).toBe(true);
     expect(common.PAYMENT_METHOD).toHaveLength(2);
-    
+
     // Check specific entries
     expect(common.PAYMENT_METHOD).toContainEqual({ id: 'COD', label: 'COD' });
-    expect(common.PAYMENT_METHOD).toContainEqual({ id: 'VN_PAY', label: 'Vn Pay' });
-    
+    expect(common.PAYMENT_METHOD).toContainEqual({
+      id: 'VN_PAY',
+      label: 'Vn Pay',
+    });
+
     // Check structure of each entry
-    common.PAYMENT_METHOD.forEach(method => {
+    common.PAYMENT_METHOD.forEach((method) => {
       expect(method).toHaveProperty('id');
       expect(method).toHaveProperty('label');
       expect(typeof method.id).toBe('string');

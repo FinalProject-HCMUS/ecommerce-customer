@@ -21,7 +21,9 @@ describe('useVNPayPayment', () => {
   };
 
   it('createPayment should call createVNPayPayment, set paymentUrl, and not redirect if redirectImmediately is false', async () => {
-    (orderApis.createVNPayPayment as jest.Mock).mockResolvedValueOnce('https://pay.vn/redirect');
+    (orderApis.createVNPayPayment as jest.Mock).mockResolvedValueOnce(
+      'https://pay.vn/redirect'
+    );
 
     const { result } = renderHook(() => useVNPayPayment());
     let url: string | null = null;
@@ -34,5 +36,4 @@ describe('useVNPayPayment', () => {
     expect(url).toBe('https://pay.vn/redirect');
     expect(result.current.loading).toBe(false);
   });
-
 });

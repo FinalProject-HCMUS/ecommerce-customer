@@ -12,10 +12,13 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   modulePaths: ['<rootDir>/src'],
   transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', {
-      tsconfig: 'tsconfig.test.json',
-      jsx: 'react-jsx'
-    }],
+    '^.+\\.(ts|tsx)$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.test.json',
+        jsx: 'react-jsx',
+      },
+    ],
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
@@ -26,17 +29,17 @@ const config: Config = {
     '!src/main.tsx',
     '!src/vite-env.d.ts',
     '!src/mocks/**',
-    '!**/node_modules/**'
+    '!**/node_modules/**',
   ],
   coverageThreshold: {
     global: {
       branches: 50,
       functions: 70,
       lines: 70,
-      statements: 70
-    }
+      statements: 70,
+    },
   },
-  coverageDirectory: "coverage"
+  coverageDirectory: 'coverage',
 };
 
 export default config;

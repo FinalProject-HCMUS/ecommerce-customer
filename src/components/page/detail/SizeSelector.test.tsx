@@ -7,8 +7,30 @@ jest.mock('../../../helpers/i18n', () => ({
 }));
 
 const mockSizes = [
-  { id: '1', name: 'M', minHeight: 0, maxHeight: 0, minWeight: 0, maxWeight: 0, createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
-  { id: '2', name: 'L', minHeight: 0, maxHeight: 0, minWeight: 0, maxWeight: 0, createdAt: '', createdBy: '', updatedAt: '', updatedBy: '' },
+  {
+    id: '1',
+    name: 'M',
+    minHeight: 0,
+    maxHeight: 0,
+    minWeight: 0,
+    maxWeight: 0,
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
+  {
+    id: '2',
+    name: 'L',
+    minHeight: 0,
+    maxHeight: 0,
+    minWeight: 0,
+    maxWeight: 0,
+    createdAt: '',
+    createdBy: '',
+    updatedAt: '',
+    updatedBy: '',
+  },
 ];
 
 describe('SizeSelector', () => {
@@ -31,7 +53,11 @@ describe('SizeSelector', () => {
   it('calls onChange with correct size id when a size is clicked', () => {
     const handleChange = jest.fn();
     render(
-      <SizeSelector sizes={mockSizes} selectedSize="1" onChange={handleChange} />
+      <SizeSelector
+        sizes={mockSizes}
+        selectedSize="1"
+        onChange={handleChange}
+      />
     );
     fireEvent.click(screen.getByText('L'));
     expect(handleChange).toHaveBeenCalledWith('2');

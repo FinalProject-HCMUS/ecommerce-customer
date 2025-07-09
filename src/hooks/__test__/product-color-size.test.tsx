@@ -25,7 +25,9 @@ describe('useProductColorSize', () => {
         updatedBy: 'admin',
       },
     ];
-    (productApis.getProductColorSizesByProductId as jest.Mock).mockResolvedValueOnce({
+    (
+      productApis.getProductColorSizesByProductId as jest.Mock
+    ).mockResolvedValueOnce({
       data: mockData,
     });
 
@@ -35,7 +37,9 @@ describe('useProductColorSize', () => {
       res = await result.current.fetchProductColorSizes('p1');
     });
 
-    expect(productApis.getProductColorSizesByProductId).toHaveBeenCalledWith('p1');
+    expect(productApis.getProductColorSizesByProductId).toHaveBeenCalledWith(
+      'p1'
+    );
     expect(res).toEqual(mockData);
     expect(result.current.loading).toBe(false);
   });

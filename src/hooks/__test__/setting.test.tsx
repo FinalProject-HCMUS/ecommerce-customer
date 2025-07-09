@@ -24,7 +24,9 @@ describe('useSystemSettings', () => {
         serviceName: 'shop',
       },
     ];
-    (SettingsService.getAllSystemSettings as jest.Mock).mockResolvedValueOnce(mockSettings);
+    (SettingsService.getAllSystemSettings as jest.Mock).mockResolvedValueOnce(
+      mockSettings
+    );
 
     const { result } = renderHook(() => useSystemSettings('shop'));
     await act(async () => {
@@ -45,7 +47,9 @@ describe('useSystemSettings', () => {
         serviceName: 'admin',
       },
     ];
-    (SettingsService.getAllSystemSettings as jest.Mock).mockResolvedValueOnce(mockSettings);
+    (SettingsService.getAllSystemSettings as jest.Mock).mockResolvedValueOnce(
+      mockSettings
+    );
 
     const { result } = renderHook(() => useSystemSettings('shop'));
     await act(async () => {
@@ -56,5 +60,4 @@ describe('useSystemSettings', () => {
     expect(result.current.settings).toEqual(mockSettings);
     expect(result.current.loading).toBe(false);
   });
-
 });

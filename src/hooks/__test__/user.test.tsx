@@ -27,8 +27,22 @@ describe('useUser', () => {
   });
 
   it('fetchUserById should call userApi.getUserById and set user', async () => {
-    const mockUser = { id: '1', email: 'a@b.com', firstName: 'A', lastName: 'B', phoneNumber: '123', enabled: true, role: 'USER', createdAt: '', updatedAt: '', createdBy: '', updatedBy: '' };
-    (userApi.getUserById as jest.Mock).mockResolvedValueOnce({ data: mockUser });
+    const mockUser = {
+      id: '1',
+      email: 'a@b.com',
+      firstName: 'A',
+      lastName: 'B',
+      phoneNumber: '123',
+      enabled: true,
+      role: 'USER',
+      createdAt: '',
+      updatedAt: '',
+      createdBy: '',
+      updatedBy: '',
+    };
+    (userApi.getUserById as jest.Mock).mockResolvedValueOnce({
+      data: mockUser,
+    });
 
     const { result } = renderHook(() => useUser());
     let res: any;
@@ -57,8 +71,22 @@ describe('useUser', () => {
   });
 
   it('fetchUserByToken should call userApi.getUserByToken and return user', async () => {
-    const mockUser = { id: '2', email: 'b@b.com', firstName: 'B', lastName: 'C', phoneNumber: '456', enabled: true, role: 'USER', createdAt: '', updatedAt: '', createdBy: '', updatedBy: '' };
-    (userApi.getUserByToken as jest.Mock).mockResolvedValueOnce({ data: mockUser });
+    const mockUser = {
+      id: '2',
+      email: 'b@b.com',
+      firstName: 'B',
+      lastName: 'C',
+      phoneNumber: '456',
+      enabled: true,
+      role: 'USER',
+      createdAt: '',
+      updatedAt: '',
+      createdBy: '',
+      updatedBy: '',
+    };
+    (userApi.getUserByToken as jest.Mock).mockResolvedValueOnce({
+      data: mockUser,
+    });
 
     const { result } = renderHook(() => useUser());
     let res: any;
@@ -71,16 +99,33 @@ describe('useUser', () => {
     expect(result.current.loading).toBe(false);
   });
 
-
-
   it('createUser should call userApi.createUser and return user', async () => {
-    const mockUser = { id: '3', email: 'c@b.com', firstName: 'C', lastName: 'D', phoneNumber: '789', enabled: true, role: Role.USER, createdAt: '', updatedAt: '', createdBy: '', updatedBy: '' };
+    const mockUser = {
+      id: '3',
+      email: 'c@b.com',
+      firstName: 'C',
+      lastName: 'D',
+      phoneNumber: '789',
+      enabled: true,
+      role: Role.USER,
+      createdAt: '',
+      updatedAt: '',
+      createdBy: '',
+      updatedBy: '',
+    };
     (userApi.createUser as jest.Mock).mockResolvedValueOnce({ data: mockUser });
 
     const { result } = renderHook(() => useUser());
     let res: any;
     await act(async () => {
-      res = await result.current.createUser({ email: 'c@b.com', firstName: 'C', lastName: 'D', phoneNumber: '789', password: '12345678', role: Role.USER });
+      res = await result.current.createUser({
+        email: 'c@b.com',
+        firstName: 'C',
+        lastName: 'D',
+        phoneNumber: '789',
+        password: '12345678',
+        role: Role.USER,
+      });
     });
 
     expect(userApi.createUser).toHaveBeenCalled();
@@ -94,7 +139,14 @@ describe('useUser', () => {
     const { result } = renderHook(() => useUser());
     let res: any;
     await act(async () => {
-      res = await result.current.createUser({ email: 'fail', firstName: '', lastName: '', phoneNumber: '', password: '', role: Role.USER });
+      res = await result.current.createUser({
+        email: 'fail',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        password: '',
+        role: Role.USER,
+      });
     });
 
     expect(res).toBeNull();
@@ -102,7 +154,9 @@ describe('useUser', () => {
   });
 
   it('confirmUserEmail should call confirmEmail and return isSuccess', async () => {
-    (authApis.confirmEmail as jest.Mock).mockResolvedValueOnce({ isSuccess: true });
+    (authApis.confirmEmail as jest.Mock).mockResolvedValueOnce({
+      isSuccess: true,
+    });
 
     const { result } = renderHook(() => useUser());
     let res: any;
@@ -116,7 +170,9 @@ describe('useUser', () => {
   });
 
   it('confirmUserEmail should return false on error', async () => {
-    (authApis.confirmEmail as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (authApis.confirmEmail as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useUser());
     let res: any;
@@ -129,7 +185,9 @@ describe('useUser', () => {
   });
 
   it('resendUserConfirmationEmail should call resendConfirmationEmail and return isSuccess', async () => {
-    (authApis.resendConfirmationEmail as jest.Mock).mockResolvedValueOnce({ isSuccess: true });
+    (authApis.resendConfirmationEmail as jest.Mock).mockResolvedValueOnce({
+      isSuccess: true,
+    });
 
     const { result } = renderHook(() => useUser());
     let res: any;
@@ -143,7 +201,9 @@ describe('useUser', () => {
   });
 
   it('resendUserConfirmationEmail should return false on error', async () => {
-    (authApis.resendConfirmationEmail as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (authApis.resendConfirmationEmail as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useUser());
     let res: any;
@@ -156,7 +216,9 @@ describe('useUser', () => {
   });
 
   it('requestPasswordReset should call userApi.requestPasswordReset and return isSuccess', async () => {
-    (userApi.requestPasswordReset as jest.Mock).mockResolvedValueOnce({ isSuccess: true });
+    (userApi.requestPasswordReset as jest.Mock).mockResolvedValueOnce({
+      isSuccess: true,
+    });
 
     const { result } = renderHook(() => useUser());
     let res: any;
@@ -170,7 +232,9 @@ describe('useUser', () => {
   });
 
   it('requestPasswordReset should return false on error', async () => {
-    (userApi.requestPasswordReset as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (userApi.requestPasswordReset as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useUser());
     let res: any;

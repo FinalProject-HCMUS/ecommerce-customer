@@ -11,7 +11,10 @@ describe('PasswordInput', () => {
   it('renders label and password input', () => {
     render(<PasswordInput id="pw" label="Password" />);
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
-    expect(screen.getByLabelText('Password')).toHaveAttribute('type', 'password');
+    expect(screen.getByLabelText('Password')).toHaveAttribute(
+      'type',
+      'password'
+    );
   });
 
   it('renders forgot password link if provided', () => {
@@ -21,7 +24,9 @@ describe('PasswordInput', () => {
       </MemoryRouter>
     );
     expect(screen.getByText('hyperlink.forgotPassword')).toBeInTheDocument();
-    expect(screen.getByText('hyperlink.forgotPassword').closest('a')).toHaveAttribute('href', '/forgot');
+    expect(
+      screen.getByText('hyperlink.forgotPassword').closest('a')
+    ).toHaveAttribute('href', '/forgot');
   });
 
   it('toggles password visibility', () => {
@@ -39,7 +44,14 @@ describe('PasswordInput', () => {
   });
 
   it('passes additional props to input', () => {
-    render(<PasswordInput id="pw" label="Password" placeholder="Enter password" required />);
+    render(
+      <PasswordInput
+        id="pw"
+        label="Password"
+        placeholder="Enter password"
+        required
+      />
+    );
     const input = screen.getByLabelText('Password');
     expect(input).toHaveAttribute('placeholder', 'Enter password');
     expect(input).toBeRequired();

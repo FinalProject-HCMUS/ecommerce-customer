@@ -38,7 +38,8 @@ const ResetPasswordPage = lazy(
   () => import('../page/auth/reset-password-page')
 );
 const CheckoutResult = lazy(
-  () => import('../page/checkout/vnpay-checkout-result'));
+  () => import('../page/checkout/vnpay-checkout-result')
+);
 
 export interface IRoute {
   exact?: boolean;
@@ -194,7 +195,6 @@ const routes: IRoute[] = [
     name: 'Reset Password',
     component: ResetPasswordPage,
   },
-
 ];
 
 export default routes;

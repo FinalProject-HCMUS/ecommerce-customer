@@ -52,7 +52,7 @@ const Filters = ({
         20000000) as number,
     [settings]
   );
-   
+
   const currencyCode = (settings.find(
     (setting) => setting.key === 'CurrencyCode'
   )?.value || 'VND') as 'USD' | 'VND';

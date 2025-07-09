@@ -50,11 +50,17 @@ describe('CheckoutForm', () => {
         onSubmit={jest.fn()}
       />
     );
-    fireEvent.change(screen.getByLabelText('lbl.receiverName'), { target: { value: 'Jane' } });
+    fireEvent.change(screen.getByLabelText('lbl.receiverName'), {
+      target: { value: 'Jane' },
+    });
     expect(onInputChange).toHaveBeenCalled();
-    fireEvent.change(screen.getByLabelText('lbl.receiverPhone'), { target: { value: '0987654321' } });
+    fireEvent.change(screen.getByLabelText('lbl.receiverPhone'), {
+      target: { value: '0987654321' },
+    });
     expect(onInputChange).toHaveBeenCalled();
-    fireEvent.change(screen.getByLabelText('lbl.receiverAddress'), { target: { value: '456 Another St' } });
+    fireEvent.change(screen.getByLabelText('lbl.receiverAddress'), {
+      target: { value: '456 Another St' },
+    });
     expect(onInputChange).toHaveBeenCalled();
   });
 

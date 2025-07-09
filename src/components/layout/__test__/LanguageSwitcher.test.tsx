@@ -27,6 +27,4 @@ describe('LanguageSwitcher', () => {
 
     expect(localizationHelpers.changeLanguage).toHaveBeenCalledWith('vi');
   });
-
-  
 });

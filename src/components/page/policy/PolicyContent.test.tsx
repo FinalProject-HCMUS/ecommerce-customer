@@ -2,12 +2,16 @@ import { render, screen } from '@testing-library/react';
 import PolicyContent from './PolicyContent';
 
 // Mock policy data
-jest.mock('../../../locales/en/shopData.json', () => ({
-  policy: [
-    { title: 'Policy 1', content: 'Content 1' },
-    { title: 'Policy 2', content: 'Content 2' },
-  ],
-}), { virtual: true });
+jest.mock(
+  '../../../locales/en/shopData.json',
+  () => ({
+    policy: [
+      { title: 'Policy 1', content: 'Content 1' },
+      { title: 'Policy 2', content: 'Content 2' },
+    ],
+  }),
+  { virtual: true }
+);
 
 // Mock PolicySection
 jest.mock('./PolicySection', () => (props: any) => (

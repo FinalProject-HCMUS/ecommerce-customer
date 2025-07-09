@@ -193,7 +193,7 @@
     "addressRequired": "Địa chỉ người nhận là bắt buộc",
     "selectPaymentMethod": "Vui lòng chọn phương thức thanh toán",
     "invalidPaymentMethod": "Phương thức thanh toán không hợp lệ",
-     "paymentSuccess": "Thanh toán thành công!",
+    "paymentSuccess": "Thanh toán thành công!",
     "paymentSuccessDescription": "Thanh toán của bạn đã được xử lý thành công. Cảm ơn bạn đã đặt hàng!",
     "paymentFailed": "Thanh toán thất bại",
     "paymentFailedDescription": "Đã xảy ra sự cố khi xử lý thanh toán của bạn. Vui lòng thử lại.",
@@ -286,8 +286,8 @@
     "success": "Đánh giá đã được gửi thành công!"
   },
   "profile": {
-    "imageUploaded" : "Hình ảnh đã được tải lên thành công!",
-    "imageUploadFailed" : "Tải lên hình ảnh không thành công. Vui lòng thử lại.",
+    "imageUploaded": "Hình ảnh đã được tải lên thành công!",
+    "imageUploadFailed": "Tải lên hình ảnh không thành công. Vui lòng thử lại.",
     "updateProfile": "Cập nhật hồ sơ thành công!"
   },
   "pending": "Đang chờ xử lý",

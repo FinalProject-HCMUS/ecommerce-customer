@@ -36,9 +36,12 @@ jest.mock('../../components/page/detail/VirtualTryOn', () => (props: any) => (
 ));
 
 // Mock ProductDescription
-jest.mock('../../components/page/detail/ProductDescription', () => (props: any) => (
-  <div data-testid="product-description">{props.description}</div>
-));
+jest.mock(
+  '../../components/page/detail/ProductDescription',
+  () => (props: any) => (
+    <div data-testid="product-description">{props.description}</div>
+  )
+);
 
 // Mock ReviewSection
 jest.mock('../../components/page/detail/ReviewSection', () => (props: any) => (

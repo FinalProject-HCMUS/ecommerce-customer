@@ -2,7 +2,11 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Result, Button } from 'antd';
-import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled } from '@ant-design/icons';
+import {
+  CheckCircleFilled,
+  CloseCircleFilled,
+  ExclamationCircleFilled,
+} from '@ant-design/icons';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import styled from 'styled-components';
 
@@ -34,23 +38,20 @@ const VNPayCheckoutResult: React.FC = () => {
             title={t('checkout.paymentSuccess')}
             subTitle={t('checkout.paymentSuccessDescription')}
             extra={[
-              <Button 
-                type="primary" 
-                key="orders" 
+              <Button
+                type="primary"
+                key="orders"
                 onClick={() => navigate('/orders')}
               >
                 {t('checkout.viewOrders')}
               </Button>,
-              <Button 
-                key="home" 
-                onClick={() => navigate('/')}
-              >
+              <Button key="home" onClick={() => navigate('/')}>
                 {t('checkout.continueShopping')}
-              </Button>
+              </Button>,
             ]}
           />
         );
-        
+
       case 'failure':
         return (
           <Result
@@ -59,16 +60,13 @@ const VNPayCheckoutResult: React.FC = () => {
             title={t('checkout.paymentFailed')}
             subTitle={t('checkout.paymentFailedDescription')}
             extra={[
-              <Button 
-                key="cart" 
-                onClick={() => navigate('/cart')}
-              >
+              <Button key="cart" onClick={() => navigate('/cart')}>
                 {t('btn.backToCart')}
-              </Button>
+              </Button>,
             ]}
           />
         );
-        
+
       case 'error':
       default:
         return (
@@ -78,19 +76,16 @@ const VNPayCheckoutResult: React.FC = () => {
             title={t('checkout.paymentError')}
             subTitle={t('checkout.paymentErrorDescription')}
             extra={[
-              <Button 
-                type="primary" 
-                key="contact" 
+              <Button
+                type="primary"
+                key="contact"
                 onClick={() => navigate('/chat')}
               >
                 {t('checkout.contactSupport')}
               </Button>,
-              <Button 
-                key="cart" 
-                onClick={() => navigate('/cart')}
-              >
+              <Button key="cart" onClick={() => navigate('/cart')}>
                 {t('btn.backToCart')}
-              </Button>
+              </Button>,
             ]}
           />
         );
@@ -99,15 +94,15 @@ const VNPayCheckoutResult: React.FC = () => {
 
   return (
     <Container>
-      <Breadcrumb items={[
-        { label: t('breadcrumb.home'), path: '/' },
-        { label: t('breadcrumb.checkout'), path: '/checkout' },
-        { label: t('breadcrumb.paymentResult'), path: ''}
-      ]} />
+      <Breadcrumb
+        items={[
+          { label: t('breadcrumb.home'), path: '/' },
+          { label: t('breadcrumb.checkout'), path: '/checkout' },
+          { label: t('breadcrumb.paymentResult'), path: '' },
+        ]}
+      />
 
-      <ResultContainer>
-        {renderStatusContent()}
-      </ResultContainer>
+      <ResultContainer>{renderStatusContent()}</ResultContainer>
     </Container>
   );
 };

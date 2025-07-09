@@ -22,8 +22,21 @@ describe('cartApis', () => {
   });
 
   it('getCartItemById should call client.get with correct url and return data', async () => {
-    const mockCartItem = { id: '1', quantity: 2, product: {}, color: 'red', size: 'M', userId: 'u1', itemId: 'i1' };
-    const mockResponse = { timestamp: '', httpStatus: 'OK', isSuccess: true, data: mockCartItem };
+    const mockCartItem = {
+      id: '1',
+      quantity: 2,
+      product: {},
+      color: 'red',
+      size: 'M',
+      userId: 'u1',
+      itemId: 'i1',
+    };
+    const mockResponse = {
+      timestamp: '',
+      httpStatus: 'OK',
+      isSuccess: true,
+      data: mockCartItem,
+    };
     mockGet.mockResolvedValueOnce({ data: mockResponse });
 
     const res = await cartApis.getCartItemById('1');
@@ -33,9 +46,22 @@ describe('cartApis', () => {
 
   it('getCartItemsByUserId should call client.get with correct url and return data', async () => {
     const mockCartItems = [
-      { id: '1', quantity: 2, product: {}, color: 'red', size: 'M', userId: 'u1', itemId: 'i1' },
+      {
+        id: '1',
+        quantity: 2,
+        product: {},
+        color: 'red',
+        size: 'M',
+        userId: 'u1',
+        itemId: 'i1',
+      },
     ];
-    const mockResponse = { timestamp: '', httpStatus: 'OK', isSuccess: true, data: mockCartItems };
+    const mockResponse = {
+      timestamp: '',
+      httpStatus: 'OK',
+      isSuccess: true,
+      data: mockCartItems,
+    };
     mockGet.mockResolvedValueOnce({ data: mockResponse });
 
     const res = await cartApis.getCartItemsByUserId('u1');
@@ -45,8 +71,21 @@ describe('cartApis', () => {
 
   it('createCartItem should call client.post with correct args and return data', async () => {
     const req = { quantity: 1, userId: 'u1', itemId: 'i1' };
-    const mockCartItem = { id: '1', quantity: 1, product: {}, color: 'blue', size: 'L', userId: 'u1', itemId: 'i1' };
-    const mockResponse = { timestamp: '', httpStatus: 'OK', isSuccess: true, data: mockCartItem };
+    const mockCartItem = {
+      id: '1',
+      quantity: 1,
+      product: {},
+      color: 'blue',
+      size: 'L',
+      userId: 'u1',
+      itemId: 'i1',
+    };
+    const mockResponse = {
+      timestamp: '',
+      httpStatus: 'OK',
+      isSuccess: true,
+      data: mockCartItem,
+    };
     mockPost.mockResolvedValueOnce({ data: mockResponse });
 
     const res = await cartApis.createCartItem(req);
@@ -56,8 +95,21 @@ describe('cartApis', () => {
 
   it('updateCartItem should call client.put with correct args and return data', async () => {
     const req = { quantity: 3 };
-    const mockCartItem = { id: '1', quantity: 3, product: {}, color: 'green', size: 'S', userId: 'u1', itemId: 'i1' };
-    const mockResponse = { timestamp: '', httpStatus: 'OK', isSuccess: true, data: mockCartItem };
+    const mockCartItem = {
+      id: '1',
+      quantity: 3,
+      product: {},
+      color: 'green',
+      size: 'S',
+      userId: 'u1',
+      itemId: 'i1',
+    };
+    const mockResponse = {
+      timestamp: '',
+      httpStatus: 'OK',
+      isSuccess: true,
+      data: mockCartItem,
+    };
     mockPut.mockResolvedValueOnce({ data: mockResponse });
 
     const res = await cartApis.updateCartItem('1', req);

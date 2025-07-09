@@ -277,8 +277,8 @@
     }
   },
   "profile": {
-    "imageUploaded" : "Image uploaded successfully!",
-    "imageUploadFailed" : "Image upload failed. Please try again.",
+    "imageUploaded": "Image uploaded successfully!",
+    "imageUploadFailed": "Image upload failed. Please try again.",
     "updateProfile": "Update Profile Successfully!"
   },
   "pending": "Pending",

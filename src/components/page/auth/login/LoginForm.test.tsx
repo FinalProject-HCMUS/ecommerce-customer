@@ -138,7 +138,7 @@ jest.mock('../../../shared/Button', () => ({
     onClick,
   }: {
     children: React.ReactNode;
-    type?: "button" | "submit" | "reset";
+    type?: 'button' | 'submit' | 'reset';
     isLoading?: boolean;
     className?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -167,13 +167,7 @@ jest.mock('./SocialLoginButton', () => ({
 
 jest.mock('../../../shared/Divider', () => ({
   __esModule: true,
-  default: ({
-    text,
-    className,
-  }: {
-    text: string;
-    className?: string;
-  }) => (
+  default: ({ text, className }: { text: string; className?: string }) => (
     <div className={className} data-testid="divider">
       {text}
     </div>

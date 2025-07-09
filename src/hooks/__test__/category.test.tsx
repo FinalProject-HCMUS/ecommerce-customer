@@ -44,7 +44,9 @@ describe('useCategory', () => {
       sort: { sorted: false, unsorted: true, empty: true },
       empty: false,
     };
-    (categoryApis.getAllCategories as jest.Mock).mockResolvedValueOnce({ data: mockPageable });
+    (categoryApis.getAllCategories as jest.Mock).mockResolvedValueOnce({
+      data: mockPageable,
+    });
 
     const { result } = renderHook(() => useCategory());
     let res: any;
@@ -52,7 +54,9 @@ describe('useCategory', () => {
       res = await result.current.fetchCategories(0, 10, ['createdAt,desc']);
     });
 
-    expect(categoryApis.getAllCategories).toHaveBeenCalledWith(0, 10, ['createdAt,desc']);
+    expect(categoryApis.getAllCategories).toHaveBeenCalledWith(0, 10, [
+      'createdAt,desc',
+    ]);
     expect(res).toEqual(mockPageable);
     expect(result.current.loading).toBe(false);
   });
@@ -69,7 +73,9 @@ describe('useCategory', () => {
         updatedBy: 'admin',
       },
     ];
-    (categoryApis.getAllCategoriesWithoutPagination as jest.Mock).mockResolvedValueOnce({ data: mockCategories });
+    (
+      categoryApis.getAllCategoriesWithoutPagination as jest.Mock
+    ).mockResolvedValueOnce({ data: mockCategories });
 
     const { result } = renderHook(() => useCategory());
     let res: any;
@@ -92,7 +98,9 @@ describe('useCategory', () => {
       updatedAt: '2023-01-02',
       updatedBy: 'admin',
     };
-    (categoryApis.getCategoryById as jest.Mock).mockResolvedValueOnce({ data: mockCategory });
+    (categoryApis.getCategoryById as jest.Mock).mockResolvedValueOnce({
+      data: mockCategory,
+    });
 
     const { result } = renderHook(() => useCategory());
     let res: any;
@@ -106,7 +114,9 @@ describe('useCategory', () => {
   });
 
   it('fetchCategoryById should return null on error', async () => {
-    (categoryApis.getCategoryById as jest.Mock).mockRejectedValueOnce(new Error('fail'));
+    (categoryApis.getCategoryById as jest.Mock).mockRejectedValueOnce(
+      new Error('fail')
+    );
 
     const { result } = renderHook(() => useCategory());
     let res: any;

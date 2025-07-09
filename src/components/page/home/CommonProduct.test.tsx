@@ -7,8 +7,8 @@ import { ProductResponse } from '../../../interfaces/product/ProductResponse';
 // Mock the constants - important to set VISIBLE_PRODUCT for testing
 jest.mock('../../../constants', () => ({
   common: {
-    VISIBLE_PRODUCT: 2  // Set to 2 for easier testing of pagination
-  }
+    VISIBLE_PRODUCT: 2, // Set to 2 for easier testing of pagination
+  },
 }));
 
 // Mock the ProductCard component
@@ -115,15 +115,19 @@ describe('CommonProduct', () => {
   };
 
   test('renders the component with title', () => {
-    renderWithRouter(<CommonProduct title="Featured Products" data={mockProducts} />);
-    
+    renderWithRouter(
+      <CommonProduct title="Featured Products" data={mockProducts} />
+    );
+
     // Check if the title is rendered
     expect(screen.getByText('Featured Products')).toBeInTheDocument();
   });
 
   test('initially renders only VISIBLE_PRODUCT number of products', () => {
-    renderWithRouter(<CommonProduct title="Featured Products" data={mockProducts} />);
-    
+    renderWithRouter(
+      <CommonProduct title="Featured Products" data={mockProducts} />
+    );
+
     // Should render only first 2 products initially (VISIBLE_PRODUCT = 2)
     expect(screen.getByTestId('product-card-1')).toBeInTheDocument();
     expect(screen.getByTestId('product-card-2')).toBeInTheDocument();
@@ -132,45 +136,51 @@ describe('CommonProduct', () => {
   });
 
   test('shows "See More" button when there are more products to show', () => {
-    renderWithRouter(<CommonProduct title="Featured Products" data={mockProducts} />);
-    
+    renderWithRouter(
+      <CommonProduct title="Featured Products" data={mockProducts} />
+    );
+
     // See More button should be visible since we have 4 products and VISIBLE_PRODUCT = 2
     expect(screen.getByText('btn.seeMore')).toBeInTheDocument();
   });
 
   test('clicking "See More" loads more products', () => {
-    renderWithRouter(<CommonProduct title="Featured Products" data={mockProducts} />);
-    
+    renderWithRouter(
+      <CommonProduct title="Featured Products" data={mockProducts} />
+    );
+
     // Initially should not see product 3 and 4
     expect(screen.queryByTestId('product-card-3')).not.toBeInTheDocument();
     expect(screen.queryByTestId('product-card-4')).not.toBeInTheDocument();
-    
+
     // Click See More button
     fireEvent.click(screen.getByText('btn.seeMore'));
-    
+
     // Now should see all 4 products
     expect(screen.getByTestId('product-card-1')).toBeInTheDocument();
     expect(screen.getByTestId('product-card-2')).toBeInTheDocument();
     expect(screen.getByTestId('product-card-3')).toBeInTheDocument();
     expect(screen.getByTestId('product-card-4')).toBeInTheDocument();
-    
+
     // Should now show "See Less" button
     expect(screen.getByText('btn.seeLess')).toBeInTheDocument();
   });
 
   test('clicking "See Less" reduces the number of products shown', () => {
-    renderWithRouter(<CommonProduct title="Featured Products" data={mockProducts} />);
-    
+    renderWithRouter(
+      <CommonProduct title="Featured Products" data={mockProducts} />
+    );
+
     // Click See More to show all products
     fireEvent.click(screen.getByText('btn.seeMore'));
-    
+
     // Verify all products are shown
     expect(screen.getByTestId('product-card-3')).toBeInTheDocument();
     expect(screen.getByTestId('product-card-4')).toBeInTheDocument();
-    
+
     // Click See Less
     fireEvent.click(screen.getByText('btn.seeLess'));
-    
+
     // Should go back to showing only 2 products
     expect(screen.getByTestId('product-card-1')).toBeInTheDocument();
     expect(screen.getByTestId('product-card-2')).toBeInTheDocument();
@@ -179,22 +189,29 @@ describe('CommonProduct', () => {
   });
 
   test('does not show "See More" button when all products can be shown initially', () => {
-    renderWithRouter(<CommonProduct title="Featured Products" data={mockProducts.slice(0, 2)} />);
-    
+    renderWithRouter(
+      <CommonProduct
+        title="Featured Products"
+        data={mockProducts.slice(0, 2)}
+      />
+    );
+
     // See More button should not be visible since we only have 2 products and VISIBLE_PRODUCT = 2
     expect(screen.queryByText('btn.seeMore')).not.toBeInTheDocument();
   });
 
   test('renders empty grid when no products are provided', () => {
     renderWithRouter(<CommonProduct title="Featured Products" data={[]} />);
-    
+
     // Should render the section but with no product cards
     expect(screen.getByText('Featured Products')).toBeInTheDocument();
     expect(screen.queryByTestId(/product-card-/)).not.toBeInTheDocument();
   });
 
   test('matches snapshot', () => {
-    const { container } = renderWithRouter(<CommonProduct title="Featured Products" data={mockProducts} />);
+    const { container } = renderWithRouter(
+      <CommonProduct title="Featured Products" data={mockProducts} />
+    );
     expect(container).toMatchSnapshot();
   });
 });

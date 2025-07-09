@@ -3,14 +3,16 @@ import routeConstants from '../constants/route';
 
 describe('App Routes', () => {
   it('should contain Home route', () => {
-    const home = routes.find(r => r.path === routeConstants.HOME);
+    const home = routes.find((r) => r.path === routeConstants.HOME);
     expect(home).toBeDefined();
     expect(home?.name).toBe('Home');
   });
 
   it('should contain Login and Register routes', () => {
-    const login = routes.find(r => r.path === routeConstants.AUTH.LOGIN);
-    const register = routes.find(r => r.path === routeConstants.AUTH.REGISTER);
+    const login = routes.find((r) => r.path === routeConstants.AUTH.LOGIN);
+    const register = routes.find(
+      (r) => r.path === routeConstants.AUTH.REGISTER
+    );
     expect(login).toBeDefined();
     expect(register).toBeDefined();
     expect(login?.name).toBe('Login');
@@ -18,8 +20,8 @@ describe('App Routes', () => {
   });
 
   it('should contain error pages', () => {
-    const page403 = routes.find(r => r.path === '/403');
-    const page500 = routes.find(r => r.path === '/500');
+    const page403 = routes.find((r) => r.path === '/403');
+    const page500 = routes.find((r) => r.path === '/500');
     expect(page403).toBeDefined();
     expect(page500).toBeDefined();
     expect(page403?.name).toBe('Page 403');
@@ -52,8 +54,8 @@ describe('App Routes', () => {
       routeConstants.AUTH.RESET_PASSWORD_REQUEST,
       routeConstants.AUTH.RESET_PASSWORD,
     ];
-    expectedPaths.forEach(path => {
-      expect(routes.some(r => r.path === path)).toBe(true);
+    expectedPaths.forEach((path) => {
+      expect(routes.some((r) => r.path === path)).toBe(true);
     });
   });
 });

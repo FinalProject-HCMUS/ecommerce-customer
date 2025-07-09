@@ -15,9 +15,12 @@ describe('Breadcrumb', () => {
         <Breadcrumb items={items} />
       </MemoryRouter>
     );
-    items.forEach(item => {
+    items.forEach((item) => {
       expect(screen.getByText(item.label)).toBeInTheDocument();
-      expect(screen.getByText(item.label).closest('a')).toHaveAttribute('href', item.path);
+      expect(screen.getByText(item.label).closest('a')).toHaveAttribute(
+        'href',
+        item.path
+      );
     });
   });
 

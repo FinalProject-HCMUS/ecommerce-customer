@@ -21,23 +21,35 @@ describe('locales', () => {
   it('en/shopData.json and vn/shopData.json should have the same structure for hero.characteristics', () => {
     expect(Array.isArray(enShopData.hero.characteristics)).toBe(true);
     expect(Array.isArray(vnShopData.hero.characteristics)).toBe(true);
-    expect(enShopData.hero.characteristics.length).toBe(vnShopData.hero.characteristics.length);
+    expect(enShopData.hero.characteristics.length).toBe(
+      vnShopData.hero.characteristics.length
+    );
     enShopData.hero.characteristics.forEach((item, idx) => {
-      expect(Object.keys(item)).toEqual(Object.keys(vnShopData.hero.characteristics[idx]));
+      expect(Object.keys(item)).toEqual(
+        Object.keys(vnShopData.hero.characteristics[idx])
+      );
     });
   });
 
   it('en/shopData.json and vn/shopData.json should have the same structure for footer.hyperlink', () => {
     expect(Array.isArray(enShopData.footer.hyperlink)).toBe(true);
     expect(Array.isArray(vnShopData.footer.hyperlink)).toBe(true);
-    expect(enShopData.footer.hyperlink.length).toBe(vnShopData.footer.hyperlink.length);
+    expect(enShopData.footer.hyperlink.length).toBe(
+      vnShopData.footer.hyperlink.length
+    );
     enShopData.footer.hyperlink.forEach((item, idx) => {
-      expect(Object.keys(item)).toEqual(Object.keys(vnShopData.footer.hyperlink[idx]));
+      expect(Object.keys(item)).toEqual(
+        Object.keys(vnShopData.footer.hyperlink[idx])
+      );
       expect(Array.isArray(item.links)).toBe(true);
       expect(Array.isArray(vnShopData.footer.hyperlink[idx].links)).toBe(true);
-      expect(item.links.length).toBe(vnShopData.footer.hyperlink[idx].links.length);
+      expect(item.links.length).toBe(
+        vnShopData.footer.hyperlink[idx].links.length
+      );
       item.links.forEach((link, linkIdx) => {
-        expect(Object.keys(link)).toEqual(Object.keys(vnShopData.footer.hyperlink[idx].links[linkIdx]));
+        expect(Object.keys(link)).toEqual(
+          Object.keys(vnShopData.footer.hyperlink[idx].links[linkIdx])
+        );
       });
     });
   });

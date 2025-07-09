@@ -34,7 +34,9 @@ describe('AddToCartButton', () => {
   });
 
   it('applies correct class for adding and not adding', () => {
-    const { rerender } = render(<AddToCartButton isAdding={false} onClick={() => {}} />);
+    const { rerender } = render(
+      <AddToCartButton isAdding={false} onClick={() => {}} />
+    );
     expect(screen.getByRole('button').className).toMatch(/bg-gray-800/);
 
     rerender(<AddToCartButton isAdding={true} onClick={() => {}} />);

@@ -24,7 +24,9 @@ jest.mock('../../context/settingContext', () => ({
 
 // Mock CheckCircleIcon
 jest.mock('lucide-react', () => ({
-  CheckCircleIcon: (props: any) => <svg data-testid="check-circle" {...props} />,
+  CheckCircleIcon: (props: any) => (
+    <svg data-testid="check-circle" {...props} />
+  ),
 }));
 
 // Mock Link and navigation
@@ -58,17 +60,25 @@ describe('OrderConfirmation', () => {
 
   it('renders order confirmation details', () => {
     const mockNavigate = jest.fn();
-    jest.spyOn(ReactRouterDom, 'useLocation').mockReturnValue({ state: { order: mockOrder } } as any);
+    jest
+      .spyOn(ReactRouterDom, 'useLocation')
+      .mockReturnValue({ state: { order: mockOrder } } as any);
     jest.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(mockNavigate);
 
     render(<OrderConfirmation />);
 
     expect(screen.getByText('checkout.orderConfirmed')).toBeInTheDocument();
-    expect(screen.getByText('checkout.orderConfirmationEmail')).toBeInTheDocument();
+    expect(
+      screen.getByText('checkout.orderConfirmationEmail')
+    ).toBeInTheDocument();
     expect(screen.getByText('checkout.orderSummary')).toBeInTheDocument();
     expect(screen.getByText(mockOrder.id)).toBeInTheDocument();
-    expect(screen.getByText(`formatted-${mockOrder.createdAt}`)).toBeInTheDocument();
-    expect(screen.getByText(`${mockOrder.firstName} ${mockOrder.lastName}`)).toBeInTheDocument();
+    expect(
+      screen.getByText(`formatted-${mockOrder.createdAt}`)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(`${mockOrder.firstName} ${mockOrder.lastName}`)
+    ).toBeInTheDocument();
     expect(screen.getByText(mockOrder.phoneNumber)).toBeInTheDocument();
     expect(screen.getByText(mockOrder.paymentMethod)).toBeInTheDocument();
     expect(screen.getByText(`100 VND`)).toBeInTheDocument();
@@ -76,7 +86,9 @@ describe('OrderConfirmation', () => {
     expect(screen.getByText(`120 VND`)).toBeInTheDocument();
     expect(screen.getByText('checkout.orderStatus')).toBeInTheDocument();
     expect(screen.getByText(mockOrder.status)).toBeInTheDocument();
-    expect(screen.getByText('checkout.trackingInstructions')).toBeInTheDocument();
+    expect(
+      screen.getByText('checkout.trackingInstructions')
+    ).toBeInTheDocument();
     expect(screen.getByText('checkout.continueShopping')).toBeInTheDocument();
     expect(screen.getByText('checkout.viewOrders')).toBeInTheDocument();
     expect(screen.getAllByTestId('check-circle').length).toBeGreaterThan(0);
@@ -84,7 +96,9 @@ describe('OrderConfirmation', () => {
 
   it('redirects to home if no order data', () => {
     const mockNavigate = jest.fn();
-    jest.spyOn(ReactRouterDom, 'useLocation').mockReturnValue({ state: undefined } as any);
+    jest
+      .spyOn(ReactRouterDom, 'useLocation')
+      .mockReturnValue({ state: undefined } as any);
     jest.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(mockNavigate);
 
     render(<OrderConfirmation />);
@@ -93,7 +107,9 @@ describe('OrderConfirmation', () => {
 
   it('returns null if no order', () => {
     const mockNavigate = jest.fn();
-    jest.spyOn(ReactRouterDom, 'useLocation').mockReturnValue({ state: undefined } as any);
+    jest
+      .spyOn(ReactRouterDom, 'useLocation')
+      .mockReturnValue({ state: undefined } as any);
     jest.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(mockNavigate);
 
     const { container } = render(<OrderConfirmation />);

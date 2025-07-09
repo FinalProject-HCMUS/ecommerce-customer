@@ -57,7 +57,9 @@ jest.mock('../../hooks/image', () => ({
 
 // Mock ProfileHeader, ProfileImage, ProfileForm
 jest.mock('../../components/page/profile/ProfileHeader', () => (props: any) => (
-  <div data-testid="profile-header">{props.showSavedMessage ? 'Saved!' : 'Header'}</div>
+  <div data-testid="profile-header">
+    {props.showSavedMessage ? 'Saved!' : 'Header'}
+  </div>
 ));
 jest.mock('../../components/page/profile/ProfileImage', () => (props: any) => (
   <div data-testid="profile-image">
@@ -130,5 +132,4 @@ describe('ProfilePage', () => {
     render(<ProfilePage />);
     expect(screen.getByText('lbl.loading')).toBeInTheDocument();
   });
-
 });

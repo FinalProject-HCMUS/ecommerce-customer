@@ -28,6 +28,8 @@ describe('Divider', () => {
 
   it('applies custom className', () => {
     render(<Divider text="Custom" className="my-custom-class" />);
-    expect(screen.getByText('Custom').parentElement?.className).toMatch(/my-custom-class/);
+    expect(screen.getByText('Custom').parentElement?.className).toMatch(
+      /my-custom-class/
+    );
   });
 });

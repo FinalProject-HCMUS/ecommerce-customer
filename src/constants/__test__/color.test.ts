@@ -8,12 +8,29 @@ describe('colorData', () => {
 
   test('should contain all expected color keys', () => {
     const expectedColors = [
-      'purple', 'yellow', 'black', 'white', 'pink', 'gray', 'teal',
-      'maroon', 'navy', 'turquoise', 'lavender', 'peach', 'silver',
-      'gold', 'burgundy', 'olive', 'mustard', 'mint', 'coral', 'taupe'
+      'purple',
+      'yellow',
+      'black',
+      'white',
+      'pink',
+      'gray',
+      'teal',
+      'maroon',
+      'navy',
+      'turquoise',
+      'lavender',
+      'peach',
+      'silver',
+      'gold',
+      'burgundy',
+      'olive',
+      'mustard',
+      'mint',
+      'coral',
+      'taupe',
     ];
 
-    expectedColors.forEach(color => {
+    expectedColors.forEach((color) => {
       expect(colorData).toHaveProperty(color);
     });
 
@@ -23,8 +40,8 @@ describe('colorData', () => {
 
   test('should have valid hex color codes for all values', () => {
     const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-    
-    Object.values(colorData).forEach(colorCode => {
+
+    Object.values(colorData).forEach((colorCode) => {
       expect(colorCode).toMatch(hexColorRegex);
     });
   });
