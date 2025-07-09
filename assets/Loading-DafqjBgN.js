@@ -1,0 +1,1 @@
+import{j as e,t as s}from"./index-Cjw31lPW.js";const t=()=>e.jsx("div",{className:"max-w-4xl mx-auto px-4 py-8",children:e.jsx("div",{className:"flex justify-center items-center h-64",children:e.jsx("div",{className:"animate-pulse text-gray-400",children:s("lbl.loading")})})});export{t as L};
