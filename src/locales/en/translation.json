@@ -189,8 +189,10 @@
     "paymentSuccess": "Payment successful!",
     "paymentSuccessDescription": "Your payment has been processed successfully. Thank you for your order!",
     "paymentFailed": "Payment failed",
-    "paymentFailedDescription": "There was an issue processing your payment"
-
+    "paymentFailedDescription": "There was an issue processing your payment",
+    "paymentError": "An error occurred while processing your payment. Please try again later.",
+    "paymentErrorDescription": "We encountered an error while processing your payment. Please check your payment details and try again.",
+    "contactSupport": "Contact Support"
   },
   "order": {
     "orderDetails": "Order Details",
@@ -230,7 +232,10 @@
       "PICKING": "Picking",
       "PICKED": "Picked",
       "SHIPPING": "Shipping"
-    }
+    },
+    "paid": "Paid",
+    "unpaid": "Unpaid",
+    "reCheckout": "Re-Checkout"
   },
   "pagination": {
     "previous": "Previous",

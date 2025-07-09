@@ -10,6 +10,7 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ count = 3 }) => {
       {Array.from({ length: count }).map((_, index) => (
         <div
           key={index}
+          role="presentation"
           className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-pulse"
         >
           <div className="flex items-center justify-between">

@@ -11,6 +11,7 @@ import {
   recoverFace,
 } from '../../../utils/virtual-try-on';
 import { t, tUpperCase } from '../../../helpers/i18n';
+import { VITE_HUGGINGFACE_API_KEY } from '../../../helpers/env';
 
 interface VirtualTryOnProps {
   garment?: ProductImageResponse;
@@ -48,7 +49,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
   const [error, setError] = useState<string | null>(null);
 
   // API key
-  const apiKey = import.meta.env.VITE_HUGGINGFACE_API_KEY || '';
+  const apiKey = VITE_HUGGINGFACE_API_KEY;
 
   // Derived state for detecting if any processing is happening
   const isProcessing = processingStage !== 'idle';

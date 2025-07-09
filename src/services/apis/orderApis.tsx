@@ -55,3 +55,8 @@ export const searchOrders = async (params: {
 
   return response.data;
 };
+
+export const retryVNPayPayment = async (orderId: string): Promise<string> => {
+  const response = await client.post<string>(`/vn-payment/retry/${orderId}`);
+  return response.data;
+};

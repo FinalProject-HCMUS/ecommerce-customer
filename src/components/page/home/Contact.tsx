@@ -5,6 +5,7 @@ import InputField from '../../shared/form/InputField';
 import { GeneralButton } from '../../shared/Button';
 import emailjs from '@emailjs/browser';
 import { messageRenderUtils } from '../../../utils';
+import { PUBLIC_KEY, SERVICE_ID, TEMPLATE_ID } from '../../../helpers/env';
 
 import { t } from '../../../helpers/i18n';
 interface FormState {
@@ -37,10 +38,6 @@ const formReducer = (state: FormState, action: Action): FormState => {
       return state;
   }
 };
-
-const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
-const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 
 const Contact = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
