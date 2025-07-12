@@ -21,6 +21,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        
+      - name: Run tests
+        run: npm test -- -u  # Tự động cập nhật snapshots
 
       - name: Create .env.production file
         run: |
@@ -37,6 +40,7 @@ jobs:
         run: |
           cp dist/index.html dist/404.html
 
+      # CD step
       - name: Deploy to GitHub Pages
         if: github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v3
