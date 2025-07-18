@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`contactInfo should match snapshot 1`] = `
-{
-  "address": "123 Dartmouth Street Boston, Massachusetts 02156 United States",
-  "email": "demo@gmail.com",
-  "phone": "123-456-7890",
-}
-`;
