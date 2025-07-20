@@ -1,1 +1,0 @@
-import{d as n,c as e}from"./index-DTsJyqUT.js";const r=t=>{const a=new Date(t);return new Intl.DateTimeFormat(n()===e.REGIONS.vi.key?e.VN:e.EN,{year:"numeric",month:"long",day:"numeric"}).format(a)},i=t=>new Date(t).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});export{i as a,r as f};
