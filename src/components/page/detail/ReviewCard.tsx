@@ -1,12 +1,10 @@
 import type React from 'react';
-import StarRating from '../../shared/RatingStars';
 import { t } from '../../../helpers/i18n';
 import { formatDateUtils } from '../../../utils';
 
 interface ReviewCardProps {
   author: string;
   isVerified?: boolean;
-  rating: number;
   content: string;
   date: string;
 }
@@ -14,7 +12,6 @@ interface ReviewCardProps {
 const ReviewCard: React.FC<ReviewCardProps> = ({
   author,
   isVerified = false,
-  rating,
   content,
   date,
 }) => {
@@ -23,7 +20,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
       <div className="flex justify-between items-start mb-2">
         <div>
           <div className="mb-2">
-            <StarRating rating={rating} />
+            
           </div>
           <div className="flex items-center">
             <span className="font-medium mr-2">{author}</span>

@@ -18,13 +18,6 @@ import {
   ProductColorSizeResponse,
   SizeResponse,
 } from '../../interfaces';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../context/store';
-import { useCart } from '../../hooks/cart';
-import { common } from '../../constants';
-import { showError } from '../../utils/messageRender';
-
-const { TIME_OUT_ADD_TO_CART } = common;
 
 const App: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get product ID from URL
@@ -39,14 +32,7 @@ const App: React.FC = () => {
   const [productColorSize, setProductColorSize] = useState<
     ProductColorSizeResponse[]
   >([]);
-  const [isAdding, setIsAdding] = useState<boolean>(false);
 
-  const { userInfo } = useSelector((state: RootState) => state.auth);
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
-  );
-
-  const { addCartItem } = useCart();
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -83,34 +69,7 @@ const App: React.FC = () => {
     fetchProductDetails();
   }, [id]);
 
-  const handleAddToCart = async (quantity: number, itemId: string) => {
-    if (!userInfo?.id || !isAuthenticated) {
-      showError(t('error.loginRequired'));
-      return;
-    }
-
-    if (!quantity) {
-      showError(t('error.quantityRequired'));
-      return;
-    }
-    if (itemId === '') {
-      showError(t('error.itemRequired'));
-      return;
-    }
-
-    const cartItem = {
-      userId: userInfo?.id,
-      itemId: itemId,
-      quantity: quantity,
-    };
-
-    const result = await addCartItem(cartItem);
-    if (!result) return;
-    setIsAdding(true);
-    setTimeout(() => {
-      setIsAdding(false);
-    }, TIME_OUT_ADD_TO_CART);
-  };
+  
 
   if (productLoading || imagesLoading || productColorSizeLoading) {
     return <Loading />;
@@ -133,8 +92,6 @@ const App: React.FC = () => {
             colors={colors}
             productColorSize={productColorSize}
             sizes={sizes}
-            isAdding={isAdding}
-            handleAddToCart={handleAddToCart}
           />
         )}
       </div>
@@ -143,7 +100,6 @@ const App: React.FC = () => {
       {product?.description && (
         <ProductDescription description={product.description} />
       )}
-  
     </div>
   );
 };
