@@ -562,13 +562,11 @@ export const processVirtualTryOn = async (
   service: 'idm-vton' | 'gemini' = 'idm-vton'
 ): Promise<VirtualTryOnResult> => {
   try {
-    // Convert garment image to base64
-    const garmentImageBase64 = await imageUrlToBase64(garmentImageUrl);
 
     const requestData: TryOnRequest = {
       service,
       humanImage: facelessImageBase64, // Already base64 faceless image
-      garmentImage: garmentImageBase64,
+      garmentImage: garmentImageUrl,
     };
 
     const response = await fetch(apiUrl, {
