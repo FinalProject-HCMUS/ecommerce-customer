@@ -290,7 +290,5 @@
     "imageUploadFailed": "Tải lên hình ảnh không thành công. Vui lòng thử lại.",
     "updateProfile": "Cập nhật hồ sơ thành công!"
   },
-  "pending": "Đang chờ xử lý",
-  "virtualTryOn": "Thử đồ ảo",
-  "uploadImage": "Tải lên hình ảnh của bạn"
+  "pending": "Đang chờ xử lý"
 }

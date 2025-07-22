@@ -281,7 +281,5 @@
     "imageUploadFailed": "Image upload failed. Please try again.",
     "updateProfile": "Update Profile Successfully!"
   },
-  "pending": "Pending",
-  "virtualTryOn": "Virtual Try-On",
-  "uploadImage": "Upload your image"
+  "pending": "Pending"
 }

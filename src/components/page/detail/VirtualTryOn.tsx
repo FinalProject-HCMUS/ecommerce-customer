@@ -4,14 +4,14 @@ import { ProductImageResponse } from '../../../interfaces';
 import { FACE_PARTS } from '../../../constants/vton';
 import {
   runSegmentation,
-  processMasks,
-  removeFace,
-  loadImage,
+  extractFaceData,
+  createFacelessImage,
   processVirtualTryOn,
   recoverFace,
+  imageUrlToBase64,
 } from '../../../utils/virtual-try-on';
-import { t, tUpperCase } from '../../../helpers/i18n';
-import { VITE_HUGGINGFACE_API_KEY } from '../../../helpers/env';
+import { t } from '../../../helpers/i18n';
+import { VITE_VTON_API_URL } from '../../../helpers/env';
 
 interface VirtualTryOnProps {
   garment?: ProductImageResponse;
@@ -19,12 +19,8 @@ interface VirtualTryOnProps {
 
 interface FaceData {
   originalImage: HTMLImageElement;
-  faceMask: ImageData;
-}
-
-interface SegmentationSegment {
-  label: string;
-  mask: SegmentationMask;
+  faceMask: SegmentationMask;
+  faceImageData: ImageData;
 }
 
 interface SegmentationMask {
@@ -33,23 +29,27 @@ interface SegmentationMask {
   data: Uint8ClampedArray;
 }
 
-// Type for different processing stages
-type ProcessingStage = 'idle' | 'segmentation' | 'faceless' | 'tryon';
+type ProcessingStage = 'idle' | 'segmentation' | 'face-processing' | 'tryon' | 'face-recovery';
 
 const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
   // Image states
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [facelessImage, setFacelessImage] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
+  const [recoveredFaceResult, setRecoveredFaceResult] = useState<string | null>(null);
   const [faceData, setFaceData] = useState<FaceData | null>(null);
+  const [isRecoverable, setIsRecoverable] = useState<boolean>(false);
+  const [isFaceRecovered, setIsFaceRecovered] = useState<boolean>(false);
+  const [, setDetailedProgress] = useState<string>('');
+  const [facePercentage] = useState<number>(0.6);
 
   // Processing states
-  const [processingStage, setProcessingStage] =
-    useState<ProcessingStage>('idle');
+  const [processingStage, setProcessingStage] = useState<ProcessingStage>('idle');
   const [error, setError] = useState<string | null>(null);
+  const [service, setService] = useState<'idm-vton' | 'gemini'>('gemini');
 
-  // API key
-  const apiKey = VITE_HUGGINGFACE_API_KEY;
+  // API URL
+  const apiUrl = VITE_VTON_API_URL || 'https://vton-middle-api.vercel.app/api/tryon';
 
   // Derived state for detecting if any processing is happening
   const isProcessing = processingStage !== 'idle';
@@ -63,9 +63,12 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
     try {
       // Reset all states
       setError(null);
-      setFacelessImage(null);
       setResult(null);
+      setRecoveredFaceResult(null);
+      setFacelessImage(null);
       setFaceData(null);
+      setIsRecoverable(false);
+      setIsFaceRecovered(false);
 
       // Create and set uploaded image URL
       const file = event.target.files[0];
@@ -83,54 +86,68 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
     }
   };
 
-  // Process original image to get faceless version
+  // Process original image to extract face and create faceless version
   const processOriginalImage = async (imageUrl: string) => {
     if (!imageUrl) return;
-
-    // console.log("Processing original image...");
+  
     setProcessingStage('segmentation');
     setError(null);
-
+    setDetailedProgress('');
+  
     try {
-      // Step 1: Run segmentation to get the face mask
-      // console.log("Running face segmentation...");
+      // Step 1: Run segmentation to get face mask
+      setDetailedProgress('Running image segmentation...');
+      console.log("Running segmentation with face parts:", FACE_PARTS);
       const segmentationOutput = await runSegmentation(imageUrl, FACE_PARTS);
-
-      if (
-        !segmentationOutput.some(
-          (seg: SegmentationSegment) => seg?.label === 'Face'
-        )
-      ) {
-        throw new Error('No face detected in the image');
-      }
-
-      const processed = await processMasks(segmentationOutput, imageUrl);
-
-      const originalImage: HTMLImageElement = await loadImage(imageUrl);
-
-      const newFaceData: FaceData = {
-        originalImage,
-        faceMask: processed.processedMasks.Face,
-      };
-      setFaceData(newFaceData);
-
-      // Step 3: Remove the face
-      // console.log("Removing face from image...");
-      setProcessingStage('faceless');
-      const facelessBlob = await removeFace(processed);
-      const facelessUrl = URL.createObjectURL(facelessBlob);
-      setFacelessImage(facelessUrl);
-      // console.log("Faceless image created:", facelessUrl);
-
-      // Step 4: Explicitly proceed to try-on if garment is available
-      // Make sure to check if garment is defined AND has a url property
-      if (garment && garment.url) {
-        // console.log("Proceeding to try-on with garment:", garment.url);
-        setProcessingStage('tryon');
-        await tryOnGarment(facelessUrl, garment, newFaceData);
+      console.log("Segmentation output:", segmentationOutput.map(s => s.label));
+  
+      setProcessingStage('face-processing');
+  
+      // Step 2: Extract face data with progress updates and face percentage
+      const extractedFaceData = await extractFaceData(
+        imageUrl, 
+        segmentationOutput,
+        (message) => setDetailedProgress(message),
+        facePercentage // Pass the face percentage
+      );
+      
+      if (extractedFaceData) {
+        console.log("Face data extracted successfully");
+        setFaceData(extractedFaceData);
+        
+        // Step 3: Create faceless image with progress updates
+        const facelessImageBase64 = await createFacelessImage(
+          imageUrl, 
+          extractedFaceData,
+          (message) => setDetailedProgress(message)
+        );
+        setFacelessImage(facelessImageBase64);
+        
+        // Step 4: Proceed to try-on if garment is available
+        if (garment && garment.url) {
+          // Pass the extracted face data directly to avoid state timing issues
+          await tryOnGarment(facelessImageBase64, garment, extractedFaceData);
+        } else {
+          setProcessingStage('idle');
+          setDetailedProgress('');
+        }
       } else {
-        // console.log("No garment available for try-on, process complete");
-        setProcessingStage('idle');
+        // No face detected, use original image directly
+        console.warn('No face detected in the image, using original image');
+        setError('No face detected in the image. Try a photo with a clearer face.');
+        setFaceData(null);
+        setDetailedProgress('');
+        
+        // Convert original image to base64 for API
+        const originalImageBase64 = await imageUrlToBase64(imageUrl);
+        setFacelessImage(originalImageBase64);
+        
+        if (garment && garment.url) {
+          // Pass null for face data since no face was detected
+          await tryOnGarment(originalImageBase64, garment, null);
+        } else {
+          setProcessingStage('idle');
+        }
       }
     } catch (error) {
       console.error('Processing error:', error);
@@ -140,61 +157,55 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
           : 'An error occurred during image processing'
       );
       setProcessingStage('idle');
+      setDetailedProgress('');
     }
   };
 
-  // Try on garment function
+  // Try on garment function using the new API with faceless image
   const tryOnGarment = async (
-    faceImageUrl: string,
+    facelessImageBase64: string,
     garmentItem: ProductImageResponse,
-    faceDataParam: FaceData
+    currentFaceData?: FaceData | null // Add this parameter
   ) => {
-    // console.log("tryOnGarment called with:", {
-    //   faceImageUrl,
-    //   garmentUrl: garmentItem?.url,
-    //   hasFaceData: !!faceDataParam
-    // });
-    if (!faceImageUrl) {
-      console.error('Missing faceImageUrl in tryOnGarment');
-      return;
-    }
-    if (!garmentItem || !garmentItem.url) {
-      console.error('Missing or invalid garmentItem in tryOnGarment');
-      return;
-    }
-    if (!faceDataParam) {
-      console.error('Missing faceData in tryOnGarment');
+    if (!facelessImageBase64 || !garmentItem?.url) {
+      console.error('Missing required parameters for try-on');
       return;
     }
 
-    // console.log("Starting try-on process...");
+    setProcessingStage('tryon');
     setError(null);
 
     try {
-      // Try-on options
-      const options = {
-        modelEndpoint: 'zhengchong/CatVTON',
-        inferenceSteps: 20,
-        guidanceScale: 2.5,
-        seed: Math.floor(Math.random() * 10000),
-      };
-
-      // console.log("Sending images to HuggingFace...");
-      // Send to HuggingFace for processing
-      const tryOnResult = await processVirtualTryOn(
-        faceImageUrl,
+      // Call the API with faceless image
+      const result = await processVirtualTryOn(
+        facelessImageBase64,
         garmentItem.url,
-        apiKey,
-        options
+        apiUrl,
+        service
       );
 
-      // console.log("Try-on successful, recovering face...");
-      // Process face recovery if we have a result
-      if (tryOnResult && faceDataParam) {
-        const recoveredBlob = await recoverFace(tryOnResult, faceDataParam);
-        const recoveredUrl = URL.createObjectURL(recoveredBlob);
-        setResult(recoveredUrl);
-        // console.log("Face recovery complete");
+      if (result.success && result.data) {
+        // Set the result image (base64)
+        setResult(result.data.outputImage);
+        
+        // Reset face recovery states
+        setRecoveredFaceResult(null);
+        setIsFaceRecovered(false);
+        
+        // Use the passed faceData or fall back to state
+        const faceDataToCheck = currentFaceData !== undefined ? currentFaceData : faceData;
+        
+        // Set recovery capability - debug logging
+        const canRecover = result.data.isRecoverable && faceDataToCheck !== null;
+        console.log('Face recovery capability:', {
+          apiRecoverable: result.data.isRecoverable,
+          hasFaceData: faceDataToCheck !== null,
+          canRecover,
+          currentFaceData: currentFaceData !== undefined ? 'passed' : 'from state'
+        });
+        setIsRecoverable(canRecover);
+      } else {
+        throw new Error(result.error || 'Virtual try-on failed');
       }
     } catch (error) {
       console.error('Try-on error:', error);
@@ -208,9 +219,58 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
     }
   };
 
+  // Toggle face recovery function
+  const handleToggleFaceRecovery = async () => {
+    if (!result || !faceData) return;
+
+    // If face is already recovered, toggle back to original
+    if (isFaceRecovered) {
+      setIsFaceRecovered(false);
+      return;
+    }
+
+    // If we don't have recovered face result yet, generate it
+    if (!recoveredFaceResult) {
+      try {
+        setProcessingStage('face-recovery');
+        setError(null);
+        setDetailedProgress('');
+
+        const recoveredImageBase64 = await recoverFace(
+          result, 
+          faceData,
+          (message) => setDetailedProgress(message)
+        );
+        setRecoveredFaceResult(recoveredImageBase64);
+        setIsFaceRecovered(true);
+      } catch (error) {
+        console.error('Face recovery error:', error);
+        setError(
+          error instanceof Error
+            ? error.message
+            : 'An error occurred during face recovery'
+        );
+      } finally {
+        setProcessingStage('idle');
+        setDetailedProgress('');
+      }
+    } else {
+      // If we already have recovered face result, just toggle
+      setIsFaceRecovered(true);
+    }
+  };
+
   // Helper function to determine if a specific stage is loading
   const isStageLoading = (stage: ProcessingStage): boolean => {
     return processingStage === stage;
+  };
+
+  // Get the current result image based on face recovery state
+  const getCurrentResultImage = () => {
+    if (isFaceRecovered && recoveredFaceResult) {
+      return recoveredFaceResult;
+    }
+    return result;
   };
 
   // Reusable image panel component
@@ -278,7 +338,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {tUpperCase('virtualTryOn')}
+        {t('virtualTryOn.title')}
       </motion.h1>
 
       {error && (
@@ -298,17 +358,34 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          {processingStage === 'segmentation' && 'Analyzing image...'}
-          {processingStage === 'faceless' && 'Processing face...'}
-          {processingStage === 'tryon' && 'Generating try-on result...'}
+          {processingStage === 'segmentation' && t('virtualTryOn.statusMessages.analyzingImage')}
+          {processingStage === 'face-processing' && t('virtualTryOn.statusMessages.processingFace')}
+          {processingStage === 'tryon' && t('virtualTryOn.statusMessages.generatingResult')}
+          {processingStage === 'face-recovery' && t('virtualTryOn.statusMessages.recoveringFace')}
         </motion.div>
       )}
+
+      {/* Service selector */}
+      <div className="w-full max-w-7xl mb-6">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t('virtualTryOn.selectService')}
+        </label>
+        <select
+          value={service}
+          onChange={(e) => setService(e.target.value as 'idm-vton' | 'gemini')}
+          disabled={isProcessing}
+          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="gemini">{t('virtualTryOn.fasterLessAccurate')}</option>
+          <option value="idm-vton">{t('virtualTryOn.slowerMoreAccurate')}</option>
+        </select>
+      </div>
 
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         {/* Original Image Panel */}
         <ImagePanel
           image={uploadedImage}
-          placeholderText="Your Photo"
+          placeholderText={t('virtualTryOn.placeholders.yourPhoto')}
           isLoading={false}
           alt="Original Photo"
           delay={0.1}
@@ -317,28 +394,26 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
         {/* Faceless Image Panel */}
         <ImagePanel
           image={facelessImage}
-          placeholderText="Processed Photo"
-          isLoading={
-            isStageLoading('segmentation') || isStageLoading('faceless')
-          }
-          alt="Processed Photo"
+          placeholderText={t('virtualTryOn.placeholders.facelessPhoto')}
+          isLoading={isStageLoading('face-processing')}
+          alt="Faceless Photo"
           delay={0.2}
         />
 
         {/* Garment Panel */}
         <ImagePanel
           image={garment?.url}
-          placeholderText="Select Garment"
+          placeholderText={t('virtualTryOn.placeholders.selectGarment')}
           isLoading={false}
           alt="Garment"
           delay={0.3}
         />
 
-        {/* Result Panel */}
+        {/* Result Panel - shows current result based on face recovery state */}
         <ImagePanel
-          image={result}
-          placeholderText="Result"
-          isLoading={isStageLoading('tryon')}
+          image={getCurrentResultImage()}
+          placeholderText={t('virtualTryOn.placeholders.result')}
+          isLoading={isStageLoading('tryon') || isStageLoading('face-recovery')}
           alt="Result"
           delay={0.4}
         />
@@ -358,7 +433,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
               : 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer'
           }`}
         >
-          {t('uploadImage')}
+          {t('virtualTryOn.uploadImage')}
           <input
             type="file"
             accept="image/*"
@@ -368,9 +443,9 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
           />
         </label>
 
-        {facelessImage && garment && faceData && (
+        {facelessImage && garment && (
           <button
-            onClick={() => tryOnGarment(facelessImage, garment, faceData)}
+            onClick={() => tryOnGarment(facelessImage, garment)}
             disabled={isProcessing}
             className={`py-3 px-6 rounded-md font-medium transition-colors duration-200 ${
               isProcessing
@@ -378,7 +453,29 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ garment }) => {
                 : 'bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
             }`}
           >
-            {isProcessing ? 'Processing...' : 'Try Again'}
+            {isProcessing ? t('virtualTryOn.processing') : t('virtualTryOn.tryOn')}
+          </button>
+        )}
+
+        {/* Always show button when we have result and faceData, regardless of isRecoverable */}
+        {result && faceData && isRecoverable && (
+          <button
+            onClick={handleToggleFaceRecovery}
+            disabled={isProcessing}
+            className={`py-3 px-6 rounded-md font-medium transition-colors duration-200 ${
+              isProcessing
+                ? 'bg-green-300 text-green-100 cursor-not-allowed'
+                : isFaceRecovered
+                ? 'bg-orange-500 hover:bg-orange-600 text-white cursor-pointer'
+                : 'bg-green-500 hover:bg-green-600 text-white cursor-pointer'
+            }`}
+          >
+            {isProcessing 
+              ? t('virtualTryOn.processing')
+              : isFaceRecovered 
+                ? t('virtualTryOn.removeFace')
+                : t('virtualTryOn.recoverFace')
+            }
           </button>
         )}
       </motion.div>
