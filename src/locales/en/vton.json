@@ -1,0 +1,25 @@
+{
+  "virtualTryOn": {
+    "title": "Virtual Try-On",
+    "uploadImage": "Upload your image",
+    "tryOn": "Try On",
+    "processing": "Processing...",
+    "recoverFace": "Recover Face",
+    "removeFace": "Remove Face",
+    "selectService": "Select Service:",
+    "fasterLessAccurate": "Faster - less accurate",
+    "slowerMoreAccurate": "Slower - more accurate",
+    "statusMessages": {
+      "analyzingImage": "Analyzing image...",
+      "processingFace": "Processing face data...",
+      "generatingResult": "Generating try-on result...",
+      "recoveringFace": "Recovering face..."
+    },
+    "placeholders": {
+      "yourPhoto": "Your Photo",
+      "facelessPhoto": "Faceless Photo",
+      "selectGarment": "Select Garment",
+      "result": "Result"
+    }
+  }
+}
