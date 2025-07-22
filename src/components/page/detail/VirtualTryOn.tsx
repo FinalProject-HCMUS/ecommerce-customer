@@ -11,7 +11,6 @@ import {
   imageUrlToBase64,
 } from '../../../utils/virtual-try-on';
 import { t } from '../../../helpers/i18n';
-import { VITE_HUGGINGFACE_API_KEY } from '../../../helpers/env';
 import { VITE_VTON_API_URL } from '../../../helpers/env';
 
 interface VirtualTryOnProps {
