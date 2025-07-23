@@ -7,12 +7,14 @@ import enShopData from '../locales/en/shopData.json';
 import viShopData from '../locales/vn/shopData.json';
 import enUserMessage from '../locales/en/userMessage.json';
 import vnUserMessage from '../locales/vn/userMessage.json';
+import enVton from '../locales/en/vton.json';
+import vnVton from '../locales/vn/vton.json';
 
 import { IRegion } from '../interfaces';
 
 const RESOURCES = {
-  vi: { translation: { ...viTrans, ...viShopData, ...vnUserMessage } },
-  en: { translation: { ...enTrans, ...enShopData, ...enUserMessage } },
+  vi: { translation: { ...viTrans, ...viShopData, ...vnUserMessage, ...vnVton } },
+  en: { translation: { ...enTrans, ...enShopData, ...enUserMessage, ...enVton } },
 };
 
 const REGIONS: IRegion = {

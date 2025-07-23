@@ -1,0 +1,25 @@
+{
+  "virtualTryOn": {
+    "title": "Thử đồ ảo",
+    "uploadImage": "Tải lên hình ảnh của bạn",
+    "tryOn": "Thử đồ",
+    "processing": "Đang xử lý...",
+    "recoverFace": "Khôi phục khuôn mặt",
+    "removeFace": "Loại bỏ khuôn mặt",
+    "selectService": "Chọn dịch vụ:",
+    "fasterLessAccurate": "Nhanh hơn - ít chính xác",
+    "slowerMoreAccurate": "Chậm hơn - chính xác hơn",
+    "statusMessages": {
+      "analyzingImage": "Đang phân tích hình ảnh...",
+      "processingFace": "Đang xử lý dữ liệu khuôn mặt...",
+      "generatingResult": "Đang tạo kết quả thử đồ...",
+      "recoveringFace": "Đang khôi phục khuôn mặt..."
+    },
+    "placeholders": {
+      "yourPhoto": "Ảnh của bạn",
+      "facelessPhoto": "Ảnh không có khuôn mặt",
+      "selectGarment": "Chọn trang phục",
+      "result": "Kết quả"
+    }
+  }
+}

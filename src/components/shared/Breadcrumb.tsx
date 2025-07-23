@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
@@ -13,7 +14,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb = ({ items }: BreadcrumbProps) => {
   return (
-    <motion.nav
+      <motion.nav
       className="mb-6 text-sm text-gray-500 flex items-center flex-wrap"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
