@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import ProductGallery from '../../components/page/detail/ProductGallery';
 import ProductInfo from '../../components/page/detail/ProductInfo';
-// import VirtualTryOn from '../../components/page/detail/VirtualTryOn';
+import VirtualTryOn from '../../components/page/detail/VirtualTryOn';
 import ProductDescription from '../../components/page/detail/ProductDescription';
 import { t } from '../../helpers/i18n';
 import { useParams } from 'react-router-dom';
@@ -96,7 +96,7 @@ const App: React.FC = () => {
         )}
       </div>
 
-      {/*  <VirtualTryOn garment={images[0]} /> */}
+      <VirtualTryOn garment={images[0]} />
       {product?.description && (
         <ProductDescription description={product.description} />
       )}
